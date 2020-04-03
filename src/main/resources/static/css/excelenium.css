@@ -1,0 +1,7 @@
+.sheets-content {
+    width: 1360px;
+    height: 100%;
+    overflow-x: scroll;
+    overflow-y: scroll;
+    font-size: small;
+}
