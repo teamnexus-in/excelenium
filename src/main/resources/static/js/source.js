@@ -4,18 +4,22 @@ var suiteData = {};
 
 var tabId = 1;
 
+var suite;
+
 $(document).ready(function () {
 
     registerBrowserHandlers();
     registerDialogHandlers();
-    registerTabHandlers();
 
     var url = new URL(window.location.href);
     var qp = url.searchParams.get('type');
 
     console.log("qp:" + qp);
     if (qp == "new") {
-        $('#settingsModal').modal('show');
+        suite = new Suite();
+        suite.initialize();
+        suite.displaySettings();
+        //$('#settingsModal').modal('show');
         if (scriptsCount == 0) {
             $('#no-scripts').show();
         }
@@ -25,7 +29,7 @@ $(document).ready(function () {
 
     }
     else if (qp == "load") {
-
+        suite.loadFromFile();
     }
 
 
@@ -115,17 +119,10 @@ function registerBrowserHandlers() {
     // });
 }
 
-function registerTabHandlers() {
-    // $('#suite-tabs a').click(function () {
-    //     const newLocal = $(this).attr('id');
-    //     alert("You clicked: " + newLocal + " tab");
-    // });
-}
-
 function registerDialogHandlers() {
     // Save Suite Settingss
     $('#btn-settings-save').click(function () {
-        saveSuiteSettings();
+        suite.saveSettings();
     });
 
     // Create New Script
@@ -137,7 +134,7 @@ function registerDialogHandlers() {
         }
     });
 
-    $("#btn-new-suite").click(function () {
+    $("#btn-suite-new").click(function () {
         // check if a script is already open and save it before creating a new one
         clearSettingsFields();
         $("#settingsModal").modal('show');
@@ -145,7 +142,7 @@ function registerDialogHandlers() {
 
     $('#btn-settings').click(function () {
         // load the settings into the fields and show
-        $("#settingsModal").modal('show');
+        suite.displaySettings();
     });
 
     $('#btn-new-script').click(function () {

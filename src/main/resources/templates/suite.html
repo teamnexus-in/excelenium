@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>excelenium</title>
+
+  <link rel="stylesheet" th:href="@{/resources/css/all.min.css}" />
+  <link rel="stylesheet" th:href="@{/resources/css/bootstrap.min.css}" />
+  <link rel="stylesheet" th:href="@{/resources/css/toastr.min.css}" />
+  <link rel="stylesheet" th:href="@{/resources/css/jsuites.css}" />
+  <link rel="stylesheet" th:href="@{/resources/css/jexcel.css}" />
+  <link rel="stylesheet" th:href="@{/resources/css/excelenium.css}" />
+
+  <script th:src="@{/resources/js/jquery-3.4.1.min.js}"></script>
+  <script th:src="@{/resources/js/bootstrap.bundle.min.js}"></script>
+  <script th:src="@{/resources/js/toastr.min.js}"></script>
+  <script th:src="@{/resources/js/suite.js}"></script>
+  <script th:src="@{/resources/js/source.js}"></script>
+  <script th:src="@{/resources/js/jsuites.js}"></script>
+  <script th:src="@{/resources/js/jexcel.js}"></script>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-2">
+    <a class="navbar-brand" href="#">excelenium</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <div class="dropdown mr-2">
+            <button class="btn btn-sm btn-light dropdown-toggle" type="button" id="btn-suite-menu"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-folder mr-1"></i>Suite
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item bg-light mr-1" id="btn-suite-new"><i class="fas fa-folder-plus mr-1"></i>New</a>
+              <a class="dropdown-item bg-light mr-1" id="btn-suite-load"><i class="fas fa-file-upload mr-1"></i>Load...</a>
+            </div>
+          </div>
+          <!-- <button id="btn-new-suite" type="button" class="btn btn-sm btn-light mr-2"><i
+              class="fas fa-folder-plus mr-1"></i>New Suite</button> -->
+        </li>
+        <li class="nav-item">
+          <button id="btn-new-script" type="button" class="btn btn-sm btn-light mr-2"><i
+              class="fas fa-file mr-1"></i>New Script</button>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <button id="btn-save" type="button" class="btn btn-sm btn-light mr-2"><i
+              class="fas fa-save mr-1"></i>Save</button>
+        </li>
+        <li class="nav-item">
+          <button id="btn-settings" type="button" class="btn btn-sm btn-light" data-toggle="modal"
+            data-target="#settingsModal">
+            <i class="fas fa-cog mr-1"></i>Settings
+          </button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div id="scripts-tabs">
+    <ul class="nav nav-tabs" id="suite-tabs" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="tab-scripts" data-toggle="tab" href="#tpanel-scripts-tab" role="tab"
+          aria-controls="scripts" aria-selected="true">Scripts</a>
+      </li>
+      <!-- <li class="nav-item">
+        <a class="nav-link" id="tab-add-script"><i
+            class="fas fa-plus mr-1"></i></a>
+      </li> -->
+    </ul>
+    <div class="tab-content" id="scripts-tab-content">
+      <div class="tab-pane fade show active" id="tpanel-scripts-tab" role="tabpanel" aria-labelledby="scripts-tab">
+        <div id="no-scripts">
+          <div class="card">
+            <div class="card-body">
+              There are no scripts to display. Please create a script by clicking "New Script" button.
+            </div>
+          </div>
+        </div>
+        <div id="scripts-list" class="sheets-content"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="settingsModal" tabindex="-1" role="dialog" data-backdrop="false" data-keyboard="true"
+    aria-labelledby="settingsModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="settingsModalTitle">Suite Settings</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <form>
+
+            <div class="form-group row">
+              <div class="input-group mb-1 col-sm-6">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Suite Name</span>
+                </div>
+                <input id="tb-suite-name" type="text" class="form-control" aria-label="Text input with checkbox"
+                  placeholder="Enter Test Suite Name">
+              </div>
+              <div class="input-group mb-1 col-sm-6">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Server Url</span>
+                </div>
+                <input id="tb-server-url" type="text" class="form-control" aria-label="Text input with checkbox"
+                  placeholder="Enter the Server Url">
+              </div>
+            </div>
+
+            <div class="card mb-2">
+              <div class="card-body">
+
+                <h5 class="card-title">Browsers</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Select the browsers to run the test and enter the driver path
+                </h6>
+
+                <div class="row">
+                  <div class="input-group mb-2 col-sm-6">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">
+                        <input id="cb-chrome" class="cb-browser-settings" type="checkbox" aria-label="checkbox chrome">
+                      </div>
+                      <span class="input-group-text">Chrome</span>
+                    </div>
+                    <input id="tb-chrome" type="text" class="tb-browser-settings form-control"
+                      aria-label="Text input with checkbox" placeholder="/path/to/chrome/driver" disabled>
+                  </div>
+                  <div class="input-group mb-2 col-sm-6">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">
+                        <input id="cb-firefox" class="cb-browser-settings" type="checkbox"
+                          aria-label="checkbox firefox">
+                      </div>
+                      <span class="input-group-text">Firefox</span>
+                    </div>
+                    <input id="tb-firefox" type="text" class="tb-browser-settings form-control"
+                      aria-label="Text input with checkbox" placeholder="/path/to/firefox/driver" disabled>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="input-group mb-2 col-sm-6">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">
+                        <input id="cb-edge" class="cb-browser-settings" type="checkbox" aria-label="checkbox edge">
+                      </div>
+                      <span class="input-group-text">Edge</span>
+                    </div>
+                    <input id="tb-edge" type="text" class="tb-browser-settings form-control"
+                      aria-label="Text input with checkbox" placeholder="/path/to/edge/driver" disabled>
+                  </div>
+                  <div class="input-group mb-2 col-sm-6">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">
+                        <input id="cb-opera" class="cb-browser-settings" type="checkbox" aria-label="checkbox opera">
+                      </div>
+                      <span class="input-group-text">Opera</span>
+                    </div>
+                    <input id="tb-opera" type="text" class="tb-browser-settings form-control"
+                      aria-label="Text input with checkbox" placeholder="/path/to/opera/driver" disabled>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="input-group mb-1 col-sm-6">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">
+                        <input id="cb-user-agent" class="cb-browser-settings" type="checkbox"
+                          aria-label="checkbox useragent">
+                      </div>
+                      <span class="input-group-text">User-Agent</span>
+                    </div>
+                    <input id="tb-user-agent" type="text" class="tb-browser-settings form-control"
+                      aria-label="Text input with checkbox" placeholder="Custom User-Agent" disabled>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="form-group row">
+              <div class="form-check ml-4 col-sm-6">
+                <input class="form-check-input" type="checkbox" id="cb-run-browsers-concurrent">
+                <label class="form-check-label" for="defaultCheck1">
+                  Run Browsers Concurrently
+                </label>
+              </div>
+            </div>
+
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="btn-settings-save">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="newScriptModal" tabindex="-1" role="dialog" data-backdrop="false" data-keyboard="true"
+    aria-labelledby="newScriptModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="newScriptModalTitle">New Script</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <form>
+
+            <div class="form-group row">
+              <div class="input-group mb-1 col-sm-12">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Script Name</span>
+                </div>
+                <input id="tb-script-name" type="text" class="form-control" aria-label="Text input with prepended text"
+                  placeholder="Enter Script Name" required>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <div class="form-check ml-4 col-sm-6">
+                <input class="form-check-input" type="checkbox" id="cb-ns-stop-on-error">
+                <label class="form-check-label" for="cb-ns-stop-on-error">
+                  Stop on Error
+                </label>
+              </div>
+              <div class="form-check ml-4 col-sm-6">
+                <input class="form-check-input" type="checkbox" checked="true" id="cb-ns-execute">
+                <label class="form-check-label" for="cb-ns-execute">
+                  Execute
+                </label>
+              </div>
+            </div>
+
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="btn-new-script-ok">Ok</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>

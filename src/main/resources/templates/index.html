@@ -7,19 +7,32 @@
     <link rel="stylesheet" th:href="@{/resources/css/all.min.css}" />
     <link rel="stylesheet" th:href="@{/resources/css/bootstrap.min.css}" />
     <link rel="stylesheet" th:href="@{/resources/css/toastr.min.css}" />
+    <link rel="stylesheet" th:href="@{/resources/css/jsuites.css}" />
+    <link rel="stylesheet" th:href="@{/resources/css/jexcel.css}" />
+    <link rel="stylesheet" th:href="@{/resources/css/excelenium.css}" />
+    
     <script th:src="@{/resources/js/jquery-3.4.1.min.js}"></script>
     <script th:src="@{/resources/js/bootstrap.bundle.min.js}"></script>
     <script th:src="@{/resources/js/toastr.min.js}"></script>
+    <script th:src="@{/resources/js/init.js}"></script>
+    <script th:src="@{/resources/js/jsuites.js}"></script>
+    <script th:src="@{/resources/js/jexcel.js}"></script>
 </head>
 
 <body>
-    <div class="card">
-        <div class="card-body">
-            <h5 class="card-title text-center">excelenium</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Web Automation using spreadsheets</h6>
-            <p class="card-text">To begin load the script or create a new one</p>
-            <button type="button" class="btn-primary">Load Script</button>
-            <button type="button" class="btn-light">Create New</button>
+    <div class="container">
+        <div class="row justify-content-center align-self-center">
+            <div class="card col-6">
+                <div class="card-body">
+                    <h5 class="card-title text-center">excelenium</h5>
+                    <h6 class="card-subtitle mb-2 text-center">Web Selenium Automation using spreadsheets</h6>
+                    <p class="card-text text-center">To begin load the script or create a new one</p>
+                    <div class="d-flex flex-row justify-content-center align-items-center">
+                        <button id="btn-load" type="button" class="btn-dark mr-1">Load Suite</button>
+                        <button id="btn-new" type="button" class="btn-dark ml-1">Create New</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
