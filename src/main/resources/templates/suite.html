@@ -37,7 +37,8 @@
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
               <a class="dropdown-item bg-light mr-1" id="btn-suite-new"><i class="fas fa-folder-plus mr-1"></i>New</a>
-              <a class="dropdown-item bg-light mr-1" id="btn-suite-load"><i class="fas fa-file-upload mr-1"></i>Load...</a>
+              <a class="dropdown-item bg-light mr-1" id="btn-suite-load"><i
+                  class="fas fa-file-upload mr-1"></i>Load...</a>
             </div>
           </div>
           <!-- <button id="btn-new-suite" type="button" class="btn btn-sm btn-light mr-2"><i
@@ -46,6 +47,12 @@
         <li class="nav-item">
           <button id="btn-new-script" type="button" class="btn btn-sm btn-light mr-2"><i
               class="fas fa-file mr-1"></i>New Script</button>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto mr-auto">
+        <li class="nav-item">
+          <button id="btn-run" type="button" class="btn btn-sm btn-light mr-2"><i
+              class="fas fa-play-circle mr-1"></i>Run</button>
         </li>
       </ul>
       <ul class="navbar-nav ml-auto">
@@ -62,6 +69,10 @@
       </ul>
     </div>
   </nav>
+
+  <div id="spreadsheets">
+
+  </div>
 
   <div id="scripts-tabs">
     <ul class="nav nav-tabs" id="suite-tabs" role="tablist">
@@ -178,13 +189,11 @@
                   <div class="input-group mb-1 col-sm-6">
                     <div class="input-group-prepend">
                       <div class="input-group-text">
-                        <input id="cb-user-agent" class="cb-browser-settings" type="checkbox"
+                        <input id="cb-safari" class="cb-browser-settings" type="checkbox"
                           aria-label="checkbox useragent">
                       </div>
-                      <span class="input-group-text">User-Agent</span>
+                      <span class="input-group-text">Safari</span>
                     </div>
-                    <input id="tb-user-agent" type="text" class="tb-browser-settings form-control"
-                      aria-label="Text input with checkbox" placeholder="Custom User-Agent" disabled>
                   </div>
                 </div>
               </div>
@@ -192,11 +201,25 @@
             </div>
 
             <div class="form-group row">
-              <div class="form-check ml-4 col-sm-6">
-                <input class="form-check-input" type="checkbox" id="cb-run-browsers-concurrent">
-                <label class="form-check-label" for="defaultCheck1">
-                  Run Browsers Concurrently
-                </label>
+              <div class="input-group col-sm-6">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <input id="cb-user-agent" class="cb-browser-settings" type="checkbox"
+                      aria-label="checkbox useragent">
+                  </div>
+                  <span class="input-group-text">User-Agent</span>
+                </div>
+                <input id="tb-user-agent" type="text" class="tb-browser-settings form-control"
+                  aria-label="Text input with checkbox" placeholder="Custom User-Agent" disabled>
+              </div>
+              <div class="input-group col-sm-6">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <input id="cb-run-concurrent" class="cb-browser-settings" type="checkbox"
+                      aria-label="checkbox useragent">
+                  </div>
+                  <span class="input-group-text">Run browser concurrently</span>
+                </div>
               </div>
             </div>
 
