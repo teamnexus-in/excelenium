@@ -9,24 +9,70 @@ var actions = {
 class SuiteModel {
     constructor() {
         this.settings = {};
-        this.data = {};
+        this.scripts = [];
+    }
+
+    initialize(scriptModel){
+        this.scriptModel = scriptModel;
     }
 
     getJson() {
+        let data = {};
+        data.name = this.settings.name;
+        data.settings = this.settings;
+        data.scripts = this.scripts;
+        return data;
     }
 
     addNewScript(scriptName, run, stopOnError) {
     }
 
     saveSettings(settings) {
+        console.log("Model Save Settings");
         this.settings = settings;
+        console.log(this.settings);
     }
 
     saveSuite(sData) {
-        this.data = sData;
+        sData.forEach(script =>{
+            let model = this.scriptModel.getScriptModel(script);
+            this.scripts.push(model);
+        });
+        console.log(this.getJson());
     }
 }
 
+/// ================ ScriptModel =========================
+class ScriptModel {
+    constructor() {
+    }
+
+    getScriptModel(scriptsData) { 
+        console.log("script model", scriptsData);
+        this.name = scriptsData.name;
+        this.run = scriptsData.run;
+        this.stopOnError = scriptsData.stopOnError;
+        this.actions = [];
+        scriptsData.actions.forEach(obj =>{
+            let actionsObj = {};
+            actionsObj.isExecute = obj[0];
+            actionsObj.isStopOnError = obj[1];
+            actionsObj.actionName = obj[2];
+            actionsObj.actionType = obj[3];
+            actionsObj.element = obj[4];
+            actionsObj.elementValue = obj[5];
+            actionsObj.attributeName = obj[6];
+            actionsObj.attributeValue = obj[7];
+            actionsObj.preprocess = {}
+            actionsObj.preprocess.actionType = obj[8];
+            actionsObj.preprocess.attributeName = obj[9];
+            actionsObj.preprocess.attributeValue = obj[10];
+            this.actions.push(actionsObj);
+        });
+
+        return this;
+    }
+}
 
 /// ================ SuiteController =========================
 class SuiteController {
@@ -59,10 +105,12 @@ class SuiteController {
 }
 
 
+
+
 /// ================ SuiteView =========================
 class SuiteView {
     constructor() {
-        this.data = { "scripts": {} };
+        this.data = { "scripts": [] };
         this.tabIdx = 0;
         this.scriptsJxl;
     }
@@ -81,9 +129,12 @@ class SuiteView {
             var cboxEl = $(this).attr("id");
             var idx = cboxEl.indexOf('-');
             var elName = cboxEl.substr(idx + 1);
-            console.log(cboxEl + " " + elName);
+            // console.log(cboxEl + " " + elName);
             var tbEl = '#tb-' + elName;
             $(tbEl).attr('disabled', !result);
+            if(result){
+                $(tbEl).focus();
+            }
             // $("#tb-chrome").attr('disabled', !result);
         });
 
@@ -91,18 +142,19 @@ class SuiteView {
             let settings = {};
             settings.name = $('#tb-suite-name').val();
             settings.serverUrl = $('#tb-server-url').val();
-            settings.browsers = {};
-            settings.browsers.chrome = thisViewObj.getBrowserOptions('chrome');
-            settings.browsers.firefox = thisViewObj.getBrowserOptions('firefox');
-            settings.browsers.edge = thisViewObj.getBrowserOptions('edge');
-            settings.browsers.opera = thisViewObj.getBrowserOptions('opera');
-            settings.browsers.safari = thisViewObj.getBrowserOptions('safari');
+            settings.browsers = [];
+            let browsers = ['chrome', 'firefox', 'edge', 'opera', 'safari'];
+            browsers.forEach(obj => {
+                console.log(obj);
+                let data = thisViewObj.getBrowserOptions(obj);
+                settings.browsers.push(data);
+            });
             settings.userAgent = thisViewObj.getBrowserOptions('user-agent');
             settings.runConcurrent = $('#cb-run-concurrent').prop('checked');
 
             // console.log(settings);
-
             thisViewObj.controller.saveSettings(settings);
+            thisViewObj.hideSettings();
         });
 
         // Create New Script
@@ -129,6 +181,7 @@ class SuiteView {
             thisViewObj.showNewScriptDialog();
         });
 
+        // Save suite
         $('#btn-save').click(function () {
             console.log('Save clicked');
             let sData = thisViewObj.getScriptsData();
@@ -137,19 +190,35 @@ class SuiteView {
     }
 
     getBrowserOptions(browser) {
-        let check = $('#cb-' + browser).prop('checked');
-        let driverPath = ((browser == 'safari') ? "" : $('#tb-' + browser).val());
-        return [check, driverPath];
+        let retVal = {};
+        let enabled = $('#cb-' + browser).prop('checked');
+        let textVal = ((browser == 'safari') ? "" : $('#tb-' + browser).val());
+        retVal.enabled = enabled;
+        if (browser == 'user-agent') {
+            retVal.value = textVal;
+        }
+        else {
+            retVal.name = browser;
+            retVal.driverPath = textVal;
+        }
+        console.log(retVal);
+        return retVal;
     }
 
     getScriptsData() {
         console.log("Getting scripts data");
-        let retVal = {};
+        let retVal = [];
         let obj = this.data.scripts;
-        for (var key in obj) {
-            let jxl = obj[key].jxl;
-            retVal[key] = this.sanitizeJson(jxl.getJson());
-        }
+        this.data.scripts.forEach(obj => {
+            let scriptData = {};
+            scriptData.name = obj.name;
+            scriptData.run = obj.run;
+            scriptData.stopOnError = obj.stopOnError;
+            let jxl = obj.jxl;
+            scriptData.actions = this.sanitizeJson(jxl.getJson());
+            retVal.push(scriptData);
+        });
+
         console.log(retVal);
         return retVal;
     }
@@ -219,11 +288,15 @@ class SuiteView {
             this.data.scripts[scriptName] = {};
         }
         // console.log(this.data);
-        let scriptData = this.data.scripts[scriptName];
+        let scriptData = {}
+        scriptData.name = scriptName;
         scriptData.tabIdx = this.tabIdx;
         scriptData.tabId = tabId;
         scriptData.panelId = panelId;
         scriptData.sheetsId = sheetsId;
+        scriptData.run = run;
+        scriptData.stopOnError = stopOnError;
+        this.data.scripts.push(scriptData);
 
         $('#suite-tabs').append('<li class="nav-item"><a class="nav-link" id="' + tabId + '" data-toggle="tab" href="#' + panelId + '" role="tab" aria-controls="scripts" aria-selected="true">' + scriptName + '</a></li>');
         $('#scripts-tab-content').append('<div class="tab-pane fade show" id="' + panelId + '" role="tabpanel" aria-labelledby="' + tabId + '"><div id="' + sheetsId + '" class="sheets-content"></div></div>');
@@ -245,11 +318,12 @@ class SuiteView {
             columns: [
                 { type: 'checkbox', title: 'Run', width: 50 },
                 { type: 'checkbox', title: 'Stop on Error', width: 100 },
-                { type: 'text', title: 'Name', width: 150 },
-                { type: 'autocomplete', title: 'Type', width: 150, source: actions.main },
-                { type: 'text', title: 'Element Id/XPath', width: 250 },
+                { type: 'text', title: 'Name', width: 100 },
+                { type: 'autocomplete', title: 'Type', width: 125, source: actions.main },
+                { type: 'text', title: 'Element Id/XPath', width: 200 },
                 { type: 'text', title: 'Element Val', width: 150 },
                 { type: 'text', title: 'Attr Name', width: 100 },
+                { type: 'text', title: 'Attr Val', width: 100 },
                 { type: 'autocomplete', title: 'Action', width: 100, source: actions.preprocess },
                 { type: 'text', title: 'Attr Name', width: 100 },
                 { type: 'text', title: 'Attr Val', width: 100 },
@@ -282,6 +356,10 @@ class SuiteView {
         $("#settingsModal").modal('show');
     }
 
+    hideSettings() {
+        $("#settingsModal").modal('hide');
+    }
+
     clearSettingsFields() {
         console.log("Clearing settings for new suite");
         $('.cb-browser-settings').each(function () {
@@ -289,6 +367,7 @@ class SuiteView {
         });
         $('.tb-browser-settings').each(function () {
             $(this).val('');
+            $(this).attr('disabled', 'disabled')
         });
         $('#tb-suite-name').val('');
         $('#tb-server-url').val('');

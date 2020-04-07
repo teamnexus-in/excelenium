@@ -15,6 +15,7 @@
 
   <properties>
     <java.version>1.8</java.version>
+    <selenium.version>3.141.59</selenium.version>
   </properties>
 
   <dependencies>
@@ -41,6 +42,7 @@
         </exclusion>
       </exclusions>
     </dependency>
+
   </dependencies>
 
   <build>
