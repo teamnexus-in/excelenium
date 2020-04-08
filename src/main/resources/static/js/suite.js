@@ -28,12 +28,11 @@ class SuiteModel {
     }
 
     saveSettings(settings) {
-        console.log("Model Save Settings");
         this.settings = settings;
-        console.log(this.settings);
     }
 
     saveSuite(sData) {
+        this.scripts = [];
         sData.forEach(script =>{
             let model = this.scriptModel.getScriptModel(script);
             this.scripts.push(model);
@@ -55,18 +54,21 @@ class ScriptModel {
         this.actions = [];
         scriptsData.actions.forEach(obj =>{
             let actionsObj = {};
-            actionsObj.isExecute = obj[0];
-            actionsObj.isStopOnError = obj[1];
+            actionsObj.execute = obj[0];
+            actionsObj.stopOnError = obj[1];
             actionsObj.actionName = obj[2];
             actionsObj.actionType = obj[3];
             actionsObj.element = obj[4];
             actionsObj.elementValue = obj[5];
             actionsObj.attributeName = obj[6];
             actionsObj.attributeValue = obj[7];
-            actionsObj.preprocess = {}
-            actionsObj.preprocess.actionType = obj[8];
-            actionsObj.preprocess.attributeName = obj[9];
-            actionsObj.preprocess.attributeValue = obj[10];
+            if(obj[8] != undefined && obj[8] != '')
+            {
+                actionsObj.preprocess = {}
+                actionsObj.preprocess.actionType = obj[8];
+                actionsObj.preprocess.attributeName = obj[9];
+                actionsObj.preprocess.attributeValue = obj[10];
+            }
             this.actions.push(actionsObj);
         });
 
@@ -90,14 +92,40 @@ class SuiteController {
         console.log(this.suiteModel.settings);
     }
 
-    createNewScript(scriptName, stopOnError, run) {
+    createNewScript(scriptName, run, stopOnError) {
         this.suiteModel.addNewScript(scriptName, run, stopOnError);
         this.suiteView.hideNewScriptDialog();
         this.suiteView.createNewScriptTab(scriptName, run, stopOnError);
     }
 
-    saveSuite(sData) {
+    saveSuite(sData, isRun) {
+        let thisController = this;
+        let suiteName = this.suiteModel.settings.name;
+        console.log("Before Ajax: ", suiteName);
         this.suiteModel.saveSuite(sData);
+        console.log("Making Ajax Request", this.suiteModel.getJson());
+        $.ajax({
+            'type': 'POST',
+            'url': '/save',
+            'data': JSON.stringify(this.suiteModel.getJson()),
+            'success': function(data){
+                console.log("Server Response: ", data);
+                if(isRun){
+                    console.log("running: " + suiteName)
+                    thisController.runSuite(suiteName);
+                }
+            },
+            'dataType': "json",
+            'contentType': 'application/json; charset=UTF-8'
+        });
+        console.log("Ajax Request done");
+    }
+
+    runSuite(suiteName){
+        console.log("Making get request")
+        $.get("/run", "suiteName=" + suiteName, function(data){
+            console.log(data);
+        });
     }
 
     closeSuite() {
@@ -145,7 +173,6 @@ class SuiteView {
             settings.browsers = [];
             let browsers = ['chrome', 'firefox', 'edge', 'opera', 'safari'];
             browsers.forEach(obj => {
-                console.log(obj);
                 let data = thisViewObj.getBrowserOptions(obj);
                 settings.browsers.push(data);
             });
@@ -183,9 +210,14 @@ class SuiteView {
 
         // Save suite
         $('#btn-save').click(function () {
-            console.log('Save clicked');
+            // console.log('Save clicked');
             let sData = thisViewObj.getScriptsData();
-            thisViewObj.controller.saveSuite(sData);
+            thisViewObj.controller.saveSuite(sData, false);
+        });
+
+        $('#btn-run').click(function(){
+            let sData = thisViewObj.getScriptsData();
+            thisViewObj.controller.saveSuite(sData, true);
         });
     }
 
@@ -201,12 +233,12 @@ class SuiteView {
             retVal.name = browser;
             retVal.driverPath = textVal;
         }
-        console.log(retVal);
+        // console.log(retVal);
         return retVal;
     }
 
     getScriptsData() {
-        console.log("Getting scripts data");
+        // console.log("Getting scripts data");
         let retVal = [];
         let obj = this.data.scripts;
         this.data.scripts.forEach(obj => {
@@ -219,7 +251,6 @@ class SuiteView {
             retVal.push(scriptData);
         });
 
-        console.log(retVal);
         return retVal;
     }
 
@@ -342,9 +373,9 @@ class SuiteView {
                 ],
             ]
         });
-        jxl.setRowData(0, [true, true, 'test1', 'FILL', 'id1'])
-        jxl.setRowData(1, [true, true, 'test2', 'CLEAR', 'id2'])
-        jxl.setRowData(2, [true, true, 'test3', 'CHECK_ATTRIBUTE', 'id3'])
+        // jxl.setRowData(0, [true, true, 'test1', 'FILL', 'id1'])
+        // jxl.setRowData(1, [true, true, 'test2', 'CLEAR', 'id2'])
+        // jxl.setRowData(2, [true, true, 'test3', 'CHECK_ATTRIBUTE', 'id3'])
 
         return jxl;
     }
@@ -361,7 +392,7 @@ class SuiteView {
     }
 
     clearSettingsFields() {
-        console.log("Clearing settings for new suite");
+        // console.log("Clearing settings for new suite");
         $('.cb-browser-settings').each(function () {
             $(this).prop('checked', false);
         });

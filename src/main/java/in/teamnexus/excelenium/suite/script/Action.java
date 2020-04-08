@@ -20,7 +20,6 @@ import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.remote.RemoteWebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -30,6 +29,7 @@ import org.slf4j.MDC;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.base.Stopwatch;
+
 import in.teamnexus.excelenium.suite.exception.ScriptException;
 import in.teamnexus.excelenium.suite.util.WebDriverUtil;
 
@@ -888,6 +888,7 @@ public class Action implements Executable
                 case CLICK:
                 case CHECK:
                 {
+                    logger.debug("aType: " + aType + "WebElement:" + webElement.toString());
                     WebDriverUtil.clickElement(webDriver, webElement);
                     break;
                 }

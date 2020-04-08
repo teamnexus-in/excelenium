@@ -13,6 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -43,11 +44,6 @@ import in.teamnexus.excelenium.suite.util.WebDriverUtil;
 public class ScriptExecutor
 {
     private SuiteConfig suiteConfig;
-
-    /** The config util. */
-
-    /** The automation scripts. */
-    private ArrayList<Script> automationScripts = new ArrayList<Script>();
 
     /** The logger. */
     Logger logger = LoggerFactory.getLogger(ScriptExecutor.class);
@@ -104,7 +100,7 @@ public class ScriptExecutor
         if ("firefox".equals(browserName))
         {
             System.setProperty("webdriver.gecko.driver", browserCfg.getDriverPath());
-            if (uaCfg.isEnabled())
+            if (uaCfg != null && uaCfg.isEnabled())
             {
                 FirefoxProfile ffp = new FirefoxProfile();
                 ffp.setPreference("general.useragent.override", uaCfg.getUserAgent());
@@ -120,7 +116,7 @@ public class ScriptExecutor
         else if ("chrome".equals(browserName))
         {
             System.setProperty("webdriver.chrome.driver", browserCfg.getDriverPath());
-            if (uaCfg.isEnabled())
+            if (uaCfg !=null &&  uaCfg.isEnabled())
             {
                 String ua = "--user-agent=" + uaCfg.getUserAgent();
                 ChromeOptions chromeOptions = new ChromeOptions();
@@ -283,8 +279,9 @@ public class ScriptExecutor
             String timestamp = format.format(new Date());
             String browserString = this.browserCfg.getName() + "-" + timestamp;
             MDC.put("browser", browserString);
+            List<Script>scripts = suiteConfig.getScripts();
 
-            for (Script script : automationScripts)
+            for (Script script : scripts)
             {
                 script.setReportsLogger(reportsLogger);
                 logger.info("Running script:" + script.getName());

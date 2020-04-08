@@ -1,42 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration>
-	<Properties>
-		<Property name="logFile">logs/excelenium.log</Property>
-	</Properties>
+  <Properties>
+    <Property name="logFile">excelenium.log</Property>
+  </Properties>
 
-	<Appenders>
-		<Console name="STDOUT">
-			<PatternLayout pattern="%d %p %C{1.} [%t] %m%n" />
-		</Console>
-		<RollingFile name="FILE" fileName="${logFile}"
-			filePattern="/usr/local/logs/rnr/rnr-%d{MM-dd-yyyy}-%i.log.gz">
-			<PatternLayout>
-				<Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
-			</PatternLayout>
-			<filters>
-				<MarkerFilter marker="EVENT_LOGGER" onMatch="DENY"
-					onMismatch="NEUTRAL" />
-			</filters>
-			<Policies>
-				<SizeBasedTriggeringPolicy size="10 MB" />
-			</Policies>
-			<DefaultRolloverStrategy max="20" />
-		</RollingFile>
+  <Appenders>
+    <Console name="STDOUT">
+      <PatternLayout pattern="%d %p %C{1.} [%t] %m%n" />
+    </Console>
+    <RollingFile name="FILE" fileName="${logFile}" filePattern="logs/excelenium-%d{MM-dd-yyyy}-%i.log.gz">
+      <PatternLayout>
+        <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+      </PatternLayout>
+      <!-- <filters> <MarkerFilter marker="EVENT_LOGGER" onMatch="DENY" onMismatch="NEUTRAL" /> </filters> -->
+      <Policies>
+        <SizeBasedTriggeringPolicy size="10 MB" />
+      </Policies>
+      <DefaultRolloverStrategy max="20" />
+    </RollingFile>
 
-		<!-- <RollingFile name="EVENTS" fileName="${eventsFile}" filePattern="/usr/local/logs/log4j2/events-%d{MM-dd-yyyy}-%i.log.gz"> 
-			<PatternLayout> <Pattern>%d %p %c{1.} [%t] %m%n</Pattern> </PatternLayout> 
-			<filters> <MarkerFilter marker="EVENT_LOGGER" onMatch="ACCEPT" onMismatch="DENY" 
-			/> </filters> <Policies> <SizeBasedTriggeringPolicy size="10 MB" /> </Policies> 
-			<DefaultRolloverStrategy max="20" /> </RollingFile> -->
+    <!-- <RollingFile name="EVENTS" fileName="${eventsFile}" filePattern="/usr/local/logs/log4j2/events-%d{MM-dd-yyyy}-%i.log.gz"> <PatternLayout> <Pattern>%d %p %c{1.} [%t] %m%n</Pattern> </PatternLayout> <filters> <MarkerFilter marker="EVENT_LOGGER" onMatch="ACCEPT" onMismatch="DENY" /> </filters> 
+      <Policies> <SizeBasedTriggeringPolicy size="10 MB" /> </Policies> <DefaultRolloverStrategy max="20" /> </RollingFile> -->
 
-	</Appenders>
+  </Appenders>
 
-	<Loggers>
-		<Root level="debug">
-			<!-- <AppenderRef ref="EVENTS" /> -->
-			<AppenderRef ref="STDOUT" />
-			<AppenderRef ref="FILE" />
-		</Root>
-	</Loggers>
+  <Loggers>
+    <Root level="debug">
+      <!-- <AppenderRef ref="EVENTS" /> -->
+      <AppenderRef ref="STDOUT" />
+      <AppenderRef ref="FILE" />
+    </Root>
+  </Loggers>
 
 </Configuration>

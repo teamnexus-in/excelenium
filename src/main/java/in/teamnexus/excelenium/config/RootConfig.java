@@ -20,6 +20,10 @@ import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.FileTemplateResolver;
 import org.thymeleaf.templateresolver.ITemplateResolver;
 
+import in.teamnexus.excelenium.service.ExceleniumSuiteService;
+import in.teamnexus.excelenium.service.SuiteService;
+import in.teamnexus.excelenium.suite.executor.ScriptExecutor;
+
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = { "in.teamnexus.excelenium.controller" })
@@ -84,6 +88,20 @@ public class RootConfig implements WebMvcConfigurer, ApplicationContextAware
         ThymeleafViewResolver resolver = new ThymeleafViewResolver();
         resolver.setTemplateEngine(templateEngine());
         registry.viewResolver(resolver);
+    }
+
+    @Bean
+    ScriptExecutor scriptExecutor()
+    {
+        return new ScriptExecutor();
+    }
+    
+    @Bean
+    SuiteService suiteService()
+    {
+        ExceleniumSuiteService service = new ExceleniumSuiteService();
+        service.setExecutor(scriptExecutor());
+        return service;
     }
 
     @Override

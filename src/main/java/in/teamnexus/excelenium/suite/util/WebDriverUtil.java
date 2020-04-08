@@ -94,9 +94,11 @@ public class WebDriverUtil
      */
     public static void clickElement(WebDriver webDriver, WebElement webElement) throws Exception
     {
-        JavascriptExecutor jsExecutor = (JavascriptExecutor) webDriver;
-        String script = "arguments[0].click()";
-        jsExecutor.executeScript(script, webElement);
+        logger.debug("WebUtil click: " + webElement.getTagName());
+        webElement.click();
+        // JavascriptExecutor jsExecutor = (JavascriptExecutor) webDriver;
+        // String script = "arguments[0].click()";
+        // jsExecutor.executeScript(script, webElement);
         addNewWindowHandles(webDriver);
     }
 
