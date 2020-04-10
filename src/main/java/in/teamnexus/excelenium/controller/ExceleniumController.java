@@ -3,6 +3,8 @@ package in.teamnexus.excelenium.controller;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
+import java.util.Map;
+import java.util.Optional;
 
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
@@ -17,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -28,10 +32,10 @@ import in.teamnexus.excelenium.suite.exception.ScriptException;
 @Controller
 public class ExceleniumController
 {
-    Logger logger = LoggerFactory.getLogger(getClass());
+    private Logger logger = LoggerFactory.getLogger(getClass());
 
     @Autowired
-    SuiteService service;
+    private SuiteService service;
 
     @GetMapping("/favicon.ico")
     @ResponseBody
@@ -46,15 +50,33 @@ public class ExceleniumController
         return "index";
     }
 
-    @GetMapping("/script")
-    String createNewScript()
+    @GetMapping("/suite")
+    ModelAndView showSuite(Model model)
     {
-        logger.debug("Creating new suite");
-        return "suite";
+        boolean isFileLoad = false;
+        String suiteContent;
+        
+        Map<String, Object> map = model.asMap();
+        
+        ModelAndView mav = new ModelAndView("suite");
+
+        if(map != null)
+        {
+            isFileLoad = (boolean) Optional.ofNullable(map.get("isFileLoad")).orElse(Boolean.FALSE);
+            if (isFileLoad)
+            {
+                suiteContent = (String) map.get("suiteContent");
+                mav.addObject("suiteContent", suiteContent);
+            }
+        }
+
+        mav.addObject("isFileLoad", isFileLoad);
+
+        return mav;
     }
 
-    @PostMapping("/script")
-    String loadScript(MultipartFile file, Model model) throws ScriptException
+    @PostMapping("/load")
+    String loadScript(@RequestParam(value = "suiteFile") MultipartFile file, RedirectAttributes redirectAttrs) throws ScriptException
     {
         String filename = StringUtils.cleanPath(file.getOriginalFilename());
         try
@@ -71,15 +93,17 @@ public class ExceleniumController
             try (InputStream inputStream = file.getInputStream())
             {
                 String script = IOUtils.toString(inputStream, "UTF-8");
-                logger.debug("Uploaded Script:" + script);
-                //Files.copy(inputStream, this.rootLocation.resolve(filename), StandardCopyOption.REPLACE_EXISTING);
+                // logger.debug("Uploaded Script:" + script);
+                redirectAttrs.addFlashAttribute("isFileLoad", true);
+                redirectAttrs.addFlashAttribute("suiteContent", script);
             }
         }
         catch (IOException e)
         {
             throw new ScriptException("Failed to load file " + filename, e);
         }
-        return "suite";
+
+        return "redirect:/suite";
     }
 
     @PostMapping(path = "/save", consumes = "application/json", produces = "application/json")

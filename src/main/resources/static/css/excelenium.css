@@ -4,3 +4,8 @@
     overflow-x: scroll;
     font-size: small;
 }
+
+.bar {
+    height: 18px;
+    background: green;
+}

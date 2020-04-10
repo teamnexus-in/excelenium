@@ -11,8 +11,19 @@
   <link rel="stylesheet" th:href="@{/resources/css/jexcel.css}" />
   <link rel="stylesheet" th:href="@{/resources/css/excelenium.css}" />
 
+  <script th:inline="javascript">
+    /*<![CDATA[*/
+
+    var isFileLoad = /*[[${isFileLoad}]]*/ false;
+    var suiteContent = /*[[${suiteContent}]]*/ '';
+    //console.log('isFileLoad: ', isFileLoad, 'suite: ', suiteContent, );
+
+    /*]]>*/
+  </script>
+
   <script th:src="@{/resources/js/jquery-3.4.1.min.js}"></script>
   <script th:src="@{/resources/js/bootstrap.bundle.min.js}"></script>
+  <script th:src="@{/resources/js/bs-custom-file-input.min.js}"></script>
   <script th:src="@{/resources/js/toastr.min.js}"></script>
   <script th:src="@{/resources/js/suite.js}"></script>
   <script th:src="@{/resources/js/source.js}"></script>
@@ -279,6 +290,48 @@
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           <button type="button" class="btn btn-primary" id="btn-new-script-ok">Ok</button>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="file-upload-modal" tabindex="-1" role="dialog" data-keyboard="true"
+    aria-labelledby="form-file-upload" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="form-file-upload-title">Upload Script</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <form id="form-file-upload" enctype="multipart/form-data" method="POST" action="/load">
+            <div class="form-group row w-75 ml-auto mr-auto">
+              <!-- <label for="exampleFormControlFile1">Choose the suite file to upload</label>
+                      <input type="file" class="form-control-file" id="file-suite" name="suiteFile">
+                      <div class="invalid-feedback">
+                          Please upload a suite file
+                      </div> -->
+              <div class="input-group">
+                <div class="custom-file">
+                  <input type="file" class="custom-file-input" id="file-suite" aria-describedby="btn-upload-file"
+                    name="suiteFile">
+                  <label class="custom-file-label" for="file-suite">Choose file</label>
+                </div>
+                <div class="input-group-append">
+                  <button class="btn btn-primary ml-1" type="button" id="btn-upload-file">Upload</button>
+                </div>
+              </div>
+            </div>
+
+          </form>
+        </div>
+        <!-- <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" id="btn-upload-close"
+                  data-dismiss="modal">Close</button>
+          </div> -->
       </div>
     </div>
   </div>

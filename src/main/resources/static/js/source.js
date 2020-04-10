@@ -3,7 +3,11 @@ var suiteController;
 var suiteModel;
 
 $(document).ready(function () {
+    bsCustomFileInput.init()
+    if(isFileLoad){
+        console.log('Do Script Load', suiteContent);
 
+    }
     suiteController = new SuiteController();
     suiteModel = new SuiteModel();
     scriptModel = new ScriptModel();

@@ -198,6 +198,22 @@ class SuiteView {
             thisViewObj.displaySettings(true);
         });
 
+        $('#btn-suite-load').click(function(){
+            thisViewObj.showNewSuiteWarning();
+            $('#file-suite').val('');
+            $('#file-upload-modal').modal('show');
+        });
+
+        $('#btn-upload-file').click(function(){
+            if($('#file-suite').val()==''){
+                $('#file-error-msg').show();
+            }
+            else{
+                $('#file-upload-modal').modal('hide');
+                $('#form-file-upload').submit();
+            }
+        });
+
         $('#btn-settings').click(function () {
             // load the settings into the fields and show
             thisViewObj.displaySettings(false);
