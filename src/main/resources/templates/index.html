@@ -12,6 +12,7 @@
     <link rel="stylesheet" th:href="@{/resources/css/excelenium.css}" />
 
     <script th:src="@{/resources/js/jquery-3.4.1.min.js}"></script>
+    <script th:src="@{/resources/js/jquery.validate.min.js}"></script>
     <script th:src="@{/resources/js/bootstrap.bundle.min.js}"></script>
     <script th:src="@{/resources/js/bs-custom-file-input.min.js}"></script>
     <script th:src="@{/resources/js/toastr.min.js}"></script>
@@ -64,7 +65,7 @@
                             <div class="input-group">
                                 <div class="custom-file">
                                     <input type="file" class="custom-file-input" id="file-suite"
-                                        aria-describedby="btn-upload-file" name="suiteFile">
+                                        aria-describedby="btn-upload-file" name="suiteFile" data-msg="Please select a file to upload" required>
                                     <label class="custom-file-label" for="file-suite">Choose file</label>
                                 </div>
                                 <div class="input-group-append">

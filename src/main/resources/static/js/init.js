@@ -23,4 +23,5 @@ $(document).ready(function () {
             $('#form-file-upload').submit();
         }
     });
+
 });

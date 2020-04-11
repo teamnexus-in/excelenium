@@ -4,25 +4,23 @@ var suiteModel;
 
 $(document).ready(function () {
     bsCustomFileInput.init()
-    if(isFileLoad){
-        console.log('Do Script Load', suiteContent);
-
-    }
     suiteController = new SuiteController();
     suiteModel = new SuiteModel();
-    scriptModel = new ScriptModel();
     suiteView = new SuiteView(suiteController);
-
-    suiteModel.initialize(scriptModel);
+    
     suiteController.initialize(suiteView, suiteModel);
     suiteView.initialize(suiteController);
+    
+    if(isFileLoad){
+        let sContent = JSON.parse(suiteContent);
+        console.log('Do Script Load', sContent);
 
-    var url = new URL(window.location.href);
-    var qp = url.searchParams.get('type');
-
-    if(qp == 'new'){
+        suiteController.loadSuite(sContent);
+    }
+    else{
         suiteView.displaySettings(true);
     }
+    $('#form-new-suite').validate();
 });
 
 

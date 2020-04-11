@@ -817,10 +817,11 @@ public class Action implements Executable
     //        }
     //    }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.skava.studio.automation.script.Executable#execute(org.openqa.selenium.WebDriver)
+    /**
+     * Execute.
+     *
+     * @param webDriver the web driver
+     * @throws ScriptException the script exception
      */
     @Override
     public void execute(WebDriver webDriver) throws ScriptException
@@ -863,9 +864,9 @@ public class Action implements Executable
                 // no other process required
                 return;
             }
-
             if (preProcess != null)
             {
+                logger.debug(preProcess.toString());
                 preProcess.setReportsLogger(reportsLogger);
                 preProcess.execute(webDriver, webElement);
             }
@@ -1563,6 +1564,34 @@ public class Action implements Executable
     public void setExecute(boolean isExecute)
     {
         this.isExecute = isExecute;
+    }
+
+    @Override
+    public String toString()
+    {
+        StringBuilder builder = new StringBuilder();
+        builder.append("Action [actionName=");
+        builder.append(actionName);
+        builder.append(", actionType=");
+        builder.append(actionType);
+        builder.append(", element=");
+        builder.append(element);
+        builder.append(", elementValue=");
+        builder.append(elementValue);
+        builder.append(", attributeName=");
+        builder.append(attributeName);
+        builder.append(", attributeValue=");
+        builder.append(attributeValue);
+        builder.append(", isStopOnError=");
+        builder.append(isStopOnError);
+        builder.append(", isExecute=");
+        builder.append(isExecute);
+        builder.append(", preProcess=");
+        builder.append(preProcess);
+        builder.append(", aType=");
+        builder.append(aType);
+        builder.append("]");
+        return builder.toString();
     }
 
 }

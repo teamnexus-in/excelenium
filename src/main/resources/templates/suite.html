@@ -22,6 +22,7 @@
   </script>
 
   <script th:src="@{/resources/js/jquery-3.4.1.min.js}"></script>
+  <script th:src="@{/resources/js/jquery.validate.min.js}"></script>
   <script th:src="@{/resources/js/bootstrap.bundle.min.js}"></script>
   <script th:src="@{/resources/js/bs-custom-file-input.min.js}"></script>
   <script th:src="@{/resources/js/toastr.min.js}"></script>
@@ -29,6 +30,7 @@
   <script th:src="@{/resources/js/source.js}"></script>
   <script th:src="@{/resources/js/jsuites.js}"></script>
   <script th:src="@{/resources/js/jexcel.js}"></script>
+  <script th:src="@{/resources/js/FileSaver.min.js}"></script>
 </head>
 
 <body>
@@ -50,6 +52,9 @@
               <a class="dropdown-item bg-light mr-1" id="btn-suite-new"><i class="fas fa-folder-plus mr-1"></i>New</a>
               <a class="dropdown-item bg-light mr-1" id="btn-suite-load"><i
                   class="fas fa-file-upload mr-1"></i>Load...</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item bg-light mr-1" id="btn-suite-download"><i
+                  class="fas fa-file-download mr-1"></i>Download...</a>
             </div>
           </div>
           <!-- <button id="btn-new-suite" type="button" class="btn btn-sm btn-light mr-2"><i
@@ -123,7 +128,7 @@
         </div>
 
         <div class="modal-body">
-          <form>
+          <form id="form-new-suite">
 
             <div class="form-group row">
               <div class="input-group mb-1 col-sm-6">
@@ -131,14 +136,14 @@
                   <span class="input-group-text">Suite Name</span>
                 </div>
                 <input id="tb-suite-name" type="text" class="form-control" aria-label="Text input with checkbox"
-                  placeholder="Enter Test Suite Name">
+                  placeholder="Enter Test Suite Name" data-msg="Please enter script name" required>
               </div>
               <div class="input-group mb-1 col-sm-6">
                 <div class="input-group-prepend">
                   <span class="input-group-text">Server Url</span>
                 </div>
                 <input id="tb-server-url" type="text" class="form-control" aria-label="Text input with checkbox"
-                  placeholder="Enter the Server Url">
+                  placeholder="Enter the Server Url" data-msg="Please enter server url" required>
               </div>
             </div>
 

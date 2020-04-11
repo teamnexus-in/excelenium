@@ -55,12 +55,12 @@ public class ExceleniumController
     {
         boolean isFileLoad = false;
         String suiteContent;
-        
+
         Map<String, Object> map = model.asMap();
-        
+
         ModelAndView mav = new ModelAndView("suite");
 
-        if(map != null)
+        if (map != null)
         {
             isFileLoad = (boolean) Optional.ofNullable(map.get("isFileLoad")).orElse(Boolean.FALSE);
             if (isFileLoad)
@@ -121,12 +121,30 @@ public class ExceleniumController
     @ResponseBody
     String run(@RequestParam String suiteName) throws ConfigException, Exception
     {
-        logger.debug("Running the suite: " + suiteName);
-        String suite = "{\"name\":\"testSuite\",\"settings\":{\"name\":\"testSuite\",\"serverUrl\":\"http://localhost:8080/\",\"browsers\":[{\"name\":\"chrome\",\"enabled\":false,\"driverPath\":\"\"},{\"name\":\"firefox\",\"enabled\":true,\"driverPath\":\"D:/Progs/selenium/webdrivers/geckodriver/geckodriver.exe\"},{\"name\":\"edge\",\"enabled\":false,\"driverPath\":\"\"},{\"name\":\"opera\",\"enabled\":false,\"driverPath\":\"\"},{\"name\":\"safari\",\"enabled\":false,\"driverPath\":\"\"}]},\"scripts\":[{\"name\":\"test\",\"actions\": [{\"execute\": true,\"stopOnError\": true,\"actionName\": \"clickNew\",\"actionType\": \"CLICK\",\"element\": \"btn-new\",\"elementValue\": \"\",\"attributeName\": \"\",\"attributeValue\": \"\",\"preProcess\": {\"actionType\": \"\",\"attributeName\": \"\",\"attributeValue\": \"\"}},{\"execute\": true,\"stopOnError\": true,\"actionName\": \"fillSuite\",\"actionType\": \"FILL\",\"element\": \"tb-suite-name\",\"elementValue\": \"Test Suite\",\"attributeName\": \"\",\"attributeValue\": \"\",\"preProcess\": {\"actionType\": \"\",\"attributeName\": \"\",\"attributeValue\": \"\"}},{\"execute\": true,\"stopOnError\": true,\"actionName\": \"fillUrl\",\"actionType\": \"FILL\",\"element\": \"tb-server-url\",\"elementValue\": \"http://localhost:8080\",\"attributeName\": \"\",\"attributeValue\": \"\",\"preProcess\": {\"actionType\": \"\",\"attributeName\": \"\",\"attributeValue\": \"\"}}]}],\"userAgent\":null,\"runConcurrent\":false}";
-        ObjectMapper mapper = new ObjectMapper();
-        SuiteConfig cfg = mapper.readValue(suite, SuiteConfig.class);
-        service.saveConfig(cfg);
-        service.runSuite(cfg.getSettings().getName());
+        // logger.debug("Running the suite: " + suiteName);
+        // String suite =
+        // "{\"name\":\"testSuite\",\"settings\":{\"name\":\"testSuite\",\"serverUrl\":\"http://localhost:8080/\",\"browsers\":[{\"name\":\"chrome\",\"enabled\":false,\"driverPath\":\"\"},{\"name\":\"firefox\",\"enabled\":true,\"driverPath\":\"D:/Progs/selenium/webdrivers/geckodriver/geckodriver.exe\"},{\"name\":\"edge\",\"enabled\":false,\"driverPath\":\"\"},{\"name\":\"opera\",\"enabled\":false,\"driverPath\":\"\"},{\"name\":\"safari\",\"enabled\":false,\"driverPath\":\"\"}]},\"scripts\":[{\"name\":\"test\",\"actions\":
+        // [{\"execute\": true,\"stopOnError\": true,\"actionName\":
+        // \"clickNew\",\"actionType\": \"CLICK\",\"element\":
+        // \"btn-new\",\"elementValue\": \"\",\"attributeName\":
+        // \"\",\"attributeValue\": \"\",\"preProcess\": {\"actionType\":
+        // \"\",\"attributeName\": \"\",\"attributeValue\": \"\"}},{\"execute\":
+        // true,\"stopOnError\": true,\"actionName\": \"fillSuite\",\"actionType\":
+        // \"FILL\",\"element\": \"tb-suite-name\",\"elementValue\": \"Test
+        // Suite\",\"attributeName\": \"\",\"attributeValue\": \"\",\"preProcess\":
+        // {\"actionType\": \"\",\"attributeName\": \"\",\"attributeValue\":
+        // \"\"}},{\"execute\": true,\"stopOnError\": true,\"actionName\":
+        // \"fillUrl\",\"actionType\": \"FILL\",\"element\":
+        // \"tb-server-url\",\"elementValue\":
+        // \"http://localhost:8080\",\"attributeName\": \"\",\"attributeValue\":
+        // \"\",\"preProcess\": {\"actionType\": \"\",\"attributeName\":
+        // \"\",\"attributeValue\":
+        // \"\"}}]}],\"userAgent\":null,\"runConcurrent\":false}";
+        // ObjectMapper mapper = new ObjectMapper();
+        // SuiteConfig cfg = mapper.readValue(suite, SuiteConfig.class);
+        // service.saveConfig(cfg);
+        // service.runSuite(cfg.getSettings().getName());
+        service.runSuite(suiteName);
         return "{\"success\": true}";
     }
 

@@ -219,4 +219,22 @@ public class PreProcessAction
         this.reportsLogger = reportsLogger;
     }
 
+    @Override
+    public String toString()
+    {
+        StringBuilder builder = new StringBuilder();
+        builder.append("PreProcessAction [actionType=");
+        builder.append(actionType);
+        builder.append(", attributeName=");
+        builder.append(attributeName);
+        builder.append(", attributeValue=");
+        builder.append(attributeValue);
+        builder.append(", aType=");
+        builder.append(aType);
+        builder.append(", action=");
+        builder.append(action);
+        builder.append("]");
+        return builder.toString();
+    }
+
 }

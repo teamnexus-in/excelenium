@@ -126,6 +126,7 @@ public class Script implements Executable
                 if (action.isExecute())
                 {
                     logger.info("running action:" + action.getActionName());
+                    logger.debug(action.toString());
                     action.setReportsLogger(reportsLogger);
                     action.setScript(this);
                     action.execute(webDriver);

@@ -1,7 +1,20 @@
 var actions = {
-    "main": ["FILL", "CLEAR", "CLICK", "RIGHT_CLICK", "CHECK", "SELECT", "VERIFY_TEXT", "VERIFY_PRESENT", "IS_VISIBLE", "CHECK_ATTRIBUTE", "ACCEPT_POPUP", "DISMISS_POPUP", "SWITCH_TO_IFRAME", "SWITCH_TO_PARENT", "CAPTURE_SCREEN", "NAVIGATE", "SET_VARIABLE", "UNSET_VARIABLE"
+    "main": [
+        "FILL", "CLEAR", "CLICK", "RIGHT_CLICK", "CHECK", "SELECT",
+        "VERIFY_TEXT", "VERIFY_PRESENT", "IS_VISIBLE", "IS_HIDDEN",
+        "CHECK_ATTRIBUTE", "ACCEPT_POPUP", "DISMISS_POPUP",
+        "SWITCH_TO_IFRAME", "SWITCH_TO_PARENT", "CAPTURE_SCREEN",
+        "NAVIGATE", "SET_VARIABLE", "UNSET_VARIABLE", "CLEAR_COOKIES",
+        "DELETE_COOKIE", "ADD_COOKIE", "SWITCH_TO_WINDOW",
+        "EXECUTE_JAVASCRIPT", "WAIT_MSECS", "IS_ENABLED",
+        "IS_DISABLED", "SET_WINDOW_SIZE", "COMPARE_URL", "RUN_SCRIPT",
+        "GET_DOM", "SCROLL_WINDOW_BY", "SCROLL_TO_ELEMENT",
+        "MAKE_REQUEST", "HOVER", "DRAG_AND_DROP", "GET_CURRENT_URL",
+        "HAS_CSS_CLASS", "CHECK_CSS_ATTRIBUTE"
     ],
-    "preprocess": ["ADD_ATTRIBUTE", "REMOVE_ATTRIBUTE", "SET_ATTRIBUTE"],
+    "preprocess": [
+        "ADD_ATTRIBUTE", "REMOVE_ATTRIBUTE", "SET_ATTRIBUTE"
+    ],
 };
 
 
@@ -12,8 +25,7 @@ class SuiteModel {
         this.scripts = [];
     }
 
-    initialize(scriptModel){
-        this.scriptModel = scriptModel;
+    initialize() {
     }
 
     getJson() {
@@ -24,7 +36,9 @@ class SuiteModel {
         return data;
     }
 
-    addNewScript(scriptName, run, stopOnError) {
+    loadJson(suiteContent) {
+        this.settings = suiteContent.settings;
+        this.scripts = suiteContent.scripts;
     }
 
     saveSettings(settings) {
@@ -33,26 +47,21 @@ class SuiteModel {
 
     saveSuite(sData) {
         this.scripts = [];
-        sData.forEach(script =>{
-            let model = this.scriptModel.getScriptModel(script);
+        sData.forEach(script => {
+            let model = this.getScriptModel(script);
             this.scripts.push(model);
         });
         console.log(this.getJson());
     }
-}
 
-/// ================ ScriptModel =========================
-class ScriptModel {
-    constructor() {
-    }
-
-    getScriptModel(scriptsData) { 
+    getScriptModel(scriptsData) {
         console.log("script model", scriptsData);
-        this.name = scriptsData.name;
-        this.run = scriptsData.run;
-        this.stopOnError = scriptsData.stopOnError;
-        this.actions = [];
-        scriptsData.actions.forEach(obj =>{
+        let retVal = {}
+        retVal.name = scriptsData.name;
+        retVal.run = scriptsData.run;
+        retVal.stopOnError = scriptsData.stopOnError;
+        retVal.actions = [];
+        scriptsData.actions.forEach(obj => {
             let actionsObj = {};
             actionsObj.execute = obj[0];
             actionsObj.stopOnError = obj[1];
@@ -62,17 +71,16 @@ class ScriptModel {
             actionsObj.elementValue = obj[5];
             actionsObj.attributeName = obj[6];
             actionsObj.attributeValue = obj[7];
-            if(obj[8] != undefined && obj[8] != '')
-            {
+            if (obj[8] != undefined && obj[8] != '') {
                 actionsObj.preprocess = {}
                 actionsObj.preprocess.actionType = obj[8];
                 actionsObj.preprocess.attributeName = obj[9];
                 actionsObj.preprocess.attributeValue = obj[10];
             }
-            this.actions.push(actionsObj);
+            retVal.actions.push(actionsObj);
         });
 
-        return this;
+        return retVal;
     }
 }
 
@@ -86,6 +94,13 @@ class SuiteController {
         this.suiteModel = suiteModel;
     }
 
+    loadSuite(suiteContent) {
+        console.log("Suite Model suiteContent")
+        this.suiteModel.loadJson(suiteContent);
+        this.suiteView.populateUISettingsValue(this.suiteModel.settings);
+        this.suiteView.loadScripts(this.suiteModel.scripts);
+    }
+
     saveSettings(settings) {
         console.log("Saving settings");
         this.suiteModel.saveSettings(settings)
@@ -93,7 +108,6 @@ class SuiteController {
     }
 
     createNewScript(scriptName, run, stopOnError) {
-        this.suiteModel.addNewScript(scriptName, run, stopOnError);
         this.suiteView.hideNewScriptDialog();
         this.suiteView.createNewScriptTab(scriptName, run, stopOnError);
     }
@@ -103,14 +117,15 @@ class SuiteController {
         let suiteName = this.suiteModel.settings.name;
         console.log("Before Ajax: ", suiteName);
         this.suiteModel.saveSuite(sData);
-        console.log("Making Ajax Request", this.suiteModel.getJson());
+        const modelData = this.suiteModel.getJson();
+        console.log("Making Ajax Request", modelData);
         $.ajax({
             'type': 'POST',
             'url': '/save',
-            'data': JSON.stringify(this.suiteModel.getJson()),
-            'success': function(data){
+            'data': JSON.stringify(modelData),
+            'success': function (data) {
                 console.log("Server Response: ", data);
-                if(isRun){
+                if (isRun) {
                     console.log("running: " + suiteName)
                     thisController.runSuite(suiteName);
                 }
@@ -121,11 +136,15 @@ class SuiteController {
         console.log("Ajax Request done");
     }
 
-    runSuite(suiteName){
+    runSuite(suiteName) {
         console.log("Making get request")
-        $.get("/run", "suiteName=" + suiteName, function(data){
+        $.get("/run", "suiteName=" + suiteName, function (data) {
             console.log(data);
         });
+    }
+
+    getSuiteJson() {
+        return this.suiteModel.getJson();
     }
 
     closeSuite() {
@@ -160,25 +179,14 @@ class SuiteView {
             // console.log(cboxEl + " " + elName);
             var tbEl = '#tb-' + elName;
             $(tbEl).attr('disabled', !result);
-            if(result){
+            if (result) {
                 $(tbEl).focus();
             }
             // $("#tb-chrome").attr('disabled', !result);
         });
 
         $('#btn-settings-save').click(function () {
-            let settings = {};
-            settings.name = $('#tb-suite-name').val();
-            settings.serverUrl = $('#tb-server-url').val();
-            settings.browsers = [];
-            let browsers = ['chrome', 'firefox', 'edge', 'opera', 'safari'];
-            browsers.forEach(obj => {
-                let data = thisViewObj.getBrowserOptions(obj);
-                settings.browsers.push(data);
-            });
-            settings.userAgent = thisViewObj.getBrowserOptions('user-agent');
-            settings.runConcurrent = $('#cb-run-concurrent').prop('checked');
-
+            let settings = thisViewObj.getUISettingsValues();
             // console.log(settings);
             thisViewObj.controller.saveSettings(settings);
             thisViewObj.hideSettings();
@@ -198,20 +206,26 @@ class SuiteView {
             thisViewObj.displaySettings(true);
         });
 
-        $('#btn-suite-load').click(function(){
+        $('#btn-suite-load').click(function () {
             thisViewObj.showNewSuiteWarning();
             $('#file-suite').val('');
             $('#file-upload-modal').modal('show');
         });
 
-        $('#btn-upload-file').click(function(){
-            if($('#file-suite').val()==''){
+        $('#btn-upload-file').click(function () {
+            if ($('#file-suite').val() == '') {
                 $('#file-error-msg').show();
             }
-            else{
+            else {
                 $('#file-upload-modal').modal('hide');
                 $('#form-file-upload').submit();
             }
+        });
+
+        $('#btn-suite-download').click(function () {
+            console.log('Downloading...');
+            thisViewObj.doSaveAction(false);
+            thisViewObj.downloadSuite();
         });
 
         $('#btn-settings').click(function () {
@@ -226,15 +240,66 @@ class SuiteView {
 
         // Save suite
         $('#btn-save').click(function () {
-            // console.log('Save clicked');
-            let sData = thisViewObj.getScriptsData();
-            thisViewObj.controller.saveSuite(sData, false);
+            thisViewObj.doSaveAction(false);
         });
 
-        $('#btn-run').click(function(){
-            let sData = thisViewObj.getScriptsData();
-            thisViewObj.controller.saveSuite(sData, true);
+        $('#btn-run').click(function () {
+            thisViewObj.doSaveAction(true);
         });
+
+    }
+
+    downloadSuite() {
+        console.log("About to download...");
+        let suiteContent = this.controller.getSuiteJson();
+
+        var filename = suiteContent.name.replace(' ', '-').trim().toLowerCase() + '.json';
+
+        var blob = new Blob([JSON.stringify(suiteContent, null, 2)], {
+            type: "application/json;charset=utf-8"
+        });
+
+        saveAs(blob, filename);
+    }
+
+    doSaveAction(isRun) {
+        let settings = this.getUISettingsValues();
+        this.controller.saveSettings(settings);
+        let sData = this.getScriptsData();
+        this.controller.saveSuite(sData, isRun);
+    }
+
+    getUISettingsValues() {
+        let settings = {};
+        settings.name = $('#tb-suite-name').val();
+        settings.serverUrl = $('#tb-server-url').val();
+        settings.browsers = [];
+        let browsers = ['chrome', 'firefox', 'edge', 'opera', 'safari'];
+        browsers.forEach(obj => {
+            let data = this.getBrowserOptions(obj);
+            settings.browsers.push(data);
+        });
+        settings.userAgent = this.getBrowserOptions('user-agent');
+        settings.runConcurrent = $('#cb-run-concurrent').prop('checked');
+        return settings;
+    }
+
+    populateUISettingsValue(settings) {
+        $('#tb-suite-name').val(settings.name);
+        $('#tb-server-url').val(settings.serverUrl);
+        settings.browsers.forEach(obj => {
+            $('#cb-' + obj.name).prop('checked', obj.enabled);
+            if (obj.enabled && obj.name != 'safari') {
+                $('#tb-' + obj.name).val(obj.driverPath);
+                $('#tb-' + obj.name).attr('disabled', false);
+            }
+        });
+        const obj = settings.userAgent;
+        if (obj && obj != null) {
+            $('#cb-user-agent').prop('checked', obj.enabled);
+            $('#tb-user-agent').val(obj.value);
+        }
+        $('#cb-run-concurrent').prop('checked', settings.runConcurrent);
     }
 
     getBrowserOptions(browser) {
@@ -326,7 +391,7 @@ class SuiteView {
 
     }
 
-    createNewScriptTab(scriptName, run, stopOnError) {
+    createNewScriptTab(scriptName, run, stopOnError, data) {
         this.tabIdx++;
         let tabId = 'tab-scripts-' + this.tabIdx;
         let panelId = "tpanel-scripts-tab-" + this.tabIdx;
@@ -348,13 +413,13 @@ class SuiteView {
         $('#suite-tabs').append('<li class="nav-item"><a class="nav-link" id="' + tabId + '" data-toggle="tab" href="#' + panelId + '" role="tab" aria-controls="scripts" aria-selected="true">' + scriptName + '</a></li>');
         $('#scripts-tab-content').append('<div class="tab-pane fade show" id="' + panelId + '" role="tabpanel" aria-labelledby="' + tabId + '"><div id="' + sheetsId + '" class="sheets-content"></div></div>');
 
-        let jxl = this.createSheets(sheetsId);
+        let jxl = this.createSheets(sheetsId, data);
         scriptData.jxl = jxl;
         this.addScriptsTabEntry(scriptName, run, stopOnError);
         $('#' + tabId).tab('show');
     }
 
-    createSheets(sheetsId) {
+    createSheets(sheetsId, data) {
         let jxl = $('#' + sheetsId).jexcel({
             data: [[]],
             defaultColWidth: 100,
@@ -389,11 +454,40 @@ class SuiteView {
                 ],
             ]
         });
+
+        if (data) {
+            let idx = 0;
+            data.forEach(scriptData => {
+                let sd = [
+                    scriptData.execute,
+                    scriptData.stopOnError,
+                    scriptData.actionName,
+                    scriptData.actionType,
+                    scriptData.element,
+                    scriptData.elementValue,
+                    scriptData.attributeName,
+                    scriptData.attributeValue
+                ];
+                if (scriptData.preprocess) {
+                    sd.push(scriptData.preprocess.actionType);
+                    sd.push(scriptData.preprocess.attributeName);
+                    sd.push(scriptData.preprocess.attributeValue);
+                }
+                jxl.setRowData(idx, sd);
+                idx++;
+            });
+        }
         // jxl.setRowData(0, [true, true, 'test1', 'FILL', 'id1'])
         // jxl.setRowData(1, [true, true, 'test2', 'CLEAR', 'id2'])
         // jxl.setRowData(2, [true, true, 'test3', 'CHECK_ATTRIBUTE', 'id3'])
 
         return jxl;
+    }
+
+    loadScripts(scripts) {
+        scripts.forEach(script => {
+            this.createNewScriptTab(script.name, script.execute, script.stopOnError, script.actions);
+        });
     }
 
     displaySettings(isClearSettings) {
