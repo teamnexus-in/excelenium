@@ -99,12 +99,14 @@ class SuiteController {
         this.suiteModel.loadJson(suiteContent);
         this.suiteView.populateUISettingsValue(this.suiteModel.settings);
         this.suiteView.loadScripts(this.suiteModel.scripts);
+        toastr.success("Script loaded!");
     }
 
     saveSettings(settings) {
         console.log("Saving settings");
         this.suiteModel.saveSettings(settings)
         console.log(this.suiteModel.settings);
+        toastr.success('Settings saved!')
     }
 
     createNewScript(scriptName, run, stopOnError) {
@@ -133,6 +135,7 @@ class SuiteController {
             'dataType': "json",
             'contentType': 'application/json; charset=UTF-8'
         });
+        toastr.success('Suite Saved!')
         console.log("Ajax Request done");
     }
 
@@ -359,6 +362,8 @@ class SuiteView {
     }
 
     addScriptsTabEntry(scriptName, run, stopOnError) {
+        let delHtml = '<i class="fas fa-trash-alt"></i>';
+
         if (this.tabIdx == 1) {
             $('#no-scripts').hide();
             this.scriptsJxl = $('#scripts-list').jexcel({
@@ -367,26 +372,36 @@ class SuiteView {
                 tableOverflow: true,
                 tableWidth: "100%",
                 tableHeight: "100%",
+                allowManualInsertRow: false,
+                allowManualInsertRow: false,
                 columns: [
                     { type: 'Name', title: 'Name', width: 250 },
                     { type: 'checkbox', title: 'Run', width: 50 },
                     { type: 'checkbox', title: 'Stop on Error', width: 100 },
+                    { type: 'html', title: 'Delete', width: 100, readOnly: true },
                 ],
                 nestedHeaders: [
                     [
                         {
                             title: 'Scripts',
-                            colspan: '3',
+                            colspan: '4',
                         },
                     ],
-                ]
+                ],
+                onselection : function(instance, x1, y1, x2, y2, origin) {
+                    if(x1=3 && x2 == 3){
+                        console.log(instance);
+                        let val = this.getCell('A'+y1).innerText;
+                        alert("delete clicked for script: " + val);
+                    }
+                },
             });
-
             this.scriptsJxl.setRowData(0, [scriptName, run, stopOnError]);
-
+            this.scriptsJxl.setValueFromCoords(3, 0, delHtml, true);
         }
         else {
-            this.scriptsJxl.insertRow([scriptName, run, stopOnError]);
+            this.scriptsJxl.insertRow([scriptName, run, stopOnError, delHtml]);
+            this.scriptsJxl.setValueFromCoords(3, this.tabIdx-1, delHtml, true);
         }
 
     }
@@ -520,6 +535,7 @@ class SuiteView {
         $('cb-ns-stop-on-error').prop('checked', false);
         $('cb-ns-execute').prop('checked', false);
     }
+
 }
 
 

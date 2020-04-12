@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss} %-5level %logger{26} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="SIFT-LOG" class="ch.qos.logback.classic.sift.SiftingAppender">
+        <discriminator>
+            <key>browser</key>
+            <defaultValue>automation</defaultValue>
+        </discriminator>
+        <sift>
+            <appender name="FILE-${browser}" class="ch.qos.logback.core.FileAppender">
+                <file>logs/log-${browser}.log</file>
+                <append>false</append>
+                <encoder>
+                    <pattern>%d{HH:mm:ss} %-5level %logger{26} - %msg%n
+                    </pattern>
+                </encoder>
+            </appender>
+        </sift>
+    </appender>
+
+    <appender name="SIFT-REPORT" class="ch.qos.logback.classic.sift.SiftingAppender">
+        <discriminator>
+            <key>browser</key>
+            <defaultValue>automation</defaultValue>
+        </discriminator>
+        <sift>
+            <appender name="FILE-${browser}" class="ch.qos.logback.core.FileAppender">
+                <file>logs/report-${browser}.html</file>
+                <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+                    <layout class="ch.qos.logback.classic.html.HTMLLayout">
+                        <pattern>%d{HH:mm:ss}%-5level%C{0}%msg</pattern>
+                    </layout>
+                </encoder>
+            </appender>
+        </sift>
+    </appender>
+
+    <logger name="reports" level="DEBUG" additivity="false">
+        <appender-ref ref="SIFT-REPORT"/>
+    </logger>
+
+    <root level="DEBUG">
+        <appender-ref ref="SIFT-LOG"/>
+        <appender-ref ref="STDOUT"/>
+    </root>
+
+</configuration>

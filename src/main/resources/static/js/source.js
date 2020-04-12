@@ -4,6 +4,10 @@ var suiteModel;
 
 $(document).ready(function () {
     bsCustomFileInput.init()
+
+    toastr.options.closeButton = true;
+    toastr.options.positionClass = "toast-bottom-right";
+
     suiteController = new SuiteController();
     suiteModel = new SuiteModel();
     suiteView = new SuiteView(suiteController);
@@ -21,6 +25,7 @@ $(document).ready(function () {
         suiteView.displaySettings(true);
     }
     $('#form-new-suite').validate();
+
 });
 
 
