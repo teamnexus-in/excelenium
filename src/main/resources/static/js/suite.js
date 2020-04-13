@@ -250,6 +250,10 @@ class SuiteView {
             thisViewObj.doSaveAction(true);
         });
 
+        $('.closeTab').click(function(){
+            console.log(this.parent);
+        });
+
     }
 
     downloadSuite() {
@@ -425,7 +429,7 @@ class SuiteView {
         scriptData.stopOnError = stopOnError;
         this.data.scripts.push(scriptData);
 
-        $('#suite-tabs').append('<li class="nav-item"><a class="nav-link" id="' + tabId + '" data-toggle="tab" href="#' + panelId + '" role="tab" aria-controls="scripts" aria-selected="true">' + scriptName + '</a></li>');
+        $('#suite-tabs').append('<li class="nav-item"><a class="nav-link" id="' + tabId + '" data-toggle="tab" href="#' + panelId + '" role="tab" aria-controls="scripts" aria-selected="true"><button type="button" class="close closeTab"><span aria-hidden="true">&times;</span></button>' + scriptName + '</a></li>');
         $('#scripts-tab-content').append('<div class="tab-pane fade show" id="' + panelId + '" role="tabpanel" aria-labelledby="' + tabId + '"><div id="' + sheetsId + '" class="sheets-content"></div></div>');
 
         let jxl = this.createSheets(sheetsId, data);

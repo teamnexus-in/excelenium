@@ -9,3 +9,8 @@
     height: 18px;
     background: green;
 }
+
+.closeTab {
+    margin: 1px 0 0 10px;
+    font-size: medium;
+}
