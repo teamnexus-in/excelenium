@@ -366,6 +366,7 @@ class SuiteView {
     }
 
     addScriptsTabEntry(scriptName, run, stopOnError) {
+        let thisViewObj = this;
         let delHtml = '<i class="fas fa-trash-alt"></i>';
 
         if (this.tabIdx == 1) {
@@ -393,10 +394,31 @@ class SuiteView {
                     ],
                 ],
                 onselection : function(instance, x1, y1, x2, y2, origin) {
-                    if(x1=3 && x2 == 3){
+                    // delete icon clicked
+                    if(x1==3 && x2 == 3){
                         console.log(instance);
                         let val = this.getCell('A'+y1).innerText;
                         alert("delete clicked for script: " + val);
+                        let findObj = thisViewObj.data.scripts.find(function(obj, idx, arr){
+                            if(obj.name == val){
+                                console.log("found tab");
+                                return obj;
+                            }
+                        }, val);
+                    }
+
+                    // script name clicked
+                    if(x1==0 && x2==0){
+                        console.log(instance);
+                        let val = this.getCell('A'+y1).innerText;
+                        alert("name clicked for script: " + val);
+                        let findObj = thisViewObj.data.scripts.find(function(obj, idx, arr){
+                            if(obj.name == val){
+                                console.log("found tab");
+                                return obj;
+                            }
+                        }, val);
+                        console.log("open findObj", findObj, $('#'+findObj.tabId));
                     }
                 },
             });
@@ -415,9 +437,7 @@ class SuiteView {
         let tabId = 'tab-scripts-' + this.tabIdx;
         let panelId = "tpanel-scripts-tab-" + this.tabIdx;
         let sheetsId = "sheets-" + this.tabIdx;
-        if (this.data.scripts[scriptName] == undefined) {
-            this.data.scripts[scriptName] = {};
-        }
+
         // console.log(this.data);
         let scriptData = {}
         scriptData.name = scriptName;
@@ -428,6 +448,7 @@ class SuiteView {
         scriptData.run = run;
         scriptData.stopOnError = stopOnError;
         this.data.scripts.push(scriptData);
+        console.log('View data:', this.data);
 
         $('#suite-tabs').append('<li class="nav-item"><a class="nav-link" id="' + tabId + '" data-toggle="tab" href="#' + panelId + '" role="tab" aria-controls="scripts" aria-selected="true"><button type="button" class="close closeTab"><span aria-hidden="true">&times;</span></button>' + scriptName + '</a></li>');
         $('#scripts-tab-content').append('<div class="tab-pane fade show" id="' + panelId + '" role="tabpanel" aria-labelledby="' + tabId + '"><div id="' + sheetsId + '" class="sheets-content"></div></div>');

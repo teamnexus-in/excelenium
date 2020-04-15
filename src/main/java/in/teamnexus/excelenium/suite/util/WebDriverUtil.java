@@ -132,7 +132,7 @@ public class WebDriverUtil
     {
         logger.info("Capturing screenshot");
         File screen = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        String outputDir = System.getProperty("OUTPUT_DIR");
+        String outputDir = "screens";//System.getProperty("OUTPUT_DIR");
         File file = new File(fileName);
         if (!file.isAbsolute())
         {
@@ -272,6 +272,7 @@ public class WebDriverUtil
     @SuppressWarnings("unchecked")
     private static HashMap<String, String> runGroovyScript(WebDriver webDriver, String element) throws Exception
     {
+        // TODO: Secure Sandbox Execution
         logger.info("Executing groovy script");
         GroovyScriptEngine gse = new GroovyScriptEngine(System.getProperty("EXEC_DIR"));
         Binding binding = new Binding();
