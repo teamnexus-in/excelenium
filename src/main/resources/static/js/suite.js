@@ -250,8 +250,12 @@ class SuiteView {
             thisViewObj.doSaveAction(true);
         });
 
-        $('.closeTab').click(function(){
-            console.log(this.parent);
+        $('.nav-tabs').on('click', '.tabClose', function () {
+            console.log(this, $(this).parent, $(this).siblings());
+            let tabId = $(this).siblings()[0].attributes['id'].value;
+            console.log('tabId: ',tabId);
+            $('#scripts-tabs ul li').children('a').first().click();
+            $('#'+tabId).hide();
         });
 
     }
@@ -368,8 +372,7 @@ class SuiteView {
     addScriptsTabEntry(scriptName, run, stopOnError) {
         let thisViewObj = this;
         let delHtml = '<i class="fas fa-trash-alt"></i>';
-
-        if (this.tabIdx == 1) {
+        if (this.tabIdx === 1) {
             $('#no-scripts').hide();
             this.scriptsJxl = $('#scripts-list').jexcel({
                 data: [[]],
@@ -393,43 +396,89 @@ class SuiteView {
                         },
                     ],
                 ],
-                onselection : function(instance, x1, y1, x2, y2, origin) {
-                    // delete icon clicked
-                    if(x1==3 && x2 == 3){
-                        console.log(instance);
-                        let val = this.getCell('A'+y1).innerText;
-                        alert("delete clicked for script: " + val);
-                        let findObj = thisViewObj.data.scripts.find(function(obj, idx, arr){
-                            if(obj.name == val){
-                                console.log("found tab");
-                                return obj;
-                            }
-                        }, val);
-                    }
-
-                    // script name clicked
-                    if(x1==0 && x2==0){
-                        console.log(instance);
-                        let val = this.getCell('A'+y1).innerText;
-                        alert("name clicked for script: " + val);
-                        let findObj = thisViewObj.data.scripts.find(function(obj, idx, arr){
-                            if(obj.name == val){
-                                console.log("found tab");
-                                return obj;
-                            }
-                        }, val);
-                        console.log("open findObj", findObj, $('#'+findObj.tabId));
-                    }
-                },
+                onselection: function (instance, x1, y1, x2, y2, origin) {
+                    thisViewObj.handleCellSelection(thisViewObj, this, x1, y1, x2, y2);
+                }
             });
             this.scriptsJxl.setRowData(0, [scriptName, run, stopOnError]);
             this.scriptsJxl.setValueFromCoords(3, 0, delHtml, true);
         }
         else {
-            this.scriptsJxl.insertRow([scriptName, run, stopOnError, delHtml]);
-            this.scriptsJxl.setValueFromCoords(3, this.tabIdx-1, delHtml, true);
+            this.scriptsJxl.insertRow([scriptName, run, stopOnError]);
+            this.scriptsJxl.setValueFromCoords(3, this.tabIdx - 1, delHtml, true);
         }
 
+    }
+
+    handleCellSelection(thisViewObj, jxl, x1, y1, x2, y2) {
+        console.log('handling selection: ', thisViewObj, jxl, x1, y1, x2, y2);
+        // delete icon clicked
+        if (x1 == 3 && x2 == 3) {
+            console.log('true showwing alert');
+            let scriptName = jxl.getRowData(y1)[0];
+            bootbox.confirm({
+                size: "small",
+                buttons: {
+                    confirm: {
+                        label: 'Yes',
+                    },
+                    cancel: {
+                        label: 'No',
+                    }
+                },
+                title: 'Delete Script?',
+                message: "Action cannot be undone. Are you sure?",
+                callback: function (result) {
+                    if (result) {
+                        thisViewObj.removeScriptAndTab(scriptName, y1);
+                    }
+                }
+            })
+        }
+
+        // script name clicked
+        if (x1 === 0 && x2 === 0) {
+            let scriptName = jxl.getRowData(y1)[0];
+            thisViewObj.displayTab(scriptName, false);
+        }
+    }
+
+    displayTab(tabName, isHide) {
+        let findObj = this.data.scripts.find(function (obj, idx, arr) {
+            if (obj.name === tabName) {
+                return obj;
+            }
+        }, tabName);
+        if (isHide) {
+            $('#' + findObj.tabId).hide();
+        }
+        else {
+            $('#' + findObj.tabId).show();
+        }
+
+    }
+
+    removeScriptAndTab(scriptName, rowNum) {
+        this.displayTab(scriptName, true);
+        let objIdx = -1;
+        let obj = this.data.scripts.find(function (obj, idx, arr) {
+            if (obj.name === scriptName) {
+                objIdx = idx;
+                return true;
+            }
+        }, scriptName);
+        this.data.scripts.splice(objIdx, 1);
+        $('#' + obj.panelId).remove();
+        $('#' + obj.tabId).parent().remove();
+        this.tabIdx--;
+        if (this.tabIdx !== 0) {
+            this.scriptsJxl.deleteRow(rowNum);
+        }
+        else {
+            this.scriptsJxl.destroy(document.getElementById('#scripts-list'), true);
+            this.scriptsJxl = null;
+            $('#no-scripts').show();
+        }
     }
 
     createNewScriptTab(scriptName, run, stopOnError, data) {
@@ -447,16 +496,19 @@ class SuiteView {
         scriptData.sheetsId = sheetsId;
         scriptData.run = run;
         scriptData.stopOnError = stopOnError;
-        this.data.scripts.push(scriptData);
-        console.log('View data:', this.data);
 
-        $('#suite-tabs').append('<li class="nav-item"><a class="nav-link" id="' + tabId + '" data-toggle="tab" href="#' + panelId + '" role="tab" aria-controls="scripts" aria-selected="true"><button type="button" class="close closeTab"><span aria-hidden="true">&times;</span></button>' + scriptName + '</a></li>');
+        $('#suite-tabs').append('<li class="nav-item"><a class="nav-link" id="' + tabId + '" data-toggle="tab" href="#' + panelId + '" role="tab" aria-controls="scripts" aria-selected="true">' + scriptName + '</a><span class="tabClose" aria-hidden="true">&times;</span></li>');
         $('#scripts-tab-content').append('<div class="tab-pane fade show" id="' + panelId + '" role="tabpanel" aria-labelledby="' + tabId + '"><div id="' + sheetsId + '" class="sheets-content"></div></div>');
 
         let jxl = this.createSheets(sheetsId, data);
         scriptData.jxl = jxl;
+
+        this.data.scripts.push(scriptData);
+        console.log('View data:', this.data);
         this.addScriptsTabEntry(scriptName, run, stopOnError);
-        $('#' + tabId).tab('show');
+        if (!data) {
+            $('#' + tabId).tab('show');
+        }
     }
 
     createSheets(sheetsId, data) {
@@ -495,7 +547,7 @@ class SuiteView {
             ]
         });
 
-        if (data) {
+        if (data && data.length > 0) {
             let idx = 0;
             data.forEach(scriptData => {
                 let sd = [
@@ -526,7 +578,7 @@ class SuiteView {
 
     loadScripts(scripts) {
         scripts.forEach(script => {
-            this.createNewScriptTab(script.name, script.execute, script.stopOnError, script.actions);
+            this.createNewScriptTab(script.name, script.run , script.stopOnError, script.actions);
         });
     }
 
