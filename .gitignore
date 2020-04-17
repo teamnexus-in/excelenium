@@ -30,3 +30,5 @@ build/
 ### VS Code ###
 .vscode/
 logs
+/excelenium-0.0.1-SNAPSHOT.jar
+/log4j2.xml

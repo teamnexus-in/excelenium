@@ -253,9 +253,9 @@ class SuiteView {
         $('.nav-tabs').on('click', '.tabClose', function () {
             console.log(this, $(this).parent, $(this).siblings());
             let tabId = $(this).siblings()[0].attributes['id'].value;
-            console.log('tabId: ',tabId);
+            console.log('tabId: ', tabId);
             $('#scripts-tabs ul li').children('a').first().click();
-            $('#'+tabId).hide();
+            $('#' + tabId).hide();
         });
 
     }
@@ -578,7 +578,7 @@ class SuiteView {
 
     loadScripts(scripts) {
         scripts.forEach(script => {
-            this.createNewScriptTab(script.name, script.run , script.stopOnError, script.actions);
+            this.createNewScriptTab(script.name, script.run, script.stopOnError, script.actions);
         });
     }
 
