@@ -182,6 +182,7 @@ class SuiteView {
             // console.log(cboxEl + " " + elName);
             var tbEl = '#tb-' + elName;
             $(tbEl).attr('disabled', !result);
+            $(tbEl).attr('required', result);
             if (result) {
                 $(tbEl).focus();
             }
@@ -189,10 +190,22 @@ class SuiteView {
         });
 
         $('#btn-settings-save').click(function () {
-            let settings = thisViewObj.getUISettingsValues();
-            // console.log(settings);
-            thisViewObj.controller.saveSettings(settings);
-            thisViewObj.hideSettings();
+            if(thisViewObj.bouncer){
+                console.log("Destroying...");
+                thisViewObj.bouncer.destroy();
+            }
+            let form = document.getElementById('form-new-suite');
+            thisViewObj.bouncer = Bouncer('form-new-suite',{
+                messageAfterField: true
+            });
+            let valid = thisViewObj.bouncer.validateAll(form);
+            console.log('Valid: ', valid);
+            if(valid.length <= 0){
+                let settings = thisViewObj.getUISettingsValues();
+                // console.log(settings);
+                thisViewObj.controller.saveSettings(settings);
+                thisViewObj.hideSettings();
+            }
         });
 
         // Create New Script
@@ -239,6 +252,7 @@ class SuiteView {
         $('#btn-new-script').click(function () {
             thisViewObj.clearNewScriptDialogFields();
             thisViewObj.showNewScriptDialog();
+            $("#tb-script-name").focus();
         });
 
         // Save suite
@@ -306,7 +320,7 @@ class SuiteView {
             }
         });
         const obj = settings.userAgent;
-        if (obj && obj != null) {
+        if (obj && (obj !== null)) {
             $('#cb-user-agent').prop('checked', obj.enabled);
             $('#tb-user-agent').val(obj.value);
         }
@@ -332,7 +346,6 @@ class SuiteView {
     getScriptsData() {
         // console.log("Getting scripts data");
         let retVal = [];
-        let obj = this.data.scripts;
         this.data.scripts.forEach(obj => {
             let scriptData = {};
             scriptData.name = obj.name;
@@ -381,7 +394,7 @@ class SuiteView {
                 tableWidth: "100%",
                 tableHeight: "100%",
                 allowManualInsertRow: false,
-                allowManualInsertRow: false,
+                allowManualInsertColumn: false,
                 columns: [
                     { type: 'Name', title: 'Name', width: 250 },
                     { type: 'checkbox', title: 'Run', width: 50 },

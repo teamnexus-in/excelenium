@@ -23,6 +23,8 @@
 
   <script th:src="@{/resources/js/jquery-3.4.1.min.js}"></script>
   <script th:src="@{/resources/js/jquery.validate.min.js}"></script>
+  <script th:src="@{/resources/js/bouncer.polyfills.min.js}"></script>
+  <script th:src="@{/resources/js/pristine.min.js}"></script>
   <script th:src="@{/resources/js/bootstrap.bundle.min.js}"></script>
   <script th:src="@{/resources/js/bootbox.min.js}"></script>
   <script th:src="@{/resources/js/bs-custom-file-input.min.js}"></script>
@@ -127,24 +129,28 @@
         <div class="modal-body">
           <form id="form-new-suite">
 
-            <div class="form-group row">
-              <div class="input-group mb-1 col-sm-6">
+            <div class="form-group row mb-0">
+              <div class="input-group col-sm-6">
                 <div class="input-group-prepend">
                   <span class="input-group-text">Suite Name</span>
                 </div>
                 <input id="tb-suite-name" type="text" class="form-control" aria-label="Text input with checkbox"
-                  placeholder="Enter Test Suite Name" data-msg="Please enter script name" required>
+                  placeholder="Enter Test Suite Name" data-bouncer-target="#errormsg-suite-name" required>
               </div>
-              <div class="input-group mb-1 col-sm-6">
+              <div class="input-group col-sm-6">
                 <div class="input-group-prepend">
                   <span class="input-group-text">Server Url</span>
                 </div>
                 <input id="tb-server-url" type="text" class="form-control" aria-label="Text input with checkbox"
-                  placeholder="Enter the Server Url" data-msg="Please enter server url" required>
+                  placeholder="Enter the Server Url" data-bouncer-target="#errormsg-server-url" required>
               </div>
             </div>
+            <div class="form-group row mb-1">
+              <div id="errormsg-suite-name" class="col-sm-6"></div>
+              <div id="errormsg-server-url" class="col-sm-6"></div>
+            </div>
 
-            <div class="card mb-2">
+            <div class="card mb-1">
               <div class="card-body">
 
                 <h5 class="card-title">Browsers</h5>
@@ -160,7 +166,8 @@
                       <span class="input-group-text">Chrome</span>
                     </div>
                     <input id="tb-chrome" type="text" class="tb-browser-settings form-control"
-                      aria-label="Text input with checkbox" placeholder="/path/to/chrome/driver" disabled>
+                      aria-label="Text input with checkbox" placeholder="/path/to/chrome/driver"
+                      data-bouncer-target="#errormsg-chrome" disabled>
                   </div>
                   <div class="input-group mb-2 col-sm-6">
                     <div class="input-group-prepend">
@@ -171,8 +178,13 @@
                       <span class="input-group-text">Firefox</span>
                     </div>
                     <input id="tb-firefox" type="text" class="tb-browser-settings form-control"
-                      aria-label="Text input with checkbox" placeholder="/path/to/firefox/driver" disabled>
+                      aria-label="Text input with checkbox" placeholder="/path/to/firefox/driver"
+                      data-bouncer-target="#errormsg-firefox" disabled>
                   </div>
+                </div>
+                <div class="row mb-1">
+                  <div id="errormsg-chrome" class="col-sm-6"></div>
+                  <div id="errormsg-firefox" class="col-sm-6"></div>
                 </div>
 
                 <div class="row">
@@ -184,7 +196,8 @@
                       <span class="input-group-text">Edge</span>
                     </div>
                     <input id="tb-edge" type="text" class="tb-browser-settings form-control"
-                      aria-label="Text input with checkbox" placeholder="/path/to/edge/driver" disabled>
+                      aria-label="Text input with checkbox" placeholder="/path/to/edge/driver"
+                      data-bouncer-target="#errormsg-edge" disabled>
                   </div>
                   <div class="input-group mb-2 col-sm-6">
                     <div class="input-group-prepend">
@@ -194,23 +207,25 @@
                       <span class="input-group-text">Opera</span>
                     </div>
                     <input id="tb-opera" type="text" class="tb-browser-settings form-control"
-                      aria-label="Text input with checkbox" placeholder="/path/to/opera/driver" disabled>
+                      aria-label="Text input with checkbox" placeholder="/path/to/opera/driver"
+                      data-bouncer-target="#errormsg-opera" disabled>
                   </div>
                 </div>
-
+                <div class="row mb-1">
+                  <div id="errormsg-edge" class="col-sm-6"></div>
+                  <div id="errormsg-opera" class="col-sm-6"></div>
+                </div>
                 <div class="row">
                   <div class="input-group mb-1 col-sm-6">
                     <div class="input-group-prepend">
                       <div class="input-group-text">
-                        <input id="cb-safari" class="cb-browser-settings" type="checkbox"
-                          aria-label="checkbox useragent">
+                        <input id="cb-safari" class="cb-browser-settings" type="checkbox" aria-label="checkbox safari">
                       </div>
                       <span class="input-group-text">Safari</span>
                     </div>
                   </div>
                 </div>
               </div>
-
             </div>
 
             <div class="form-group row">
@@ -223,7 +238,8 @@
                   <span class="input-group-text">User-Agent</span>
                 </div>
                 <input id="tb-user-agent" type="text" class="tb-browser-settings form-control"
-                  aria-label="Text input with checkbox" placeholder="Custom User-Agent" disabled>
+                  aria-label="Text input with checkbox" placeholder="Custom User-Agent"
+                  data-bouncer-target="#errormsg-user-agent" disabled>
               </div>
               <div class="input-group col-sm-6">
                 <div class="input-group-prepend">
@@ -235,7 +251,9 @@
                 </div>
               </div>
             </div>
-
+            <div class="row mb-1">
+              <div id="errormsg-user-agent" class="col-sm-6"></div>
+            </div>
           </form>
         </div>
         <div class="modal-footer">
