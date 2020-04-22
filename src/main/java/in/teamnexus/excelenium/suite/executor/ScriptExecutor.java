@@ -21,6 +21,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.opera.OperaDriver;
+import org.openqa.selenium.opera.OperaOptions;
 import org.openqa.selenium.safari.SafariDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -64,7 +65,7 @@ public class ScriptExecutor
 
         for (BrowserConfig browserCfg : browsers)
         {
-            if(browserCfg.isEnabled())
+            if (browserCfg.isEnabled())
             {
                 WebDriver driver = getWebDriver(browserCfg);
                 BrowserRunner browserRunner = new BrowserRunner(driver, browserCfg);
@@ -114,7 +115,7 @@ public class ScriptExecutor
         else if ("chrome".equals(browserName))
         {
             System.setProperty("webdriver.chrome.driver", browserCfg.getDriverPath());
-            if (uaCfg !=null &&  uaCfg.isEnabled())
+            if (uaCfg != null && uaCfg.isEnabled())
             {
                 String ua = "--user-agent=" + uaCfg.getUserAgent();
                 ChromeOptions chromeOptions = new ChromeOptions();
@@ -134,18 +135,20 @@ public class ScriptExecutor
         else if ("opera".equals(browserName))
         {
             System.setProperty("webdriver.opera.driver", browserCfg.getDriverPath());
-            webDriver = new OperaDriver();
+            OperaOptions operaOptions = new OperaOptions();
+            String ua = "--user-agent=" + uaCfg.getUserAgent();
+            operaOptions.addArguments(ua);
+            webDriver = new OperaDriver(operaOptions);
         }
         else if ("safari".equals(browserName))
         {
             String os = System.getProperty("os.name").toLowerCase();
             if (isWindows(os) || isUnix(os))
             {
-                logger.info("Safari is not supported on windows.");
+                logger.info("Safari is not supported on Microsoft Windows or Linux.");
             }
             else if (isMac(os))
             {
-                // logger.info("Mac implementation yet to be done");
                 webDriver = new SafariDriver();
             }
         }
@@ -191,7 +194,7 @@ public class ScriptExecutor
     boolean isUnix(String os)
     {
 
-        return (os.indexOf("nix") >= 0 || os.indexOf("nux") >= 0 || os.indexOf("aix") > 0);
+        return (os.indexOf("nix") >= 0 || os.indexOf("nux") >= 0 || os.indexOf("aix") >= 0);
 
     }
 
@@ -227,7 +230,7 @@ public class ScriptExecutor
          * @param browserCfg
          *            the browser
          */
-        BrowserRunner(WebDriver driver,  BrowserConfig browserCfg)
+        BrowserRunner(WebDriver driver, BrowserConfig browserCfg)
         {
             this.driver = driver;
             this.browserCfg = browserCfg;
@@ -277,7 +280,7 @@ public class ScriptExecutor
             String timestamp = format.format(new Date());
             String browserString = this.browserCfg.getName() + "-" + timestamp;
             MDC.put("browser", browserString);
-            List<Script>scripts = suiteConfig.getScripts();
+            List<Script> scripts = suiteConfig.getScripts();
 
             for (Script script : scripts)
             {

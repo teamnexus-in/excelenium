@@ -186,21 +186,23 @@ class SuiteView {
             if (result) {
                 $(tbEl).focus();
             }
+            else {
+                $(tbEl).removeClass('error');
+                let errMsgDiv = '#errormsg-' + elName;
+                console.log(errMsgDiv);
+                $(errMsgDiv).empty();
+            }
             // $("#tb-chrome").attr('disabled', !result);
         });
 
         $('#btn-settings-save').click(function () {
-            if(thisViewObj.bouncer){
-                console.log("Destroying...");
-                thisViewObj.bouncer.destroy();
-            }
             let form = document.getElementById('form-new-suite');
-            thisViewObj.bouncer = Bouncer('form-new-suite',{
+            thisViewObj.bouncer = Bouncer('form-new-suite', {
                 messageAfterField: true
             });
             let valid = thisViewObj.bouncer.validateAll(form);
             console.log('Valid: ', valid);
-            if(valid.length <= 0){
+            if (valid.length <= 0) {
                 let settings = thisViewObj.getUISettingsValues();
                 // console.log(settings);
                 thisViewObj.controller.saveSettings(settings);
