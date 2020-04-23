@@ -285,8 +285,15 @@ public class ScriptExecutor
             for (Script script : scripts)
             {
                 script.setReportsLogger(reportsLogger);
-                logger.info("Running script:" + script.getName());
-                script.execute(webDriver);
+                if (script.isRun())
+                {
+                    logger.info("Running script:" + script.getName());
+                    script.execute(webDriver);
+                }
+                else
+                {
+                    logger.info("Skipping script:" + script.getName() + " as Execute is false");
+                }
             }
 
         }

@@ -195,12 +195,47 @@ class SuiteView {
             // $("#tb-chrome").attr('disabled', !result);
         });
 
+        $('#tb-suite-name').blur(function () {
+            console.log("Blurring suite name");
+            let el = $('#tb-suite-name')
+            let val = el.val();
+            if (val !== '') {
+                console.log('removing...')
+                el.removeClass('error');
+                $('#errormsg-suite-name').empty();
+            }
+        });
+
+        $('#tb-server-url').blur(function () {
+            console.log("Blurring server url");
+            let el = $('#tb-server-url');
+            let val = el.val();
+            if (val.startsWith('http://') || val.startsWith('https://')) {
+                console.log('removing...')
+                el.removeClass('error');
+                $('#errormsg-server-url').empty();
+            }
+        });
+
+        $('#tb-script-name').blur(function () {
+            console.log("Blurring script name");
+            let el = $('#tb-script-name');
+            let val = el.val();
+            if (val !== '') {
+                console.log('removing...')
+                el.removeClass('error');
+                $('#errormsg-script-name').empty();
+            }
+        });
+
         $('#btn-settings-save').click(function () {
+            if(!thisViewObj.bouncerSuite){
+                thisViewObj.bouncerSuite = Bouncer('form-new-suite', {
+                    messageAfterField: true
+                });
+            }
             let form = document.getElementById('form-new-suite');
-            thisViewObj.bouncer = Bouncer('form-new-suite', {
-                messageAfterField: true
-            });
-            let valid = thisViewObj.bouncer.validateAll(form);
+            let valid = thisViewObj.bouncerSuite.validateAll(form);
             console.log('Valid: ', valid);
             if (valid.length <= 0) {
                 let settings = thisViewObj.getUISettingsValues();
@@ -212,10 +247,20 @@ class SuiteView {
 
         // Create New Script
         $('#btn-new-script-ok').click(function () {
-            var scriptName = $('#tb-script-name').val();
-            let stopOnError = $('#cb-ns-stop-on-error').prop('checked');
-            let run = $('#cb-ns-execute').prop('checked');
-            thisViewObj.controller.createNewScript(scriptName, run, stopOnError);
+            if(!thisViewObj.bouncerScript){
+                thisViewObj.bouncerScript = Bouncer('form-new-script', {
+                    messageAfterField: true
+                });
+            }
+            let form = document.getElementById('form-new-script');
+            let valid = thisViewObj.bouncerScript.validateAll(form);
+            console.log('Valid: ', valid);
+            if (valid.length <= 0) {
+                var scriptName = $('#tb-script-name').val();
+                let stopOnError = $('#cb-ns-stop-on-error').prop('checked');
+                let run = $('#cb-ns-execute').prop('checked');
+                thisViewObj.controller.createNewScript(scriptName, run, stopOnError);
+            }
         });
 
         $("#btn-suite-new").click(function () {
@@ -232,7 +277,11 @@ class SuiteView {
 
         $('#btn-upload-file').click(function () {
             if ($('#file-suite').val() == '') {
-                $('#file-error-msg').show();
+                bootbox.alert({
+                    size: "small",
+                    title: "Choose File",
+                    message: "Please choose a suite file to upload",
+                });
             }
             else {
                 $('#file-upload-modal').modal('hide');

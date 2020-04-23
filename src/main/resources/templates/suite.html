@@ -126,7 +126,7 @@
         </div>
 
         <div class="modal-body">
-          <form id="form-new-suite">
+          <form id="form-new-suite" novalidate>
 
             <div class="form-group row mb-0">
               <div class="input-group col-sm-6">
@@ -140,7 +140,7 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text">Server Url</span>
                 </div>
-                <input id="tb-server-url" type="text" class="form-control" aria-label="Text input with checkbox"
+                <input id="tb-server-url" type="url" class="form-control" aria-label="Text input with checkbox"
                   placeholder="Enter the Server Url" data-bouncer-target="#errormsg-server-url" required>
               </div>
             </div>
@@ -257,7 +257,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary" id="btn-settings-save">Save</button>
+          <button type="button" class="btn btn-primary" id="btn-settings-save">Save</button>
         </div>
       </div>
     </div>
@@ -276,18 +276,20 @@
         </div>
 
         <div class="modal-body">
-          <form id="form-new-script">
+          <form id="form-new-script" novalidate>
 
             <div class="form-group row">
-              <div class="input-group mb-1 col-sm-12">
+              <div class="input-group col-sm-12">
                 <div class="input-group-prepend">
                   <span class="input-group-text">Script Name</span>
                 </div>
                 <input id="tb-script-name" type="text" class="form-control" aria-label="Script Name"
-                  placeholder="Enter Script Name" required>
+                  placeholder="Enter Script Name" data-bouncer-target="#errormsg-script-name" required>
               </div>
             </div>
-
+            <div class="row">
+              <div id="errormsg-script-name" class="col-sm-12"></div>
+            </div>
             <div class="form-group row">
               <div class="form-check ml-4 col-sm-6">
                 <input class="form-check-input" type="checkbox" id="cb-ns-stop-on-error">
@@ -307,7 +309,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary" id="btn-new-script-ok">Ok</button>
+          <button type="button" class="btn btn-primary" id="btn-new-script-ok">Ok</button>
         </div>
       </div>
     </div>
@@ -326,17 +328,12 @@
         </div>
 
         <div class="modal-body">
-          <form id="form-file-upload" enctype="multipart/form-data" method="POST" action="/load">
+          <form id="form-file-upload" enctype="multipart/form-data" method="POST" action="/load" novalidate>
             <div class="form-group row w-75 ml-auto mr-auto">
-              <!-- <label for="exampleFormControlFile1">Choose the suite file to upload</label>
-                      <input type="file" class="form-control-file" id="file-suite" name="suiteFile">
-                      <div class="invalid-feedback">
-                          Please upload a suite file
-                      </div> -->
               <div class="input-group">
                 <div class="custom-file">
                   <input type="file" class="custom-file-input" id="file-suite" aria-describedby="btn-upload-file"
-                    name="suiteFile">
+                    name="suiteFile" required>
                   <label class="custom-file-label" for="file-suite">Choose file</label>
                 </div>
                 <div class="input-group-append">
@@ -344,7 +341,6 @@
                 </div>
               </div>
             </div>
-
           </form>
         </div>
         <!-- <div class="modal-footer">

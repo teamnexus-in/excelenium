@@ -24,8 +24,6 @@ $(document).ready(function () {
     else{
         suiteView.displaySettings(true);
     }
-    $('#form-new-suite').validate();
-
 });
 
 

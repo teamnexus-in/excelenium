@@ -32,9 +32,11 @@ public class Script implements Executable
 
     /** The actions. */
     List<Action> actions;
+    
+    private boolean isRun = true;
 
     /** The stop on error. */
-    private boolean stopOnError = true;
+    private boolean stopOnError;
 
     /** The logger. */
     Logger logger = LoggerFactory.getLogger(Script.class);
@@ -83,6 +85,22 @@ public class Script implements Executable
     public void setActions(List<Action> actions)
     {
         this.actions = actions;
+    }
+
+    /**
+     * @return the isRun
+     */
+    public boolean isRun()
+    {
+        return isRun;
+    }
+
+    /**
+     * @param isRun the isRun to set
+     */
+    public void setRun(boolean isRun)
+    {
+        this.isRun = isRun;
     }
 
     /**
