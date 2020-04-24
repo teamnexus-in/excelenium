@@ -229,7 +229,7 @@ class SuiteView {
         });
 
         $('#btn-settings-save').click(function () {
-            if(!thisViewObj.bouncerSuite){
+            if (!thisViewObj.bouncerSuite) {
                 thisViewObj.bouncerSuite = Bouncer('form-new-suite', {
                     messageAfterField: true
                 });
@@ -247,7 +247,7 @@ class SuiteView {
 
         // Create New Script
         $('#btn-new-script-ok').click(function () {
-            if(!thisViewObj.bouncerScript){
+            if (!thisViewObj.bouncerScript) {
                 thisViewObj.bouncerScript = Bouncer('form-new-script', {
                     messageAfterField: true
                 });
@@ -342,7 +342,50 @@ class SuiteView {
         let settings = this.getUISettingsValues();
         this.controller.saveSettings(settings);
         let sData = this.getScriptsData();
-        this.controller.saveSuite(sData, isRun);
+        if (isRun) {
+            let validSettings = this.validateSettings(settings);
+            if (validSettings) {
+                this.controller.saveSuite(sData, isRun);
+            }
+        }
+    }
+
+    validateSettings(settings) {
+        let errorMsg = '';
+        let hasError = false;
+        console.log(settings);
+        if (!settings.name || settings.name.trim() === '') {
+            errorMsg = errorMsg + '- Suite name cannot be empty</br>';
+            hasError = true;
+        }
+        if (!settings.serverUrl || settings.serverUrl.trim() === '') {
+            errorMsg = errorMsg + '- Server Url cannot be empty<br/>';
+            hasError = true;
+        }
+        let browserEnabled = false;
+        settings.browsers.forEach(obj => {
+            if (obj.enabled) {
+                browserEnabled = true;
+            }
+        });
+        
+        if (!browserEnabled) {
+            hasError = true;
+            errorMsg = errorMsg + '- Please choose at least on browser and provide the appropriate driver path</br>';
+        }
+        console.log('Error state:', hasError, errorMsg);
+
+        if (hasError) {
+            errorMsg = 'Please correct the following errors in the Settings<br/>' + errorMsg;
+            bootbox.alert({
+                title: "Settings Error",
+                message: errorMsg,
+            })
+            return false;
+        }
+        else {
+            return true;
+        }
     }
 
     getUISettingsValues() {

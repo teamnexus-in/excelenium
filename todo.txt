@@ -1,6 +1,5 @@
 == TODO
 . Toasts
-. Validation of settings before run
 . Check bsh and groovy scripts execution (Secure Sandboxing)
 . Session storage, on refresh don't show new dialog, instead load from session storage
 . Warning if script already being edited and the user refreshes the browser.
@@ -11,7 +10,8 @@
 
 == DONE
 . Validation
-. Check on Edge, Opera and Safari
+. Validation of settings before run
+. Check on Edge and Safari
 . Logger reports and browser logs
 . Delete Script
 . Close/Open Script Tab
