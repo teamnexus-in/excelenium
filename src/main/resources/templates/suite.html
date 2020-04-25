@@ -141,7 +141,9 @@
                   <span class="input-group-text">Server Url</span>
                 </div>
                 <input id="tb-server-url" type="url" class="form-control" aria-label="Text input with checkbox"
-                  placeholder="Enter the Server Url" data-bouncer-target="#errormsg-server-url" required>
+                  placeholder="Enter the Server Url"
+                  pattern="(\b(https?|ftp|file)://)?[-A-Za-z0-9+&@#/%?=~_|!:,.;]+[-A-Za-z0-9+&@#/%=~_|]"
+                  data-bouncer-target="#errormsg-server-url" required>
               </div>
             </div>
             <div class="form-group row mb-1">
@@ -343,10 +345,7 @@
             </div>
           </form>
         </div>
-        <!-- <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" id="btn-upload-close"
-                  data-dismiss="modal">Close</button>
-          </div> -->
+
       </div>
     </div>
   </div>

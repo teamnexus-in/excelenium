@@ -3,7 +3,6 @@
 . Check bsh and groovy scripts execution (Secure Sandboxing)
 . Session storage, on refresh don't show new dialog, instead load from session storage
 . Warning if script already being edited and the user refreshes the browser.
-. Check on Opera
 . PostProcess Action
 . Mousetrap keybindings - https://craig.is/killing/mice
 . Unit Tests
@@ -11,7 +10,7 @@
 == DONE
 . Validation
 . Validation of settings before run
-. Check on Edge and Safari
+. Check on Edge, Opera and Safari
 . Logger reports and browser logs
 . Delete Script
 . Close/Open Script Tab

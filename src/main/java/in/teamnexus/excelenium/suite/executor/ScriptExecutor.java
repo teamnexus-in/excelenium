@@ -135,10 +135,17 @@ public class ScriptExecutor
         else if ("opera".equals(browserName))
         {
             System.setProperty("webdriver.opera.driver", browserCfg.getDriverPath());
-            OperaOptions operaOptions = new OperaOptions();
-            String ua = "--user-agent=" + uaCfg.getUserAgent();
-            operaOptions.addArguments(ua);
-            webDriver = new OperaDriver(operaOptions);
+            if (uaCfg != null && uaCfg.isEnabled())
+            {
+                String ua = "--user-agent=" + uaCfg.getUserAgent();
+                OperaOptions operaOptions = new OperaOptions();
+                operaOptions.addArguments(ua);
+                webDriver = new OperaDriver(operaOptions);
+            }
+            else
+            {
+                webDriver = new OperaDriver();
+            }
         }
         else if ("safari".equals(browserName))
         {

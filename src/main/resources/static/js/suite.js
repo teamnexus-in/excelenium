@@ -196,33 +196,27 @@ class SuiteView {
         });
 
         $('#tb-suite-name').blur(function () {
-            console.log("Blurring suite name");
             let el = $('#tb-suite-name')
             let val = el.val();
             if (val !== '') {
-                console.log('removing...')
                 el.removeClass('error');
                 $('#errormsg-suite-name').empty();
             }
         });
 
         $('#tb-server-url').blur(function () {
-            console.log("Blurring server url");
             let el = $('#tb-server-url');
             let val = el.val();
             if (val.startsWith('http://') || val.startsWith('https://')) {
-                console.log('removing...')
                 el.removeClass('error');
                 $('#errormsg-server-url').empty();
             }
         });
 
         $('#tb-script-name').blur(function () {
-            console.log("Blurring script name");
             let el = $('#tb-script-name');
             let val = el.val();
             if (val !== '') {
-                console.log('removing...')
                 el.removeClass('error');
                 $('#errormsg-script-name').empty();
             }
@@ -347,6 +341,9 @@ class SuiteView {
             if (validSettings) {
                 this.controller.saveSuite(sData, isRun);
             }
+        }
+        else{
+            this.controller.saveSuite(sData, isRun);
         }
     }
 
