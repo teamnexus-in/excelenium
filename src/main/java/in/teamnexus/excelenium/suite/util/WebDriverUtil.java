@@ -15,10 +15,12 @@ import groovy.util.GroovyScriptEngine;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 import javax.script.ScriptException;
@@ -30,6 +32,9 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+import org.codehaus.groovy.control.CompilerConfiguration;
+import org.codehaus.groovy.control.customizers.ImportCustomizer;
+import org.codehaus.groovy.control.customizers.SecureASTCustomizer;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
@@ -53,7 +58,6 @@ import bsh.Interpreter;
  */
 /**
  * @author prabhu
- * 
  */
 public class WebDriverUtil
 {
@@ -61,8 +65,13 @@ public class WebDriverUtil
     /** The logger. */
     private static Logger logger = LoggerFactory.getLogger(WebDriverUtil.class);
 
-    private static HashMap<String, String> map = new HashMap<String, String>();
-    private static HashMap<String, String> handles = new HashMap<String, String>();
+    private static HashMap<String, String> map = new HashMap<>();
+    private static HashMap<String, String> handles = new HashMap<>();
+
+    private WebDriverUtil()
+    {
+
+    }
 
     /**
      * Highlight element.
@@ -111,7 +120,7 @@ public class WebDriverUtil
         {
             for (Iterator<String> iterator = newHandles.iterator(); iterator.hasNext();)
             {
-                String string = (String) iterator.next();
+                String string = iterator.next();
                 handles.put(String.valueOf(handles.size()), string);
             }
         }
@@ -132,7 +141,7 @@ public class WebDriverUtil
     {
         logger.info("Capturing screenshot");
         File screen = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        String outputDir = "screens";//System.getProperty("OUTPUT_DIR");
+        String outputDir = "screens";
         File file = new File(fileName);
         if (!file.isAbsolute())
         {
@@ -167,7 +176,7 @@ public class WebDriverUtil
         {
             logger.info("Executing Javascript file");
             String filePath = System.getProperty("EXEC_DIR") + "/" + elementValue;
-            String script = FileUtils.readFileToString(new File(filePath), "UTF-8");
+            String script = FileUtils.readFileToString(new File(filePath), StandardCharsets.UTF_8);
             JavascriptExecutor jsExecutor = (JavascriptExecutor) webDriver;
             jsExecutor.executeScript(script);
 
@@ -233,18 +242,19 @@ public class WebDriverUtil
     /**
      * @param webDriver
      * @param element
+     * @param elementValue
      * @throws Exception
      */
-    public static void runScript(WebDriver webDriver, String element) throws Exception
+    public static void runScript(WebDriver webDriver, String element, String elementValue) throws Exception
     {
         HashMap<String, String> result = null;
         if (element.endsWith(".bsh"))
         {
-            result = runBeanshellScript(webDriver, element);
+            result = runBeanshellScript(webDriver, element, elementValue);
         }
         else if (element.endsWith(".groovy"))
         {
-            result = runGroovyScript(webDriver, element);
+            result = runGroovyScript(webDriver, element, elementValue);
         }
 
         if (result != null)
@@ -266,19 +276,34 @@ public class WebDriverUtil
     /**
      * @param webDriver
      * @param element
+     *            - Root Directory of the script
+     * @param elementValue
+     *            - Script Name
      * @return
      * @throws Exception
      */
     @SuppressWarnings("unchecked")
-    private static HashMap<String, String> runGroovyScript(WebDriver webDriver, String element) throws Exception
+    private static HashMap<String, String> runGroovyScript(WebDriver webDriver, String element, String elementValue) throws Exception
     {
-        // TODO: Secure Sandbox Execution
         logger.info("Executing groovy script");
-        GroovyScriptEngine gse = new GroovyScriptEngine(System.getProperty("EXEC_DIR"));
+        final ImportCustomizer imports = new ImportCustomizer();
+        imports.addStaticStars("java.lang.Math");
+        imports.addStarImports("groovyx.net.http");
+        imports.addStaticStars("groovyx.net.http.ContentType", "groovyx.net.http.Method");
+
+        final SecureASTCustomizer secure = new SecureASTCustomizer();
+        secure.setClosuresAllowed(true);
+
+        final CompilerConfiguration config = new CompilerConfiguration();
+        config.addCompilationCustomizers(imports, secure);
+
+        GroovyScriptEngine gse = new GroovyScriptEngine(element);
+        gse.setConfig(config);
         Binding binding = new Binding();
         binding.setVariable("logger", logger);
         binding.setVariable("inputMap", map);
-        gse.run(element, binding);
+        binding.setVariable("driver", webDriver);
+        gse.run(elementValue, binding);
         HashMap<String, String> result = (HashMap<String, String>) binding.getVariable("result");
         return result;
     }
@@ -286,19 +311,21 @@ public class WebDriverUtil
     /**
      * @param webDriver
      * @param element
+     * @param elementValue
      * @return
      * @throws EvalError
      * @throws FileNotFoundException
      * @throws IOException
      */
     @SuppressWarnings("unchecked")
-    private static HashMap<String, String> runBeanshellScript(WebDriver webDriver, String element) throws Exception
+    private static HashMap<String, String> runBeanshellScript(WebDriver webDriver, String element, String elementValue) throws Exception
     {
         logger.info("Executing bsh script");
         Interpreter ip = new Interpreter();
         ip.set("logger", logger);
         ip.set("inputMap", map);
-        String filePath = System.getProperty("EXEC_DIR") + "/" + element;
+        ip.set("driver", webDriver);
+        String filePath = element + "/" + elementValue;
         ip.source(filePath);
         HashMap<String, String> result = (HashMap<String, String>) ip.get("result");
         return result;
@@ -320,10 +347,12 @@ public class WebDriverUtil
 
     public static void makeRequest(WebDriver webDriver, String url, String responseVar) throws Exception
     {
+        CloseableHttpClient client = null;
+        CloseableHttpResponse response = null;
         try
         {
             logger.info("Making request to " + url);
-            CloseableHttpClient client = HttpClients.createDefault();
+            client = HttpClients.createDefault();
             HttpGet request = new HttpGet(url);
             Set<Cookie> cookies = webDriver.manage().getCookies();
             for (Iterator<Cookie> iterator = cookies.iterator(); iterator.hasNext();)
@@ -332,13 +361,40 @@ public class WebDriverUtil
                 request.setHeader(cookie.getName(), cookie.getValue());
             }
 
-            CloseableHttpResponse response = client.execute(request);
+            response = client.execute(request);
             String content = EntityUtils.toString(response.getEntity(), "UTF-8");
             setVariable(responseVar, content);
         }
         catch (Exception e)
         {
             throw new ScriptException("Error making request: " + e.getMessage());
+        }
+        finally
+        {
+            if (client != null)
+            {
+                try
+                {
+                    client.close();
+                }
+                catch (IOException e)
+                {
+                    logger.warn("MakeRequest: Error on client close");
+                }
+            }
+
+            if (response != null)
+            {
+                try
+                {
+                    response.close();
+                }
+                catch (IOException e)
+                {
+                    logger.warn("MakeRequest: Error on response close");
+                }
+            }
+
         }
 
     }
@@ -364,12 +420,12 @@ public class WebDriverUtil
 
     }
 
-    public static ArrayList<String> getSanitizedList(String[] inputCls)
+    public static List<String> getSanitizedList(String[] inputCls)
     {
-        ArrayList<String> arrayList = new ArrayList<String>();
+        ArrayList<String> arrayList = new ArrayList<>();
         for (int i = 0; i < inputCls.length; i++)
         {
-            if(inputCls[i] != null || !inputCls[i].isEmpty())
+            if (inputCls[i] != null || !inputCls[i].isEmpty())
             {
                 arrayList.add(inputCls[i]);
             }

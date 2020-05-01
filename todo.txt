@@ -1,6 +1,5 @@
 == TODO
 . Toasts
-. Check bsh and groovy scripts execution (Secure Sandboxing)
 . Session storage, on refresh don't show new dialog, instead load from session storage
 . Warning if script already being edited and the user refreshes the browser.
 . PostProcess Action
@@ -14,3 +13,4 @@
 . Logger reports and browser logs
 . Delete Script
 . Close/Open Script Tab
+. Check bsh and groovy scripts execution (Secure Sandboxing)

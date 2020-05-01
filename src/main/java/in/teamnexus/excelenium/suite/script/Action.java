@@ -1454,7 +1454,7 @@ public class Action implements Executable
 
             case RUN_SCRIPT:
             {
-                WebDriverUtil.runScript(webDriver, this.element);
+                WebDriverUtil.runScript(webDriver, this.element, this.elementValue);
                 break;
             }
 
