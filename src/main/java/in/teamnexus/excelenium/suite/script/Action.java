@@ -10,6 +10,7 @@
 package in.teamnexus.excelenium.suite.script;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -1117,6 +1118,7 @@ public class Action implements Executable
                             warningMsg =  "Found " + this.element + " disabled";
                         }
                     }
+                    break;
                 }
 
                 case IS_DISABLED:
@@ -1138,6 +1140,7 @@ public class Action implements Executable
                             warningMsg =  "Found " + this.element + " enabled";
                         }
                     }
+                    break;
                 }
 
                 case GET_DOM:
@@ -1177,13 +1180,13 @@ public class Action implements Executable
 
                     String[] inputCls = elementValue.split(",");
 
-                    ArrayList<String> input = WebDriverUtil.getSanitizedList(inputCls);
+                   List<String> input = WebDriverUtil.getSanitizedList(inputCls);
 
                     String cssClass = webElement.getAttribute("class");
                     if (cssClass != null && !cssClass.isEmpty())
                     {
                         String[] elementCss = cssClass.trim().split(" ");
-                        ArrayList<String> elementList = WebDriverUtil.getSanitizedList(elementCss);
+                        List<String> elementList = WebDriverUtil.getSanitizedList(elementCss);
                         if(elementList.containsAll(input))
                         {
                             reportsLogger.info(this.getFullyQualifiedName() + " found " + input + " classes applied to the element");
@@ -1262,7 +1265,6 @@ public class Action implements Executable
     /**
      * @param webDriver
      * @param elementString
-     *            TODO
      * @return
      */
     private WebElement getWebElement(WebDriver webDriver, String elementString)
@@ -1307,7 +1309,7 @@ public class Action implements Executable
      * @throws Exception
      * @throws ScriptException
      */
-    private void doActionsWithoutFindElement(WebDriver webDriver) throws Exception, ScriptException
+    private void doActionsWithoutFindElement(WebDriver webDriver) throws Exception
     {
         switch (aType)
         {

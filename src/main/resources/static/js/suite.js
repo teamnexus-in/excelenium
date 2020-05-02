@@ -114,6 +114,7 @@ class SuiteController {
         this.suiteView.createNewScriptTab(scriptName, run, stopOnError);
     }
 
+    
     saveSuite(sData, isRun) {
         let thisController = this;
         let suiteName = this.suiteModel.settings.name;
@@ -148,6 +149,37 @@ class SuiteController {
 
     getSuiteJson() {
         return this.suiteModel.getJson();
+    }
+    
+    // facade methods for shortcut keys binding
+    save() {
+        this.suiteView.doSaveAction(false);
+    }
+
+    newScript(){
+        this.suiteView.clearNewScriptDialogFields();
+        this.suiteView.showNewScriptDialog();
+        $("#tb-script-name").focus();
+    }
+
+    newSuite(){
+        bootbox.alert("New suite to be created!");
+    }
+
+    export(){
+        bootbox.alert("Export will happen!");
+    }
+
+    run(){
+        bootbox.alert("Suite Run!");
+    }
+
+    load(){
+        bootbox.alert("Load Suite!");
+    }
+
+    settings(){
+        bootbox.alert("Show Settings!");
     }
 
     closeSuite() {
@@ -342,7 +374,7 @@ class SuiteView {
                 this.controller.saveSuite(sData, isRun);
             }
         }
-        else{
+        else {
             this.controller.saveSuite(sData, isRun);
         }
     }
@@ -365,7 +397,7 @@ class SuiteView {
                 browserEnabled = true;
             }
         });
-        
+
         if (!browserEnabled) {
             hasError = true;
             errorMsg = errorMsg + '- Please choose at least on browser and provide the appropriate driver path</br>';
