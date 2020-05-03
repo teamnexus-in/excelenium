@@ -26,6 +26,8 @@ class SuiteModel {
     }
 
     initialize() {
+        this.settings = {};
+        this.scripts = [];
     }
 
     getJson() {
@@ -114,7 +116,7 @@ class SuiteController {
         this.suiteView.createNewScriptTab(scriptName, run, stopOnError);
     }
 
-    
+
     saveSuite(sData, isRun) {
         let thisController = this;
         let suiteName = this.suiteModel.settings.name;
@@ -150,39 +152,46 @@ class SuiteController {
     getSuiteJson() {
         return this.suiteModel.getJson();
     }
-    
+
     // facade methods for shortcut keys binding
     save() {
         this.suiteView.doSaveAction(false);
     }
 
-    newScript(){
+    newScript() {
         this.suiteView.clearNewScriptDialogFields();
         this.suiteView.showNewScriptDialog();
         $("#tb-script-name").focus();
     }
 
-    newSuite(){
-        bootbox.alert("New suite to be created!");
+    newSuite() {
+        this.suiteView.showSuiteOverwriteWarning(true);
     }
 
-    export(){
-        bootbox.alert("Export will happen!");
+    export() {
+        this.suiteView.doSaveAction(false);
+        this.suiteView.downloadSuite();
     }
 
-    run(){
-        bootbox.alert("Suite Run!");
+    run() {
+        this.suiteView.doSaveAction(true);
     }
 
-    load(){
-        bootbox.alert("Load Suite!");
+    load() {
+        this.suiteView.showSuiteOverwriteWarning(true);
     }
 
-    settings(){
-        bootbox.alert("Show Settings!");
+    settings() {
+        // load the settings into the fields and show
+        this.suiteView.displaySettings(false);
     }
 
     closeSuite() {
+        const scripts = this.suiteModel.scripts;
+        for (let i = 0; i < scripts.length; ++i) {
+            this.suiteView.removeScriptAndTab(scripts[i].name, 0);
+        }
+        this.suiteModel.initialize();
     }
 }
 
@@ -291,14 +300,12 @@ class SuiteView {
 
         $("#btn-suite-new").click(function () {
             // check if a script is already open and save it before creating a new one
-            thisViewObj.showNewSuiteWarning();
-            thisViewObj.displaySettings(true);
+            thisViewObj.showSuiteOverwriteWarning(false);
+
         });
 
         $('#btn-suite-load').click(function () {
-            thisViewObj.showNewSuiteWarning();
-            $('#file-suite').val('');
-            $('#file-upload-modal').modal('show');
+            thisViewObj.showSuiteOverwriteWarning(true);
         });
 
         $('#btn-upload-file').click(function () {
@@ -366,16 +373,19 @@ class SuiteView {
 
     doSaveAction(isRun) {
         let settings = this.getUISettingsValues();
-        this.controller.saveSettings(settings);
-        let sData = this.getScriptsData();
-        if (isRun) {
-            let validSettings = this.validateSettings(settings);
-            if (validSettings) {
+        let validSettings = this.validateSettings(settings);
+        if (validSettings) {
+            this.controller.saveSettings(settings);
+            let sData = this.getScriptsData();
+            if (sData && (sData.length > 0)) {
                 this.controller.saveSuite(sData, isRun);
             }
-        }
-        else {
-            this.controller.saveSuite(sData, isRun);
+            else {
+                bootbox.alert({
+                    title: "Empty Script",
+                    message: "There are no scripts to save/run. Please create a script.",
+                });
+            }
         }
     }
 
@@ -493,8 +503,36 @@ class SuiteView {
         return retVal;
     }
 
-    showNewSuiteWarning() {
+    showSuiteOverwriteWarning(isLoad) {
+        let thisViewObj = this;
         console.log("Showing new suite warning");
+        bootbox.confirm({
+            size: "medium",
+            buttons: {
+                confirm: {
+                    label: 'Ok',
+                },
+                cancel: {
+                    label: 'Cancel',
+                }
+            },
+            title: 'Suite Alert!',
+            message: 'This action will overwrite your current suite. If you have not saved the current suite, please click "Cancel", export the script and try again. ',
+            callback: function (result) {
+                if (result) {
+                    thisViewObj.controller.closeSuite();
+                    if (isLoad) {
+                        console.log('Load the suite');
+                        $('#file-suite').val('');
+                        $('#file-upload-modal').modal('show');
+                    }
+                    else {
+                        console.log('New suite');
+                        thisViewObj.displaySettings(true);
+                    }
+                }
+            }
+        })
     }
 
     showNewScriptDialog() {

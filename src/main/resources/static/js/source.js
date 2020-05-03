@@ -43,32 +43,32 @@ function bindKeyboardShortcuts() {
     });
 
     Mousetrap.bind('mod+m', function (e) {
-        handleDefaults(e);
         console.log("Mousetrap new script...");
+        handleDefaults(e);
         suiteController.newScript();
     });
 
-    Mousetrap.bind('mod+n', function (e) {
-        handleDefaults(e);
+    Mousetrap.bind('mod+y', function (e) {
         console.log("Mousetrap new suite...");
+        handleDefaults(e);
         suiteController.newSuite();
     });
 
     Mousetrap.bind('mod+e', function (e) {
-        handleDefaults(e);
         console.log("Mousetrap export...");
+        handleDefaults(e);
         suiteController.export();
     });
 
     Mousetrap.bind('mod+q', function (e) {
-        handleDefaults(e);
         console.log("Mousetrap run...");
+        handleDefaults(e);
         suiteController.run();
     });
 
     Mousetrap.bind('mod+l', function (e) {
-        handleDefaults(e);
         console.log("Mousetrap load...");
+        handleDefaults(e);
         suiteController.load();
     });
 

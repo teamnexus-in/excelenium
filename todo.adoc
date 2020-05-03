@@ -1,10 +1,11 @@
 == TODO
-. Toasts
+. Full-blown validation of the scripts
 . Session storage, on refresh don't show new dialog, instead load from session storage
 . Warning if script already being edited and the user refreshes the browser.
 . PostProcess Action
-. Mousetrap keybindings - https://craig.is/killing/mice
 . Unit Tests
+. Update Documentation
+. Scripts saved to server h2 db
 
 == DONE
 . Validation
@@ -14,3 +15,5 @@
 . Delete Script
 . Close/Open Script Tab
 . Check bsh and groovy scripts execution (Secure Sandboxing)
+. Mousetrap keybindings - https://craig.is/killing/mice
+. Toasts
