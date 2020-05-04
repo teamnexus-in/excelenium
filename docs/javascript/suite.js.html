@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>suite.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading">Classes</li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="SuiteController.html">SuiteController</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SuiteController.html#closeSuite">closeSuite</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SuiteController.html#createNewScript">createNewScript</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SuiteController.html#export">export</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SuiteController.html#getSuiteJson">getSuiteJson</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SuiteController.html#initialize">initialize</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SuiteController.html#load">load</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SuiteController.html#loadSuite">loadSuite</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SuiteController.html#newScript">newScript</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SuiteController.html#newSuite">newSuite</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SuiteController.html#run">run</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SuiteController.html#runSuite">runSuite</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SuiteController.html#save">save</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SuiteController.html#saveSettings">saveSettings</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SuiteController.html#saveSuite">saveSuite</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SuiteController.html#settings">settings</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="SuiteController.SuiteController.html">SuiteController</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="SuiteModel.html">SuiteModel</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SuiteModel.html#getJson">getJson</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SuiteModel.html#getScriptModel">getScriptModel</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SuiteModel.html#initialize">initialize</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SuiteModel.html#loadJson">loadJson</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SuiteModel.html#saveSettings">saveSettings</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SuiteModel.html#saveSuite">saveSuite</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="SuiteModel.SuiteModel.html">SuiteModel</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="SuiteView.html">SuiteView</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SuiteView.html#addScriptsTabEntry">addScriptsTabEntry</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SuiteView.html#clearNewScriptDialogFields">clearNewScriptDialogFields</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SuiteView.html#clearSettingsFields">clearSettingsFields</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SuiteView.html#createNewScriptTab">createNewScriptTab</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SuiteView.html#createSheets">createSheets</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SuiteView.html#displaySettings">displaySettings</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SuiteView.html#displayTab">displayTab</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SuiteView.html#doSaveAction">doSaveAction</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SuiteView.html#downloadSuite">downloadSuite</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SuiteView.html#getBrowserOptions">getBrowserOptions</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SuiteView.html#getScriptsData">getScriptsData</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SuiteView.html#getUISettingsValues">getUISettingsValues</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SuiteView.html#handleCellSelection">handleCellSelection</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SuiteView.html#hideNewScriptDialog">hideNewScriptDialog</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SuiteView.html#hideSettings">hideSettings</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SuiteView.html#initialize">initialize</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SuiteView.html#loadScripts">loadScripts</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SuiteView.html#populateUISettingsValue">populateUISettingsValue</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SuiteView.html#registerHandlers">registerHandlers</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SuiteView.html#removeScriptAndTab">removeScriptAndTab</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SuiteView.html#sanitizeJson">sanitizeJson</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SuiteView.html#showNewScriptDialog">showNewScriptDialog</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SuiteView.html#showSuiteOverwriteWarning">showSuiteOverwriteWarning</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="SuiteView.html#validateSettings">validateSettings</a></span></li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="SuiteView.SuiteView.html">SuiteView</a></span></li><li class="nav-heading"><a href="global.html">Globals</a></li><li class="nav-item"><span class="nav-item-type type-member">M</span><span class="nav-item-name"><a href="global.html#actions">actions</a></span></li>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">suite.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * the various actions to be performed by the Selenium WebDriver
+ */
+var actions = {
+    "main": [
+        "FILL", "CLEAR", "CLICK", "RIGHT_CLICK", "CHECK", "SELECT",
+        "VERIFY_TEXT", "VERIFY_PRESENT", "IS_VISIBLE", "IS_HIDDEN",
+        "CHECK_ATTRIBUTE", "ACCEPT_POPUP", "DISMISS_POPUP",
+        "SWITCH_TO_IFRAME", "SWITCH_TO_PARENT", "CAPTURE_SCREEN",
+        "NAVIGATE", "SET_VARIABLE", "UNSET_VARIABLE", "CLEAR_COOKIES",
+        "DELETE_COOKIE", "ADD_COOKIE", "SWITCH_TO_WINDOW",
+        "EXECUTE_JAVASCRIPT", "WAIT_MSECS", "IS_ENABLED",
+        "IS_DISABLED", "SET_WINDOW_SIZE", "COMPARE_URL", "RUN_SCRIPT",
+        "GET_DOM", "SCROLL_WINDOW_BY", "SCROLL_TO_ELEMENT",
+        "MAKE_REQUEST", "HOVER", "DRAG_AND_DROP", "GET_CURRENT_URL",
+        "HAS_CSS_CLASS", "CHECK_CSS_ATTRIBUTE"
+    ],
+    "preprocess": [
+        "ADD_ATTRIBUTE", "REMOVE_ATTRIBUTE", "SET_ATTRIBUTE"
+    ],
+};
+
+
+/// ================ SuiteModel =========================
+/**
+ * Represents the Json Model of the Suite
+ *
+ * @class SuiteModel
+ */
+class SuiteModel {
+
+    /**
+     * Creates an instance of SuiteModel.
+     * @memberof SuiteModel
+     */
+    constructor() {
+        this.settings = {};
+        this.scripts = [];
+    }
+
+    /**
+     * Initialize the constructs settings and scripts
+     *
+     * @memberof SuiteModel
+     */
+    initialize() {
+        this.settings = {};
+        this.scripts = [];
+    }
+
+    /**
+     * Returns the JSON model of the suite
+     *
+     * @returns JSON Object that represents the Suite
+     * @memberof SuiteModel
+     */
+    getJson() {
+        let data = {};
+        data.name = this.settings.name;
+        data.settings = this.settings;
+        data.scripts = this.scripts;
+        return data;
+    }
+
+    /**
+     * Loads the suite Json Model from the file loaded
+     *
+     * @param {JSON} suiteContent - suite content loaded from file
+     * @memberof SuiteModel
+     */
+    loadJson(suiteContent) {
+        this.settings = suiteContent.settings;
+        this.scripts = suiteContent.scripts;
+    }
+
+    /**
+     * Saves the settings
+     *
+     * @param {JSON} settings - settings of the suite: serverURL, browser settings etc.
+     * @memberof SuiteModel
+     */
+    saveSettings(settings) {
+        this.settings = settings;
+    }
+
+    /**
+     * Saves the suite JSON to the SuiteModel class
+     *
+     * @param {JSON} sData - Save the scripts to the SuiteModel
+     * @memberof SuiteModel
+     */
+    saveSuite(sData) {
+        this.scripts = [];
+        sData.forEach(script => {
+            let model = this.getScriptModel(script);
+            this.scripts.push(model);
+        });
+        console.log(this.getJson());
+    }
+
+    /**
+     * Constructs the SuiteModel from the SuiteView object's script data
+     *
+     * @param {JSON} scriptsData - SuiteView  internal script data
+     * @returns JSON object in the SuiteModel Structure
+     * @memberof SuiteModel
+     */
+    getScriptModel(scriptsData) {
+        console.log("script model", scriptsData);
+        let retVal = {}
+        retVal.name = scriptsData.name;
+        retVal.run = scriptsData.run;
+        retVal.stopOnError = scriptsData.stopOnError;
+        retVal.actions = [];
+        scriptsData.actions.forEach(obj => {
+            let actionsObj = {};
+            actionsObj.execute = obj[0];
+            actionsObj.stopOnError = obj[1];
+            actionsObj.actionName = obj[2];
+            actionsObj.actionType = obj[3];
+            actionsObj.element = obj[4];
+            actionsObj.elementValue = obj[5];
+            actionsObj.attributeName = obj[6];
+            actionsObj.attributeValue = obj[7];
+            if (obj[8] != undefined &amp;&amp; obj[8] != '') {
+                actionsObj.preprocess = {}
+                actionsObj.preprocess.actionType = obj[8];
+                actionsObj.preprocess.attributeName = obj[9];
+                actionsObj.preprocess.attributeValue = obj[10];
+            }
+            retVal.actions.push(actionsObj);
+        });
+
+        return retVal;
+    }
+}
+
+/// ================ SuiteController =========================
+/**
+ * The Controller Class that interfaces between the model and the UI elements
+ *
+ * @class SuiteController
+ */
+class SuiteController {
+    /**
+     * Creates an instance of SuiteController.
+     * @memberof SuiteController
+     */
+    constructor() {
+    }
+
+    /**
+     * Initialize the SuiteController with the SuiteView and SuiteModel objects
+     *
+     * @param {SuiteView} suiteView - The SuiteView Object
+     * @param {SuiteModel} suiteModel - The SuiteModel Object
+     * @memberof SuiteController
+     */
+    initialize(suiteView, suiteModel) {
+        this.suiteView = suiteView;
+        this.suiteModel = suiteModel;
+    }
+
+    /**
+     * Load the Suite content from a file that was uploaded the server and 
+     * returned back as a json object in the html
+     *
+     * @param {JSON} suiteContent - suite content from file
+     * @memberof SuiteController
+     */
+    loadSuite(suiteContent) {
+        console.log("Suite Model suiteContent")
+        this.suiteModel.loadJson(suiteContent);
+        this.suiteView.populateUISettingsValue(this.suiteModel.settings);
+        this.suiteView.loadScripts(this.suiteModel.scripts);
+        toastr.success("Script loaded!");
+    }
+
+    /**
+     * Save the Suite settings - serverURL, browser settings etc.
+     *
+     * @param {JSON} settings - settings json
+     * @memberof SuiteController
+     */
+    saveSettings(settings) {
+        console.log("Saving settings");
+        this.suiteModel.saveSettings(settings)
+        console.log(this.suiteModel.settings);
+        toastr.success('Settings saved!')
+    }
+
+    /**
+     * Creates a new script and also the UI elements
+     *
+     * @param {string} scriptName - name of the script
+     * @param {boolean} run - run the script, if true
+     * @param {boolean} stopOnError - stop the script on error, if true
+     * @memberof SuiteController
+     */
+    createNewScript(scriptName, run, stopOnError) {
+        this.suiteView.hideNewScriptDialog();
+        this.suiteView.createNewScriptTab(scriptName, run, stopOnError);
+    }
+
+
+    /**
+     * Save the Suite data including settings and isRun is true, execute the script
+     *
+     * @param {JSON} sData - Suite Data - script and settings JSON
+     * @param {boolean} isRun - Run the script if true
+     * @memberof SuiteController
+     */
+    saveSuite(sData, isRun) {
+        let thisController = this;
+        let suiteName = this.suiteModel.settings.name;
+        console.log("Before Ajax: ", suiteName);
+        this.suiteModel.saveSuite(sData);
+        const modelData = this.suiteModel.getJson();
+        console.log("Making Ajax Request", modelData);
+        $.ajax({
+            'type': 'POST',
+            'url': '/save',
+            'data': JSON.stringify(modelData),
+            'success': function (data) {
+                console.log("Server Response: ", data);
+                if (isRun) {
+                    console.log("running: " + suiteName)
+                    thisController.runSuite(suiteName);
+                }
+            },
+            'dataType': "json",
+            'contentType': 'application/json; charset=UTF-8'
+        });
+        toastr.success('Suite Saved!')
+        console.log("Ajax Request done");
+    }
+
+    /**
+     * Make a call to the server to run the script
+     *
+     * @param {string} suiteName - name of the suite
+     * @memberof SuiteController
+     */
+    runSuite(suiteName) {
+        console.log("Making get request")
+        $.get("/run", "suiteName=" + suiteName, function (data) {
+            console.log(data);
+        });
+    }
+
+    /**
+     * Get the JSON Model of the Suite
+     *
+     * @returns JSON mode of the suite
+     * @memberof SuiteController
+     */
+    getSuiteJson() {
+        return this.suiteModel.getJson();
+    }
+
+    // facade methods for shortcut keys binding
+    /**
+     * A facade method for shortcut key bindings &lt;br/>
+     * Saves the suite
+     * @memberof SuiteController
+     */
+    save() {
+        this.suiteView.doSaveAction(false);
+    }
+
+    /**
+     * A facade method for shortcut key bindings &lt;br/>
+     * Creates a new script in the suite
+     * @memberof SuiteController
+     */
+    newScript() {
+        this.suiteView.clearNewScriptDialogFields();
+        this.suiteView.showNewScriptDialog();
+        $("#tb-script-name").focus();
+    }
+
+    /**
+     * A facade method for shortcut key bindings &lt;br/>
+     * Creates a new suite, provides a warning that the current suite will be overwritten.
+     * @memberof SuiteController
+     */
+    newSuite() {
+        this.suiteView.showSuiteOverwriteWarning(true);
+    }
+
+    /**
+     * A facade method for shortcut key bindings &lt;br/>
+     * Exports the current suite as a json file
+     * @memberof SuiteController
+     */
+    export() {
+        this.suiteView.doSaveAction(false);
+        this.suiteView.downloadSuite();
+    }
+
+    /**
+     * A facade method for shortcut key bindings &lt;br/>
+     * Runs the current suite
+     * @memberof SuiteController
+     */
+    run() {
+        this.suiteView.doSaveAction(true);
+    }
+
+    /**
+     * A facade method for shortcut key bindings &lt;br/>
+     * Shows the file open dialog for choose the script to be loaded
+     * @memberof SuiteController
+     */
+    load() {
+        this.suiteView.showSuiteOverwriteWarning(true);
+    }
+
+    /**
+     * A facade method for shortcut key bindings &lt;br/>
+     * Shows the settings dialog
+     * @memberof SuiteController
+     */
+    settings() {
+        // load the settings into the fields and show
+        this.suiteView.displaySettings(false);
+    }
+
+    /**
+     * Closes the current suite before creating a new suite or load another suite
+     *
+     * @memberof SuiteController
+     */
+    closeSuite() {
+        const scripts = this.suiteModel.scripts;
+        for (let i = 0; i &lt; scripts.length; ++i) {
+            this.suiteView.removeScriptAndTab(scripts[i].name, 0);
+        }
+        this.suiteModel.initialize();
+    }
+}
+
+
+
+
+/// ================ SuiteView =========================
+/**
+ * The SuiteView class that takes care of  managing the UI elements and 
+ * also getting/settings the values to UI elements
+ * binding listeners etc.
+ *
+ * @class SuiteView
+ */
+class SuiteView {
+    /**
+     * Creates an instance of SuiteView.
+     * @memberof SuiteView
+     */
+    constructor() {
+        this.data = { "scripts": [] };
+        this.tabIdx = 0;
+        this.scriptsJxl;
+    }
+
+    /**
+     * Initializes the view with the controller object and registers the binding for the UI elements
+     *
+     * @param {SuiteController} controller - the SuiteController object
+     * @memberof SuiteView
+     */
+    initialize(controller) {
+        this.controller = controller;
+        this.registerHandlers();
+    }
+
+    /**
+     * Registers listeners to the events on the UI elements - dialogs, buttons etc.
+     *
+     * @memberof SuiteView
+     */
+    registerHandlers() {
+
+        let thisViewObj = this;
+
+        $('.cb-browser-settings').click(function () {
+            var result = ($(this).prop('checked') == true);
+            var cboxEl = $(this).attr("id");
+            var idx = cboxEl.indexOf('-');
+            var elName = cboxEl.substr(idx + 1);
+            // console.log(cboxEl + " " + elName);
+            var tbEl = '#tb-' + elName;
+            $(tbEl).attr('disabled', !result);
+            $(tbEl).attr('required', result);
+            if (result) {
+                $(tbEl).focus();
+            }
+            else {
+                $(tbEl).removeClass('error');
+                let errMsgDiv = '#errormsg-' + elName;
+                console.log(errMsgDiv);
+                $(errMsgDiv).empty();
+            }
+            // $("#tb-chrome").attr('disabled', !result);
+        });
+
+        $('#tb-suite-name').blur(function () {
+            let el = $('#tb-suite-name')
+            let val = el.val();
+            if (val !== '') {
+                el.removeClass('error');
+                $('#errormsg-suite-name').empty();
+            }
+        });
+
+        $('#tb-server-url').blur(function () {
+            let el = $('#tb-server-url');
+            let val = el.val();
+            if (val.startsWith('http://') || val.startsWith('https://')) {
+                el.removeClass('error');
+                $('#errormsg-server-url').empty();
+            }
+        });
+
+        $('#tb-script-name').blur(function () {
+            let el = $('#tb-script-name');
+            let val = el.val();
+            if (val !== '') {
+                el.removeClass('error');
+                $('#errormsg-script-name').empty();
+            }
+        });
+
+        $('#btn-settings-save').click(function () {
+            if (!thisViewObj.bouncerSuite) {
+                thisViewObj.bouncerSuite = Bouncer('form-new-suite', {
+                    messageAfterField: true
+                });
+            }
+            let form = document.getElementById('form-new-suite');
+            let valid = thisViewObj.bouncerSuite.validateAll(form);
+            console.log('Valid: ', valid);
+            if (valid.length &lt;= 0) {
+                let settings = thisViewObj.getUISettingsValues();
+                // console.log(settings);
+                thisViewObj.controller.saveSettings(settings);
+                thisViewObj.hideSettings();
+            }
+        });
+
+        // Create New Script
+        $('#btn-new-script-ok').click(function () {
+            if (!thisViewObj.bouncerScript) {
+                thisViewObj.bouncerScript = Bouncer('form-new-script', {
+                    messageAfterField: true
+                });
+            }
+            let form = document.getElementById('form-new-script');
+            let valid = thisViewObj.bouncerScript.validateAll(form);
+            console.log('Valid: ', valid);
+            if (valid.length &lt;= 0) {
+                var scriptName = $('#tb-script-name').val();
+                let stopOnError = $('#cb-ns-stop-on-error').prop('checked');
+                let run = $('#cb-ns-execute').prop('checked');
+                thisViewObj.controller.createNewScript(scriptName, run, stopOnError);
+            }
+        });
+
+        $("#btn-suite-new").click(function () {
+            // check if a script is already open and save it before creating a new one
+            thisViewObj.showSuiteOverwriteWarning(false);
+
+        });
+
+        $('#btn-suite-load').click(function () {
+            thisViewObj.showSuiteOverwriteWarning(true);
+        });
+
+        $('#btn-upload-file').click(function () {
+            if ($('#file-suite').val() == '') {
+                bootbox.alert({
+                    size: "small",
+                    title: "Choose File",
+                    message: "Please choose a suite file to upload",
+                });
+            }
+            else {
+                $('#file-upload-modal').modal('hide');
+                $('#form-file-upload').submit();
+            }
+        });
+
+        $('#btn-suite-download').click(function () {
+            console.log('Downloading...');
+            thisViewObj.doSaveAction(false);
+            thisViewObj.downloadSuite();
+        });
+
+        $('#btn-settings').click(function () {
+            // load the settings into the fields and show
+            thisViewObj.displaySettings(false);
+        });
+
+        $('#btn-new-script').click(function () {
+            thisViewObj.clearNewScriptDialogFields();
+            thisViewObj.showNewScriptDialog();
+            $("#tb-script-name").focus();
+        });
+
+        // Save suite
+        $('#btn-save').click(function () {
+            thisViewObj.doSaveAction(false);
+        });
+
+        $('#btn-run').click(function () {
+            thisViewObj.doSaveAction(true);
+        });
+
+        $('.nav-tabs').on('click', '.tabClose', function () {
+            console.log(this, $(this).parent, $(this).siblings());
+            let tabId = $(this).siblings()[0].attributes['id'].value;
+            console.log('tabId: ', tabId);
+            $('#scripts-tabs ul li').children('a').first().click();
+            $('#' + tabId).hide();
+        });
+
+    }
+
+    /**
+     * The functions that allows the user to save the suite as a json file
+     *
+     * @memberof SuiteView
+     */
+    downloadSuite() {
+        console.log("About to download...");
+        let suiteContent = this.controller.getSuiteJson();
+
+        var filename = suiteContent.name.replace(' ', '-').trim().toLowerCase() + '.json';
+
+        var blob = new Blob([JSON.stringify(suiteContent, null, 2)], {
+            type: "application/json;charset=utf-8"
+        });
+
+        saveAs(blob, filename);
+    }
+
+    /**
+     * Save the suite by getting values from the UI elements
+     *
+     * @param {boolean} isRun - Run the script after saving, if isRun is true
+     * @memberof SuiteView
+     */
+    doSaveAction(isRun) {
+        let settings = this.getUISettingsValues();
+        let validSettings = this.validateSettings(settings);
+        if (validSettings) {
+            this.controller.saveSettings(settings);
+            let sData = this.getScriptsData();
+            if (sData &amp;&amp; (sData.length > 0)) {
+                this.controller.saveSuite(sData, isRun);
+            }
+            else {
+                bootbox.alert({
+                    title: "Empty Script",
+                    message: "There are no scripts to save/run. Please create a script.",
+                });
+            }
+        }
+    }
+
+    /**
+     * Validate the settings - serverURL, browser webdriver path etc.
+     *
+     * @param {JSON} settings - settings values
+     * @returns true is settings are valid, false otherwise
+     * @memberof SuiteView
+     */
+    validateSettings(settings) {
+        let errorMsg = '';
+        let hasError = false;
+        console.log(settings);
+        if (!settings.name || settings.name.trim() === '') {
+            errorMsg = errorMsg + '- Suite name cannot be empty&lt;/br>';
+            hasError = true;
+        }
+        if (!settings.serverUrl || settings.serverUrl.trim() === '') {
+            errorMsg = errorMsg + '- Server Url cannot be empty&lt;br/>';
+            hasError = true;
+        }
+        let browserEnabled = false;
+        settings.browsers.forEach(obj => {
+            if (obj.enabled) {
+                browserEnabled = true;
+            }
+        });
+
+        if (!browserEnabled) {
+            hasError = true;
+            errorMsg = errorMsg + '- Please choose at least on browser and provide the appropriate driver path&lt;/br>';
+        }
+        console.log('Error state:', hasError, errorMsg);
+
+        if (hasError) {
+            errorMsg = 'Please correct the following errors in the Settings&lt;br/>' + errorMsg;
+            bootbox.alert({
+                title: "Settings Error",
+                message: errorMsg,
+            })
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    /**
+     * Get the settings values from the UI elements
+     *
+     * @returns a JSON of settings values
+     * @memberof SuiteView
+     */
+    getUISettingsValues() {
+        let settings = {};
+        settings.name = $('#tb-suite-name').val();
+        settings.serverUrl = $('#tb-server-url').val();
+        settings.browsers = [];
+        let browsers = ['chrome', 'firefox', 'edge', 'opera', 'safari'];
+        browsers.forEach(obj => {
+            let data = this.getBrowserOptions(obj);
+            settings.browsers.push(data);
+        });
+        settings.userAgent = this.getBrowserOptions('user-agent');
+        settings.runConcurrent = $('#cb-run-concurrent').prop('checked');
+        return settings;
+    }
+
+    /**
+     * Populate the values to the UI elements from the loaded suite file
+     *
+     * @param {JSON} settings - settings values loaded from file
+     * @memberof SuiteView
+     */
+    populateUISettingsValue(settings) {
+        $('#tb-suite-name').val(settings.name);
+        $('#tb-server-url').val(settings.serverUrl);
+        settings.browsers.forEach(obj => {
+            $('#cb-' + obj.name).prop('checked', obj.enabled);
+            if (obj.enabled &amp;&amp; obj.name != 'safari') {
+                $('#tb-' + obj.name).val(obj.driverPath);
+                $('#tb-' + obj.name).attr('disabled', false);
+            }
+        });
+        const obj = settings.userAgent;
+        if (obj &amp;&amp; (obj !== null)) {
+            $('#cb-user-agent').prop('checked', obj.enabled);
+            $('#tb-user-agent').val(obj.value);
+        }
+        $('#cb-run-concurrent').prop('checked', settings.runConcurrent);
+    }
+
+    /**
+     * Get browser settings from the UI elements - Settings Dialog
+     *
+     * @param {string} browser - browser name one of [firefox, chrome, edge, opera, safari ]
+     * @returns JSON object containing values for a browser - if selected, driverPath
+     * @memberof SuiteView
+     */
+    getBrowserOptions(browser) {
+        let retVal = {};
+        let enabled = $('#cb-' + browser).prop('checked');
+        let textVal = ((browser == 'safari') ? "" : $('#tb-' + browser).val());
+        retVal.enabled = enabled;
+        if (browser == 'user-agent') {
+            retVal.value = textVal;
+        }
+        else {
+            retVal.name = browser;
+            retVal.driverPath = textVal;
+        }
+        // console.log(retVal);
+        return retVal;
+    }
+
+    /**
+     * Get the script data from the spreadsheet
+     *
+     * @returns JSON containing the scripts in the suite
+     * @memberof SuiteView
+     */
+    getScriptsData() {
+        // console.log("Getting scripts data");
+        let retVal = [];
+        this.data.scripts.forEach(obj => {
+            let scriptData = {};
+            scriptData.name = obj.name;
+            scriptData.run = obj.run;
+            scriptData.stopOnError = obj.stopOnError;
+            let jxl = obj.jxl;
+            scriptData.actions = this.sanitizeJson(jxl.getJson());
+            retVal.push(scriptData);
+        });
+
+        return retVal;
+    }
+
+    /**
+     * Removes the empty rows in the script returned by the JExcel sheet.
+     *
+     * @param {JSON} jsonObj - Spreadsheet Json
+     * @returns JSON that has been sanitized by removing the empty rows
+     * @memberof SuiteView
+     */
+    sanitizeJson(jsonObj) {
+        console.log('Sanitizing');
+        let retVal = {};
+        retVal = jsonObj.filter(function (value, index, array) {
+            if (value[2] != '') {
+                return value;
+            }
+        });
+        return retVal;
+    }
+
+    /**
+     * Shows a warning dialog that the suite will be overwritten.
+     * Shown when a new suite is created or another suite is loaded.
+     *
+     * @param {boolean} isLoad - True when the suite is loaded from a file, false if it is a new suite
+     * @memberof SuiteView
+     */
+    showSuiteOverwriteWarning(isLoad) {
+        let thisViewObj = this;
+        console.log("Showing new suite warning");
+        bootbox.confirm({
+            size: "medium",
+            buttons: {
+                confirm: {
+                    label: 'Ok',
+                },
+                cancel: {
+                    label: 'Cancel',
+                }
+            },
+            title: 'Suite Alert!',
+            message: 'This action will overwrite your current suite. If you have not saved the current suite, please click "Cancel", export the script and try again. ',
+            callback: function (result) {
+                if (result) {
+                    thisViewObj.controller.closeSuite();
+                    if (isLoad) {
+                        console.log('Load the suite');
+                        $('#file-suite').val('');
+                        $('#file-upload-modal').modal('show');
+                    }
+                    else {
+                        console.log('New suite');
+                        thisViewObj.displaySettings(true);
+                    }
+                }
+            }
+        })
+    }
+
+    /**
+     * Shows the new script dialog
+     *
+     * @memberof SuiteView
+     */
+    showNewScriptDialog() {
+        $("#newScriptModal").modal('show');
+    }
+
+    /**
+     * Hides the new script dialog
+     *
+     * @memberof SuiteView
+     */
+    hideNewScriptDialog() {
+        $("#newScriptModal").modal('hide');
+    }
+
+    /**
+     * Adds the newly created script to the scripts sheet
+     *
+     * @param {string} scriptName - name of the script
+     * @param {boolean} run - Run the script if true
+     * @param {boolean} stopOnError - Stop the script if any error occur in the steps
+     * @memberof SuiteView
+     */
+    addScriptsTabEntry(scriptName, run, stopOnError) {
+        let thisViewObj = this;
+        let delHtml = '&lt;i class="fas fa-trash-alt">&lt;/i>';
+        if (this.tabIdx === 1) {
+            $('#no-scripts').hide();
+            this.scriptsJxl = $('#scripts-list').jexcel({
+                data: [[]],
+                defaultColWidth: 100,
+                tableOverflow: true,
+                tableWidth: "100%",
+                tableHeight: "100%",
+                allowManualInsertRow: false,
+                allowManualInsertColumn: false,
+                columns: [
+                    { type: 'Name', title: 'Name', width: 250 },
+                    { type: 'checkbox', title: 'Run', width: 50 },
+                    { type: 'checkbox', title: 'Stop on Error', width: 100 },
+                    { type: 'html', title: 'Delete', width: 100, readOnly: true },
+                ],
+                nestedHeaders: [
+                    [
+                        {
+                            title: 'Scripts',
+                            colspan: '4',
+                        },
+                    ],
+                ],
+                onselection: function (instance, x1, y1, x2, y2, origin) {
+                    thisViewObj.handleCellSelection(thisViewObj, this, x1, y1, x2, y2);
+                }
+            });
+            this.scriptsJxl.setRowData(0, [scriptName, run, stopOnError]);
+            this.scriptsJxl.setValueFromCoords(3, 0, delHtml, true);
+        }
+        else {
+            this.scriptsJxl.insertRow([scriptName, run, stopOnError]);
+            this.scriptsJxl.setValueFromCoords(3, this.tabIdx - 1, delHtml, true);
+        }
+
+    }
+
+    /**
+     * Handles the click event in the sheet for deleting the script
+     *
+     * @param {SuiteView} thisViewObj - The reference to this object to be used in a callback
+     * @param {JExcel} jxl - JExcel object
+     * @param {integer} x1 - Starting cell column in the sheet where change started
+     * @param {integer} y1 - Starting cell row in the sheet where change started
+     * @param {integer} x2 - Ending cell column in the sheet where change ended
+     * @param {integer} y2 - Ending cell row in the sheet where change ended
+     * @memberof SuiteView
+     */
+    handleCellSelection(thisViewObj, jxl, x1, y1, x2, y2) {
+        console.log('handling selection: ', thisViewObj, jxl, x1, y1, x2, y2);
+        // delete icon clicked
+        if (x1 == 3 &amp;&amp; x2 == 3) {
+            console.log('true showwing alert');
+            let scriptName = jxl.getRowData(y1)[0];
+            bootbox.confirm({
+                size: "small",
+                buttons: {
+                    confirm: {
+                        label: 'Yes',
+                    },
+                    cancel: {
+                        label: 'No',
+                    }
+                },
+                title: 'Delete Script?',
+                message: "Action cannot be undone. Are you sure?",
+                callback: function (result) {
+                    if (result) {
+                        thisViewObj.removeScriptAndTab(scriptName, y1);
+                    }
+                }
+            })
+        }
+
+        // script name clicked
+        if (x1 === 0 &amp;&amp; x2 === 0) {
+            let scriptName = jxl.getRowData(y1)[0];
+            thisViewObj.displayTab(scriptName, false);
+        }
+    }
+
+    /**
+     * Reopen and display the script tab if closed already.
+     *
+     * @param {string} tabName - Script name which is displayed as the tab name
+     * @param {boolean} isHide - true if tab is to be hidden, false if to be shown
+     * @memberof SuiteView
+     */
+    displayTab(tabName, isHide) {
+        let findObj = this.data.scripts.find(function (obj, idx, arr) {
+            if (obj.name === tabName) {
+                return obj;
+            }
+        }, tabName);
+        if (isHide) {
+            $('#' + findObj.tabId).hide();
+        }
+        else {
+            $('#' + findObj.tabId).show();
+        }
+
+    }
+
+    /**
+     * Removes the tab, the row entry in the scripts tab
+     *
+     * @param {string} scriptName - name of the script to be deleted
+     * @param {integer} rowNum -  row number where the delete click event happened
+     * @memberof SuiteView
+     */
+    removeScriptAndTab(scriptName, rowNum) {
+        this.displayTab(scriptName, true);
+        let objIdx = -1;
+        let obj = this.data.scripts.find(function (obj, idx, arr) {
+            if (obj.name === scriptName) {
+                objIdx = idx;
+                return true;
+            }
+        }, scriptName);
+        this.data.scripts.splice(objIdx, 1);
+        $('#' + obj.panelId).remove();
+        $('#' + obj.tabId).parent().remove();
+        this.tabIdx--;
+        if (this.tabIdx !== 0) {
+            this.scriptsJxl.deleteRow(rowNum);
+        }
+        else {
+            this.scriptsJxl.destroy(document.getElementById('#scripts-list'), true);
+            this.scriptsJxl = null;
+            $('#no-scripts').show();
+        }
+    }
+
+    /**
+     * Creates a new script tab
+     *
+     * @param {string} scriptName - name of the script
+     * @param {boolean} run - run the script if true
+     * @param {boolean} stopOnError -  true is script to be stopped on error
+     * @param {string} data - script data, if loaded from file
+     * @memberof SuiteView
+     */
+    createNewScriptTab(scriptName, run, stopOnError, data) {
+        this.tabIdx++;
+        let tabId = 'tab-scripts-' + this.tabIdx;
+        let panelId = "tpanel-scripts-tab-" + this.tabIdx;
+        let sheetsId = "sheets-" + this.tabIdx;
+
+        // console.log(this.data);
+        let scriptData = {}
+        scriptData.name = scriptName;
+        scriptData.tabIdx = this.tabIdx;
+        scriptData.tabId = tabId;
+        scriptData.panelId = panelId;
+        scriptData.sheetsId = sheetsId;
+        scriptData.run = run;
+        scriptData.stopOnError = stopOnError;
+
+        $('#suite-tabs').append('&lt;li class="nav-item">&lt;a class="nav-link" id="' + tabId + '" data-toggle="tab" href="#' + panelId + '" role="tab" aria-controls="scripts" aria-selected="true">' + scriptName + '&lt;/a>&lt;span class="tabClose" aria-hidden="true">&amp;times;&lt;/span>&lt;/li>');
+        $('#scripts-tab-content').append('&lt;div class="tab-pane fade show" id="' + panelId + '" role="tabpanel" aria-labelledby="' + tabId + '">&lt;div id="' + sheetsId + '" class="sheets-content">&lt;/div>&lt;/div>');
+
+        let jxl = this.createSheets(sheetsId, data);
+        scriptData.jxl = jxl;
+
+        this.data.scripts.push(scriptData);
+        console.log('View data:', this.data);
+        this.addScriptsTabEntry(scriptName, run, stopOnError);
+        if (!data) {
+            $('#' + tabId).tab('show');
+        }
+    }
+
+    /**
+     * Create new JExcel sheets in the tab container
+     *
+     * @param {string} sheetsId - Element id in the UI
+     * @param {JSON} data - script data loaded from the file
+     * @returns - JExcel Object filled with the values
+     * @memberof SuiteView
+     */
+    createSheets(sheetsId, data) {
+        let jxl = $('#' + sheetsId).jexcel({
+            data: [[]],
+            defaultColWidth: 100,
+            minDimensions: [10, 20],
+            tableOverflow: true,
+            tableWidth: "100%",
+            tableHeight: "100%",
+            columns: [
+                { type: 'checkbox', title: 'Run', width: 50 },
+                { type: 'checkbox', title: 'Stop on Error', width: 100 },
+                { type: 'text', title: 'Name', width: 100 },
+                { type: 'autocomplete', title: 'Type', width: 125, source: actions.main },
+                { type: 'text', title: 'Element Id/XPath', width: 200 },
+                { type: 'text', title: 'Element Val', width: 150 },
+                { type: 'text', title: 'Attr Name', width: 100 },
+                { type: 'text', title: 'Attr Val', width: 100 },
+                { type: 'autocomplete', title: 'Action', width: 100, source: actions.preprocess },
+                { type: 'text', title: 'Attr Name', width: 100 },
+                { type: 'text', title: 'Attr Val', width: 100 },
+                // { type: 'dropdown', title: 'Actions', width: 200, autocomplete:true, source: db.actions },
+            ],
+            nestedHeaders: [
+                [
+                    {
+                        title: 'Actions',
+                        colspan: '8',
+                    },
+                    {
+                        title: 'Preprocess',
+                        colspan: '3',
+                    },
+                ],
+            ]
+        });
+
+        if (data &amp;&amp; data.length > 0) {
+            let idx = 0;
+            data.forEach(scriptData => {
+                let sd = [
+                    scriptData.execute,
+                    scriptData.stopOnError,
+                    scriptData.actionName,
+                    scriptData.actionType,
+                    scriptData.element,
+                    scriptData.elementValue,
+                    scriptData.attributeName,
+                    scriptData.attributeValue
+                ];
+                if (scriptData.preprocess) {
+                    sd.push(scriptData.preprocess.actionType);
+                    sd.push(scriptData.preprocess.attributeName);
+                    sd.push(scriptData.preprocess.attributeValue);
+                }
+                jxl.setRowData(idx, sd);
+                idx++;
+            });
+        }
+        // jxl.setRowData(0, [true, true, 'test1', 'FILL', 'id1'])
+        // jxl.setRowData(1, [true, true, 'test2', 'CLEAR', 'id2'])
+        // jxl.setRowData(2, [true, true, 'test3', 'CHECK_ATTRIBUTE', 'id3'])
+
+        return jxl;
+    }
+
+    /**
+     * Loads the scripts from the suite file uploaded
+     *
+     * @param {JSON} scripts - Scripts json from the suite
+     * @memberof SuiteView
+     */
+    loadScripts(scripts) {
+        scripts.forEach(script => {
+            this.createNewScriptTab(script.name, script.run, script.stopOnError, script.actions);
+        });
+    }
+
+    /**
+     * Displays the suite settings dialog
+     *
+     * @param {boolean} isClearSettings - Clear the UI elements if true
+     * @memberof SuiteView
+     */
+    displaySettings(isClearSettings) {
+        if (isClearSettings) {
+            this.clearSettingsFields();
+        }
+        $("#settingsModal").modal('show');
+    }
+
+    /**
+     * Hides the suite settings dialog
+     *
+     * @memberof SuiteView
+     */
+    hideSettings() {
+        $("#settingsModal").modal('hide');
+    }
+
+    /**
+     * Clears the fields in the suite settings dialog
+     *
+     * @memberof SuiteView
+     */
+    clearSettingsFields() {
+        // console.log("Clearing settings for new suite");
+        $('.cb-browser-settings').each(function () {
+            $(this).prop('checked', false);
+        });
+        $('.tb-browser-settings').each(function () {
+            $(this).val('');
+            $(this).attr('disabled', 'disabled')
+        });
+        $('#tb-suite-name').val('');
+        $('#tb-server-url').val('');
+        $('#cb-run-browsers-concurrent').prop('checked', false);
+    }
+
+    /**
+     * Clears the fields in the new script dialog
+     *
+     * @memberof SuiteView
+     */
+    clearNewScriptDialogFields() {
+        $("#tb-script-name").val('');
+        $('cb-ns-stop-on-error').prop('checked', false);
+        $('cb-ns-execute').prop('checked', false);
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.4</a> on Tue May 05 2020 03:54:20 GMT+0530 (India Standard Time) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

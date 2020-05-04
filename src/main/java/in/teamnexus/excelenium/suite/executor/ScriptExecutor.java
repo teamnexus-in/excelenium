@@ -36,12 +36,15 @@ import in.teamnexus.excelenium.suite.exception.ScriptException;
 import in.teamnexus.excelenium.suite.script.Script;
 import in.teamnexus.excelenium.suite.util.WebDriverUtil;
 
+// TODO: Auto-generated Javadoc
 /**
  * The class that executes all the scripts that are marked as <b>TRUE</b> in the
  * <b>settings</b> sheet of the xlsx.
  */
 public class ScriptExecutor
 {
+    
+    /** The suite config. */
     private SuiteConfig suiteConfig;
 
     /** The logger. */
@@ -84,11 +87,8 @@ public class ScriptExecutor
 
     /**
      * Gets the web driver.
-     * 
-     * @param browserCfg
-     *            the browser
-     * @param autoConfig
-     *            the auto config
+     *
+     * @param browserCfg            the browser
      * @return the web driver
      */
     private WebDriver getWebDriver(BrowserConfig browserCfg)
@@ -205,11 +205,21 @@ public class ScriptExecutor
 
     }
 
+    /**
+     * Gets the suite config.
+     *
+     * @return the suite config
+     */
     public SuiteConfig getSuiteConfig()
     {
         return suiteConfig;
     }
 
+    /**
+     * Sets the suite config.
+     *
+     * @param suiteConfig the new suite config
+     */
     public void setSuiteConfig(SuiteConfig suiteConfig)
     {
         this.suiteConfig = suiteConfig;
@@ -229,13 +239,9 @@ public class ScriptExecutor
 
         /**
          * Instantiates a new browser runner.
-         * 
-         * @param driver
-         *            the webdriver object
-         * @param config
-         *            the AutomationConfig object
-         * @param browserCfg
-         *            the browser
+         *
+         * @param driver            the webdriver object
+         * @param browserCfg            the browser
          */
         BrowserRunner(WebDriver driver, BrowserConfig browserCfg)
         {
@@ -243,6 +249,9 @@ public class ScriptExecutor
             this.browserCfg = browserCfg;
         }
 
+        /**
+         * Run.
+         */
         /*
          * (non-Javadoc)
          * @see java.lang.Runnable#run()
@@ -276,9 +285,9 @@ public class ScriptExecutor
 
         /**
          * Execute scripts.
-         * 
-         * @param webDriver
-         *            the web driver
+         *
+         * @param webDriver            the web driver
+         * @throws ScriptException the script exception
          */
         private void executeScripts(WebDriver webDriver) throws ScriptException
         {

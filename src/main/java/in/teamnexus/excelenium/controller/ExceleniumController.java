@@ -39,19 +39,19 @@ public class ExceleniumController
 
     @GetMapping("/favicon.ico")
     @ResponseBody
-    void noFavicon()
+    public void noFavicon()
     {
 
     }
 
     @GetMapping("/")
-    String index()
+    public String index()
     {
         return "index";
     }
 
     @GetMapping("/suite")
-    ModelAndView showSuite(Model model)
+    public ModelAndView showSuite(Model model)
     {
         boolean isFileLoad = false;
         String suiteContent;
@@ -76,7 +76,7 @@ public class ExceleniumController
     }
 
     @PostMapping("/load")
-    String loadScript(@RequestParam(value = "suiteFile") MultipartFile file, RedirectAttributes redirectAttrs) throws ScriptException
+    public String loadScript(@RequestParam(value = "suiteFile") MultipartFile file, RedirectAttributes redirectAttrs) throws ScriptException
     {
         String filename = StringUtils.cleanPath(file.getOriginalFilename());
         try
@@ -108,7 +108,7 @@ public class ExceleniumController
 
     @PostMapping(path = "/save", consumes = "application/json", produces = "application/json")
     @ResponseBody
-    String saveSuite(@RequestBody SuiteConfig config) throws Exception
+    public String saveSuite(@RequestBody SuiteConfig config) throws Exception
     {
         ObjectMapper mapper = new ObjectMapper();
         String data = mapper.writeValueAsString(config);
@@ -119,31 +119,9 @@ public class ExceleniumController
 
     @GetMapping(path = "/run", produces = "application/json")
     @ResponseBody
-    String run(@RequestParam String suiteName) throws ConfigException, Exception
+    public String run(@RequestParam String suiteName) throws ConfigException, Exception
     {
-        // logger.debug("Running the suite: " + suiteName);
-        // String suite =
-        // "{\"name\":\"testSuite\",\"settings\":{\"name\":\"testSuite\",\"serverUrl\":\"http://localhost:8080/\",\"browsers\":[{\"name\":\"chrome\",\"enabled\":false,\"driverPath\":\"\"},{\"name\":\"firefox\",\"enabled\":true,\"driverPath\":\"D:/Progs/selenium/webdrivers/geckodriver/geckodriver.exe\"},{\"name\":\"edge\",\"enabled\":false,\"driverPath\":\"\"},{\"name\":\"opera\",\"enabled\":false,\"driverPath\":\"\"},{\"name\":\"safari\",\"enabled\":false,\"driverPath\":\"\"}]},\"scripts\":[{\"name\":\"test\",\"actions\":
-        // [{\"execute\": true,\"stopOnError\": true,\"actionName\":
-        // \"clickNew\",\"actionType\": \"CLICK\",\"element\":
-        // \"btn-new\",\"elementValue\": \"\",\"attributeName\":
-        // \"\",\"attributeValue\": \"\",\"preProcess\": {\"actionType\":
-        // \"\",\"attributeName\": \"\",\"attributeValue\": \"\"}},{\"execute\":
-        // true,\"stopOnError\": true,\"actionName\": \"fillSuite\",\"actionType\":
-        // \"FILL\",\"element\": \"tb-suite-name\",\"elementValue\": \"Test
-        // Suite\",\"attributeName\": \"\",\"attributeValue\": \"\",\"preProcess\":
-        // {\"actionType\": \"\",\"attributeName\": \"\",\"attributeValue\":
-        // \"\"}},{\"execute\": true,\"stopOnError\": true,\"actionName\":
-        // \"fillUrl\",\"actionType\": \"FILL\",\"element\":
-        // \"tb-server-url\",\"elementValue\":
-        // \"http://localhost:8080\",\"attributeName\": \"\",\"attributeValue\":
-        // \"\",\"preProcess\": {\"actionType\": \"\",\"attributeName\":
-        // \"\",\"attributeValue\":
-        // \"\"}}]}],\"userAgent\":null,\"runConcurrent\":false}";
-        // ObjectMapper mapper = new ObjectMapper();
-        // SuiteConfig cfg = mapper.readValue(suite, SuiteConfig.class);
-        // service.saveConfig(cfg);
-        // service.runSuite(cfg.getSettings().getName());
+        // TODO: Fix send
         service.runSuite(suiteName);
         return "{\"success\": true}";
     }

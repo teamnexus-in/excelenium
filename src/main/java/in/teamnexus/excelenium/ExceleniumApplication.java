@@ -10,15 +10,27 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ExceleniumApplication.
+ */
 @SpringBootApplication
 public class ExceleniumApplication
 {
 
+    /**
+     * The main method.
+     *
+     * @param args the arguments
+     */
     public static void main(String[] args)
     {
         SpringApplication.run(ExceleniumApplication.class, args);
     }
 
+    /**
+     * Application ready.
+     */
     @EventListener({ ApplicationReadyEvent.class })
     private void applicationReady()
     {

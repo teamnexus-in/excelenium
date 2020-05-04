@@ -1,0 +1,18 @@
+= excelenium - User Guide
+Prabhu R
+:toc: left
+:icons: font
+:doctype: book
+:imagesdir: ./images
+:media: prepress
+:sourcedir: ./src
+:source-highlighter: rouge
+:sectnums:
+:sectnumlevels: 5
+:stylesdir: ./css
+:stylesheet: readthedocs.css
+:chapter-label: ~
+
+include::01-introduction.adoc[]
+include::02-building-running.adoc[]
+include::03-preparing-script.adoc[]

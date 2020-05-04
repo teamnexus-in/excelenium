@@ -24,21 +24,37 @@ import in.teamnexus.excelenium.service.ExceleniumSuiteService;
 import in.teamnexus.excelenium.service.SuiteService;
 import in.teamnexus.excelenium.suite.executor.ScriptExecutor;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class RootConfig.
+ */
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = { "in.teamnexus.excelenium.controller" })
 public class RootConfig implements WebMvcConfigurer, ApplicationContextAware
 {
+    
+    /** The application context. */
     @Autowired
     /** The application context. */
     ApplicationContext applicationContext;
 
+    /**
+     * Adds the resource handlers.
+     *
+     * @param registry the registry
+     */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry)
     {
         registry.addResourceHandler("/resources/**").addResourceLocations("file:/usr/local/pages/excelenium/static/", "classpath:/static/");
     }
 
+    /**
+     * Template resolver.
+     *
+     * @return the spring resource template resolver
+     */
     @Bean
     public SpringResourceTemplateResolver templateResolver()
     {
@@ -52,6 +68,11 @@ public class RootConfig implements WebMvcConfigurer, ApplicationContextAware
         return templateResolver;
     }
 
+    /**
+     * File template resolver.
+     *
+     * @return the file template resolver
+     */
     @Bean
     public FileTemplateResolver fileTemplateResolver()
     {
@@ -82,6 +103,11 @@ public class RootConfig implements WebMvcConfigurer, ApplicationContextAware
         return templateEngine;
     }
 
+    /**
+     * Configure view resolvers.
+     *
+     * @param registry the registry
+     */
     @Override
     public void configureViewResolvers(ViewResolverRegistry registry)
     {
@@ -90,12 +116,22 @@ public class RootConfig implements WebMvcConfigurer, ApplicationContextAware
         registry.viewResolver(resolver);
     }
 
+    /**
+     * Script executor.
+     *
+     * @return the script executor
+     */
     @Bean
     ScriptExecutor scriptExecutor()
     {
         return new ScriptExecutor();
     }
     
+    /**
+     * Suite service.
+     *
+     * @return the suite service
+     */
     @Bean
     SuiteService suiteService()
     {
@@ -104,6 +140,12 @@ public class RootConfig implements WebMvcConfigurer, ApplicationContextAware
         return service;
     }
 
+    /**
+     * Sets the application context.
+     *
+     * @param applicationContext the new application context
+     * @throws BeansException the beans exception
+     */
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException
     {

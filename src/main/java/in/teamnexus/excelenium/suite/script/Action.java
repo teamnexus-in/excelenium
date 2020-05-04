@@ -34,6 +34,7 @@ import com.google.common.base.Stopwatch;
 import in.teamnexus.excelenium.suite.exception.ScriptException;
 import in.teamnexus.excelenium.suite.util.WebDriverUtil;
 
+// TODO: Auto-generated Javadoc
 /**
  * The class that defines any of the actions that could be performed on a web element.
  */
@@ -385,11 +386,14 @@ public class Action implements Executable
         SET_VARIABLE,
         /** unsets a variable that has already been set. */
         UNSET_VARIABLE,
-        /** clears all the cookies that are currently present */
+        
+        /**  clears all the cookies that are currently present. */
         CLEAR_COOKIES,
-        /** deletes the specified cookie */
+        
+        /**  deletes the specified cookie. */
         DELETE_COOKIE,
-        /** adds the specified cookie with the given value */
+        
+        /**  adds the specified cookie with the given value. */
         ADD_COOKIE,
         /** Switches to the specified window/tab - based on index from 0 to n. '0' always refers to the main window */
         SWITCH_TO_WINDOW,
@@ -417,23 +421,32 @@ public class Action implements Executable
          * were errors in the expected output.
          */
         RUN_SCRIPT,
-        /** Gets the dom of the specified element and stores in the variable */
+        
+        /**  Gets the dom of the specified element and stores in the variable. */
         GET_DOM,
-        /** scrolls the window by specified x and y */
+        
+        /**  scrolls the window by specified x and y. */
         SCROLL_WINDOW_BY,
-        /** scrolls the window to the specified web element */
+        
+        /**  scrolls the window to the specified web element. */
         SCROLL_TO_ELEMENT,
-        /** Makes a GET request and stores the response in the variable name specified */
+        
+        /**  Makes a GET request and stores the response in the variable name specified. */
         MAKE_REQUEST,
-        /** Hovers the mouse on the specified element */
+        
+        /**  Hovers the mouse on the specified element. */
         HOVER,
-        /** Drag and drop the source element to target element */
+        
+        /**  Drag and drop the source element to target element. */
         DRAG_AND_DROP,
-        /** Gets the current url of the current focused window and saves it to the variable specified */
+        
+        /**  Gets the current url of the current focused window and saves it to the variable specified. */
         GET_CURRENT_URL,
-        /** Checks if the specified element has the css classes applied */
+        
+        /**  Checks if the specified element has the css classes applied. */
         HAS_CSS_CLASS,
-        /** Checks if the css attribute of the element has the specified value */
+        
+        /**  Checks if the css attribute of the element has the specified value. */
         CHECK_CSS_ATTRIBUTE
 
     }
@@ -1263,9 +1276,11 @@ public class Action implements Executable
     }
 
     /**
-     * @param webDriver
-     * @param elementString
-     * @return
+     * Gets the web element.
+     *
+     * @param webDriver the web driver
+     * @param elementString the element string
+     * @return the web element
      */
     private WebElement getWebElement(WebDriver webDriver, String elementString)
     {
@@ -1288,7 +1303,9 @@ public class Action implements Executable
     }
 
     /**
-     * @return
+     * Checks if is execute without find element.
+     *
+     * @return true, if is execute without find element
      */
     private boolean isExecuteWithoutFindElement()
     {
@@ -1305,9 +1322,10 @@ public class Action implements Executable
     }
 
     /**
-     * @param webDriver
-     * @throws Exception
-     * @throws ScriptException
+     * Do actions without find element.
+     *
+     * @param webDriver the web driver
+     * @throws Exception the exception
      */
     private void doActionsWithoutFindElement(WebDriver webDriver) throws Exception
     {
@@ -1568,6 +1586,11 @@ public class Action implements Executable
         this.isExecute = isExecute;
     }
 
+    /**
+     * To string.
+     *
+     * @return the string
+     */
     @Override
     public String toString()
     {

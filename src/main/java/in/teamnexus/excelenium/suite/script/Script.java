@@ -21,6 +21,7 @@ import com.google.common.base.Stopwatch;
 
 import in.teamnexus.excelenium.suite.exception.ScriptException;
 
+// TODO: Auto-generated Javadoc
 /**
  * Represents the script sheet in the excel which is a collection of objects.
  */
@@ -33,6 +34,7 @@ public class Script implements Executable
     /** The actions. */
     List<Action> actions;
     
+    /** The is run. */
     private boolean isRun = true;
 
     /** The stop on error. */
@@ -88,6 +90,8 @@ public class Script implements Executable
     }
 
     /**
+     * Checks if is run.
+     *
      * @return the isRun
      */
     public boolean isRun()
@@ -96,6 +100,8 @@ public class Script implements Executable
     }
 
     /**
+     * Sets the run.
+     *
      * @param isRun the isRun to set
      */
     public void setRun(boolean isRun)
@@ -125,10 +131,11 @@ public class Script implements Executable
     }
 
     /**
-     * (non-Javadoc)
-     * 
-     * @see
-     * com.teamnexus.excelenium.automation.script.Executable#execute(org.openqa.selenium
+     * (non-Javadoc).
+     *
+     * @param webDriver the web driver
+     * @throws ScriptException the script exception
+     * @see com.teamnexus.excelenium.automation.script.Executable#execute(org.openqa.selenium
      * .WebDriver)
      */
     @Override
