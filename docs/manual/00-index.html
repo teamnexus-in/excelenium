@@ -759,6 +759,23 @@ table.tableblock.grid-all th.tableblock, table.tableblock.grid-all td.tableblock
 <ul class="sectlevel1">
 <li><a href="#_introduction_and_features">1. Introduction and Features</a></li>
 <li><a href="#_features">2. Features</a></li>
+<li><a href="#_prerequisites">3. Prerequisites</a></li>
+<li><a href="#_building_and_running_excelenium">4. Building and Running excelenium</a>
+<ul class="sectlevel2">
+<li><a href="#_building_excelenium">4.1. Building excelenium</a></li>
+<li><a href="#_running_excelenium">4.2. Running excelenium</a></li>
+</ul>
+</li>
+<li><a href="#_creating_and_running_the_suite">5. Creating and Running the Suite</a>
+<ul class="sectlevel2">
+<li><a href="#_creating_the_suite">5.1. Creating the Suite</a></li>
+<li><a href="#_creating_scripts">5.2. Creating Scripts</a></li>
+<li><a href="#_action_table">5.3. Action Table</a></li>
+<li><a href="#_preprocess_action_table">5.4. Preprocess Action Table</a></li>
+<li><a href="#_others">5.5. Others</a></li>
+<li><a href="#_action_types">5.6. Action Types</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -801,10 +818,812 @@ table.tableblock.grid-all th.tableblock, table.tableblock.grid-all td.tableblock
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_prerequisites">3. Prerequisites</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The tool is an executable jar with all the dependencies included and can be directly executed from the command-line; however, there are some basic prerequisites that are required for running this tool.</p>
+</div>
+<div class="paragraph">
+<p>The prerequisites are</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Java JDK 8 or higher</p>
+</li>
+<li>
+<p>Apache Maven – 3.6.0 or higher (required only if building from source)</p>
+</li>
+<li>
+<p>Mozilla Firefox, Google Chrome, Microsoft Edge, Opera and Safari Browsers (Install only the required browsers)</p>
+</li>
+<li>
+<p>Browser WebDrivers - Can be downloaded from the following locations</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Mozilla Firefox - <a href="https://github.com/mozilla/geckodriver/releases">Gecko Driver</a></p>
+</li>
+<li>
+<p>Google Chrome - <a href="https://sites.google.com/a/chromium.org/chromedriver/downloads">Chrome Driver</a></p>
+</li>
+<li>
+<p>Microsoft Edge Driver - <a href="https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/#downloads">Edge Driver</a></p>
+</li>
+<li>
+<p>Opera - <a href="https://github.com/operasoftware/operachromiumdriver/releases">Opera Driver</a></p>
+</li>
+<li>
+<p>Safari - In-built (Supported only on macOS)</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Git – to clone the repository (required only if building from source)</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Microsoft Edge  driver is applicable for version above 18 that use the Chromium Engine. For others please read the notes in the link above for Microsoft Edge
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_building_and_running_excelenium">4. Building and Running excelenium</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_building_excelenium">4.1. Building excelenium</h3>
+<div class="paragraph">
+<p>To build <code><code>excelenium</code></code> from source follow these steps</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Clone the repository</p>
+</li>
+<li>
+<p>Make sure you have installed Java and Maven and set the <code><code>JAVA_HOME</code></code> and <code><code>MVN_HOME</code></code> environment variables and both are in the system <code><code>PATH</code></code> variable</p>
+</li>
+<li>
+<p>Move the directory excelenium, open a command line in that directory</p>
+</li>
+<li>
+<p>Type <code><code>mvn clean package</code></code></p>
+</li>
+<li>
+<p>This will generate <code><code>excelenium-0.0.1-SNAPSHOT</code></code>.jar inside the target directory</p>
+</li>
+<li>
+<p>The generated JAR is a fat jar, which means, it is a self-contained jar that has all the required dependencies.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_running_excelenium">4.2. Running excelenium</h3>
+<div class="paragraph">
+<p>To run <code><code>excelenium</code></code> type the following command in the command line</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>java -jar excelenium-0.0.1-SNAPSHOT.jar</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will open the browser with the following UI</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./images/excelenium-home.png" alt="excelenium home"></span></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_creating_and_running_the_suite">5. Creating and Running the Suite</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_creating_the_suite">5.1. Creating the Suite</h3>
+<div class="paragraph">
+<p>In the landing page, there are two options <code><code>Load Suite</code></code> and <code><code>Create New</code></code>. Clicking on the <code><code>Create New</code></code> navigates to the new suite page</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/new-suite-page.png" alt="new suite page">
+</div>
+</div>
+<div class="paragraph">
+<p>The <code><code>New Suite Page</code></code> displays the <code><code>Suite Settings</code></code> dialog</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/suite-settings-dialog.png" alt="suite settings dialog">
+</div>
+</div>
+<div class="sect3">
+<h4 id="_the_suite_settings_dialog">5.1.1. The Suite Settings Dialog</h4>
+<div class="paragraph">
+<p>Fill the settings in the <code><code>Suite Settings</code></code> dialog, the description of which are as follows</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Suite Name</strong> - Provide the name for the suite</p>
+</li>
+<li>
+<p><strong>Server URL</strong> - The base url to start the test with</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The <code><code>Browsers</code></code> section displays the browsers on which the suite should be executed and their corresponding webdriver executables path, if selected.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+At least one browser should be selected for running the suite. Also, <code><code>Safari</code></code> browser is support only on the Apple macOS
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>User-Agent</strong> - The user agent string to spoof the browser user agent, useful to automate mobile websites.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+The user-agent field cannot be set in Edge and Safari. Mostly works only wth Mozilla Firefox and Google Chrome
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Run Concurrently</strong> - If checked, the browsers will be run concurrently, else they will be run in sequence.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+There could be unexpected behaviour if all the browsers are run concurrently because of memory, cpu wait, network latency etc. Though the webdrivers are run in separate threads.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_creating_scripts">5.2. Creating Scripts</h3>
+<div class="paragraph">
+<p>Once the settings have been input and saved. We can start creating scripts.</p>
+</div>
+<div class="paragraph">
+<p>Click on the <span class="image"><img src="./images/new-script-button.png" alt="new script button"></span> button or <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>M</kbd></span> to open the <code><code>New Script</code></code> dialog.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/new-script-dialog.png" alt="new script dialog">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_action_table">5.3. Action Table</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Column</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Action Name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The name of the action</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Action Type</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">One of the permissible values in the dropdown as shown in the table below <a href="#_action_types">Action Types</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Element</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Represents a web element – <code><code>xpath</code></code>/<code><code>id</code></code>. Or specified values depending on actions. For e.g. Action Type “NAVIGATE” can take one of the values – back, forward, refresh or url. This column is optional in some cases</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Element Value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Represents the value of the web element, optional in some cases</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Attribute Name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Represents the attribute name of the element on which an action has to be performed. Optional in some cases</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Attribute Value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Represents the attribute value of the element on which an action is performed. Optional in some cases</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_preprocess_action_table">5.4. Preprocess Action Table</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Column</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Action Type</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">One of permissible values</p>
+<p class="tableblock">* ADD_ATTRIBUTE – to add an attribute before performing the main action</p>
+<p class="tableblock">* REMOVE_ATTRIBUTE – to remove an attribute before performing the main action</p>
+<p class="tableblock">* SET_ATTRIBUTE – to set an attribute value before performing the main action</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Attribute Name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the attribute</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Attribute Value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Value of the attribute</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Table Preprocess Table</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_others">5.5. Others</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Column</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stop On Error</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if the entire script has to be stopped in case of error in performing the operation. Permissible values TRUE or FALSE. Default FALSE</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Execute</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if the action has to be executed or not. Will not execute the action if FALSE. Permissible values – TRUE or FALSE. Default TRUE</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_action_types">5.6. Action Types</h3>
+<div class="paragraph">
+<p>The following action types are available in <code><code>excelenium</code></code> and are described in the table below</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Action Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>FILL</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fills the value in for the element selected, usually, text field or text area. Optionally can also do a submit in case of search boxes etc.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>CLEAR</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Clears the content of the element selected, usually, text field or text area.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>CLICK</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Generates a mouse click for the element selected.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>RIGHT_CLICK</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Generates a mouse right click for the element selected</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>CHECK</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Toggles the check box.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>SELECT</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Selects the option in the drop down as specified in the Element Value column. A special variable <code><code>&lt;#random&gt;</code></code> can be used to randomly select one of the values in the dropdown.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>VERIFY_TEXT</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Verifies the text content of the element.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>VERIFY_PRESENT</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Verifies if an element is present in the DOM use IS_VISIBLE to check if the element is displayed.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>IS_VISIBLE</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Verifies if an element is displayed and not hidden.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>IS_HIDDEN</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Verifies if an element is hidden and not displayed.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>CHECK_ATTRIBUTE</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Checks if the attribute is with the value specified is set for the element.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>ACCEPT_POPUP</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Selects <code><code>OK</code></code>/<code><code>Yes</code></code> when the browser popup is displayed.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>DISMISS_POPUP</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Selects <code><code>Cancel</code></code>/<code><code>No</code></code> when the browser popup is displayed.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>SWITCH_TO_IFRAME</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Switch to iframe specified.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>SWITCH_TO_PARENT</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Switch to parent from iframe.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>CAPTURE_SCREEN</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Captures the currently rendered screen in the browser.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>NAVIGATE</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Navigates back/forward/to a particular URL.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>SET_VARIABLE</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sets a variable that can be later substituted in the script.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>UNSET_VARIABLE</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Unsets a variable that has already been set.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>CLEAR_COOKIES</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Clears all the cookies that are currently present</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>DELETE_COOKIE</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Deletes the specified cookie</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>ADD_COOKIE</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Adds the specified cookie with the given value</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>SWITCH_TO_WINDOW</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Switches to the specified window/tab - based on index from 0 to n.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>EXECUTE_JAVASCRIPT</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Executes a specified JavaScript file.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>WAIT_MSECS</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Wait for the specified milliseconds before performing the next action.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>IS_ENABLED</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Checks if the specified element is enabled</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>IS_DISABLED</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Checks if the specified element is disabled</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>SET_WINDOW_SIZE</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sets the window size of the browser based on the width and height specified.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>COMPARE_URL</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Compares the current browser url with the provided url considering the options - starts_with and full_url.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>RUN_SCRIPT</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Runs the provided beanshell script or groovy script.</p>
+<p class="tableblock">For beanshell, Refer: <a href="https://www.beanshell.org">www.beanshell.org</a>.</p>
+<p class="tableblock">For Groovy script. Refer: <a href="https://groovy-lang.org">groovy-lang.org</a>.</p>
+<p class="tableblock">The script is supplied with all the variables created using <code><code>SET_VARIABLE</code></code> and a few other internal variables in a map named <code><code>inputMap</code></code> that can be referenced in the script.</p>
+<p class="tableblock">The logger object is also available in the name <code><code>logger</code></code> that can be used to print debug messages.</p>
+<p class="tableblock">The script will have to create a HashMap in the name <code><code>result</code></code> and store all the results that it wants printed in the log after execution.</p>
+<p class="tableblock">Also, the <code><code>result</code></code> hashmap object should have an entry <code><code>status</code></code> which is either true or false. The value <code><code>true</code></code> indicates the script executed successfully and <code><code>false</code></code> if there were errors in the expected output.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>GET_DOM</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Gets the dom of the specified element and stores in the variable name specified.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>SCROLL_WINDOW_BY</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Scrolls the window by specified x and y pixels</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>SCROLL_TO_ELEMENT</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Scrolls the window to the specified web element</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>MAKE_REQUEST</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Makes a GET request and stores the response in the variable name specified.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>HOVER</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Hovers the mouse on the specified element</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>DRAG_AND_DROP</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Drag and drop the source element to target element</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>GET_CURRENT_URL</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Gets the current url of the current focused window and saves it to the variable specified</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>HAS_CSS_CLASS</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Checks if the specified element has the css classes applied</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>CHECK_CSS_ATTRIBUTE</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Checks if the css attribute of the element has the specified value</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>As mentioned earlier, the element, element value, attribute name and the attribute value columns are optional for some of the action types. The following table describes those</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Action-Type</th>
+<th class="tableblock halign-left valign-top">Element</th>
+<th class="tableblock halign-left valign-top">Element Value</th>
+<th class="tableblock halign-left valign-top">Attribute Name</th>
+<th class="tableblock halign-left valign-top">Attribute Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>FILL</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><code>id</code></code> or <code><code>xpath</code></code> of the element</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Value to be filled in that element</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">True/False to indicate if the field needs to be submitted i.e., Enter key pressed. For example, "Search. Default “FALSE”</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>CLEAR</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><code>id</code></code> or <code><code>xpath</code></code> of the element</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>CLICK</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><code>id</code></code> or <code><code>xpath</code></code> of the element</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>RIGHT_CLICK</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><code>id</code></code> or <code><code>xpath</code></code> of the element</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0 based index indicating the option to be chosen in case of a native browser context menu, -ve value in case of a Javascript generated context menu</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>CHECK</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><code>id</code></code> or <code><code>xpath</code></code> of the element</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>SELECT</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><code>id</code></code> or <code><code>xpath</code></code> of the element</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Text value of the item to be selected or &lt;#random&gt; to randomly select one of the items in the dropdown</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>VERIFY_TEXT</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><code>id</code></code> or <code><code>xpath</code></code> of the element</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Text value to be verified a</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">One of following options - <strong>starts_with:</strong> compares if the text of the element starts with the provided text.</p>
+<p class="tableblock"><strong>ends_with:</strong> compares if the text element ends with the provided text.</p>
+<p class="tableblock"><strong>contains:</strong>checks if the text of the element contains the provided text</p>
+<p class="tableblock"><strong>full_text:</strong> compares the text of the element to the provided text</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>VERIFY_PRESENT</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><code>id</code></code> or <code><code>xpath</code></code> of the element</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>IS_VISIBLE</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><code>id</code></code> or <code><code>xpath</code></code> of the element</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>IS_HIDDEN</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><code>id</code></code> or <code><code>xpath</code></code> of the element</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>CHECK_ATTRIBUTE</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><code>id</code></code> or <code><code>xpath</code></code> of the element</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the attribute</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Value of the attribute</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>ACCEPT_POPUP</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>DISMISS_POPUP</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>SWITCH_TO_IFRAME</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><code>id</code></code> or <code><code>xpath</code></code> of the element</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>SWITCH_TO_PARENT</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>CAPTURE_SCREEN</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Optional filename</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>NAVIGATE</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">back, forward, refresh or url</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>SET_VARIABLE</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><code>xpath</code></code> of the element or variable name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">variable name in case <code><code>xpath</code></code> set as element or variable value otherwise</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>UNSET_VARIABLE</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">variable name to be unset</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>CLEAR_COOKIES</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>DELETE_COOKIE</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cookie name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>ADD_COOKIE</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cookie name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cookie Value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>SWITCH_TO_WINDOW</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0 based index, where 0 always indicates the main window and subsequent windows opened are numbers sequentially</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>EXECUTE_JAVASCRIPT</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">JS file</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>WAIT_MSECS</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Time to wait in milliseconds before executing next action</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>IS_ENABLED</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><code>id</code></code> or <code><code>xpath</code></code> of the element</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>IS_DISABLED</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><code>id</code></code> or <code><code>xpath</code></code> of the element</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>SET_WINDOW_SIZE</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Positive integer value specifying the width</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Positive integer value specifying the height</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>COMPARE_URL</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Url to compare against the current browser url a</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">One of following options - <strong>starts_with:</strong> compares if the current browser url starts with the provided url. The url might contain additional query parameters that might need to be ignored. <strong>ends_with:</strong> compares if the current browser url ends with the provided url.</p>
+<p class="tableblock"><strong>contains:</strong>checks if the browser url contains the provided text</p>
+<p class="tableblock"><strong>full_url:</strong> compares the entire url</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>RUN_SCRIPT</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">bsh or groovy script file</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>GET_DOM</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><code>id</code></code> or <code><code>xpath</code></code> of the element</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Variable name to store the DOM</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>SCROLL_WINDOW_BY</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">x pixels to scroll</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">y pixels to scroll</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>SCROLL_TO_ELEMENT</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><code>id</code></code> or <code><code>xpath</code></code> of element to scroll to</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>MAKE_REQUEST</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">url to request</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Variable name to store response</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>HOVER</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><code>id</code></code> or <code><code>xpath</code></code> of element</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>DRAG_AND_DROP</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><code>id</code></code> or <code><code>xpath</code></code> of source element</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><code>id</code></code> or <code><code>xpath</code></code> of target element</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>GET_CURRENT_URL</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Variable name to store the url</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>HAS_CSS_CLASS</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><code>id</code></code> or <code><code>xpath</code></code> of element</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Comma separated list of css classes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>CHECK_CSS_ATTRIBUTE</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><code>id</code></code> or <code><code></code>`xpath<code></code></code>` of element</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Css attribute name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Css attribute value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-05-05 04:08:11 +0530
+Last updated 2020-05-06 04:04:11 +0530
 </div>
 </div>
 </body>

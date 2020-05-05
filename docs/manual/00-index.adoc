@@ -4,15 +4,18 @@ Prabhu R
 :icons: font
 :doctype: book
 :imagesdir: ./images
-:media: prepress
+:media: print
 :sourcedir: ./src
 :source-highlighter: rouge
 :sectnums:
 :sectnumlevels: 5
 :stylesdir: ./css
 :stylesheet: readthedocs.css
-:chapter-label: ~
+:chapter-label: Ch.
+:experimental: true
 
-include::01-introduction.adoc[]
-include::02-building-running.adoc[]
-include::03-preparing-script.adoc[]
+include::introduction.adoc[]
+include::prerequisites.adoc[]
+include::building-running.adoc[]
+include::creating-and-running-suite.adoc[]
+

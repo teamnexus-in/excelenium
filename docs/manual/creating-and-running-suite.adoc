@@ -1,0 +1,503 @@
+:imagesdir: ./images
+:experimental: true
+
+== Creating and Running the Suite
+
+=== Creating the Suite
+
+In the landing page, there are two options ```Load Suite``` and ```Create New```. Clicking on the ```Create New``` navigates to the new suite page
+
+image::new-suite-page.png[]
+
+The ```New Suite Page``` displays the ```Suite Settings``` dialog
+
+image::suite-settings-dialog.png[]
+
+==== The Suite Settings Dialog
+
+Fill the settings in the ```Suite Settings``` dialog, the description of which are as follows
+
+* *Suite Name* - Provide the name for the suite
+* *Server URL* - The base url to start the test with
+
+The ```Browsers``` section displays the browsers on which the suite should be executed and their corresponding webdriver executables path, if selected.
+
+[NOTE]
+At least one browser should be selected for running the suite. Also, ```Safari``` browser is support only on the Apple macOS
+
+* *User-Agent* - The user agent string to spoof the browser user agent, useful to automate mobile websites.
+
+[WARNING]
+The user-agent field cannot be set in Edge and Safari. Mostly works only wth Mozilla Firefox and Google Chrome
+
+* *Run Concurrently* - If checked, the browsers will be run concurrently, else they will be run in sequence.
+
+[WARNING]
+There could be unexpected behaviour if all the browsers are run concurrently because of memory, cpu wait, network latency etc. Though the webdrivers are run in separate threads.
+
+=== Creating Scripts
+
+Once the settings have been input and saved. We can start creating scripts. 
+
+Click on the image:new-script-button.png[] button or kbd:[Ctrl+M] to open the ```New Script``` dialog.
+
+image::new-script-dialog.png[]
+
+=== Action Table
+
+[%header, cols="1,3"]
+|===
+|Column 
+|Description
+
+|Action Name 
+|The name of the action
+
+|Action Type 
+|One of the permissible values in the dropdown as shown in the table below <<Action Types>>
+
+|Element 
+|Represents a web element – ```xpath```/```id```. Or specified values depending on actions. For e.g. Action Type “NAVIGATE” can take one of the values – back, forward, refresh or url. This column is optional in some cases
+
+|Element Value 
+|Represents the value of the web element, optional in some cases
+
+|Attribute Name 
+|Represents the attribute name of the element on which an action has to be performed. Optional in some cases
+
+|Attribute Value 
+|Represents the attribute value of the element on which an action is performed. Optional in some cases
+|===
+
+=== Preprocess Action Table
+
+[%header, cols="1,3"]
+|===
+|Column 
+|Description
+
+|Action Type
+|One of permissible values
+
+* ADD_ATTRIBUTE – to add an attribute before performing the main action
+
+* REMOVE_ATTRIBUTE – to remove an attribute before performing the main action
+
+* SET_ATTRIBUTE – to set an attribute value before performing the main action
+
+|Attribute Name 
+|Name of the attribute
+
+|Attribute Value 
+|Value of the attribute
+|===
+
+Table Preprocess Table
+
+=== Others
+
+[cols=",",options="header",]
+|===
+|Column |Description
+|Stop On Error |Indicates if the entire script has to be stopped in case of error in performing the operation. Permissible values TRUE or FALSE. Default FALSE
+|Execute |Indicates if the action has to be executed or not. Will not execute the action if FALSE. Permissible values – TRUE or FALSE. Default TRUE
+|===
+
+=== Action Types
+
+The following action types are available in ```excelenium``` and are described in the table below
+
+[%header, cols="1,2"]
+|===
+|Action Type 
+|Description
+
+|*FILL* 
+|Fills the value in for the element selected, usually, text field or text area. Optionally can also do a submit in case of search boxes etc.
+
+|*CLEAR* 
+|Clears the content of the element selected, usually, text field or text area.
+
+|*CLICK* 
+|Generates a mouse click for the element selected.
+
+|*RIGHT_CLICK* 
+|Generates a mouse right click for the element selected
+
+|*CHECK* 
+|Toggles the check box.
+
+|*SELECT* 
+|Selects the option in the drop down as specified in the Element Value column. A special variable ```<#random>``` can be used to randomly select one of the values in the dropdown.
+
+|*VERIFY_TEXT* 
+|Verifies the text content of the element.
+
+|*VERIFY_PRESENT* 
+|Verifies if an element is present in the DOM use IS_VISIBLE to check if the element is displayed.
+
+|*IS_VISIBLE* 
+|Verifies if an element is displayed and not hidden.
+
+|*IS_HIDDEN* 
+|Verifies if an element is hidden and not displayed.
+
+|*CHECK_ATTRIBUTE* 
+|Checks if the attribute is with the value specified is set for the element.
+
+|*ACCEPT_POPUP* 
+|Selects ```OK```/```Yes``` when the browser popup is displayed.
+
+|*DISMISS_POPUP* 
+|Selects ```Cancel```/```No``` when the browser popup is displayed.
+
+|*SWITCH_TO_IFRAME* 
+|Switch to iframe specified.
+
+|*SWITCH_TO_PARENT* 
+|Switch to parent from iframe.
+
+|*CAPTURE_SCREEN* 
+|Captures the currently rendered screen in the browser.
+
+|*NAVIGATE* 
+|Navigates back/forward/to a particular URL.
+
+|*SET_VARIABLE* 
+|Sets a variable that can be later substituted in the script.
+
+|*UNSET_VARIABLE* 
+|Unsets a variable that has already been set.
+
+|*CLEAR_COOKIES* 
+|Clears all the cookies that are currently present
+
+|*DELETE_COOKIE* 
+|Deletes the specified cookie
+
+|*ADD_COOKIE* 
+|Adds the specified cookie with the given value
+
+|*SWITCH_TO_WINDOW* 
+|Switches to the specified window/tab - based on index from 0 to n.
+
+|*EXECUTE_JAVASCRIPT* 
+|Executes a specified JavaScript file.
+
+|*WAIT_MSECS* 
+|Wait for the specified milliseconds before performing the next action.
+
+|*IS_ENABLED* 
+|Checks if the specified element is enabled
+
+|*IS_DISABLED* 
+|Checks if the specified element is disabled
+
+|*SET_WINDOW_SIZE* 
+|Sets the window size of the browser based on the width and height specified.
+
+|*COMPARE_URL* 
+|Compares the current browser url with the provided url considering the options - starts_with and full_url.
+
+|*RUN_SCRIPT* 
+|Runs the provided beanshell script or groovy script.
+
+For beanshell, Refer: https://www.beanshell.org[www.beanshell.org]. 
+
+For Groovy script. Refer: https://groovy-lang.org[groovy-lang.org]. 
+
+The script is supplied with all the variables created using ```SET_VARIABLE``` and a few other internal variables in a map named ```inputMap``` that can be referenced in the script. 
+
+The logger object is also available in the name ```logger``` that can be used to print debug messages. 
+
+The script will have to create a HashMap in the name ```result``` and store all the results that it wants printed in the log after execution. 
+
+Also, the ```result``` hashmap object should have an entry ```status``` which is either true or false. The value ```true``` indicates the script executed successfully and ```false``` if there were errors in the expected output.
+
+
+|*GET_DOM* 
+|Gets the dom of the specified element and stores in the variable name specified.
+
+|*SCROLL_WINDOW_BY* 
+|Scrolls the window by specified x and y pixels
+
+|*SCROLL_TO_ELEMENT* 
+|Scrolls the window to the specified web element
+
+|*MAKE_REQUEST* 
+|Makes a GET request and stores the response in the variable name specified.
+
+|*HOVER* 
+|Hovers the mouse on the specified element
+
+|*DRAG_AND_DROP* 
+|Drag and drop the source element to target element
+
+|*GET_CURRENT_URL* 
+|Gets the current url of the current focused window and saves it to the variable specified
+
+|*HAS_CSS_CLASS* 
+|Checks if the specified element has the css classes applied
+
+|*CHECK_CSS_ATTRIBUTE* 
+|Checks if the css attribute of the element has the specified value
+|===
+
+
+As mentioned earlier, the element, element value, attribute name and the attribute value columns are optional for some of the action types. The following table describes those
+
+[%header, cols="2,1,2,2,1"]
+|===
+|Action-Type 
+|Element 
+|Element Value 
+|Attribute Name 
+|Attribute Value
+
+|*FILL* 
+|```id``` or ```xpath``` of the element 
+|Value to be filled in that element 
+|True/False to indicate if the field needs to be submitted i.e., Enter key pressed. For example, "Search. Default “FALSE” 
+|None
+
+|*CLEAR* 
+|```id``` or ```xpath``` of the element 
+|None 
+|None 
+|None
+
+|*CLICK* 
+|```id``` or ```xpath``` of the element 
+|None 
+|None 
+|None
+
+|*RIGHT_CLICK* 
+|```id``` or ```xpath``` of the element 
+|0 based index indicating the option to be chosen in case of a native browser context menu, -ve value in case of a Javascript generated context menu 
+|None 
+|None
+
+|*CHECK* 
+|```id``` or ```xpath``` of the element 
+|None 
+|None 
+|None
+
+|*SELECT* 
+|```id``` or ```xpath``` of the element 
+|Text value of the item to be selected or <#random> to randomly select one of the items in the dropdown 
+|None 
+|None
+
+|*VERIFY_TEXT* 
+|```id``` or ```xpath``` of the element 
+|Text value to be verified a
+|
+One of following options - *starts_with:* compares if the text of the element starts with the provided text.
+
+*ends_with:* compares if the text element ends with the provided text.
+
+**contains:**checks if the text of the element contains the provided text
+
+*full_text:* compares the text of the element to the provided text
+
+
+|None
+
+|*VERIFY_PRESENT* 
+|```id``` or ```xpath``` of the element 
+|None 
+|None 
+|None
+
+|*IS_VISIBLE* 
+|```id``` or ```xpath``` of the element 
+|None 
+|None 
+|None
+
+|*IS_HIDDEN* 
+|```id``` or ```xpath``` of the element 
+|None 
+|None 
+|None
+
+|*CHECK_ATTRIBUTE* 
+|```id``` or ```xpath``` of the element 
+|None 
+|Name of the attribute 
+|Value of the attribute
+
+|*ACCEPT_POPUP* 
+|None 
+|None 
+|None 
+|None
+
+|*DISMISS_POPUP* 
+|None 
+|None 
+|None 
+|None
+
+|*SWITCH_TO_IFRAME* 
+|```id``` or ```xpath``` of the element 
+|None 
+|None 
+|None
+
+|*SWITCH_TO_PARENT* 
+|None 
+|None 
+|None 
+|None
+
+|*CAPTURE_SCREEN* 
+|Optional filename 
+|None 
+|None 
+|None
+
+|*NAVIGATE* 
+|back, forward, refresh or url 
+|None 
+|None 
+|None
+
+|*SET_VARIABLE* 
+|```xpath``` of the element or variable name 
+|variable name in case ```xpath``` set as element or variable value otherwise 
+|None 
+|None
+
+|*UNSET_VARIABLE* 
+|variable name to be unset 
+|None 
+|None 
+|None
+
+|*CLEAR_COOKIES* 
+|None 
+|None 
+|None 
+|None
+
+|*DELETE_COOKIE* 
+|Cookie name 
+|None 
+|None 
+|None
+
+|*ADD_COOKIE* 
+|Cookie name 
+|Cookie Value 
+|None 
+|None
+
+|*SWITCH_TO_WINDOW* 
+|None 
+|0 based index, where 0 always indicates the main window and subsequent windows opened are numbers sequentially 
+|None 
+|None
+
+|*EXECUTE_JAVASCRIPT* 
+|JS file 
+|None 
+|None 
+|None
+
+|*WAIT_MSECS* 
+|None 
+|Time to wait in milliseconds before executing next action 
+|None 
+|None
+
+|*IS_ENABLED* 
+|```id``` or ```xpath``` of the element 
+|None 
+|None 
+|None
+
+|*IS_DISABLED* 
+|```id``` or ```xpath``` of the element 
+|None 
+|None 
+|None
+
+|*SET_WINDOW_SIZE* 
+|Positive integer value specifying the width 
+|Positive integer value specifying the height 
+|None 
+|None
+
+|*COMPARE_URL* 
+|Url to compare against the current browser url a
+|One of following options - *starts_with:* compares if the current browser url starts with the provided url. The url might contain additional query parameters that might need to be ignored. *ends_with:* compares if the current browser url ends with the provided url.
+
+**contains:**checks if the browser url contains the provided text
+
+*full_url:* compares the entire url
+|None 
+|None
+
+|*RUN_SCRIPT* 
+|bsh or groovy script file 
+|None 
+|None 
+|None
+
+|*GET_DOM* 
+|```id``` or ```xpath``` of the element 
+|Variable name to store the DOM 
+|None 
+|None
+
+|*SCROLL_WINDOW_BY* 
+|x pixels to scroll 
+|y pixels to scroll 
+|None 
+|None
+
+|*SCROLL_TO_ELEMENT* 
+|```id``` or ```xpath``` of element to scroll to 
+|None 
+|None 
+|None
+
+|*MAKE_REQUEST* 
+|url to request 
+|Variable name to store response 
+|None 
+|None
+
+|*HOVER* 
+|```id``` or ```xpath``` of element 
+|None 
+|None 
+|None
+
+|*DRAG_AND_DROP* 
+|```id``` or ```xpath``` of source element 
+|```id``` or ```xpath``` of target element 
+|None 
+|None
+
+|*GET_CURRENT_URL* 
+|Variable name to store the url 
+|None 
+|None 
+|None
+
+|*HAS_CSS_CLASS* 
+|```id``` or ```xpath``` of element 
+|Comma separated list of css classes 
+|None 
+|None
+
+|*CHECK_CSS_ATTRIBUTE* 
+|```id``` or ``````xpath`````` of element 
+|Css attribute name 
+|Css attribute value 
+|None
+|===

@@ -1,0 +1,20 @@
+== Prerequisites 
+
+The tool is an executable jar with all the dependencies included and can be directly executed from the command-line; however, there are some basic prerequisites that are required for running this tool. 
+
+The prerequisites are
+
+. Java JDK 8 or higher
+. Apache Maven – 3.6.0 or higher (required only if building from source)
+. Mozilla Firefox, Google Chrome, Microsoft Edge, Opera and Safari Browsers (Install only the required browsers)
+. Browser WebDrivers - Can be downloaded from the following locations
+.. Mozilla Firefox - https://github.com/mozilla/geckodriver/releases[Gecko Driver]
+.. Google Chrome - https://sites.google.com/a/chromium.org/chromedriver/downloads[Chrome Driver]
+.. Microsoft Edge Driver - https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/#downloads[Edge Driver]
+.. Opera - https://github.com/operasoftware/operachromiumdriver/releases[Opera Driver]
+.. Safari - In-built (Supported only on macOS)
+. Git – to clone the repository (required only if building from source)
+
+[NOTE]
+Microsoft Edge  driver is applicable for version above 18 that use the Chromium Engine. For others please read the notes in the link above for Microsoft Edge
+

@@ -12,3 +12,4 @@ The tool has the following major features
 .	Intuitive Report and log file
 .	Concurrently run tests on the browsers
 .	Ability to set custom user agent and test mobile browser test scenarios
+

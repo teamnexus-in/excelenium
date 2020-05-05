@@ -1,0 +1,27 @@
+:imagesdir: ./images
+
+== Building and Running excelenium
+
+=== Building excelenium
+
+To build ```excelenium``` from source follow these steps
+
+. Clone the repository 
+. Make sure you have installed Java and Maven and set the ```JAVA_HOME``` and ```MVN_HOME``` environment variables and both are in the system ```PATH``` variable
+. Move the directory excelenium, open a command line in that directory
+. Type ```mvn clean package```
+. This will generate ```excelenium-0.0.1-SNAPSHOT```.jar inside the target directory
+. The generated JAR is a fat jar, which means, it is a self-contained jar that has all the required dependencies.
+
+=== Running excelenium
+
+To run ```excelenium``` type the following command in the command line
+
+----
+java -jar excelenium-0.0.1-SNAPSHOT.jar
+----
+
+This will open the browser with the following UI
+
+image:excelenium-home.png[] 
+
