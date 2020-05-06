@@ -1,11 +1,16 @@
 :imagesdir: ./images
 :experimental: true
+:icons: font
 
 == Creating and Running the Suite
 
 === Creating the Suite
 
-In the landing page, there are two options ```Load Suite``` and ```Create New```. Clicking on the ```Create New``` navigates to the new suite page
+In the landing page, there are two options ```Load Suite``` and ```Create New```. 
+
+We will look at saving and loading the suite in subsequent sections.
+
+Clicking on the ```Create New``` navigates to the new suite page
 
 image::new-suite-page.png[]
 
@@ -30,7 +35,7 @@ At least one browser should be selected for running the suite. Also, ```Safari``
 [WARNING]
 The user-agent field cannot be set in Edge and Safari. Mostly works only wth Mozilla Firefox and Google Chrome
 
-* *Run Concurrently* - If checked, the browsers will be run concurrently, else they will be run in sequence.
+* *Run Browsers Concurrently* - If checked, the browsers will be run concurrently, else they will be run in sequence.
 
 [WARNING]
 There could be unexpected behaviour if all the browsers are run concurrently because of memory, cpu wait, network latency etc. Though the webdrivers are run in separate threads.
@@ -43,67 +48,116 @@ Click on the image:new-script-button.png[] button or kbd:[Ctrl+M] to open the ``
 
 image::new-script-dialog.png[]
 
-=== Action Table
+To create a script the following fields have to be filled in the ```New Script``` dialog
+
+* *Script Name* - Name for the script
+* *Stop On Error* - Stop executing the script if checked, default is unchecked
+* *Run* - Run the script, if checked.
+
+Scripts in the suite can be choosen to run or not based on the ```Run``` being checked.
+
+Once the details have been entered, a new script is created in the suite and a tab with the script name is created. In addition, there is also another tab names ```Scripts``` that lists the scripts in the suite
+
+First let's see about the ```Scripts``` tab, before we see the details of actual script. The following image shows the ```Scripts``` tab
+
+image::scripts-tab.png[]
+
+The columns should be self-explanatory. There is a delete column that has icon:trash[fw] icon. Clicking on it deletes the script. 
+
+[IMPORTANT]
+Script once deleted cannot be undone.
+
+Individual script tabs can be closed by clicking on the close button in the tab. Closed tabs can be reopened by clicking on the script name in the ```Scripts``` tab.
+
+Individual scripts can be switched on/off from executing by selecting the ```Run``` checkbox
+
+The script name can be changed by clicking on the Name cell of the script in the ```Scripts``` tab
+
+Now let's see the Script Sheet Tab
+
+Scripts shown in the ```Scripts``` tab will be executed in sequence based on the ```Run``` flag.
+
+image::landing-page-script.png[]
+
+A script contains a sequence of actions that will be executed by the WebDriver on the web page rendered by the browser.
+
+By default, there are 20 rows added to the scripts sheet. To add more right click on the last row and add more rows as needed
+
+The script can be grouped in the two sections
+
+* The Actions Section
+* The Preprocess Section
+
+The first two columns are the ```Run``` and ```Stop On Error```
 
 [%header, cols="1,3"]
 |===
 |Column 
 |Description
 
-|Action Name 
+|*Run*
+|Executes the action if ```checked```
+
+|*Stop On Error*
+|Stops the entire script if ```checked```. Default ```unchecked```
+|===
+
+==== Action Section
+
+The actions section has the columns that describe what the action does. The following explains the columns
+
+[%header, cols="1,3"]
+|===
+|Column 
+|Description
+
+|*Name* 
 |The name of the action
 
-|Action Type 
+|*Type* 
 |One of the permissible values in the dropdown as shown in the table below <<Action Types>>
 
-|Element 
-|Represents a web element – ```xpath```/```id```. Or specified values depending on actions. For e.g. Action Type “NAVIGATE” can take one of the values – back, forward, refresh or url. This column is optional in some cases
+|*Element Id/XPath* 
+|Represents a web element – ```xpath```/```id```. Or specified values depending on actions. For e.g. Action Type *NAVIGATE* can take one of the values – ```back```, ```forward```, ```refresh``` or a URL. This column is optional in some cases
 
-|Element Value 
+|*Element Val* 
 |Represents the value of the web element, optional in some cases
 
-|Attribute Name 
+|*Attribute Name* 
 |Represents the attribute name of the element on which an action has to be performed. Optional in some cases
 
-|Attribute Value 
+|*Attribute Val* 
 |Represents the attribute value of the element on which an action is performed. Optional in some cases
 |===
 
-=== Preprocess Action Table
+==== Preprocess Section
+
+The Preprocess Section is executed prior to the action specified. It is normally used to set the attribute of element in consideration. The following table explains the columns
 
 [%header, cols="1,3"]
 |===
 |Column 
 |Description
 
-|Action Type
+|*Action Type*
 |One of permissible values
 
-* ADD_ATTRIBUTE – to add an attribute before performing the main action
+- *ADD_ATTRIBUTE* – to add an attribute before performing the main action
 
-* REMOVE_ATTRIBUTE – to remove an attribute before performing the main action
+- *REMOVE_ATTRIBUTE* – to remove an attribute before performing the main action
 
-* SET_ATTRIBUTE – to set an attribute value before performing the main action
+- *SET_ATTRIBUTE* – to set an attribute value before performing the main action
 
-|Attribute Name 
+|*Attribute Name* 
 |Name of the attribute
 
-|Attribute Value 
+|*Attribute Value* 
 |Value of the attribute
 |===
 
-Table Preprocess Table
+The following table explains the action types that was mentioned above in the <<Action Section>>, the *Type* column in the table above
 
-=== Others
-
-[cols=",",options="header",]
-|===
-|Column |Description
-|Stop On Error |Indicates if the entire script has to be stopped in case of error in performing the operation. Permissible values TRUE or FALSE. Default FALSE
-|Execute |Indicates if the action has to be executed or not. Will not execute the action if FALSE. Permissible values – TRUE or FALSE. Default TRUE
-|===
-
-=== Action Types
+==== Action Types
 
 The following action types are available in ```excelenium``` and are described in the table below
 
@@ -243,8 +297,9 @@ Also, the ```result``` hashmap object should have an entry ```status``` which is
 |Checks if the css attribute of the element has the specified value
 |===
 
-
 As mentioned earlier, the element, element value, attribute name and the attribute value columns are optional for some of the action types. The following table describes those
+
+The following table explains the possible values in the columns of the <<Action Section>> for each of the <<Action Types>> described above
 
 [%header, cols="2,1,2,2,1"]
 |===
@@ -501,3 +556,15 @@ One of following options - *starts_with:* compares if the text of the element st
 |Css attribute value 
 |None
 |===
+
+=== Running the Suite
+
+Once the script has been prepared, clicking on the image:run-button.png[] button.
+
+The suite will be executed on the browsers selected in the settings. 
+
+Each browser will have a separate log file in its name along with the timestamp.
+
+Also, the screenshots captured during the execution of the suite will be stored in the screens folder in the directory where the ```excelenium``` jar file is executed from.
+
+Moreover the screenshots will be named based on the browser it is executed. For example, if the suite is executed on Mozilla Firefox, the name firefox will be appended along with the timestamp to the screenshot file name.

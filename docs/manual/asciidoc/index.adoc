@@ -18,4 +18,5 @@ include::introduction.adoc[]
 include::prerequisites.adoc[]
 include::building-running.adoc[]
 include::creating-and-running-suite.adoc[]
+include::save-and-load-suite.adoc[]
 

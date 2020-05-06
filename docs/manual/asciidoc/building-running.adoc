@@ -8,9 +8,9 @@ To build ```excelenium``` from source follow these steps
 
 . Clone the repository 
 . Make sure you have installed Java and Maven and set the ```JAVA_HOME``` and ```MVN_HOME``` environment variables and both are in the system ```PATH``` variable
-. Move the directory excelenium, open a command line in that directory
+. Move the directory where the ```excelenium``` repository has been checked out, open a command line in that directory
 . Type ```mvn clean package```
-. This will generate ```excelenium-0.0.1-SNAPSHOT```.jar inside the target directory
+. This will generate ```excelenium-0.0.1-SNAPSHOT.jar``` inside the target directory
 . The generated JAR is a fat jar, which means, it is a self-contained jar that has all the required dependencies.
 
 === Running excelenium

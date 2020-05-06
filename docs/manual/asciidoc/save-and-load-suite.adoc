@@ -1,0 +1,17 @@
+:imagesdir: ./images
+:experimental: true
+:icons: font
+
+== Save and Load Suite
+
+=== Save the Suite
+
+To save the current suite, click on the image:suite-dropdown.png[] dropdown and click on ```Export``` option or press kbd:[Ctrl+E] which will export the suite file in json format.
+
+=== Load the Suite
+
+To load the suite, click on the image:suite-dropdown.png[] dropdown and click ```Load``` option or press kbd:[Ctrl+L] which will display the ```Upload Suite``` dialog
+
+image::upload-suite.png[]
+
+Choose the suite file saved earlier and click upload to load the suite file.

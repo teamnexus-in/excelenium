@@ -6,10 +6,11 @@ The ```excelenium``` automation tool is a general purpose automation tool that i
 
 The tool has the following major features 
 
-.	Automation Script using spreadsheets in a web-based UI
-.	Single executable jar file
-.	No external dependencies
-.	Intuitive Report and log file
-.	Concurrently run tests on the browsers
+. Automation Script using spreadsheets in a web-based UI
+. Single executable jar file
+. No external dependencies
+. Intuitive Report and log file
+. Concurrently run tests on the browsers
+. Supported Browsers - Mozilla Firefox, Google Chrome, Microsoft Edge, Opera, and Safari (Safari - only on macOS)
 .	Ability to set custom user agent and test mobile browser test scenarios
 

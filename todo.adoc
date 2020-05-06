@@ -1,10 +1,12 @@
 == TODO
-. Full-blown validation of the scripts
+. Check if script name already exists before creating new script
+. Change script name if edited in Scripts tab
+. Set Run to true for actions
 . Session storage, on refresh don't show new dialog, instead load from session storage
 . Warning if script already being edited and the user refreshes the browser.
+. Full-blown validation of the scripts
 . PostProcess Action
 . Unit Tests
-. Update Documentation
 . Scripts saved to server h2 db
 
 == DONE
@@ -17,3 +19,4 @@
 . Check bsh and groovy scripts execution (Secure Sandboxing)
 . Mousetrap keybindings - https://craig.is/killing/mice
 . Toasts
+. Update Documentation

@@ -770,10 +770,13 @@ table.tableblock.grid-all th.tableblock, table.tableblock.grid-all td.tableblock
 <ul class="sectlevel2">
 <li><a href="#_creating_the_suite">5.1. Creating the Suite</a></li>
 <li><a href="#_creating_scripts">5.2. Creating Scripts</a></li>
-<li><a href="#_action_table">5.3. Action Table</a></li>
-<li><a href="#_preprocess_action_table">5.4. Preprocess Action Table</a></li>
-<li><a href="#_others">5.5. Others</a></li>
-<li><a href="#_action_types">5.6. Action Types</a></li>
+<li><a href="#_running_the_suite">5.3. Running the Suite</a></li>
+</ul>
+</li>
+<li><a href="#_save_and_load_suite">6. Save and Load Suite</a>
+<ul class="sectlevel2">
+<li><a href="#_save_the_suite">6.1. Save the Suite</a></li>
+<li><a href="#_load_the_suite">6.2. Load the Suite</a></li>
 </ul>
 </li>
 </ul>
@@ -810,6 +813,9 @@ table.tableblock.grid-all th.tableblock, table.tableblock.grid-all td.tableblock
 </li>
 <li>
 <p>Concurrently run tests on the browsers</p>
+</li>
+<li>
+<p>Supported Browsers - Mozilla Firefox, Google Chrome, Microsoft Edge, Opera, and Safari (Safari - only on macOS)</p>
 </li>
 <li>
 <p>Ability to set custom user agent and test mobile browser test scenarios</p>
@@ -896,13 +902,13 @@ Microsoft Edge  driver is applicable for version above 18 that use the Chromium 
 <p>Make sure you have installed Java and Maven and set the <code><code>JAVA_HOME</code></code> and <code><code>MVN_HOME</code></code> environment variables and both are in the system <code><code>PATH</code></code> variable</p>
 </li>
 <li>
-<p>Move the directory excelenium, open a command line in that directory</p>
+<p>Move the directory where the <code><code>excelenium</code></code> repository has been checked out, open a command line in that directory</p>
 </li>
 <li>
 <p>Type <code><code>mvn clean package</code></code></p>
 </li>
 <li>
-<p>This will generate <code><code>excelenium-0.0.1-SNAPSHOT</code></code>.jar inside the target directory</p>
+<p>This will generate <code><code>excelenium-0.0.1-SNAPSHOT.jar</code></code> inside the target directory</p>
 </li>
 <li>
 <p>The generated JAR is a fat jar, which means, it is a self-contained jar that has all the required dependencies.</p>
@@ -935,7 +941,13 @@ Microsoft Edge  driver is applicable for version above 18 that use the Chromium 
 <div class="sect2">
 <h3 id="_creating_the_suite">5.1. Creating the Suite</h3>
 <div class="paragraph">
-<p>In the landing page, there are two options <code><code>Load Suite</code></code> and <code><code>Create New</code></code>. Clicking on the <code><code>Create New</code></code> navigates to the new suite page</p>
+<p>In the landing page, there are two options <code><code>Load Suite</code></code> and <code><code>Create New</code></code>.</p>
+</div>
+<div class="paragraph">
+<p>We will look at saving and loading the suite in subsequent sections.</p>
+</div>
+<div class="paragraph">
+<p>Clicking on the <code><code>Create New</code></code> navigates to the new suite page</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1002,7 +1014,7 @@ The user-agent field cannot be set in Edge and Safari. Mostly works only wth Moz
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Run Concurrently</strong> - If checked, the browsers will be run concurrently, else they will be run in sequence.</p>
+<p><strong>Run Browsers Concurrently</strong> - If checked, the browsers will be run concurrently, else they will be run in sequence.</p>
 </li>
 </ul>
 </div>
@@ -1033,9 +1045,93 @@ There could be unexpected behaviour if all the browsers are run concurrently bec
 <img src="./images/new-script-dialog.png" alt="new script dialog">
 </div>
 </div>
+<div class="paragraph">
+<p>To create a script the following fields have to be filled in the <code><code>New Script</code></code> dialog</p>
 </div>
-<div class="sect2">
-<h3 id="_action_table">5.3. Action Table</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Script Name</strong> - Name for the script</p>
+</li>
+<li>
+<p><strong>Stop On Error</strong> - Stop executing the script if checked, default is unchecked</p>
+</li>
+<li>
+<p><strong>Run</strong> - Run the script, if checked.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Scripts in the suite can be choosen to run or not based on the <code><code>Run</code></code> being checked.</p>
+</div>
+<div class="paragraph">
+<p>Once the details have been entered, a new script is created in the suite and a tab with the script name is created. In addition, there is also another tab names <code><code>Scripts</code></code> that lists the scripts in the suite</p>
+</div>
+<div class="paragraph">
+<p>First let&#8217;s see about the <code><code>Scripts</code></code> tab, before we see the details of actual script. The following image shows the <code><code>Scripts</code></code> tab</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/scripts-tab.png" alt="scripts tab">
+</div>
+</div>
+<div class="paragraph">
+<p>The columns should be self-explanatory. There is a delete column that has <span class="icon"><i class="fa fa-trash fa-fw"></i></span> icon. Clicking on it deletes the script.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Script once deleted cannot be undone.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Individual script tabs can be closed by clicking on the close button in the tab. Closed tabs can be reopened by clicking on the script name in the <code><code>Scripts</code></code> tab.</p>
+</div>
+<div class="paragraph">
+<p>Individual scripts can be switched on/off from executing by selecting the <code><code>Run</code></code> checkbox</p>
+</div>
+<div class="paragraph">
+<p>The script name can be changed by clicking on the Name cell of the script in the <code><code>Scripts</code></code> tab</p>
+</div>
+<div class="paragraph">
+<p>Now let&#8217;s see the Script Sheet Tab</p>
+</div>
+<div class="paragraph">
+<p>Scripts shown in the <code><code>Scripts</code></code> tab will be executed in sequence based on the <code><code>Run</code></code> flag.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/landing-page-script.png" alt="landing page script">
+</div>
+</div>
+<div class="paragraph">
+<p>A script contains a sequence of actions that will be executed by the WebDriver on the web page rendered by the browser.</p>
+</div>
+<div class="paragraph">
+<p>By default, there are 20 rows added to the scripts sheet. To add more right click on the last row and add more rows as needed</p>
+</div>
+<div class="paragraph">
+<p>The script can be grouped in the two sections</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The Actions Section</p>
+</li>
+<li>
+<p>The Preprocess Section</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The first two columns are the <code><code>Run</code></code> and <code><code>Stop On Error</code></code></p>
+</div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 25%;">
@@ -1049,34 +1145,64 @@ There could be unexpected behaviour if all the browsers are run concurrently bec
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Action Name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Run</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Executes the action if <code><code>checked</code></code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Stop On Error</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stops the entire script if <code><code>checked</code></code>. Default <code><code>unchecked</code></code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect3">
+<h4 id="_action_section">5.2.1. Action Section</h4>
+<div class="paragraph">
+<p>The actions section has the columns that describe what the action does. The following explains the columns</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Column</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Name</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The name of the action</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Action Type</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Type</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">One of the permissible values in the dropdown as shown in the table below <a href="#_action_types">Action Types</a></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Element</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Represents a web element – <code><code>xpath</code></code>/<code><code>id</code></code>. Or specified values depending on actions. For e.g. Action Type “NAVIGATE” can take one of the values – back, forward, refresh or url. This column is optional in some cases</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Element Id/XPath</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Represents a web element – <code><code>xpath</code></code>/<code><code>id</code></code>. Or specified values depending on actions. For e.g. Action Type <strong>NAVIGATE</strong> can take one of the values – <code><code>back</code></code>, <code><code>forward</code></code>, <code><code>refresh</code></code> or a URL. This column is optional in some cases</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Element Value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Element Val</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Represents the value of the web element, optional in some cases</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Attribute Name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Attribute Name</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Represents the attribute name of the element on which an action has to be performed. Optional in some cases</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Attribute Value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Attribute Val</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Represents the attribute value of the element on which an action is performed. Optional in some cases</p></td>
 </tr>
 </tbody>
 </table>
 </div>
-<div class="sect2">
-<h3 id="_preprocess_action_table">5.4. Preprocess Action Table</h3>
+<div class="sect3">
+<h4 id="_preprocess_section">5.2.2. Preprocess Section</h4>
+<div class="paragraph">
+<p>The Preprocess Section is executed prior to the action specified. It is normally used to set the attribute of element in consideration. The following table explains the columns</p>
+</div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 25%;">
@@ -1090,53 +1216,28 @@ There could be unexpected behaviour if all the browsers are run concurrently bec
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Action Type</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Action Type</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">One of permissible values</p>
-<p class="tableblock">* ADD_ATTRIBUTE – to add an attribute before performing the main action</p>
-<p class="tableblock">* REMOVE_ATTRIBUTE – to remove an attribute before performing the main action</p>
-<p class="tableblock">* SET_ATTRIBUTE – to set an attribute value before performing the main action</p></td>
+<p class="tableblock">- <strong>ADD_ATTRIBUTE</strong> – to add an attribute before performing the main action</p>
+<p class="tableblock">- <strong>REMOVE_ATTRIBUTE</strong> – to remove an attribute before performing the main action</p>
+<p class="tableblock">- <strong>SET_ATTRIBUTE</strong> – to set an attribute value before performing the main action</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Attribute Name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Attribute Name</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Name of the attribute</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Attribute Value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Attribute Value</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Value of the attribute</p></td>
 </tr>
 </tbody>
 </table>
 <div class="paragraph">
-<p>Table Preprocess Table</p>
+<p>The following table explains the action types that was mentioned above in the <a href="#_action_section">Action Section</a>, the <strong>Type</strong> column in the table above</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_others">5.5. Others</h3>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Column</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Stop On Error</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if the entire script has to be stopped in case of error in performing the operation. Permissible values TRUE or FALSE. Default FALSE</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Execute</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates if the action has to be executed or not. Will not execute the action if FALSE. Permissible values – TRUE or FALSE. Default TRUE</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect2">
-<h3 id="_action_types">5.6. Action Types</h3>
+<div class="sect3">
+<h4 id="_action_types">5.2.3. Action Types</h4>
 <div class="paragraph">
 <p>The following action types are available in <code><code>excelenium</code></code> and are described in the table below</p>
 </div>
@@ -1318,6 +1419,9 @@ There could be unexpected behaviour if all the browsers are run concurrently bec
 </table>
 <div class="paragraph">
 <p>As mentioned earlier, the element, element value, attribute name and the attribute value columns are optional for some of the action types. The following table describes those</p>
+</div>
+<div class="paragraph">
+<p>The following table explains the possible values in the columns of the <a href="#_action_section">Action Section</a> for each of the <a href="#_action_types">Action Types</a> described above</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -1619,11 +1723,58 @@ There could be unexpected behaviour if all the browsers are run concurrently bec
 </table>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_running_the_suite">5.3. Running the Suite</h3>
+<div class="paragraph">
+<p>Once the script has been prepared, clicking on the <span class="image"><img src="./images/run-button.png" alt="run button"></span> button.</p>
+</div>
+<div class="paragraph">
+<p>The suite will be executed on the browsers selected in the settings.</p>
+</div>
+<div class="paragraph">
+<p>Each browser will have a separate log file in its name along with the timestamp.</p>
+</div>
+<div class="paragraph">
+<p>Also, the screenshots captured during the execution of the suite will be stored in the screens folder in the directory where the <code><code>excelenium</code></code> jar file is executed from.</p>
+</div>
+<div class="paragraph">
+<p>Moreover the screenshots will be named based on the browser it is executed. For example, if the suite is executed on Mozilla Firefox, the name firefox will be appended along with the timestamp to the screenshot file name.
+:imagesdir: ./images
+:experimental: true
+:icons: font</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_save_and_load_suite">6. Save and Load Suite</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_save_the_suite">6.1. Save the Suite</h3>
+<div class="paragraph">
+<p>To save the current suite, click on the <span class="image"><img src="./images/suite-dropdown.png" alt="suite dropdown"></span> dropdown and click on <code><code>Export</code></code> option or press <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>E</kbd></span> which will export the suite file in json format.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_load_the_suite">6.2. Load the Suite</h3>
+<div class="paragraph">
+<p>To load the suite, click on the <span class="image"><img src="./images/suite-dropdown.png" alt="suite dropdown"></span> dropdown and click <code><code>Load</code></code> option or press <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>L</kbd></span> which will display the <code><code>Upload Suite</code></code> dialog</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/upload-suite.png" alt="upload suite">
+</div>
+</div>
+<div class="paragraph">
+<p>Choose the suite file saved earlier and click upload to load the suite file.</p>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-05-06 04:04:11 +0530
+Last updated 2020-05-07 03:08:35 +0530
 </div>
 </div>
 </body>
