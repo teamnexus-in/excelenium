@@ -135,6 +135,7 @@ class SuiteModel {
 
         return retVal;
     }
+
 }
 
 /// ================ SuiteController =========================
@@ -194,7 +195,7 @@ class SuiteController {
     /**
      * Creates a new script and also the UI elements
      *
-     * @param {string} scriptName - name of the script
+     * @param {String} scriptName - name of the script
      * @param {boolean} run - run the script, if true
      * @param {boolean} stopOnError - stop the script on error, if true
      * @memberof SuiteController
@@ -240,7 +241,7 @@ class SuiteController {
     /**
      * Make a call to the server to run the script
      *
-     * @param {string} suiteName - name of the suite
+     * @param {String} suiteName - name of the suite
      * @memberof SuiteController
      */
     runSuite(suiteName) {
@@ -259,6 +260,7 @@ class SuiteController {
     getSuiteJson() {
         return this.suiteModel.getJson();
     }
+
 
     // facade methods for shortcut keys binding
     /**
@@ -463,14 +465,30 @@ class SuiteView {
                 var scriptName = $('#tb-script-name').val();
                 let stopOnError = $('#cb-ns-stop-on-error').prop('checked');
                 let run = $('#cb-ns-execute').prop('checked');
-                thisViewObj.controller.createNewScript(scriptName, run, stopOnError);
+                let isScriptExists = thisViewObj.checkIfExists(scriptName);
+                if (isScriptExists) {
+                    bootbox.alert({
+                        size: "small",
+                        title: "Script Exists",
+                        message: "A script with the same name already exists, please choose a different name.",
+                        buttons: {
+                            ok: {
+                                label: "Ok",
+                                className: "btn-danger"
+                            }
+                        }
+
+                    });
+                }
+                else {
+                    thisViewObj.controller.createNewScript(scriptName, run, stopOnError);
+                }
             }
         });
 
         $("#btn-suite-new").click(function () {
             // check if a script is already open and save it before creating a new one
             thisViewObj.showSuiteOverwriteWarning(false);
-
         });
 
         $('#btn-suite-load').click(function () {
@@ -525,6 +543,26 @@ class SuiteView {
             $('#' + tabId).hide();
         });
 
+    }
+
+
+    /**
+     * Checks if the script with the given name exists
+     *
+     * @param {String} scriptName
+     * @returns true if the script with the given name exists, false otherwise
+     * @memberof SuiteView
+     */
+    checkIfExists(scriptName) {
+        let result = false;
+        const scripts = this.data.scripts;
+        for (let i = 0; i < scripts.length; ++i) {
+            if (scripts[i].name.toLowerCase() === scriptName.toLowerCase()) {
+                result = true;
+                break;
+            }
+        }
+        return result;
     }
 
     /**
@@ -662,7 +700,7 @@ class SuiteView {
     /**
      * Get browser settings from the UI elements - Settings Dialog
      *
-     * @param {string} browser - browser name one of [firefox, chrome, edge, opera, safari ]
+     * @param {String} browser - browser name one of [firefox, chrome, edge, opera, safari ]
      * @returns JSON object containing values for a browser - if selected, driverPath
      * @memberof SuiteView
      */
@@ -782,7 +820,7 @@ class SuiteView {
     /**
      * Adds the newly created script to the scripts sheet
      *
-     * @param {string} scriptName - name of the script
+     * @param {String} scriptName - name of the script
      * @param {boolean} run - Run the script if true
      * @param {boolean} stopOnError - Stop the script if any error occur in the steps
      * @memberof SuiteView
@@ -816,6 +854,9 @@ class SuiteView {
                 ],
                 onselection: function (instance, x1, y1, x2, y2, origin) {
                     thisViewObj.handleCellSelection(thisViewObj, this, x1, y1, x2, y2);
+                },
+                onchange: function (instance, cell, x, y, value) {
+                    thisViewObj.handleCellChange(this, cell, x, y, value);
                 }
             });
             this.scriptsJxl.setRowData(0, [scriptName, run, stopOnError]);
@@ -826,6 +867,37 @@ class SuiteView {
             this.scriptsJxl.setValueFromCoords(3, this.tabIdx - 1, delHtml, true);
         }
 
+    }
+
+    /**
+     *
+     *
+     * @param {JExcel} jxl - JExcel Object
+     * @param {HTMLElement} cell
+     * @param {integer} x - Column of the cell that is modified
+     * @param {integer} y - Row of the cell that is modified
+     * @param {*} value - Changed Value
+     * @memberof SuiteView
+     */
+    handleCellChange(jxl, cell, x, y, value) {
+        console.log("Changed", x, y, typeof (x));
+        // Strange behaviour initially x, y are of 
+        // type number and when editing they become strings
+        if(typeof(x) === 'string'){
+            x = parseInt(x);
+        }
+        if(typeof(y) === 'string'){
+            y = parseInt(y);
+        }
+        if (x === 0) {
+            console.log("Name changes", value);
+        }
+        else if (x === 1) {
+            console.log("Run changes", value);
+        }
+        else if (x === 2) {
+            console.log("Stop On Error changes", value);
+        }
     }
 
     /**
@@ -875,7 +947,7 @@ class SuiteView {
     /**
      * Reopen and display the script tab if closed already.
      *
-     * @param {string} tabName - Script name which is displayed as the tab name
+     * @param {String} tabName - Script name which is displayed as the tab name
      * @param {boolean} isHide - true if tab is to be hidden, false if to be shown
      * @memberof SuiteView
      */
@@ -897,7 +969,7 @@ class SuiteView {
     /**
      * Removes the tab, the row entry in the scripts tab
      *
-     * @param {string} scriptName - name of the script to be deleted
+     * @param {String} scriptName - name of the script to be deleted
      * @param {integer} rowNum -  row number where the delete click event happened
      * @memberof SuiteView
      */
@@ -927,10 +999,10 @@ class SuiteView {
     /**
      * Creates a new script tab
      *
-     * @param {string} scriptName - name of the script
+     * @param {String} scriptName - name of the script
      * @param {boolean} run - run the script if true
      * @param {boolean} stopOnError -  true is script to be stopped on error
-     * @param {string} data - script data, if loaded from file
+     * @param {String} data - script data, if loaded from file
      * @memberof SuiteView
      */
     createNewScriptTab(scriptName, run, stopOnError, data) {
@@ -966,7 +1038,7 @@ class SuiteView {
     /**
      * Create new JExcel sheets in the tab container
      *
-     * @param {string} sheetsId - Element id in the UI
+     * @param {String} sheetsId - Element id in the UI
      * @param {JSON} data - script data loaded from the file
      * @returns - JExcel Object filled with the values
      * @memberof SuiteView

@@ -1,5 +1,4 @@
 == TODO
-. Check if script name already exists before creating new script
 . Change script name if edited in Scripts tab
 . Set Run to true for actions
 . Session storage, on refresh don't show new dialog, instead load from session storage
@@ -20,3 +19,4 @@
 . Mousetrap keybindings - https://craig.is/killing/mice
 . Toasts
 . Update Documentation
+. Check if script name already exists before creating new script
