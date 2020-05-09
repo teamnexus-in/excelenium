@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>SuiteView - Documentation</title>
+    <title>suitemodel.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -29,135 +29,134 @@
 
 <div id="main">
     
-    <h1 class="page-title">SuiteView</h1>
+    <h1 class="page-title">suitemodel.js</h1>
     
 
     
 
 
 
-
-<section>
-
-<header>
     
-        <h2>
-            <span class="ancestors"><a href="SuiteView.html">SuiteView</a>.</span>
-        
-        SuiteView
-        </h2>
-        
-    
-</header>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>
+/// ================ SuiteModel =========================
+/**
+ * Represents the Json Model of the Suite
+ *
+ * @class SuiteModel
+ */
+class SuiteModel {
 
-<article>
-    <div class="container-overview">
-    
-        
-<div class="section-method">
+    /**
+     * Creates an instance of SuiteModel.
+     * @memberof SuiteModel
+     */
+    constructor() {
+        this.settings = {};
+        this.scripts = [];
+    }
 
-    
+    /**
+     * Initialize the constructs settings and scripts
+     *
+     * @memberof SuiteModel
+     */
+    initialize() {
+        this.settings = {};
+        this.scripts = [];
+    }
 
-    <h4 class="name" id="SuiteView"><span class="type-signature"></span>new SuiteView<span class="signature">()</span><span class="type-signature"></span></h4>
+    /**
+     * Returns the JSON model of the suite
+     *
+     * @returns JSON Object that represents the Suite
+     * @memberof SuiteModel
+     */
+    getJson() {
+        let data = {};
+        data.name = this.settings.name;
+        data.settings = this.settings;
+        data.scripts = this.scripts;
+        return data;
+    }
 
-    
+    /**
+     * Loads the suite Json Model from the file loaded
+     *
+     * @param {JSON} suiteContent - suite content loaded from file
+     * @memberof SuiteModel
+     */
+    loadJson(suiteContent) {
+        this.settings = suiteContent.settings;
+        this.scripts = suiteContent.scripts;
+    }
 
+    /**
+     * Saves the settings
+     *
+     * @param {JSON} settings - settings of the suite: serverURL, browser settings etc.
+     * @memberof SuiteModel
+     */
+    saveSettings(settings) {
+        this.settings = settings;
+    }
 
+    /**
+     * Saves the suite JSON to the SuiteModel class
+     *
+     * @param {JSON} sData - Save the scripts to the SuiteModel
+     * @memberof SuiteModel
+     */
+    saveSuite(sData) {
+        this.scripts = [];
+        sData.forEach(script => {
+            let model = this.getScriptModel(script);
+            this.scripts.push(model);
+        });
+        console.log(this.getJson());
+    }
 
-<div class="description">
-    Creates an instance of SuiteView.
-</div>
+    /**
+     * Constructs the SuiteModel from the SuiteView object's script data
+     *
+     * @param {JSON} scriptsData - SuiteView  internal script data
+     * @returns JSON object in the SuiteModel Structure
+     * @memberof SuiteModel
+     */
+    getScriptModel(scriptsData) {
+        console.log("script model", scriptsData);
+        let retVal = {}
+        retVal.name = scriptsData.name;
+        retVal.run = scriptsData.run;
+        retVal.stopOnError = scriptsData.stopOnError;
+        retVal.actions = [];
+        scriptsData.actions.forEach(obj => {
+            let actionsObj = {};
+            actionsObj.execute = obj[0];
+            actionsObj.stopOnError = obj[1];
+            actionsObj.actionName = obj[2];
+            actionsObj.actionType = obj[3];
+            actionsObj.element = obj[4];
+            actionsObj.elementValue = obj[5];
+            actionsObj.attributeName = obj[6];
+            actionsObj.attributeValue = obj[7];
+            if (obj[8] != undefined &amp;&amp; obj[8] != '') {
+                actionsObj.preprocess = {}
+                actionsObj.preprocess.actionType = obj[8];
+                actionsObj.preprocess.attributeName = obj[9];
+                actionsObj.preprocess.attributeValue = obj[10];
+            }
+            retVal.actions.push(actionsObj);
+        });
 
+        return retVal;
+    }
 
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="suiteview.js.html">suiteview.js</a>, <a href="suiteview.js.html#line38">line 38</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
-    
-    </div>
-
-    
-
-    
-
-    
-
-     
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+}
+</code></pre>
+        </article>
+    </section>
 
 
 

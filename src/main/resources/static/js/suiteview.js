@@ -22,331 +22,6 @@ var actions = {
     ],
 };
 
-
-/// ================ SuiteModel =========================
-/**
- * Represents the Json Model of the Suite
- *
- * @class SuiteModel
- */
-class SuiteModel {
-
-    /**
-     * Creates an instance of SuiteModel.
-     * @memberof SuiteModel
-     */
-    constructor() {
-        this.settings = {};
-        this.scripts = [];
-    }
-
-    /**
-     * Initialize the constructs settings and scripts
-     *
-     * @memberof SuiteModel
-     */
-    initialize() {
-        this.settings = {};
-        this.scripts = [];
-    }
-
-    /**
-     * Returns the JSON model of the suite
-     *
-     * @returns JSON Object that represents the Suite
-     * @memberof SuiteModel
-     */
-    getJson() {
-        let data = {};
-        data.name = this.settings.name;
-        data.settings = this.settings;
-        data.scripts = this.scripts;
-        return data;
-    }
-
-    /**
-     * Loads the suite Json Model from the file loaded
-     *
-     * @param {JSON} suiteContent - suite content loaded from file
-     * @memberof SuiteModel
-     */
-    loadJson(suiteContent) {
-        this.settings = suiteContent.settings;
-        this.scripts = suiteContent.scripts;
-    }
-
-    /**
-     * Saves the settings
-     *
-     * @param {JSON} settings - settings of the suite: serverURL, browser settings etc.
-     * @memberof SuiteModel
-     */
-    saveSettings(settings) {
-        this.settings = settings;
-    }
-
-    /**
-     * Saves the suite JSON to the SuiteModel class
-     *
-     * @param {JSON} sData - Save the scripts to the SuiteModel
-     * @memberof SuiteModel
-     */
-    saveSuite(sData) {
-        this.scripts = [];
-        sData.forEach(script => {
-            let model = this.getScriptModel(script);
-            this.scripts.push(model);
-        });
-        console.log(this.getJson());
-    }
-
-    /**
-     * Constructs the SuiteModel from the SuiteView object's script data
-     *
-     * @param {JSON} scriptsData - SuiteView  internal script data
-     * @returns JSON object in the SuiteModel Structure
-     * @memberof SuiteModel
-     */
-    getScriptModel(scriptsData) {
-        console.log("script model", scriptsData);
-        let retVal = {}
-        retVal.name = scriptsData.name;
-        retVal.run = scriptsData.run;
-        retVal.stopOnError = scriptsData.stopOnError;
-        retVal.actions = [];
-        scriptsData.actions.forEach(obj => {
-            let actionsObj = {};
-            actionsObj.execute = obj[0];
-            actionsObj.stopOnError = obj[1];
-            actionsObj.actionName = obj[2];
-            actionsObj.actionType = obj[3];
-            actionsObj.element = obj[4];
-            actionsObj.elementValue = obj[5];
-            actionsObj.attributeName = obj[6];
-            actionsObj.attributeValue = obj[7];
-            if (obj[8] != undefined && obj[8] != '') {
-                actionsObj.preprocess = {}
-                actionsObj.preprocess.actionType = obj[8];
-                actionsObj.preprocess.attributeName = obj[9];
-                actionsObj.preprocess.attributeValue = obj[10];
-            }
-            retVal.actions.push(actionsObj);
-        });
-
-        return retVal;
-    }
-
-}
-
-/// ================ SuiteController =========================
-/**
- * The Controller Class that interfaces between the model and the UI elements
- *
- * @class SuiteController
- */
-class SuiteController {
-    /**
-     * Creates an instance of SuiteController.
-     * @memberof SuiteController
-     */
-    constructor() {
-    }
-
-    /**
-     * Initialize the SuiteController with the SuiteView and SuiteModel objects
-     *
-     * @param {SuiteView} suiteView - The SuiteView Object
-     * @param {SuiteModel} suiteModel - The SuiteModel Object
-     * @memberof SuiteController
-     */
-    initialize(suiteView, suiteModel) {
-        this.suiteView = suiteView;
-        this.suiteModel = suiteModel;
-    }
-
-    /**
-     * Load the Suite content from a file that was uploaded the server and 
-     * returned back as a json object in the html
-     *
-     * @param {JSON} suiteContent - suite content from file
-     * @memberof SuiteController
-     */
-    loadSuite(suiteContent) {
-        console.log("Suite Model suiteContent")
-        this.suiteModel.loadJson(suiteContent);
-        this.suiteView.populateUISettingsValue(this.suiteModel.settings);
-        this.suiteView.loadScripts(this.suiteModel.scripts);
-        toastr.success("Script loaded!");
-    }
-
-    /**
-     * Save the Suite settings - serverURL, browser settings etc.
-     *
-     * @param {JSON} settings - settings json
-     * @memberof SuiteController
-     */
-    saveSettings(settings) {
-        console.log("Saving settings");
-        this.suiteModel.saveSettings(settings)
-        console.log(this.suiteModel.settings);
-        toastr.success('Settings saved!')
-    }
-
-    /**
-     * Creates a new script and also the UI elements
-     *
-     * @param {String} scriptName - name of the script
-     * @param {boolean} run - run the script, if true
-     * @param {boolean} stopOnError - stop the script on error, if true
-     * @memberof SuiteController
-     */
-    createNewScript(scriptName, run, stopOnError) {
-        this.suiteView.hideNewScriptDialog();
-        this.suiteView.createNewScriptTab(scriptName, run, stopOnError);
-    }
-
-
-    /**
-     * Save the Suite data including settings and isRun is true, execute the script
-     *
-     * @param {JSON} sData - Suite Data - script and settings JSON
-     * @param {boolean} isRun - Run the script if true
-     * @memberof SuiteController
-     */
-    saveSuite(sData, isRun) {
-        let thisController = this;
-        let suiteName = this.suiteModel.settings.name;
-        console.log("Before Ajax: ", suiteName);
-        this.suiteModel.saveSuite(sData);
-        const modelData = this.suiteModel.getJson();
-        console.log("Making Ajax Request", modelData);
-        $.ajax({
-            'type': 'POST',
-            'url': '/save',
-            'data': JSON.stringify(modelData),
-            'success': function (data) {
-                console.log("Server Response: ", data);
-                if (isRun) {
-                    console.log("running: " + suiteName)
-                    thisController.runSuite(suiteName);
-                }
-            },
-            'dataType': "json",
-            'contentType': 'application/json; charset=UTF-8'
-        });
-        toastr.success('Suite Saved!')
-        console.log("Ajax Request done");
-    }
-
-    /**
-     * Make a call to the server to run the script
-     *
-     * @param {String} suiteName - name of the suite
-     * @memberof SuiteController
-     */
-    runSuite(suiteName) {
-        console.log("Making get request")
-        $.get("/run", "suiteName=" + suiteName, function (data) {
-            console.log(data);
-        });
-    }
-
-    /**
-     * Get the JSON Model of the Suite
-     *
-     * @returns JSON mode of the suite
-     * @memberof SuiteController
-     */
-    getSuiteJson() {
-        return this.suiteModel.getJson();
-    }
-
-
-    // facade methods for shortcut keys binding
-    /**
-     * A facade method for shortcut key bindings <br/>
-     * Saves the suite
-     * @memberof SuiteController
-     */
-    save() {
-        this.suiteView.doSaveAction(false);
-    }
-
-    /**
-     * A facade method for shortcut key bindings <br/>
-     * Creates a new script in the suite
-     * @memberof SuiteController
-     */
-    newScript() {
-        this.suiteView.clearNewScriptDialogFields();
-        this.suiteView.showNewScriptDialog();
-        $("#tb-script-name").focus();
-    }
-
-    /**
-     * A facade method for shortcut key bindings <br/>
-     * Creates a new suite, provides a warning that the current suite will be overwritten.
-     * @memberof SuiteController
-     */
-    newSuite() {
-        this.suiteView.showSuiteOverwriteWarning(true);
-    }
-
-    /**
-     * A facade method for shortcut key bindings <br/>
-     * Exports the current suite as a json file
-     * @memberof SuiteController
-     */
-    export() {
-        this.suiteView.doSaveAction(false);
-        this.suiteView.downloadSuite();
-    }
-
-    /**
-     * A facade method for shortcut key bindings <br/>
-     * Runs the current suite
-     * @memberof SuiteController
-     */
-    run() {
-        this.suiteView.doSaveAction(true);
-    }
-
-    /**
-     * A facade method for shortcut key bindings <br/>
-     * Shows the file open dialog for choose the script to be loaded
-     * @memberof SuiteController
-     */
-    load() {
-        this.suiteView.showSuiteOverwriteWarning(true);
-    }
-
-    /**
-     * A facade method for shortcut key bindings <br/>
-     * Shows the settings dialog
-     * @memberof SuiteController
-     */
-    settings() {
-        // load the settings into the fields and show
-        this.suiteView.displaySettings(false);
-    }
-
-    /**
-     * Closes the current suite before creating a new suite or load another suite
-     *
-     * @memberof SuiteController
-     */
-    closeSuite() {
-        const scripts = this.suiteModel.scripts;
-        for (let i = 0; i < scripts.length; ++i) {
-            this.suiteView.removeScriptAndTab(scripts[i].name, 0);
-        }
-        this.suiteModel.initialize();
-    }
-}
-
-
-
-
 /// ================ SuiteView =========================
 /**
  * The SuiteView class that takes care of  managing the UI elements and 
@@ -690,7 +365,7 @@ class SuiteView {
             }
         });
         const obj = settings.userAgent;
-        if (obj && (obj !== null)) {
+        if (obj && (obj != null)) {
             $('#cb-user-agent').prop('checked', obj.enabled);
             $('#tb-user-agent').val(obj.value);
         }
@@ -880,23 +555,28 @@ class SuiteView {
      * @memberof SuiteView
      */
     handleCellChange(jxl, cell, x, y, value) {
-        console.log("Changed", x, y, typeof (x));
+        //console.log("Changed", x, y, typeof (x));
         // Strange behaviour initially x, y are of 
         // type number and when editing they become strings
-        if(typeof(x) === 'string'){
+        if (typeof (x) === 'string') {
             x = parseInt(x);
         }
-        if(typeof(y) === 'string'){
+        if (typeof (y) === 'string') {
             y = parseInt(y);
         }
         if (x === 0) {
-            console.log("Name changes", value);
+            // console.log("Name changes", value);
+            this.data.scripts[y].name = value;
+            let tabId = '#' + this.data.scripts[y].tabId;
+            $(tabId).text(value);
         }
         else if (x === 1) {
-            console.log("Run changes", value);
+            // console.log("Run changes", value);
+            this.data.scripts[y].run = value;
         }
         else if (x === 2) {
-            console.log("Stop On Error changes", value);
+            // console.log("Stop On Error changes", value);
+            this.data.scripts[y].stopOnError = value;
         }
     }
 
@@ -912,7 +592,7 @@ class SuiteView {
      * @memberof SuiteView
      */
     handleCellSelection(thisViewObj, jxl, x1, y1, x2, y2) {
-        console.log('handling selection: ', thisViewObj, jxl, x1, y1, x2, y2);
+        // console.log('handling selection: ', thisViewObj, jxl, x1, y1, x2, y2);
         // delete icon clicked
         if (x1 == 3 && x2 == 3) {
             console.log('true showwing alert');
