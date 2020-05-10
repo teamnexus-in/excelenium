@@ -11,10 +11,12 @@ $(document).ready(function () {
     });
 
     $('#btn-new').click(function () {
+        sessionStorage.removeItem('savedSuite');
         document.location.href = "/suite"
     });
 
     $('#btn-upload-file').click(function(){
+        sessionStorage.removeItem('savedSuite');
         if($('#file-suite').val()==''){
             $('#file-error-msg').show();
         }

@@ -8,23 +8,6 @@ $(document).ready(function () {
     toastr.options.closeButton = true;
     toastr.options.positionClass = "toast-bottom-right";
 
-    suiteController = new SuiteController();
-    suiteModel = new SuiteModel();
-    suiteView = new SuiteView(suiteController);
-
-    suiteController.initialize(suiteView, suiteModel);
-    suiteView.initialize(suiteController);
-
-    if (isFileLoad) {
-        let sContent = JSON.parse(suiteContent);
-        console.log('Do Script Load', sContent);
-
-        suiteController.loadSuite(sContent);
-    }
-    else {
-        suiteView.displaySettings(true);
-    }
-
     $('[data-toggle="tooltip"]').tooltip();
 
     // $(window).bind('beforeunload', function () {
@@ -32,6 +15,36 @@ $(document).ready(function () {
     //     return 'Are you sure you want to leave?';
     // });
     bindKeyboardShortcuts();
+    let storageContent = sessionStorage.getItem('savedSuite');
+
+    suiteController = new SuiteController();
+    suiteModel = new SuiteModel();
+    suiteView = new SuiteView(suiteController);
+
+    suiteController.initialize(suiteView, suiteModel);
+    suiteView.initialize(suiteController);
+
+    if (isFileLoad || storageContent !== null) {
+        let sContent = '';
+        let showToast = false;
+        // Preference given to file load even if there is content in localstorage
+        if(isFileLoad){
+            sContent = JSON.parse(suiteContent);
+            showToast = true;
+        }
+        else{
+            sContent = JSON.parse(storageContent);
+        }
+        console.log('Do Script Load', sContent);
+
+        suiteController.loadSuite(sContent, showToast);
+    }
+    else {
+        suiteView.displaySettings(true);
+    }
+
+
+
 });
 
 function bindKeyboardShortcuts() {

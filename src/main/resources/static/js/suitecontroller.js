@@ -32,12 +32,15 @@ class SuiteController {
      * @param {JSON} suiteContent - suite content from file
      * @memberof SuiteController
      */
-    loadSuite(suiteContent) {
+    loadSuite(suiteContent, showToast) {
         console.log("Suite Model suiteContent")
         this.suiteModel.loadJson(suiteContent);
         this.suiteView.populateUISettingsValue(this.suiteModel.settings);
         this.suiteView.loadScripts(this.suiteModel.scripts);
-        toastr.success("Script loaded!");
+        if(showToast){
+            toastr.success("Script loaded!");
+        }
+        sessionStorage.setItem('savedSuite', JSON.stringify(suiteContent));
     }
 
     /**
@@ -80,6 +83,7 @@ class SuiteController {
         console.log("Before Ajax: ", suiteName);
         this.suiteModel.saveSuite(sData);
         const modelData = this.suiteModel.getJson();
+        sessionStorage.setItem('savedSuite', JSON.stringify(modelData));
         console.log("Making Ajax Request", modelData);
         $.ajax({
             'type': 'POST',

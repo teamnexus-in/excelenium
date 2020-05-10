@@ -123,6 +123,7 @@ class SuiteView {
                 // console.log(settings);
                 thisViewObj.controller.saveSettings(settings);
                 thisViewObj.hideSettings();
+                sessionStorage.removeItem('savedSuite');
             }
         });
 
@@ -181,6 +182,7 @@ class SuiteView {
             else {
                 $('#file-upload-modal').modal('hide');
                 $('#form-file-upload').submit();
+                sessionStorage.removeItem('savedSuite');
             }
         });
 
@@ -198,7 +200,6 @@ class SuiteView {
         $('#btn-new-script').click(function () {
             thisViewObj.clearNewScriptDialogFields();
             thisViewObj.showNewScriptDialog();
-            $("#tb-script-name").focus();
         });
 
         // Save suite
@@ -216,6 +217,14 @@ class SuiteView {
             console.log('tabId: ', tabId);
             $('#scripts-tabs ul li').children('a').first().click();
             $('#' + tabId).hide();
+        });
+
+        $("#newScriptModal").on('shown.bs.modal', function(e){
+            $("#tb-script-name").focus();
+        });
+
+        $("#settingsModal").on('shown.bs.modal', function(e){
+            $("#tb-suite-name").focus();
         });
 
     }
