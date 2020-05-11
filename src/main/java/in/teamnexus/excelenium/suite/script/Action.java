@@ -9,7 +9,6 @@
  */
 package in.teamnexus.excelenium.suite.script;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -32,6 +31,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.base.Stopwatch;
 
 import in.teamnexus.excelenium.suite.exception.ScriptException;
+import in.teamnexus.excelenium.suite.script.actionrunner.ActionRunner;
+import in.teamnexus.excelenium.suite.script.actionrunner.ClearActionRunner;
+import in.teamnexus.excelenium.suite.script.actionrunner.FillActionRunner;
 import in.teamnexus.excelenium.suite.util.WebDriverUtil;
 
 // TODO: Auto-generated Javadoc
@@ -497,6 +499,8 @@ public class Action implements Executable
     /** The reports logger. */
     @JsonIgnore
     private Logger reportsLogger;
+    
+    private ActionRunner actionRunner;
 
     /**
      * Gets the action name.
@@ -541,10 +545,12 @@ public class Action implements Executable
         if (actionType.equalsIgnoreCase("fill"))
         {
             aType = ActionType.FILL;
+            this.actionRunner = new FillActionRunner();
         }
         else if (actionType.equalsIgnoreCase("clear"))
         {
             aType = ActionType.CLEAR;
+            this.actionRunner = new ClearActionRunner();
         }
         else if (actionType.equalsIgnoreCase("click"))
         {
@@ -878,12 +884,7 @@ public class Action implements Executable
                 // no other process required
                 return;
             }
-            if (preProcess != null)
-            {
-                logger.debug(preProcess.toString());
-                preProcess.setReportsLogger(reportsLogger);
-                preProcess.execute(webDriver, webElement);
-            }
+            doPreProcess(webDriver, webElement);
 
             switch (aType)
             {
@@ -1276,13 +1277,28 @@ public class Action implements Executable
     }
 
     /**
+     * Does the PreProcessAction on actions that can specify the preprocess actions.
+     * @param webDriver
+     * @param webElement
+     */
+    public void doPreProcess(WebDriver webDriver, WebElement webElement)
+    {
+        if (preProcess != null)
+        {
+            logger.debug(preProcess.toString());
+            preProcess.setReportsLogger(reportsLogger);
+            preProcess.execute(webDriver, webElement);
+        }
+    }
+
+    /**
      * Gets the web element.
      *
      * @param webDriver the web driver
      * @param elementString the element string
      * @return the web element
      */
-    private WebElement getWebElement(WebDriver webDriver, String elementString)
+    public WebElement getWebElement(WebDriver webDriver, String elementString)
     {
         WebElement webElement = null;
         WebDriverWait wait = (new WebDriverWait(webDriver, 10));
@@ -1584,6 +1600,22 @@ public class Action implements Executable
     public void setExecute(boolean isExecute)
     {
         this.isExecute = isExecute;
+    }
+
+    /**
+     * @return the actionRunner
+     */
+    public ActionRunner getActionRunner()
+    {
+        return actionRunner;
+    }
+
+    /**
+     * @param actionRunner the actionRunner to set
+     */
+    public void setActionRunner(ActionRunner actionRunner)
+    {
+        this.actionRunner = actionRunner;
     }
 
     /**
