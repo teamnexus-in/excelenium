@@ -7,10 +7,16 @@ import org.openqa.selenium.WebDriver;
 
 import in.teamnexus.excelenium.suite.script.Action;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class ClearCookiesAction.
- *
+ * Clears all the cookies that are currently present
+ * 
+ * Column | Description
+ * ----------|---------------
+ * **Element** | None
+ * **Element Value** | None
+ * **Attribute Name** |None
+ * **Attribute Value** | None
+ * 
  * @author Prabhu
  */
 public class ClearCookiesAction extends Action
@@ -23,7 +29,7 @@ public class ClearCookiesAction extends Action
      * @return true, if successful
      */
     @Override
-    public boolean executeAction(WebDriver webDriver)
+    protected boolean executeAction(WebDriver webDriver)
     {
         boolean success = true;
 

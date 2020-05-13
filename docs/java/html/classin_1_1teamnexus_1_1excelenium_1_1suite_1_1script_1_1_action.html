@@ -64,7 +64,6 @@ $(document).ready(function(){initNavTree('classin_1_1teamnexus_1_1excelenium_1_1
 <div id="doc-content">
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
@@ -135,11 +134,6 @@ Collaboration diagram for in.teamnexus.excelenium.suite.script.Action:</div>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
-Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="enumin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1_action_1_1_action_type.html">ActionType</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a09d92518fd360ad73d34d65537c1d729"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1_action.html#a09d92518fd360ad73d34d65537c1d729">getActionName</a> ()</td></tr>
@@ -195,6 +189,8 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
+<tr class="memitem:a4952c93042e97d834e0944048590fc14"><td class="memItemLeft" align="right" valign="top">abstract boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1_action.html#a4952c93042e97d834e0944048590fc14">executeAction</a> (WebDriver webDriver)  throws Exception</td></tr>
+<tr class="separator:a4952c93042e97d834e0944048590fc14"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aca57f4aecf3c7bd529da5e45904d1971"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1_action.html#aca57f4aecf3c7bd529da5e45904d1971">getFullyQualifiedName</a> ()</td></tr>
 <tr class="separator:aca57f4aecf3c7bd529da5e45904d1971"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -286,34 +282,62 @@ Here is the call graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-<pre class="fragment">     Gets the post process.
+<p>Execute.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">webDriver</td><td>the web driver </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">ScriptException</td><td>the script exception </td></tr>
+  </table>
+  </dd>
+</dl>
 
-     @ return the post process
-    &amp;zwj;/
-</pre><p> public <a class="el" href="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1_post_process_action.html">PostProcessAction</a> getPostProcess() { return this.postProcess; }</p>
-<p>/** Sets the post process.</p>
-<p>== param postProcess the new post process &zwj;/ public void setPostProcess(PostProcessAction postProcess) { this.postProcess = postProcess; if (this.postProcess != null) { this.postProcess.setAction(this); } } </p><pre class="fragment">public abstract boolean executeAction(WebDriver webDriver) throws Exception;
-
-/**
-   Execute.
-
-   @param webDriver
-              the web driver
-   @throws ScriptException
-               the script exception
-</pre> 
 <p>Implements <a class="el" href="interfacein_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1_executable.html#ae680689a3865acf2bae37ca16c6cd443">in.teamnexus.excelenium.suite.script.Executable</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1_action_a7cfef3f96b3042c2adafde46654db1d7_cgraph.png" border="0" usemap="#classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1_action_a7cfef3f96b3042c2adafde46654db1d7_cgraph" alt=""/></div>
 <map name="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1_action_a7cfef3f96b3042c2adafde46654db1d7_cgraph" id="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1_action_a7cfef3f96b3042c2adafde46654db1d7_cgraph">
-<area shape="rect" title=" " alt="" coords="5,71,248,112"/>
-<area shape="rect" href="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1util_1_1_web_driver_util.html#adb8bc7b7a1199dc4cbcb1685976b1d95" title=" " alt="" coords="304,5,531,47"/>
-<area shape="rect" href="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1_script.html#a085df209b937ff47507e4ed703c6410a" title=" " alt="" coords="296,71,539,112"/>
-<area shape="rect" href="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1util_1_1_web_driver_util.html#a9f92caea06ca26d4a495fe4ab061851d" title=" " alt="" coords="304,136,531,177"/>
+<area shape="rect" title=" " alt="" coords="5,104,248,145"/>
+<area shape="rect" href="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1util_1_1_web_driver_util.html#a9103e7583ce9629b5fcb7ef8b16802b2" title=" " alt="" coords="304,5,531,47"/>
+<area shape="rect" href="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1util_1_1_web_driver_util.html#af99f3a22862e500a8d187d8d9e8a1584" title=" " alt="" coords="304,71,531,112"/>
+<area shape="rect" href="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1_script.html#a085df209b937ff47507e4ed703c6410a" title=" " alt="" coords="296,136,539,177"/>
+<area shape="rect" href="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1util_1_1_web_driver_util.html#af18bb59cfb3204a8393afe25c3cdba32" title=" " alt="" coords="304,201,531,243"/>
+<area shape="rect" href="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1util_1_1_web_driver_util.html#a44bd60a1aef4484de9149ad4804c24e3" title=" " alt="" coords="587,71,813,112"/>
 </map>
 </div>
+
+</div>
+</div>
+<a id="a4952c93042e97d834e0944048590fc14"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4952c93042e97d834e0944048590fc14">&#9670;&nbsp;</a></span>executeAction()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">abstract boolean in.teamnexus.excelenium.suite.script.Action.executeAction </td>
+          <td>(</td>
+          <td class="paramtype">WebDriver&#160;</td>
+          <td class="paramname"><em>webDriver</em></td><td>)</td>
+          <td> throws Exception</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">abstract</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented in <a class="el" href="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_run_script_action.html#ae60ca5f0964c53992743109db6ba5855">in.teamnexus.excelenium.suite.script.actions.RunScriptAction</a>, <a class="el" href="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_make_request_action.html#a0874e612371647d3a0ce56d357095c5d">in.teamnexus.excelenium.suite.script.actions.MakeRequestAction</a>, <a class="el" href="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_execute_javascript_action.html#aac5c0001cebded5bb6d165a0f40f1dc5">in.teamnexus.excelenium.suite.script.actions.ExecuteJavascriptAction</a>, <a class="el" href="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_fill_action.html#ad6496cd92e68527726f8b361baf9f040">in.teamnexus.excelenium.suite.script.actions.FillAction</a>, <a class="el" href="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_select_action.html#a8f01cf48045de4231d76091baf417ae0">in.teamnexus.excelenium.suite.script.actions.SelectAction</a>, <a class="el" href="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_capture_screen_action.html#a70d9ed9256de3a96d662283ae3066fa8">in.teamnexus.excelenium.suite.script.actions.CaptureScreenAction</a>, <a class="el" href="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_has_css_class_action.html#a3c9f11c4adbc755146627c2f8ce6ae78">in.teamnexus.excelenium.suite.script.actions.HasCssClassAction</a>, <a class="el" href="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_verify_text_action.html#a86660728b66b7f94a66e41eff2f3b549">in.teamnexus.excelenium.suite.script.actions.VerifyTextAction</a>, <a class="el" href="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_is_disabled_action.html#a8338b24445789637515c6d4ccece3db3">in.teamnexus.excelenium.suite.script.actions.IsDisabledAction</a>, <a class="el" href="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_is_enabled_action.html#a248ab6fc2dd9fc313ef2f4ee668a52ef">in.teamnexus.excelenium.suite.script.actions.IsEnabledAction</a>, <a class="el" href="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_check_attribute_action.html#ae7ee92fca9a338fb2ccc4d8cdd763d88">in.teamnexus.excelenium.suite.script.actions.CheckAttributeAction</a>, <a class="el" href="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_clear_action.html#ae8f0af619fa56130e3ac5d9ef202306b">in.teamnexus.excelenium.suite.script.actions.ClearAction</a>, <a class="el" href="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_click_check_action.html#a0f0df913d340e7c30ca7b033e6ffc1c3">in.teamnexus.excelenium.suite.script.actions.ClickCheckAction</a>, <a class="el" href="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_compare_url_action.html#af27f8bac7ad1f42e46935213489611dd">in.teamnexus.excelenium.suite.script.actions.CompareUrlAction</a>, <a class="el" href="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_is_hidden_action.html#abbd1f367949448a4dda7280bbdc60d13">in.teamnexus.excelenium.suite.script.actions.IsHiddenAction</a>, <a class="el" href="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_is_visible_action.html#a6470b21ee64d4d40f2abdc7dbcffac7f">in.teamnexus.excelenium.suite.script.actions.IsVisibleAction</a>, <a class="el" href="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_right_click_action.html#aa35d175fd2062071cde2cd3b2171ea0a">in.teamnexus.excelenium.suite.script.actions.RightClickAction</a>, <a class="el" href="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_scroll_to_element_action.html#a9468c5ef2b1d48d03a1b3aa15c0168d0">in.teamnexus.excelenium.suite.script.actions.ScrollToElementAction</a>, <a class="el" href="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_verify_present_action.html#ae3a2cdc7b0bd047c5bf9f9c23382444a">in.teamnexus.excelenium.suite.script.actions.VerifyPresentAction</a>, <a class="el" href="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_drag_and_drop_action.html#a4cc9791d81269a125866e3f60c3d7821">in.teamnexus.excelenium.suite.script.actions.DragAndDropAction</a>, <a class="el" href="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_get_d_o_m_action.html#ac01f04db7af730cf81ef1624502206c9">in.teamnexus.excelenium.suite.script.actions.GetDOMAction</a>, <a class="el" href="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_hover_action.html#a619481b1187033b7ab222743b87791e7">in.teamnexus.excelenium.suite.script.actions.HoverAction</a>, <a class="el" href="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_navigate_action.html#ab818b29bfca10c1a60a11674a43a0f01">in.teamnexus.excelenium.suite.script.actions.NavigateAction</a>, <a class="el" href="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_set_variable_action.html#a9d84c0047c84fd881fdce8c7b97293ec">in.teamnexus.excelenium.suite.script.actions.SetVariableAction</a>, <a class="el" href="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_add_cookie_action.html#a40cd18ab2041d47a044fca9a8c94e09c">in.teamnexus.excelenium.suite.script.actions.AddCookieAction</a>, <a class="el" href="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_check_css_attribute_action.html#a5df1b1a3eb613eb41b37137b8c94c3ec">in.teamnexus.excelenium.suite.script.actions.CheckCssAttributeAction</a>, <a class="el" href="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_get_current_url_action.html#a1287a31e65d0a1ac987eedf3c895f052">in.teamnexus.excelenium.suite.script.actions.GetCurrentUrlAction</a>, <a class="el" href="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_scroll_window_by_action.html#ac761582771584ce00474d11e3d605cd3">in.teamnexus.excelenium.suite.script.actions.ScrollWindowByAction</a>, <a class="el" href="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_set_window_size_action.html#af7e5c07a77acc2b5f2fc515f3d982d49">in.teamnexus.excelenium.suite.script.actions.SetWindowSizeAction</a>, <a class="el" href="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_switch_to_i_frame_action.html#a37df3e576bb1b0a807026a6688a61c19">in.teamnexus.excelenium.suite.script.actions.SwitchToIFrameAction</a>, <a class="el" href="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_switch_to_window_action.html#ad60b0b836b3be30ffda547debc534809">in.teamnexus.excelenium.suite.script.actions.SwitchToWindowAction</a>, <a class="el" href="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_wait_msecs_action.html#a1e7e05187f8ddf5e8fc06e02427ebd50">in.teamnexus.excelenium.suite.script.actions.WaitMsecsAction</a>, <a class="el" href="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_accept_popup_action.html#abfa272a0b6c11f4cb35d6bc404fa1994">in.teamnexus.excelenium.suite.script.actions.AcceptPopupAction</a>, <a class="el" href="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_clear_cookies_action.html#a450a8a8d0c1d3506267a0b3110b36636">in.teamnexus.excelenium.suite.script.actions.ClearCookiesAction</a>, <a class="el" href="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_delete_cookie_action.html#a1bfb94667102ffd654b0ec15c918b7f4">in.teamnexus.excelenium.suite.script.actions.DeleteCookieAction</a>, <a class="el" href="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_dismiss_popup_action.html#a14bce36d590a237f617db838f94080c3">in.teamnexus.excelenium.suite.script.actions.DismissPopupAction</a>, <a class="el" href="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_switch_to_parent_action.html#aa3a3d9398ac937dd2164d1d7c092cb8a">in.teamnexus.excelenium.suite.script.actions.SwitchToParentAction</a>, and <a class="el" href="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_unset_variable_action.html#ae66f84faa7841ad8ce89134c833a7c13">in.teamnexus.excelenium.suite.script.actions.UnsetVariableAction</a>.</p>
 
 </div>
 </div>
@@ -544,8 +568,10 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1_action_a7e94161fa281781ac0198a02d63b0e15_cgraph.png" border="0" usemap="#classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1_action_a7e94161fa281781ac0198a02d63b0e15_cgraph" alt=""/></div>
 <map name="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1_action_a7e94161fa281781ac0198a02d63b0e15_cgraph" id="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1_action_a7e94161fa281781ac0198a02d63b0e15_cgraph">
-<area shape="rect" title=" " alt="" coords="5,5,248,47"/>
-<area shape="rect" href="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1util_1_1_web_driver_util.html#aa659c4938f679c9839dd270a5c6688ba" title=" " alt="" coords="296,5,523,47"/>
+<area shape="rect" title=" " alt="" coords="5,39,248,80"/>
+<area shape="rect" href="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1util_1_1_web_driver_util.html#af99f3a22862e500a8d187d8d9e8a1584" title=" " alt="" coords="296,5,523,47"/>
+<area shape="rect" href="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1util_1_1_web_driver_util.html#a61a3f67b3958f89d06acb4e024cbcee2" title=" " alt="" coords="296,71,523,112"/>
+<area shape="rect" href="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1util_1_1_web_driver_util.html#a44bd60a1aef4484de9149ad4804c24e3" title=" " alt="" coords="571,5,797,47"/>
 </map>
 </div>
 
@@ -629,96 +655,6 @@ Here is the call graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>The different actions that can be performed on a web element. The following table provides information on how the columns from the spread sheet are interpreted by the various actions. </p><table class="doxtable">
-<tr>
-<td><b>Action-Type</b> </td><td><b>Element</b> </td><td><b>Element Value</b> </td><td><b>Attribute Name</b> </td><td><b>Attribute Value</b>  </td></tr>
-<tr>
-<td>FILL </td><td>id or xpath of the element </td><td>Value to be filled in that element </td><td>True/False to indicate if the field needs to be submitted i.e., Enter key pressed. For example, "Search". Default "FALSE" </td><td>None  </td></tr>
-<tr>
-<td>CLEAR </td><td>id or xpath of the element </td><td>None </td><td>None </td><td>None  </td></tr>
-<tr>
-<td>CLICK </td><td>id or xpath of the element </td><td>None </td><td>None </td><td>None  </td></tr>
-<tr>
-<td>RIGHT_CLICK </td><td>id or xpath of the element </td><td>0 based index indicating the option to be chosen in case of a native browser context menu, -ve value in case of a Javascript generated context menu </td><td>None </td><td>None  </td></tr>
-<tr>
-<td>CHECK </td><td>id or xpath of the element </td><td>None </td><td>None </td><td>None  </td></tr>
-<tr>
-<td>SELECT </td><td>id or xpath of the element </td><td>Text value of the item to be selected or "&amp;lt;#random&amp;gt;" to randomly select one of the items in the dropdown </td><td>None </td><td>None  </td></tr>
-<tr>
-<td>VERIFY_TEXT </td><td>id or xpath of the element </td><td>Text value to be verified </td><td>one of following options - <b>starts_with:</b> compares if the text of the element starts with the provided text. <b>ends_with:</b> compares if the text element ends with the provided text.<b>contains:</b>checks if the text of the element contains the provided text<b>full_text:</b> compares the text of the element to the provided text </td><td>None  </td></tr>
-<tr>
-<td>VERIFY_PRESENT </td><td>id or xpath of the element </td><td>None </td><td>None </td><td>None  </td></tr>
-<tr>
-<td>IS_VISIBLE </td><td>id or xpath of the element </td><td>None </td><td>None </td><td>None  </td></tr>
-<tr>
-<td>IS_HIDDEN </td><td>id or xpath of the element </td><td>None </td><td>None </td><td>None  </td></tr>
-<tr>
-<td>CHECK_ATTRIBUTE </td><td>id or xpath of the element </td><td>None </td><td>Name of the attribute </td><td>Value of the attribute  </td></tr>
-<tr>
-<td>ACCEPT_POPUP </td><td>None </td><td>None </td><td>None </td><td>None  </td></tr>
-<tr>
-<td>DISMISS_POPUP </td><td>None </td><td>None </td><td>None </td><td>None  </td></tr>
-<tr>
-<td>SWITCH_TO_IFRAME </td><td>id or xpath of the element </td><td>None </td><td>None </td><td>None  </td></tr>
-<tr>
-<td>SWITCH_TO_PARENT </td><td>None </td><td>None </td><td>None </td><td>None  </td></tr>
-<tr>
-<td>CAPTURE_SCREEN </td><td>Optional filename </td><td>None </td><td>None </td><td>None  </td></tr>
-<tr>
-<td>NAVIGATE </td><td>back, forward, refresh or url </td><td>None </td><td>None </td><td>None  </td></tr>
-<tr>
-<td>SET_VARIABLE </td><td>xpath of the element or variable name </td><td>variable name in case xpath set as element or variable value otherwise </td><td>None </td><td>None  </td></tr>
-<tr>
-<td>UNSET_VARIABLE </td><td>variable name to be unset </td><td>None </td><td>None </td><td>None  </td></tr>
-<tr>
-<td>CLEAR_COOKIES </td><td>None </td><td>None </td><td>None </td><td>None  </td></tr>
-<tr>
-<td>DELETE_COOKIE </td><td>Cookie name </td><td>None </td><td>None </td><td>None  </td></tr>
-<tr>
-<td>ADD_COOKIE </td><td>Cookie name </td><td>Cookie Value </td><td>None </td><td>None  </td></tr>
-<tr>
-<td>SWITCH_TO_WINDOW </td><td>None </td><td>0 based index, where 0 always indicates the main window and subsequent windows opened are numbers sequentially </td><td>None </td><td>None  </td></tr>
-<tr>
-<td>EXECUTE_JAVASCRIPT </td><td>js file </td><td>None </td><td>None </td><td>None  </td></tr>
-<tr>
-<td>WAIT_MSECS </td><td>None </td><td>Time to wait in milliseconds before executing next action </td><td>None </td><td>None  </td></tr>
-<tr>
-<td>IS_ENABLED </td><td>id or xpath of the element </td><td>None </td><td>None </td><td>None  </td></tr>
-<tr>
-<td>IS_DISABLED </td><td>id or xpath of the element </td><td>None </td><td>None </td><td>None  </td></tr>
-<tr>
-<td>SET_WINDOW_SIZE </td><td>Positive integer value specifying the width </td><td>Positive integer value specifying the height </td><td>None </td><td>None  </td></tr>
-<tr>
-<td>COMPARE_URL </td><td>Url to compare against the current browser url </td><td>one of following options - <b>starts_with:</b> compares if the current browser url starts with the provided url. The url might contain additional query parameters that might need to be ignored. <b>ends_with:</b> compares if the current browser url ends with the provided url.<b>contains:</b>checks if the browser url contains the provided text<b>full_url:</b> compares the entire url </td><td>None </td><td>None  </td></tr>
-<tr>
-<td>RUN_SCRIPT </td><td>bsh or groovy script </td><td>None </td><td>None </td><td>None  </td></tr>
-<tr>
-<td>GET_DOM </td><td>id or xpath of the element </td><td>variable name </td><td>None </td><td>None  </td></tr>
-<tr>
-<td>SCROLL_WINDOW_BY </td><td>x pixels to scroll </td><td>y pixels to scroll </td><td>None </td><td>None  </td></tr>
-<tr>
-<td>SCROLL_TO_ELEMENT </td><td>id or xpath of the element to scroll to </td><td>None </td><td>None </td><td>None  </td></tr>
-<tr>
-<td>MAKE_REQUEST </td><td>url to request </td><td>variable name to store the response </td><td>None </td><td>None  </td></tr>
-<tr>
-<td>HOVER </td><td>id or xpath of the element to hover </td><td>None </td><td>None </td><td>None  </td></tr>
-<tr>
-<td>DRAG_AND_DROP </td><td>id or xpath of the source element </td><td>id or xpath of the target element </td><td>None </td><td>None  </td></tr>
-<tr>
-<td>GET_CURRENT_URL </td><td>Variable name to save the current url </td><td>NONE </td><td>None </td><td>None  </td></tr>
-<tr>
-<td>HAS_CSS_CLASS </td><td>id or xpath of the source element </td><td>comma separated list of css classes to verify </td><td>None </td><td>None  </td></tr>
-<tr>
-<td>CHECK_CSS_ATTRIBUTE </td><td>id or xpath of the source element </td><td>css attribute </td><td>css attribute value </td><td>None  </td></tr>
-</table>
-<p>Sets the action type - should be one of the values in <a class="el" href="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1_action.html">Action</a> Types defined above.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">actionType</td><td>the new action type</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section author"><dt>Author</dt><dd>Prabhu </dd></dl>
 
 </div>
 </div>

@@ -8,10 +8,16 @@ import org.openqa.selenium.WebDriver;
 
 import in.teamnexus.excelenium.suite.script.Action;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class AddCookieAction.
- *
+ * Adds the specified cookie with the given value
+ * 
+ * Column | Description
+ * ----------|---------------
+ * **Element** | cookie name
+ * **Element Value** | cookie value
+ * **Attribute Name** |None
+ * **Attribute Value** | None
+ * 
  * @author Prabhu
  */
 public class AddCookieAction extends Action
@@ -24,7 +30,7 @@ public class AddCookieAction extends Action
      * @return true, if successful
      */
     @Override
-    public boolean executeAction(WebDriver webDriver)
+    protected boolean executeAction(WebDriver webDriver)
     {
         boolean success = true;
         

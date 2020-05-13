@@ -72,7 +72,7 @@ var dir_84e8d4782823988094221ec8d8a7e550 =
     [ "NavigateAction.java", "_navigate_action_8java.html", [
       [ "NavigateAction", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_navigate_action.html", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_navigate_action" ]
     ] ],
-    [ "package-info.java", "script_2actions_2package-info_8java.html", null ],
+    [ "package-info.java", "suite_2script_2actions_2package-info_8java.html", null ],
     [ "RightClickAction.java", "_right_click_action_8java.html", [
       [ "RightClickAction", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_right_click_action.html", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_right_click_action" ]
     ] ],

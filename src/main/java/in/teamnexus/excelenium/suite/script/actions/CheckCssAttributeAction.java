@@ -8,10 +8,16 @@ import org.openqa.selenium.WebElement;
 
 import in.teamnexus.excelenium.suite.script.Action;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class CheckCssAttributeAction.
- *
+ * Checks if the css attribute of the element has the specified value
+ * 
+ * Column | Description
+ * ----------|---------------
+ * **Element** | id or xpath of the element
+ * **Element Value** | Css attribute name
+ * **Attribute Name** | Css attribute value
+ * **Attribute Value** | None
+ * 
  * @author Prabhu
  */
 public class CheckCssAttributeAction extends Action
@@ -24,7 +30,7 @@ public class CheckCssAttributeAction extends Action
      * @return true, if successful
      */
     @Override
-    public boolean executeAction(WebDriver webDriver)
+    protected boolean executeAction(WebDriver webDriver)
     {
         boolean success = true;
         WebElement webElement = this.getWebElement(webDriver, this.element);

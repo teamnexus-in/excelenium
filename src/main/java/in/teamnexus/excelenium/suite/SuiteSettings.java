@@ -2,9 +2,8 @@ package in.teamnexus.excelenium.suite;
 
 import java.util.List;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class SuiteSettings.
+ * The Class that holds the Suite Settings - suite name, serverUrl and the browser configs.
  */
 public class SuiteSettings
 {

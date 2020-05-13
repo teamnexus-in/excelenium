@@ -7,9 +7,15 @@ import org.openqa.selenium.WebDriver;
 
 import in.teamnexus.excelenium.suite.script.Action;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class SwitchToParentAction.
+ * Switch to parent from iframe.
+ * 
+ * Column | Description
+ * ----------|---------------
+ * **Element** | None
+ * **Element Value** | None
+ * **Attribute Name** |None
+ * **Attribute Value** | None
  *
  * @author Prabhu
  */
@@ -23,7 +29,7 @@ public class SwitchToParentAction extends Action
      * @return true, if successful
      */
     @Override
-    public boolean executeAction(WebDriver webDriver)
+    protected boolean executeAction(WebDriver webDriver)
     {
         boolean success = true;
         

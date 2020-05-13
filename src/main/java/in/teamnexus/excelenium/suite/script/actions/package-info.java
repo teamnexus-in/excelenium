@@ -5,4 +5,4 @@
  * @author Prabhu
  *
  */
-package in.teamnexus.excelenium.suite.script.actionrunner;
+package in.teamnexus.excelenium.suite.script.actions;

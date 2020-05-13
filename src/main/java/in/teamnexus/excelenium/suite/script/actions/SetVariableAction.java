@@ -9,9 +9,15 @@ import org.openqa.selenium.WebElement;
 import in.teamnexus.excelenium.suite.script.Action;
 import in.teamnexus.excelenium.suite.util.WebDriverUtil;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class SetVariableAction.
+ * Sets a variable that can be later substituted in the script.
+ * 
+  * Column | Description
+ * ----------|---------------
+ * **Element** | xpath of the element or variable name
+ * **Element Value** | variable name in case xpath is specified in the element field or variable value otherwise
+ * **Attribute Name** |None
+ * **Attribute Value** | None
  *
  * @author Prabhu
  */
@@ -25,13 +31,14 @@ public class SetVariableAction extends Action
      * @return true, if successful
      */
     @Override
-    public boolean executeAction(WebDriver webDriver)
+    protected boolean executeAction(WebDriver webDriver)
     {
         boolean success = true;
+        WebDriverUtil util = WebDriverUtil.getInstance();
         
         if (!this.element.startsWith("/"))
         {
-            WebDriverUtil.setVariable(this.element, this.elementValue);
+            util.setVariable(this.element, this.elementValue);
             return true;
         }
         
@@ -42,7 +49,7 @@ public class SetVariableAction extends Action
         {
             String variableValue = webElement.getText().trim();
             String variableName = this.elementValue;
-            WebDriverUtil.setVariable(variableName, variableValue);
+            util.setVariable(variableName, variableValue);
         }
         
         return success;

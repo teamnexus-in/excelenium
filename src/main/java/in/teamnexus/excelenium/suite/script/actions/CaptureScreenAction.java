@@ -11,10 +11,16 @@ import org.slf4j.MDC;
 import in.teamnexus.excelenium.suite.script.Action;
 import in.teamnexus.excelenium.suite.util.WebDriverUtil;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class CaptureScreenAction.
- *
+ * Captures the currently rendered screen in the browser.
+ * 
+ * Column | Description
+ * ----------|---------------
+ * **Element** | Optional file name
+ * **Element Value** | None
+ * **Attribute Name** |None
+ * **Attribute Value** | None
+*
  * @author Prabhu
  */
 public class CaptureScreenAction extends Action
@@ -31,12 +37,12 @@ public class CaptureScreenAction extends Action
      * @throws Exception the exception
      */
     @Override
-    public boolean executeAction(WebDriver webDriver) throws Exception
+    protected boolean executeAction(WebDriver webDriver) throws Exception
     {
         boolean success = true;
         String browser = MDC.get("browser");
         String fileName = ((this.element == null) ? (this.actionName + "-" + browser + System.currentTimeMillis() + ".png") : (browser + this.element));
-        WebDriverUtil.captureScreenshot(webDriver, fileName);
+        WebDriverUtil.getInstance().captureScreenshot(webDriver, fileName);
         logger.info("Screenshot captured to " + fileName);
 
         return success;

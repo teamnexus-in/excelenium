@@ -10,9 +10,16 @@ import in.teamnexus.excelenium.suite.exception.ScriptException;
 import in.teamnexus.excelenium.suite.script.Action;
 import in.teamnexus.excelenium.suite.util.WebDriverUtil;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class VerifyTextAction.
+ * Verifies the text content of the element.
+ * 
+ * Column | Description
+ * ----------|---------------
+ * **Element** | id or xpath of the element
+ * **Element Value** | Text value to be verified
+ * **Attribute Name** | One of following options <br/> **starts_with** : compares if the text of the element starts with the provided text.<br/> **ends_with** : compares if the text element ends with the provided text.<br/> **contains** :checks if the text of the element contains the provided text<br/> **full_text** : compares the text of the element to the provided text
+ * **Attribute Value** | None
+
  *
  * @author Prabhu
  */
@@ -27,12 +34,12 @@ public class VerifyTextAction extends Action
      * @throws Exception the exception
      */
     @Override
-    public boolean executeAction(WebDriver webDriver) throws Exception
+    protected boolean executeAction(WebDriver webDriver) throws Exception
     {
         boolean success = true;
 
         WebElement webElement = this.getWebElement(webDriver, this.element);
-        
+        WebDriverUtil util = WebDriverUtil.getInstance();
         this.doPreProcess(webDriver, webElement);
 
         if (webElement != null)
@@ -60,7 +67,7 @@ public class VerifyTextAction extends Action
 
             if (success)
             {
-                WebDriverUtil.highlightElement(webDriver, webElement);
+                util.highlightElement(webDriver, webElement);
             }
             else
             {

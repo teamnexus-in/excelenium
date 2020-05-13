@@ -8,10 +8,16 @@ import org.openqa.selenium.WebDriver;
 import in.teamnexus.excelenium.suite.script.Action;
 import in.teamnexus.excelenium.suite.util.WebDriverUtil;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class SwitchToWindowAction.
- *
+ * Switches to the specified window/tab - based on index from 0 to n.
+ * 
+ * Column | Description
+ * ----------|---------------
+ * **Element** |  0 based index, where 0 always indicates the main window and subsequent windows opened are numbers sequentially
+ * **Element Value** |None
+ * **Attribute Name** |None
+ * **Attribute Value** | None
+ * 
  * @author Prabhu
  */
 public class SwitchToWindowAction extends Action
@@ -24,11 +30,11 @@ public class SwitchToWindowAction extends Action
      * @return true, if successful
      */
     @Override
-    public boolean executeAction(WebDriver webDriver)
+    protected boolean executeAction(WebDriver webDriver)
     {
         boolean success = true;
         
-        WebDriverUtil.switchToWindow(webDriver, this.elementValue);
+        WebDriverUtil.getInstance().switchToWindow(webDriver, this.element);
         
         return success;
     }

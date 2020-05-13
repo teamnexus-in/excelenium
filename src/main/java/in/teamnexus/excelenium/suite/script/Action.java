@@ -115,145 +115,7 @@ import in.teamnexus.excelenium.suite.util.WebDriverUtil;
 public abstract class Action implements Executable
 {
 
-    
-    public enum ActionType
-    {
-
-        /**
-         * Fills the value in the for the element selected, usually, text field or text
-         * area. Optionally can also do a submit in case of search boxes etc.
-         */
-        FILL,
-        /**
-         * Clears the content of the element selected, usually, text field or text area.
-         */
-        CLEAR,
-        /** Generates a mouse click for the element selected. */
-        CLICK,
-        /** Generates a mouse right-click for the element selected. */
-        RIGHT_CLICK,
-        /** Toggles the check box. */
-        CHECK,
-        /**
-         * Selects the option in the drop down as specified in the Element Value column.
-         * A special variable &lt;#random&gt; can be used to randomly select one of the values
-         * in the dropdown.
-         */
-        SELECT,
-        /** Verifies the text content of the element. */
-        VERIFY_TEXT,
-        /**
-         * Verifies if an element is present in the DOM use IS_VISIBLE to check if the
-         * element is displayed.
-         */
-        VERIFY_PRESENT,
-        /** Verifies if an element is displayed and not hidden. */
-        IS_VISIBLE,
-        /** Verifies if an element is hidden and not displayed. */
-        IS_HIDDEN,
-        /**
-         * Checks if the attribute is with the value specified is set for the element.
-         */
-        CHECK_ATTRIBUTE,
-        /** Selects OK/Yes when the browser popup is displayed. */
-        ACCEPT_POPUP,
-        /** Selects Cancel/No when the browser popup is displayed. */
-        DISMISS_POPUP,
-        /** Switch to iframe specified. */
-        SWITCH_TO_IFRAME,
-        /** Switch to parent from iframe. */
-        SWITCH_TO_PARENT,
-        /** Captures the currently rendered screen in the browser. */
-        CAPTURE_SCREEN,
-        /** Navigates back/forward/to a particular url. */
-        NAVIGATE,
-        /** Sets a variable that can be later substituted in the script. */
-        SET_VARIABLE,
-        /** unsets a variable that has already been set. */
-        UNSET_VARIABLE,
-
-        /** clears all the cookies that are currently present. */
-        CLEAR_COOKIES,
-
-        /** deletes the specified cookie. */
-        DELETE_COOKIE,
-
-        /** adds the specified cookie with the given value. */
-        ADD_COOKIE,
-        /**
-         * Switches to the specified window/tab - based on index from 0 to n. '0' always
-         * refers to the main window
-         */
-        SWITCH_TO_WINDOW,
-        /** Executes a specified javascript file. */
-        EXECUTE_JAVASCRIPT,
-        /** Wait for the specified milliseconds before performing the next action. */
-        WAIT_MSECS,
-        /** Checks if the specified element is enabled. */
-        IS_ENABLED,
-        /** Checks if the specified element is disabled. */
-        IS_DISABLED,
-        /**
-         * Sets the window size of the browser based on the width and height specified.
-         */
-        SET_WINDOW_SIZE,
-        /**
-         * Compares the current browser url with the provided url considering the
-         * options - starts_with and full_url.
-         */
-        COMPARE_URL,
-        /**
-         * Runs the provided beanshell script or groovy script. For beanshell, Refer:
-         * <a href="http://www.beanshell.org" target="_blank">www.beanshell.org</a>. For
-         * Groovy script. Refer:
-         * <a href="http://groovy.codehaus.org" target="_blank">groovy.codehaus.org</a>.
-         * The script is supplied with all the variable created using
-         * ActionType.SET_VARIABLE and a few other internal variables in a map named
-         * "inputMap" that can be referenced in the script. The logger object is also
-         * available in the name "logger" that can be used to print debug messages. The
-         * script will have to create a HashMap in the name "result" and store all the
-         * results that it wants printed in the log after execution. Also the "result"
-         * hashmap object should have an entry "status" which is either true or false.
-         * The value true indicates the script executed successfully and false if there
-         * were errors in the expected output.
-         */
-        RUN_SCRIPT,
-
-        /** Gets the dom of the specified element and stores in the variable. */
-        GET_DOM,
-
-        /** scrolls the window by specified x and y. */
-        SCROLL_WINDOW_BY,
-
-        /** scrolls the window to the specified web element. */
-        SCROLL_TO_ELEMENT,
-
-        /**
-         * Makes a GET request and stores the response in the variable name specified.
-         */
-        MAKE_REQUEST,
-
-        /** Hovers the mouse on the specified element. */
-        HOVER,
-
-        /** Drag and drop the source element to target element. */
-        DRAG_AND_DROP,
-
-        /**
-         * Gets the current url of the current focused window and saves it to the
-         * variable specified.
-         */
-        GET_CURRENT_URL,
-
-        /** Checks if the specified element has the css classes applied. */
-        HAS_CSS_CLASS,
-
-        /** Checks if the css attribute of the element has the specified value. */
-        CHECK_CSS_ATTRIBUTE
-
-    }
-
-    /** The action name. */
+     /** The action name. */
     protected String actionName;
 
     /** The action type. */
@@ -283,11 +145,11 @@ public abstract class Action implements Executable
      */
     PreProcessAction preProcess;
 
-    // Removing post process for now
-    /*
-     * PostProcessAction to be performed after executing the action on this element
-     * PostProcessAction postProcess;
-     */
+    // // Removing post process for now
+    //
+    // PostProcessAction to be performed after executing the action on this element
+    // PostProcessAction postProcess;
+    
 
 
     /** The script object that executes this action. */
@@ -331,309 +193,8 @@ public abstract class Action implements Executable
         return this.actionType;
     }
 
-    /**
-     * The different actions that can be performed on a
-     * web element. The following table provides information on how the columns from
-     * the spread sheet are interpreted by the various actions.
-     * <table>
-     * <tr>
-     * <td><b>Action-Type</b></td>
-     * <td><b>Element</b></td>
-     * <td><b>Element Value</b></td>
-     * <td><b>Attribute Name</b></td>
-     * <td><b>Attribute Value</b></td>
-     * </tr>
-     * <tr>
-     * <td>FILL</td>
-     * <td>id or xpath of the element</td>
-     * <td>Value to be filled in that element</td>
-     * <td>True/False to indicate if the field needs to be submitted i.e., Enter key
-     * pressed. For example, "Search". Default "FALSE"</td>
-     * <td>None</td>
-     * </tr>
-     * <tr>
-     * <td>CLEAR</td>
-     * <td>id or xpath of the element</td>
-     * <td>None</td>
-     * <td>None</td>
-     * <td>None</td>
-     * </tr>
-     * <tr>
-     * <td>CLICK</td>
-     * <td>id or xpath of the element</td>
-     * <td>None</td>
-     * <td>None</td>
-     * <td>None</td>
-     * </tr>
-     * <tr>
-     * <td>RIGHT_CLICK</td>
-     * <td>id or xpath of the element</td>
-     * <td>0 based index indicating the option to be chosen in case of a native
-     * browser context menu, -ve value in case of a Javascript generated context
-     * menu</td>
-     * <td>None</td>
-     * <td>None</td>
-     * </tr>
-     * <tr>
-     * <td>CHECK</td>
-     * <td>id or xpath of the element</td>
-     * <td>None</td>
-     * <td>None</td>
-     * <td>None</td>
-     * </tr>
-     * <tr>
-     * <td>SELECT</td>
-     * <td>id or xpath of the element</td>
-     * <td>Text value of the item to be selected or "&lt;#random&gt;" to randomly
-     * select one of the items in the dropdown</td>
-     * <td>None</td>
-     * <td>None</td>
-     * </tr>
-     * <tr>
-     * <td>VERIFY_TEXT</td>
-     * <td>id or xpath of the element</td>
-     * <td>Text value to be verified</td>
-     * <td>one of following options - <b>starts_with:</b> compares if the text of
-     * the element starts with the provided text. <b>ends_with:</b> compares if the
-     * text element ends with the provided text.<b>contains:</b>checks if the text
-     * of the element contains the provided text<b>full_text:</b> compares the text
-     * of the element to the provided text</td>
-     * <td>None</td>
-     * </tr>
-     * <tr>
-     * <td>VERIFY_PRESENT</td>
-     * <td>id or xpath of the element</td>
-     * <td>None</td>
-     * <td>None</td>
-     * <td>None</td>
-     * </tr>
-     * <tr>
-     * <td>IS_VISIBLE</td>
-     * <td>id or xpath of the element</td>
-     * <td>None</td>
-     * <td>None</td>
-     * <td>None</td>
-     * </tr>
-     * <tr>
-     * <td>IS_HIDDEN</td>
-     * <td>id or xpath of the element</td>
-     * <td>None</td>
-     * <td>None</td>
-     * <td>None</td>
-     * </tr>
-     * <tr>
-     * <td>CHECK_ATTRIBUTE</td>
-     * <td>id or xpath of the element</td>
-     * <td>None</td>
-     * <td>Name of the attribute</td>
-     * <td>Value of the attribute</td>
-     * </tr>
-     * <tr>
-     * <td>ACCEPT_POPUP</td>
-     * <td>None</td>
-     * <td>None</td>
-     * <td>None</td>
-     * <td>None</td>
-     * </tr>
-     * <tr>
-     * <td>DISMISS_POPUP</td>
-     * <td>None</td>
-     * <td>None</td>
-     * <td>None</td>
-     * <td>None</td>
-     * </tr>
-     * <tr>
-     * <td>SWITCH_TO_IFRAME</td>
-     * <td>id or xpath of the element</td>
-     * <td>None</td>
-     * <td>None</td>
-     * <td>None</td>
-     * </tr>
-     * <tr>
-     * <td>SWITCH_TO_PARENT</td>
-     * <td>None</td>
-     * <td>None</td>
-     * <td>None</td>
-     * <td>None</td>
-     * </tr>
-     * <tr>
-     * <td>CAPTURE_SCREEN</td>
-     * <td>Optional filename</td>
-     * <td>None</td>
-     * <td>None</td>
-     * <td>None</td>
-     * </tr>
-     * <tr>
-     * <td>NAVIGATE</td>
-     * <td>back, forward, refresh or url</td>
-     * <td>None</td>
-     * <td>None</td>
-     * <td>None</td>
-     * </tr>
-     * <tr>
-     * <td>SET_VARIABLE</td>
-     * <td>xpath of the element or variable name</td>
-     * <td>variable name in case xpath set as element or variable value
-     * otherwise</td>
-     * <td>None</td>
-     * <td>None</td>
-     * </tr>
-     * <tr>
-     * <td>UNSET_VARIABLE</td>
-     * <td>variable name to be unset</td>
-     * <td>None</td>
-     * <td>None</td>
-     * <td>None</td>
-     * </tr>
-     * <tr>
-     * <td>CLEAR_COOKIES</td>
-     * <td>None</td>
-     * <td>None</td>
-     * <td>None</td>
-     * <td>None</td>
-     * </tr>
-     * <tr>
-     * <td>DELETE_COOKIE</td>
-     * <td>Cookie name</td>
-     * <td>None</td>
-     * <td>None</td>
-     * <td>None</td>
-     * </tr>
-     * <tr>
-     * <td>ADD_COOKIE</td>
-     * <td>Cookie name</td>
-     * <td>Cookie Value</td>
-     * <td>None</td>
-     * <td>None</td>
-     * </tr>
-     * <tr>
-     * <td>SWITCH_TO_WINDOW</td>
-     * <td>None</td>
-     * <td>0 based index, where 0 always indicates the main window and subsequent
-     * windows opened are numbers sequentially</td>
-     * <td>None</td>
-     * <td>None</td>
-     * </tr>
-     * <tr>
-     * <td>EXECUTE_JAVASCRIPT</td>
-     * <td>js file</td>
-     * <td>None</td>
-     * <td>None</td>
-     * <td>None</td>
-     * </tr>
-     * <tr>
-     * <td>WAIT_MSECS</td>
-     * <td>None</td>
-     * <td>Time to wait in milliseconds before executing next action</td>
-     * <td>None</td>
-     * <td>None</td>
-     * </tr>
-     * <tr>
-     * <td>IS_ENABLED</td>
-     * <td>id or xpath of the element</td>
-     * <td>None</td>
-     * <td>None</td>
-     * <td>None</td>
-     * </tr>
-     * <tr>
-     * <td>IS_DISABLED</td>
-     * <td>id or xpath of the element</td>
-     * <td>None</td>
-     * <td>None</td>
-     * <td>None</td>
-     * </tr>
-     * <tr>
-     * <td>SET_WINDOW_SIZE</td>
-     * <td>Positive integer value specifying the width</td>
-     * <td>Positive integer value specifying the height</td>
-     * <td>None</td>
-     * <td>None</td>
-     * </tr>
-     * <tr>
-     * <td>COMPARE_URL</td>
-     * <td>Url to compare against the current browser url</td>
-     * <td>one of following options - <b>starts_with:</b> compares if the current
-     * browser url starts with the provided url. The url might contain additional
-     * query parameters that might need to be ignored. <b>ends_with:</b> compares if
-     * the current browser url ends with the provided url.<b>contains:</b>checks if
-     * the browser url contains the provided text<b>full_url:</b> compares the
-     * entire url</td>
-     * <td>None</td>
-     * <td>None</td>
-     * </tr>
-     * <tr>
-     * <td>RUN_SCRIPT</td>
-     * <td>bsh or groovy script</td>
-     * <td>None</td>
-     * <td>None</td>
-     * <td>None</td>
-     * </tr>
-     * <tr>
-     * <td>GET_DOM</td>
-     * <td>id or xpath of the element</td>
-     * <td>variable name</td>
-     * <td>None</td>
-     * <td>None</td>
-     * </tr>
-     * <tr>
-     * <td>SCROLL_WINDOW_BY</td>
-     * <td>x pixels to scroll</td>
-     * <td>y pixels to scroll</td>
-     * <td>None</td>
-     * <td>None</td>
-     * </tr>
-     * <tr>
-     * <td>SCROLL_TO_ELEMENT</td>
-     * <td>id or xpath of the element to scroll to</td>
-     * <td>None</td>
-     * <td>None</td>
-     * <td>None</td>
-     * </tr>
-     * <tr>
-     * <td>MAKE_REQUEST</td>
-     * <td>url to request</td>
-     * <td>variable name to store the response</td>
-     * <td>None</td>
-     * <td>None</td>
-     * </tr>
-     * <tr>
-     * <td>HOVER</td>
-     * <td>id or xpath of the element to hover</td>
-     * <td>None</td>
-     * <td>None</td>
-     * <td>None</td>
-     * </tr>
-     * <tr>
-     * <td>DRAG_AND_DROP</td>
-     * <td>id or xpath of the source element</td>
-     * <td>id or xpath of the target element</td>
-     * <td>None</td>
-     * <td>None</td>
-     * </tr>
-     * <tr>
-     * <td>GET_CURRENT_URL</td>
-     * <td>Variable name to save the current url</td>
-     * <td>NONE</td>
-     * <td>None</td>
-     * <td>None</td>
-     * </tr>
-     * <tr>
-     * <td>HAS_CSS_CLASS</td>
-     * <td>id or xpath of the source element</td>
-     * <td>comma separated list of css classes to verify</td>
-     * <td>None</td>
-     * <td>None</td>
-     * </tr>
-     * <tr>
-     * <td>CHECK_CSS_ATTRIBUTE</td>
-     * <td>id or xpath of the source element</td>
-     * <td>css attribute</td>
-     * <td>css attribute value</td>
-     * <td>None</td>
-     * </tr>
-     * </table>
-     * 
-     * Sets the action type - should be one of the values in Action Types defined above.
+    /*
+     * Sets the action type
      * 
      * 
      * @param actionType
@@ -755,22 +316,22 @@ public abstract class Action implements Executable
         }
     }
 
-    // /**
-    // * Gets the post process.
-    // *
-    // * @ return the post process
-    // */
+    // 
+    //  Gets the post process.
+    // 
+    //  @ return the post process
+    // 
     // public PostProcessAction getPostProcess()
     // {
     // return this.postProcess;
     // }
     //
-    // /**
-    // * Sets the post process.
-    // *
-    // * @== param postProcess
-    // * the new post process
-    // */
+    //
+    // Sets the post process.
+    //
+    //@== param postProcess
+    // the new post process
+    // 
     // public void setPostProcess(PostProcessAction postProcess)
     // {
     // this.postProcess = postProcess;
@@ -780,7 +341,7 @@ public abstract class Action implements Executable
     // }
     // }
 
-    public abstract boolean executeAction(WebDriver webDriver) throws Exception;
+    protected abstract boolean executeAction(WebDriver webDriver) throws Exception;
 
     /**
      * Execute.
@@ -795,13 +356,14 @@ public abstract class Action implements Executable
     {
         boolean hasError = false;
         boolean success = true;
+        WebDriverUtil util = WebDriverUtil.getInstance();
         Stopwatch stopwatch = Stopwatch.createStarted();
         try
         {
-            this.element = WebDriverUtil.substitute(this.element);
-            this.elementValue = WebDriverUtil.substitute(this.elementValue);
-            this.attributeName = WebDriverUtil.substitute(this.attributeName);
-            this.attributeValue = WebDriverUtil.substitute(this.attributeValue);
+            this.element = util.substitute(this.element);
+            this.elementValue = util.substitute(this.elementValue);
+            this.attributeName = util.substitute(this.attributeName);
+            this.attributeValue = util.substitute(this.attributeValue);
 
             success = executeAction(webDriver);
 
@@ -818,7 +380,8 @@ public abstract class Action implements Executable
             reportsLogger.error(this.getFullyQualifiedName() + " with action: " + actionType + " failed: " + e.getMessage());
             try
             {
-                WebDriverUtil.captureScreenshot(webDriver, (this.actionName + "-" + MDC.get("browser") + System.currentTimeMillis() + ".png"));
+                
+                WebDriverUtil.getInstance().captureScreenshot(webDriver, (this.actionName + "-" + MDC.get("browser") + System.currentTimeMillis() + ".png"));
             }
             catch (Exception e1)
             {
@@ -869,18 +432,19 @@ public abstract class Action implements Executable
     {
         WebElement webElement = null;
         WebDriverWait wait = (new WebDriverWait(webDriver, 10));
+        WebDriverUtil util = WebDriverUtil.getInstance();
 
         if (elementString.startsWith("/"))
         {
             // webElement = webDriver.findElement(By.xpath(this.element));
             webElement = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(elementString)));
-            WebDriverUtil.highlightElement(webDriver, webElement);
+            util.highlightElement(webDriver, webElement);
         }
         else
         {
             // webElement = webDriver.findElement(By.id(this.element));
             webElement = wait.until(ExpectedConditions.presenceOfElementLocated(By.id(elementString)));
-            WebDriverUtil.highlightElement(webDriver, webElement);
+            util.highlightElement(webDriver, webElement);
         }
         return webElement;
     }

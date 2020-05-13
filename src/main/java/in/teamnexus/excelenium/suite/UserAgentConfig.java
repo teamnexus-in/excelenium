@@ -1,8 +1,7 @@
 package in.teamnexus.excelenium.suite;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class UserAgentConfig.
+ * The Class that holds the information about User Agent settings that has to be applied to the browser to spoof client like mobile devices etc
  */
 public class UserAgentConfig
 {

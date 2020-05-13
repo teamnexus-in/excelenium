@@ -7,9 +7,15 @@ import org.openqa.selenium.WebDriver;
 
 import in.teamnexus.excelenium.suite.script.Action;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class DismissPopupAction.
+ * Selects Cancel/No when the browser popup is displayed. Popup here refers to the native popup and not the modals generated using JavaScript
+ * 
+ * Column | Description
+ * ----------|---------------
+ * **Element** | None
+ * **Element Value** | None
+ * **Attribute Name** |None
+ * **Attribute Value** | None
  *
  * @author Prabhu
  */
@@ -23,7 +29,7 @@ public class DismissPopupAction extends Action
      * @return true, if successful
      */
     @Override
-    public boolean executeAction(WebDriver webDriver)
+    protected boolean executeAction(WebDriver webDriver)
     {
         boolean success = true;
 

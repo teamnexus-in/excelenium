@@ -1,6 +1,4 @@
 == TODO
-. Prune WebDriverUtil class, and make it a singleton instead of Static methods
-. Update documentation for Subclasses separate from Action.java
 . Set Run to true for actions
 . Warning if script already being edited and the user refreshes the browser.
 . Full-blown validation of the scripts
@@ -22,3 +20,5 @@
 . Check if script name already exists before creating new script
 . Change script name if edited in Scripts tab
 . Session storage, on refresh don't show new dialog, instead load from session storage
+. Prune WebDriverUtil class, and make it a singleton instead of Static methods
+. Update documentation for Subclasses separate from Action.java

@@ -10,9 +10,15 @@ import org.openqa.selenium.interactions.Actions;
 
 import in.teamnexus.excelenium.suite.script.Action;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class RightClickAction.
+ * Generates a mouse right click for the element selected
+ * 
+ * Column | Description
+ * ----------|---------------
+ * **Element** | id or xpath of the element
+ * **Element Value** | 0 based index indicating the option to be chosen in case of a native browser context menu, -ve value in case of a Javascript generated context menu
+ * **Attribute Name** |None
+ * **Attribute Value** | None
  *
  * @author Prabhu
  */
@@ -26,7 +32,7 @@ public class RightClickAction extends Action
      * @return true, if successful
      */
     @Override
-    public boolean executeAction(WebDriver webDriver)
+    protected boolean executeAction(WebDriver webDriver)
     {
         boolean success = true;
         

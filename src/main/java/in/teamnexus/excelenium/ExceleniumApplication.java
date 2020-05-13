@@ -10,9 +10,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class ExceleniumApplication.
+ * The entry point of the excelenium application
  */
 @SpringBootApplication
 public class ExceleniumApplication
@@ -29,7 +28,9 @@ public class ExceleniumApplication
     }
 
     /**
-     * Application ready.
+     * This opens the browser and loads the url http://localhost:8080/ which is the application landing page 
+     * after the Application Context has been loaded by Spring Boot
+
      */
     @EventListener({ ApplicationReadyEvent.class })
     private void applicationReady()

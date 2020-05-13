@@ -20,7 +20,6 @@ import org.slf4j.LoggerFactory;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.base.Stopwatch;
 
-// TODO: Auto-generated Javadoc
 /**
  * Executed before the action on the element is performed.
  */

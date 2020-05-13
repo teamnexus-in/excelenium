@@ -4,9 +4,8 @@ import java.util.List;
 
 import in.teamnexus.excelenium.suite.script.Script;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class SuiteConfig.
+ * The Class that holds the suite information including scripts and settings
  */
 public class SuiteConfig
 {

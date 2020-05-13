@@ -1,9 +1,11 @@
 <map id="in.teamnexus.excelenium.suite.executor.ScriptExecutor.BrowserRunner.run" name="in.teamnexus.excelenium.suite.executor.ScriptExecutor.BrowserRunner.run">
-<area shape="rect" id="node1" title=" " alt="" coords="5,136,265,177"/>
-<area shape="rect" id="node2" href="$classin_1_1teamnexus_1_1excelenium_1_1suite_1_1executor_1_1_script_executor_1_1_browser_runner.html#a7da54a376c3b0f2111a64feb5497f4e8" title=" " alt="" coords="313,37,604,79"/>
-<area shape="rect" id="node5" href="$classin_1_1teamnexus_1_1excelenium_1_1suite_1_1_suite_settings.html#a646b9cc3cf7c8ef32d2e83432d3b9ea6" title=" " alt="" coords="355,103,562,144"/>
-<area shape="rect" id="node6" href="$classin_1_1teamnexus_1_1excelenium_1_1suite_1_1_suite_config.html#a5935365cac4795c487512bb86979dd9d" title=" " alt="" coords="355,168,562,209"/>
-<area shape="rect" id="node7" href="$classin_1_1teamnexus_1_1excelenium_1_1suite_1_1util_1_1_web_driver_util.html#a139c58094434205bde98f59e4bed7283" title=" " alt="" coords="337,233,581,275"/>
-<area shape="rect" id="node3" href="$classin_1_1teamnexus_1_1excelenium_1_1suite_1_1_browser_config.html#ac8590ce88315f6eb9297cc0d5f126346" title=" " alt="" coords="652,5,859,47"/>
-<area shape="rect" id="node4" href="$classin_1_1teamnexus_1_1excelenium_1_1suite_1_1_suite_config.html#a0d43277d2b87bcaa0fa57e563d6c9198" title=" " alt="" coords="652,71,859,112"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,201,265,243"/>
+<area shape="rect" id="node2" href="$classin_1_1teamnexus_1_1excelenium_1_1suite_1_1executor_1_1_script_executor_1_1_browser_runner.html#a7da54a376c3b0f2111a64feb5497f4e8" title=" " alt="" coords="313,71,604,112"/>
+<area shape="rect" id="node5" href="$classin_1_1teamnexus_1_1excelenium_1_1suite_1_1util_1_1_web_driver_util.html#af99f3a22862e500a8d187d8d9e8a1584" title=" " alt="" coords="345,136,572,177"/>
+<area shape="rect" id="node7" href="$classin_1_1teamnexus_1_1excelenium_1_1suite_1_1_suite_settings.html#a646b9cc3cf7c8ef32d2e83432d3b9ea6" title=" " alt="" coords="355,201,562,243"/>
+<area shape="rect" id="node8" href="$classin_1_1teamnexus_1_1excelenium_1_1suite_1_1_suite_config.html#a5935365cac4795c487512bb86979dd9d" title=" " alt="" coords="355,267,562,308"/>
+<area shape="rect" id="node9" href="$classin_1_1teamnexus_1_1excelenium_1_1suite_1_1util_1_1_web_driver_util.html#a8fa6711286cfb2edfc77d31ae550e791" title=" " alt="" coords="337,332,581,373"/>
+<area shape="rect" id="node3" href="$classin_1_1teamnexus_1_1excelenium_1_1suite_1_1_browser_config.html#ac8590ce88315f6eb9297cc0d5f126346" title=" " alt="" coords="662,5,869,47"/>
+<area shape="rect" id="node4" href="$classin_1_1teamnexus_1_1excelenium_1_1suite_1_1_suite_config.html#a0d43277d2b87bcaa0fa57e563d6c9198" title=" " alt="" coords="662,71,869,112"/>
+<area shape="rect" id="node6" href="$classin_1_1teamnexus_1_1excelenium_1_1suite_1_1util_1_1_web_driver_util.html#a44bd60a1aef4484de9149ad4804c24e3" title=" " alt="" coords="652,136,879,177"/>
 </map>

@@ -9,7 +9,6 @@
  */
 package in.teamnexus.excelenium.suite.exception;
 
-// TODO: Auto-generated Javadoc
 /**
  * The exception class that represents the exceptions during script execution.
  */
@@ -24,7 +23,6 @@ public class ScriptException extends Exception
      */
     public ScriptException()
     {
-        // TODO Auto-generated constructor stub
     }
 
     /**

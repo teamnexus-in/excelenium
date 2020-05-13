@@ -7,7 +7,7 @@ var dir_6a81840f6aaf9c594ad082fb0347442d =
     [ "BrowserConfig.java", "_browser_config_8java.html", [
       [ "BrowserConfig", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1_browser_config.html", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1_browser_config" ]
     ] ],
-    [ "package-info.java", "package-info_8java.html", null ],
+    [ "package-info.java", "suite_2package-info_8java.html", null ],
     [ "SuiteConfig.java", "_suite_config_8java.html", [
       [ "SuiteConfig", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1_suite_config.html", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1_suite_config" ]
     ] ],

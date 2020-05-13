@@ -10,10 +10,16 @@ import in.teamnexus.excelenium.suite.exception.ScriptException;
 import in.teamnexus.excelenium.suite.script.Action;
 import in.teamnexus.excelenium.suite.util.WebDriverUtil;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class IsEnabledAction.
+ * Checks if the specified element is enabled.
  *
+ * Column | Description
+ * ----------|---------------
+ * **Element** | id or xpath of the element
+ * **Element Value** | None
+ * **Attribute Name** |None
+ * **Attribute Value** | None
+ * 
  * @author Prabhu
  */
 public class IsEnabledAction extends Action
@@ -27,15 +33,16 @@ public class IsEnabledAction extends Action
      * @throws Exception the exception
      */
     @Override
-    public boolean executeAction(WebDriver webDriver) throws Exception
+    protected boolean executeAction(WebDriver webDriver) throws Exception
     {
         boolean success = true;
         WebElement webElement = this.getWebElement(webDriver, this.element);
+        WebDriverUtil util = WebDriverUtil.getInstance();
         this.doPreProcess(webDriver, webElement);
 
         if (webElement.isEnabled())
         {
-            WebDriverUtil.highlightElement(webDriver, webElement);
+            util.highlightElement(webDriver, webElement);
             reportsLogger.info(this.getFullyQualifiedName() + " found " + this.element + " enabled");
         }
         else

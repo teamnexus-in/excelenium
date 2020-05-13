@@ -1,6 +1,5 @@
 var hierarchy =
 [
-    [ "in.teamnexus.excelenium.suite.script.Action.ActionType", "enumin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1_action_1_1_action_type.html", null ],
     [ "in.teamnexus.excelenium.suite.script.PostProcessAction.ActionType", "enumin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1_post_process_action_1_1_action_type.html", null ],
     [ "in.teamnexus.excelenium.suite.script.PreProcessAction.ActionType", "enumin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1_pre_process_action_1_1_action_type.html", null ],
     [ "in.teamnexus.excelenium.suite.BrowserConfig", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1_browser_config.html", null ],

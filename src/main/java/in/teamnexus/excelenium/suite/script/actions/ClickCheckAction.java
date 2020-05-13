@@ -9,9 +9,15 @@ import org.openqa.selenium.WebElement;
 import in.teamnexus.excelenium.suite.script.Action;
 import in.teamnexus.excelenium.suite.util.WebDriverUtil;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class ClickCheckAction.
+ * Generates a mouse click for the element selected
+ * 
+ * Column | Description
+ * ----------|---------------
+ * **Element** | id or xpath of the element
+ * **Element Value** | None
+ * **Attribute Name** |None
+ * **Attribute Value** | None
  *
  * @author Prabhu
  */
@@ -26,14 +32,14 @@ public class ClickCheckAction extends Action
      * @throws Exception the exception
      */
     @Override
-    public boolean executeAction(WebDriver webDriver) throws Exception
+    protected boolean executeAction(WebDriver webDriver) throws Exception
     {
         boolean success = true;
         WebElement webElement = getWebElement(webDriver, this.element);
 
         doPreProcess(webDriver, webElement);
 
-        WebDriverUtil.clickElement(webDriver, webElement);
+        WebDriverUtil.getInstance().clickElement(webDriver, webElement);
         
         return success;
     }

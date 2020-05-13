@@ -9,9 +9,15 @@ import org.openqa.selenium.WebElement;
 import in.teamnexus.excelenium.suite.exception.ScriptException;
 import in.teamnexus.excelenium.suite.script.Action;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class CheckAttributeAction.
+ * Checks if the attribute is with the value specified is set for the element..
+ *
+ * Column | Description
+ * ----------|---------------
+ * **Element** | id or xpath of the element
+ * **Element Value** | None
+ * **Attribute Name** | Name of the attribute
+ * **Attribute Value** | Value of the attribute
  *
  * @author Prabhu
  */
@@ -26,7 +32,7 @@ public class CheckAttributeAction extends Action
      * @throws Exception the exception
      */
     @Override
-    public boolean executeAction(WebDriver webDriver) throws Exception
+    protected boolean executeAction(WebDriver webDriver) throws Exception
     {
         boolean success = true;
         WebElement webElement = this.getWebElement(webDriver, this.element);

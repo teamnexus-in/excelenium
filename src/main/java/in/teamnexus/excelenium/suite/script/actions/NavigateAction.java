@@ -8,9 +8,15 @@ import org.openqa.selenium.WebDriver;
 import in.teamnexus.excelenium.suite.exception.ScriptException;
 import in.teamnexus.excelenium.suite.script.Action;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class NavigateAction.
+ * Navigates back/forward/to a particular URL.
+ *
+ * Column | Description
+ * ----------|---------------
+ * **Element** | One of the values - `back`, `forward`, `refresh` or a url string
+ * **Element Value** | None
+ * **Attribute Name** |None
+ * **Attribute Value** | None
  *
  * @author Prabhu
  */
@@ -25,7 +31,7 @@ public class NavigateAction extends Action
      * @throws Exception the exception
      */
     @Override
-    public boolean executeAction(WebDriver webDriver) throws Exception
+    protected boolean executeAction(WebDriver webDriver) throws Exception
     {
         boolean success = true;
         if ("back".equalsIgnoreCase(this.element))

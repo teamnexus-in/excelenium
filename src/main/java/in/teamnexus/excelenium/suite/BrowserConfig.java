@@ -1,8 +1,7 @@
 package in.teamnexus.excelenium.suite;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class BrowserConfig.
+ * Defines the configuration of the browser to be used in the test - enabled, the driver path etc
  */
 public class BrowserConfig
 {
@@ -13,7 +12,7 @@ public class BrowserConfig
     /** The enabled. */
     boolean enabled;
     
-    /** The driver path. */
+    /** Absolute path to the web driver executable of the browser */
     String driverPath;
 
     /**

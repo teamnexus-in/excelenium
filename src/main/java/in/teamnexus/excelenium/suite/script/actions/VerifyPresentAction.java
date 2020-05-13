@@ -9,10 +9,17 @@ import org.openqa.selenium.WebElement;
 import in.teamnexus.excelenium.suite.script.Action;
 import in.teamnexus.excelenium.suite.util.WebDriverUtil;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class VerifyPresentAction.
- *
+ * Verifies if an element is present in the DOM even if it visible or not. 
+ * Use IS_VISIBLE to check if the element is displayed.
+ * 
+ * Column | Description
+ * ----------|---------------
+ * **Element** | id or xpath of the element
+ * **Element Value** | None
+ * **Attribute Name** |None
+ * **Attribute Value** | None
+
  * @author Prabhu
  */
 public class VerifyPresentAction extends Action
@@ -25,15 +32,16 @@ public class VerifyPresentAction extends Action
      * @return true, if successful
      */
     @Override
-    public boolean executeAction(WebDriver webDriver)
+    protected boolean executeAction(WebDriver webDriver)
     {
         boolean success = true;
         WebElement webElement = this.getWebElement(webDriver, this.element);
+        WebDriverUtil util = WebDriverUtil.getInstance();
       
         this.doPreProcess(webDriver, webElement);
         if (webElement != null)
         {
-            WebDriverUtil.highlightElement(webDriver, webElement);
+            util.highlightElement(webDriver, webElement);
         }
 
         return success;

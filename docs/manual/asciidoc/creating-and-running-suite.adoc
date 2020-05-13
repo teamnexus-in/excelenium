@@ -200,10 +200,10 @@ The following action types are available in ```excelenium``` and are described i
 |Checks if the attribute is with the value specified is set for the element.
 
 |*ACCEPT_POPUP* 
-|Selects ```OK```/```Yes``` when the browser popup is displayed.
+|Selects ```OK```/```Yes``` when the browser popup is displayed. Popup here refers to the native popup and not the modals generated using JavaScript
 
 |*DISMISS_POPUP* 
-|Selects ```Cancel```/```No``` when the browser popup is displayed.
+|Selects ```Cancel```/```No``` when the browser popup is displayed. Popup here refers to the native popup and not the modals generated using JavaScript
 
 |*SWITCH_TO_IFRAME* 
 |Switch to iframe specified.
@@ -236,10 +236,10 @@ The following action types are available in ```excelenium``` and are described i
 |Switches to the specified window/tab - based on index from 0 to n.
 
 |*EXECUTE_JAVASCRIPT* 
-|Executes a specified JavaScript file.
+|Executes the provided JavaScript file.
 
 |*WAIT_MSECS* 
-|Wait for the specified milliseconds before performing the next action.
+|Wait for the specified milliseconds before performing the next action. This is in addition to the implicit waits provided in Selenium.
 
 |*IS_ENABLED* 
 |Checks if the specified element is enabled
@@ -248,7 +248,7 @@ The following action types are available in ```excelenium``` and are described i
 |Checks if the specified element is disabled
 
 |*SET_WINDOW_SIZE* 
-|Sets the window size of the browser based on the width and height specified.
+|   
 
 |*COMPARE_URL* 
 |Compares the current browser url with the provided url considering the options - starts_with and full_url.
@@ -282,7 +282,7 @@ Also, the ```result``` hashmap object should have an entry ```status``` which is
 |Makes a GET request and stores the response in the variable name specified.
 
 |*HOVER* 
-|Hovers the mouse on the specified element
+|Hovers the mouse pointer on the specified element
 
 |*DRAG_AND_DROP* 
 |Drag and drop the source element to target element
@@ -347,17 +347,15 @@ The following table explains the possible values in the columns of the <<Action 
 
 |*VERIFY_TEXT* 
 |```id``` or ```xpath``` of the element 
-|Text value to be verified a
-|
-One of following options - *starts_with:* compares if the text of the element starts with the provided text.
+|Text value to be verified
+| One of following options 
+*starts_with:* compares if the text of the element starts with the provided text.
 
 *ends_with:* compares if the text element ends with the provided text.
 
 **contains:**checks if the text of the element contains the provided text
 
 *full_text:* compares the text of the element to the provided text
-
-
 |None
 
 |*VERIFY_PRESENT* 
@@ -451,20 +449,20 @@ One of following options - *starts_with:* compares if the text of the element st
 |None
 
 |*SWITCH_TO_WINDOW* 
-|None 
 |0 based index, where 0 always indicates the main window and subsequent windows opened are numbers sequentially 
+|None 
 |None 
 |None
 
 |*EXECUTE_JAVASCRIPT* 
-|JS file 
+|absolute path to the JavaScript file
 |None 
 |None 
 |None
 
 |*WAIT_MSECS* 
-|None 
 |Time to wait in milliseconds before executing next action 
+|None 
 |None 
 |None
 
@@ -487,8 +485,11 @@ One of following options - *starts_with:* compares if the text of the element st
 |None
 
 |*COMPARE_URL* 
-|Url to compare against the current browser url a
-|One of following options - *starts_with:* compares if the current browser url starts with the provided url. The url might contain additional query parameters that might need to be ignored. *ends_with:* compares if the current browser url ends with the provided url.
+|Url to compare against the current browser url
+|One of following options - 
+*starts_with:* compares if the current browser url starts with the provided url. The url might contain additional query parameters that might need to be ignored. 
+
+*ends_with:* compares if the current browser url ends with the provided url.
 
 **contains:**checks if the browser url contains the provided text
 
@@ -497,8 +498,8 @@ One of following options - *starts_with:* compares if the text of the element st
 |None
 
 |*RUN_SCRIPT* 
-|bsh or groovy script file 
-|None 
+|absolute path base directory that contains the bsh or groovy script files
+|file name with extension (.bsh or .groovy)
 |None 
 |None
 
@@ -509,8 +510,8 @@ One of following options - *starts_with:* compares if the text of the element st
 |None
 
 |*SCROLL_WINDOW_BY* 
-|x pixels to scroll 
-|y pixels to scroll 
+|number of ```x``` pixels to scroll
+|number of ```y``` pixels to scrolly pixels to scroll 
 |None 
 |None
 
@@ -551,7 +552,7 @@ One of following options - *starts_with:* compares if the text of the element st
 |None
 
 |*CHECK_CSS_ATTRIBUTE* 
-|```id``` or ``````xpath`````` of element 
+|```id``` or ```xpath``` of element 
 |Css attribute name 
 |Css attribute value 
 |None

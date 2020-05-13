@@ -21,9 +21,8 @@ import com.google.common.base.Stopwatch;
 
 import in.teamnexus.excelenium.suite.exception.ScriptException;
 
-// TODO: Auto-generated Javadoc
 /**
- * Represents the script sheet in the excel which is a collection of objects.
+ * Represents the script sheet in the spreadsheet which is a collection of actions.
  */
 public class Script implements Executable
 {

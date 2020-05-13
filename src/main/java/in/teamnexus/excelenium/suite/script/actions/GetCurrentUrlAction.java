@@ -8,10 +8,16 @@ import org.openqa.selenium.WebDriver;
 import in.teamnexus.excelenium.suite.script.Action;
 import in.teamnexus.excelenium.suite.util.WebDriverUtil;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class GetCurrentUrlAction.
- *
+ * Gets the current url of the current focused window and saves it to the variable specified.
+ * 
+ * Column | Description
+ * ----------|---------------
+ * **Element** | Variable name to store the url
+ * **Element Value** | None
+ * **Attribute Name** |None
+ * **Attribute Value** | None
+ * 
  * @author Prabhu
  */
 public class GetCurrentUrlAction extends Action
@@ -24,11 +30,11 @@ public class GetCurrentUrlAction extends Action
      * @return true, if successful
      */
     @Override
-    public boolean executeAction(WebDriver webDriver)
+    protected boolean executeAction(WebDriver webDriver)
     {
         boolean success = true;
         
-        WebDriverUtil.getCurrentUrl(webDriver, this.element);
+        WebDriverUtil.getInstance().getCurrentUrl(webDriver, this.element);
         
         return success;
     }

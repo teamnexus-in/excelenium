@@ -6,5 +6,6 @@ var dir_a6f8a7f3d7ff52fb53292b47209f60b4 =
     [ "suite", "dir_6a81840f6aaf9c594ad082fb0347442d.html", "dir_6a81840f6aaf9c594ad082fb0347442d" ],
     [ "ExceleniumApplication.java", "_excelenium_application_8java.html", [
       [ "ExceleniumApplication", "classin_1_1teamnexus_1_1excelenium_1_1_excelenium_application.html", "classin_1_1teamnexus_1_1excelenium_1_1_excelenium_application" ]
-    ] ]
+    ] ],
+    [ "package-info.java", "package-info_8java.html", null ]
 ];

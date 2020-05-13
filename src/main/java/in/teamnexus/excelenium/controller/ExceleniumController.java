@@ -2,7 +2,6 @@ package in.teamnexus.excelenium.controller;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Files;
 import java.util.Map;
 import java.util.Optional;
 
@@ -110,6 +109,7 @@ public class ExceleniumController
     @ResponseBody
     public String saveSuite(@RequestBody SuiteConfig config) throws Exception
     {
+        // TODO: Fix response
         ObjectMapper mapper = new ObjectMapper();
         String data = mapper.writeValueAsString(config);
         service.saveConfig(config);
@@ -121,7 +121,7 @@ public class ExceleniumController
     @ResponseBody
     public String run(@RequestParam String suiteName) throws ConfigException, Exception
     {
-        // TODO: Fix send
+        // TODO: Fix response
         service.runSuite(suiteName);
         return "{\"success\": true}";
     }

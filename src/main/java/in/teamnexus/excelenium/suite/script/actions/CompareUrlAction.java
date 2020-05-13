@@ -8,10 +8,17 @@ import org.openqa.selenium.WebDriver;
 import in.teamnexus.excelenium.suite.exception.ScriptException;
 import in.teamnexus.excelenium.suite.script.Action;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class CompareUrlAction.
- *
+ * Compares the current browser url with the provided url considering the options - `starts_with`, `ends_with`, `contains` and `full_url`.
+ * 
+ * Column | Description
+ * ----------|---------------
+ * **Element** | Url to compare against the current browser url
+ * **Element Value** | One of following options -<br/> **starts_with** : compares if the current browser url starts with the provided url. The url might contain additional query parameters that might need to be ignored.<br/> **ends_with** : compares if the current browser url ends with the provided url.<br/> **contains** : checks if the browser url contains the provided text.<br/> **full_url** : compares the entire url.
+ * **Attribute Name** |None
+ * **Attribute Value** | None
+ * 
+ * 
  * @author Prabhu
  */
 public class CompareUrlAction extends Action
@@ -25,7 +32,7 @@ public class CompareUrlAction extends Action
      * @throws Exception the exception
      */
     @Override
-    public boolean executeAction(WebDriver webDriver) throws Exception
+    protected boolean executeAction(WebDriver webDriver) throws Exception
     {
         boolean success = true;
         

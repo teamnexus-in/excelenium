@@ -3,6 +3,7 @@ var suiteController;
 var suiteModel;
 
 $(document).ready(function () {
+    actions.main.sort();
     bsCustomFileInput.init()
 
     toastr.options.closeButton = true;

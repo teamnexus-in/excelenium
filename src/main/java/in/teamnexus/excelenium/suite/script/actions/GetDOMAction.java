@@ -9,10 +9,16 @@ import org.openqa.selenium.WebElement;
 import in.teamnexus.excelenium.suite.script.Action;
 import in.teamnexus.excelenium.suite.util.WebDriverUtil;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class GetDOMAction.
- *
+ * Gets the dom of the specified element and stores in the variable name specified.
+ * 
+ * Column | Description
+ * ----------|---------------
+ * **Element** | id or xpath of the element
+ * **Element Value** | Variable name to store the DOM
+ * **Attribute Name** |None
+ * **Attribute Value** | None
+ * 
  * @author Prabhu
  */
 public class GetDOMAction extends Action
@@ -25,14 +31,14 @@ public class GetDOMAction extends Action
      * @return true, if successful
      */
     @Override
-    public boolean executeAction(WebDriver webDriver)
+    protected boolean executeAction(WebDriver webDriver)
     {
         boolean success = true;
         WebElement webElement = this.getWebElement(webDriver, this.element);
         this.doPreProcess(webDriver, webElement);
 
         String dom = webElement.getAttribute("outerHTML");
-        WebDriverUtil.setVariable(this.elementValue, dom);
+        WebDriverUtil.getInstance().setVariable(this.elementValue, dom);
         
         return success;
     }

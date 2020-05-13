@@ -7,9 +7,15 @@ import org.openqa.selenium.WebDriver;
 
 import in.teamnexus.excelenium.suite.script.Action;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class WaitMsecsAction.
+ * Wait for the specified milliseconds before performing the next action. This is in addition to the implicit waits provided in Selenium.
+ *
+ * Column | Description
+ * ----------|---------------
+ * **Element** | Time to wait in milliseconds before executing next action
+ * **Element Value** | None
+ * **Attribute Name** |None
+ * **Attribute Value** | None
  *
  * @author Prabhu
  */
@@ -24,11 +30,11 @@ public class WaitMsecsAction extends Action
      * @throws Exception the exception
      */
     @Override
-    public boolean executeAction(WebDriver webDriver) throws Exception
+    protected boolean executeAction(WebDriver webDriver) throws Exception
     {
         boolean success = true;
         
-        Thread.sleep(Long.parseLong(this.elementValue));
+        Thread.sleep(Long.parseLong(this.element));
 
         return success;
     }

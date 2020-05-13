@@ -7,10 +7,16 @@ import org.openqa.selenium.WebDriver;
 
 import in.teamnexus.excelenium.suite.script.Action;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class DeleteCookieAction.
- *
+ * Deletes the specified cookie
+ * 
+ * Column | Description
+ * ----------|---------------
+ * **Element** | cookie name
+ * **Element Value** | None
+ * **Attribute Name** |None
+ * **Attribute Value** | None
+ * 
  * @author Prabhu
  */
 public class DeleteCookieAction extends Action
@@ -23,7 +29,7 @@ public class DeleteCookieAction extends Action
      * @return true, if successful
      */
     @Override
-    public boolean executeAction(WebDriver webDriver)
+    protected boolean executeAction(WebDriver webDriver)
     {
         boolean success = true;
         

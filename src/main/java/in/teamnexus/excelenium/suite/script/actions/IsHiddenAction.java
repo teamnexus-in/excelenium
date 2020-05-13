@@ -9,10 +9,16 @@ import org.openqa.selenium.WebElement;
 import in.teamnexus.excelenium.suite.exception.ScriptException;
 import in.teamnexus.excelenium.suite.script.Action;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class IsHiddenAction.
- *
+ * Verifies if an element is hidden and not displayed.
+ * 
+ * Column | Description
+ * ----------|---------------
+ * **Element** | id or xpath of the element
+ * **Element Value** | None
+ * **Attribute Name** |None
+ * **Attribute Value** | None
+
  * @author Prabhu
  */
 public class IsHiddenAction extends Action
@@ -26,7 +32,7 @@ public class IsHiddenAction extends Action
      * @throws Exception the exception
      */
     @Override
-    public boolean executeAction(WebDriver webDriver) throws Exception
+    protected boolean executeAction(WebDriver webDriver) throws Exception
     {
         boolean success = true;
         WebElement webElement = this.getWebElement(webDriver, this.element);

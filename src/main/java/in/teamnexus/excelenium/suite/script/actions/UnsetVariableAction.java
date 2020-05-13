@@ -5,9 +5,17 @@ import org.openqa.selenium.WebDriver;
 import in.teamnexus.excelenium.suite.script.Action;
 import in.teamnexus.excelenium.suite.util.WebDriverUtil;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class UnsetVariableAction.
+ * Unsets a variable that has already been set.
+ *
+ * Column | Description
+ * ----------|---------------
+ * **Element** | variable name to be unset
+ * **Element Value** | None
+ * **Attribute Name** |None
+ * **Attribute Value** | None
+ * 
+ * @author Prabhu
  */
 public class UnsetVariableAction extends Action
 {
@@ -19,11 +27,11 @@ public class UnsetVariableAction extends Action
      * @return true, if successful
      */
     @Override
-    public boolean executeAction(WebDriver webDriver)
+    protected boolean executeAction(WebDriver webDriver)
     {
         boolean success = true;
         
-        WebDriverUtil.unsetVariable(this.element);
+        WebDriverUtil.getInstance().unsetVariable(this.element);
         
         return success;
     }

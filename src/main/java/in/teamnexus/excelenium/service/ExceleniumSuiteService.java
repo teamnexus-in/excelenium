@@ -9,9 +9,8 @@ import in.teamnexus.excelenium.suite.SuiteConfig;
 import in.teamnexus.excelenium.suite.exception.ConfigException;
 import in.teamnexus.excelenium.suite.executor.ScriptExecutor;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class ExceleniumSuiteService.
+ * The SuiteService implementation that the ExceleniumController uses to execute the scripts
  */
 public class ExceleniumSuiteService implements SuiteService
 {

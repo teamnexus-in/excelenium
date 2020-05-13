@@ -15,13 +15,14 @@ import in.teamnexus.excelenium.suite.script.Action;
  * area. Optionally can also do a submit in case of search boxes etc. *
  * 
  * Values expected
- * 
- * <b>Element</b> - id or xpath of the element <br/>
- * <b>Element Value</b> - Value to be filled in that element<br/>
- * <b>Attribute Name</b> - true/false to indicate if the field needs to be submitted i.e., Enter key
- * pressed. For example, "Search". <b>Default: </b> false<br/>
- * <b>Attribute Value </b> - None
- * 
+
+ * Column | Description
+ * ----------|---------------
+ * **Element** | id or xpath of the element
+ * **Element Value** | Value to be filled in that element
+ * **Attribute Name** |true/false to indicate if the field needs to be submitted i.e., Enter key pressed. For example, "Search".
+ * **Attribute Value** | None
+
  * @author Prabhu
  */
 public class FillAction extends Action
@@ -38,7 +39,7 @@ public class FillAction extends Action
      * @return true, if successful
      */
     @Override
-    public boolean executeAction(WebDriver webDriver)
+    protected boolean executeAction(WebDriver webDriver)
     {
         logger.info("In FillAction:" + this.getFullyQualifiedName() + " " + this.element + " " + this.elementValue);
         boolean success = true;

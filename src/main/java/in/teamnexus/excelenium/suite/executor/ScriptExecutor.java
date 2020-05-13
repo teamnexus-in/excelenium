@@ -36,7 +36,6 @@ import in.teamnexus.excelenium.suite.exception.ScriptException;
 import in.teamnexus.excelenium.suite.script.Script;
 import in.teamnexus.excelenium.suite.util.WebDriverUtil;
 
-// TODO: Auto-generated Javadoc
 /**
  * The class that executes all the scripts that are marked as <b>TRUE</b> in the
  * <b>settings</b> sheet of the xlsx.
@@ -265,7 +264,7 @@ public class ScriptExecutor
                 try
                 {
                     driver.manage().window().maximize();
-                    WebDriverUtil.initializeWindowHandles(driver);
+                    WebDriverUtil.getInstance().initializeWindowHandles(driver);
                     driver.get(suiteConfig.getSettings().getServerUrl());
                     executeScripts(driver);
                     logger.info("**** Finished executing the script. WebDriver will close in a few moments");

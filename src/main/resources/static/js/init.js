@@ -11,7 +11,9 @@ $(document).ready(function () {
     });
 
     $('#btn-new').click(function () {
+        console.log("savedSuite", sessionStorage.getItem('savedSuite'));
         sessionStorage.removeItem('savedSuite');
+        
         document.location.href = "/suite"
     });
 

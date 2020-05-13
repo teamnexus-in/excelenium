@@ -24,9 +24,8 @@ import in.teamnexus.excelenium.service.ExceleniumSuiteService;
 import in.teamnexus.excelenium.service.SuiteService;
 import in.teamnexus.excelenium.suite.executor.ScriptExecutor;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class RootConfig.
+ * The Class that holds all the beans created in the Spring Boot application context
  */
 @Configuration
 @EnableWebMvc

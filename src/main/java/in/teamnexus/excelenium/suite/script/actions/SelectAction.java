@@ -13,10 +13,16 @@ import org.slf4j.LoggerFactory;
 
 import in.teamnexus.excelenium.suite.script.Action;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class SelectAction.
+ * Selects the option in the drop down as specified in the Element Value column. A special variable `<#random>` can be used to randomly select one of the values in the dropdown.
  *
+ * Column | Description
+ * ----------|---------------
+ * **Element** | id or xpath of the element
+ * **Element Value** | Text value of the item to be selected or `<#random>` to randomly select one of the items in the dropdown
+ * **Attribute Name** |None
+ * **Attribute Value** | None
+
  * @author Prabhu
  */
 public class SelectAction extends Action
@@ -32,7 +38,7 @@ public class SelectAction extends Action
      * @return true, if successful
      */
     @Override
-    public boolean executeAction(WebDriver webDriver)
+    protected boolean executeAction(WebDriver webDriver)
     {
         boolean success = true;
         WebElement webElement = this.getWebElement(webDriver, this.element);

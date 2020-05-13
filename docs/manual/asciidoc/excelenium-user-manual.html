@@ -1299,11 +1299,11 @@ Script once deleted cannot be undone.
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>ACCEPT_POPUP</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Selects <code><code>OK</code></code>/<code><code>Yes</code></code> when the browser popup is displayed.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Selects <code><code>OK</code></code>/<code><code>Yes</code></code> when the browser popup is displayed. Popup here refers to the native popup and not the modals generated using JavaScript</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>DISMISS_POPUP</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Selects <code><code>Cancel</code></code>/<code><code>No</code></code> when the browser popup is displayed.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Selects <code><code>Cancel</code></code>/<code><code>No</code></code> when the browser popup is displayed. Popup here refers to the native popup and not the modals generated using JavaScript</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>SWITCH_TO_IFRAME</strong></p></td>
@@ -1347,11 +1347,11 @@ Script once deleted cannot be undone.
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>EXECUTE_JAVASCRIPT</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Executes a specified JavaScript file.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Executes the provided JavaScript file.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>WAIT_MSECS</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Wait for the specified milliseconds before performing the next action.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Wait for the specified milliseconds before performing the next action. This is in addition to the implicit waits provided in Selenium.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>IS_ENABLED</strong></p></td>
@@ -1363,7 +1363,7 @@ Script once deleted cannot be undone.
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>SET_WINDOW_SIZE</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Sets the window size of the browser based on the width and height specified.</p></td>
+<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>COMPARE_URL</strong></p></td>
@@ -1397,7 +1397,7 @@ Script once deleted cannot be undone.
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>HOVER</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Hovers the mouse on the specified element</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Hovers the mouse pointer on the specified element</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>DRAG_AND_DROP</strong></p></td>
@@ -1486,8 +1486,9 @@ Script once deleted cannot be undone.
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>VERIFY_TEXT</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><code>id</code></code> or <code><code>xpath</code></code> of the element</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Text value to be verified a</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">One of following options - <strong>starts_with:</strong> compares if the text of the element starts with the provided text.</p>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Text value to be verified</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">One of following options
+<strong>starts_with:</strong> compares if the text of the element starts with the provided text.</p>
 <p class="tableblock"><strong>ends_with:</strong> compares if the text element ends with the provided text.</p>
 <p class="tableblock"><strong>contains:</strong>checks if the text of the element contains the provided text</p>
 <p class="tableblock"><strong>full_text:</strong> compares the text of the element to the provided text</p></td>
@@ -1600,22 +1601,22 @@ Script once deleted cannot be undone.
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>SWITCH_TO_WINDOW</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0 based index, where 0 always indicates the main window and subsequent windows opened are numbers sequentially</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>EXECUTE_JAVASCRIPT</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">JS file</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">absolute path to the JavaScript file</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>WAIT_MSECS</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Time to wait in milliseconds before executing next action</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
 </tr>
@@ -1642,8 +1643,10 @@ Script once deleted cannot be undone.
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>COMPARE_URL</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Url to compare against the current browser url a</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">One of following options - <strong>starts_with:</strong> compares if the current browser url starts with the provided url. The url might contain additional query parameters that might need to be ignored. <strong>ends_with:</strong> compares if the current browser url ends with the provided url.</p>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Url to compare against the current browser url</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">One of following options -
+<strong>starts_with:</strong> compares if the current browser url starts with the provided url. The url might contain additional query parameters that might need to be ignored.</p>
+<p class="tableblock"><strong>ends_with:</strong> compares if the current browser url ends with the provided url.</p>
 <p class="tableblock"><strong>contains:</strong>checks if the browser url contains the provided text</p>
 <p class="tableblock"><strong>full_url:</strong> compares the entire url</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
@@ -1651,8 +1654,8 @@ Script once deleted cannot be undone.
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>RUN_SCRIPT</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">bsh or groovy script file</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">absolute path base directory that contains the bsh or groovy script files</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">file name with extension (.bsh or .groovy)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
 </tr>
@@ -1665,8 +1668,8 @@ Script once deleted cannot be undone.
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>SCROLL_WINDOW_BY</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">x pixels to scroll</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">y pixels to scroll</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">number of <code><code>x</code></code> pixels to scroll</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">number of <code><code>y</code></code> pixels to scrolly pixels to scroll</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
 </tr>
@@ -1714,7 +1717,7 @@ Script once deleted cannot be undone.
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>CHECK_CSS_ATTRIBUTE</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code><code>id</code></code> or <code><code></code>`xpath<code></code></code>` of element</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><code>id</code></code> or <code><code>xpath</code></code> of element</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Css attribute name</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Css attribute value</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
@@ -1774,7 +1777,7 @@ Script once deleted cannot be undone.
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-05-07 03:08:35 +0530
+Last updated 2020-05-13 22:32:56 +0530
 </div>
 </div>
 </body>
