@@ -125,5 +125,12 @@ public class ExceleniumController
         service.runSuite(suiteName);
         return "{\"success\": true}";
     }
+    
+    @GetMapping(path="/getSuite", produces = "application/json")
+    @ResponseBody
+    public SuiteConfig getSuite(@RequestParam String suiteName)
+    {
+        return service.getSuite(suiteName);
+    }
 
 }

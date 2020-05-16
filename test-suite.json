@@ -1,0 +1,78 @@
+{
+  "name": "TestSuite",
+  "settings": {
+    "name": "TestSuite",
+    "serverUrl": "http://localhost:8080/",
+    "browsers": [
+      {
+        "enabled": false,
+        "name": "chrome",
+        "driverPath": ""
+      },
+      {
+        "enabled": true,
+        "name": "firefox",
+        "driverPath": "D:/Progs/selenium/webdrivers/geckodriver/geckodriver.exe"
+      },
+      {
+        "enabled": false,
+        "name": "edge",
+        "driverPath": ""
+      },
+      {
+        "enabled": false,
+        "name": "opera",
+        "driverPath": ""
+      },
+      {
+        "enabled": false,
+        "name": "safari",
+        "driverPath": ""
+      }
+    ],
+    "userAgent": {
+      "enabled": false,
+      "value": ""
+    },
+    "runConcurrent": false
+  },
+  "scripts": [
+    {
+      "name": "Test Script",
+      "run": true,
+      "stopOnError": false,
+      "actions": [
+        {
+          "execute": true,
+          "stopOnError": true,
+          "actionName": "clickNew",
+          "actionType": "CLICK",
+          "element": "btn-new",
+          "elementValue": "",
+          "attributeName": "",
+          "attributeValue": ""
+        },
+        {
+          "execute": true,
+          "stopOnError": true,
+          "actionName": "fillSuite",
+          "actionType": "FILL",
+          "element": "tb-suite-name",
+          "elementValue": "Test Suite",
+          "attributeName": "",
+          "attributeValue": ""
+        },
+        {
+          "execute": true,
+          "stopOnError": true,
+          "actionName": "fillUrl",
+          "actionType": "FILL",
+          "element": "tb-server-url",
+          "elementValue": "http://localhost:8080",
+          "attributeName": "",
+          "attributeValue": ""
+        }
+      ]
+    }
+  ]
+}

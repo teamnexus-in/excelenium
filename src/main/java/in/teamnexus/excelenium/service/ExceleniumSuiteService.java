@@ -49,7 +49,15 @@ public class ExceleniumSuiteService implements SuiteService
     public void saveConfig(SuiteConfig config)
     {
         suiteMap.put(config.getName(), config);
-        logger.debug(suiteMap.toString());
+        logger.debug("In Suite Service: " + suiteMap.toString());
+    }
+
+    @Override
+    public SuiteConfig getSuite(String suiteName)
+    {
+        SuiteConfig suiteConfig = suiteMap.get(suiteName);
+        logger.debug("Returning config for: " + suiteName + " " + suiteConfig);
+        return suiteConfig;
     }
 
     /**
@@ -71,4 +79,6 @@ public class ExceleniumSuiteService implements SuiteService
     {
         this.executor = executor;
     }
+
+
 }

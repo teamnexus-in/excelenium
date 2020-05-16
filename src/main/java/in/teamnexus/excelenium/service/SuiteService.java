@@ -28,4 +28,11 @@ public interface SuiteService
      * @throws ConfigException the config exception
      */
     void runSuite(String suiteName) throws ConfigException;
+    
+    /**
+     * Returns the suite Json of the specified suiteName
+     * @param suiteName - name of the suite
+     * @return
+     */
+    SuiteConfig getSuite(String suiteName);
 }
