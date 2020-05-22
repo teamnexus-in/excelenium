@@ -107,12 +107,12 @@ public class ExceleniumController
 
     @PostMapping(path = "/save", consumes = "application/json", produces = "application/json")
     @ResponseBody
-    public String saveSuite(@RequestBody SuiteConfig config) throws Exception
+    public String saveSuite(@RequestBody SuiteConfig suite) throws Exception
     {
         // TODO: Fix response
         ObjectMapper mapper = new ObjectMapper();
-        String data = mapper.writeValueAsString(config);
-        service.saveConfig(config);
+        String data = mapper.writeValueAsString(suite);
+        service.saveSuite(suite);
         logger.debug("Saving:" + data);
         return "{\"success\": true}";
     }

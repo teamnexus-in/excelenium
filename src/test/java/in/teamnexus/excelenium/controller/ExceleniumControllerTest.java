@@ -4,11 +4,13 @@
 package in.teamnexus.excelenium.controller;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.xpath;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
@@ -67,7 +69,7 @@ class ExceleniumControllerTest
 
     @Autowired
     SuiteService suiteService;
-    
+
     @Autowired
     SpringTemplateEngine templateEngine;
 
@@ -159,13 +161,12 @@ class ExceleniumControllerTest
         logger.info("Testing /getSuite");
         String suiteContent = FileUtils.readFileToString(new File("test-suite.json"), "UTF-8");
         mockMvc.perform(post("/save").contentType(MediaType.APPLICATION_JSON).content(suiteContent)).andExpect(status().isOk());
-        ResultActions actions = mockMvc.perform(get("/getSuite?suiteName=TestSuite")).andDo(print()).andExpect(status().isOk());
-
-        MvcResult result = actions.andReturn();
-        String content = result.getResponse().getContentAsString();
-        ObjectMapper mapper = new ObjectMapper();
-        SuiteConfig config = mapper.readValue(content, SuiteConfig.class);
-        assertThat("TestSuite".equals(config.getName()));
+        mockMvc.perform(get("/getSuite?suiteName=TestSuite")).andDo(print()).
+                andExpect(status().isOk()).
+                andExpect(jsonPath("$.name", is("TestSuite"))).
+                andExpect(jsonPath("$.settings.serverUrl", is("http://localhost:8080/"))).
+                andExpect(jsonPath("$.settings.browsers[1].name", is("firefox"))).
+                andExpect(jsonPath("$.scripts[0].name", is("Test Script")));
     }
 
     /**

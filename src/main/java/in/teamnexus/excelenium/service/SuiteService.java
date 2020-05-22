@@ -19,7 +19,7 @@ public interface SuiteService
      *
      * @param config the config
      */
-    void saveConfig(SuiteConfig config);
+    void saveSuite(SuiteConfig config);
     
     /**
      * Run suite.
