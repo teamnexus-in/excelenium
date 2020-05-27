@@ -2,6 +2,8 @@ package in.teamnexus.excelenium.suite;
 
 import java.util.List;
 
+import in.teamnexus.excelenium.service.ServiceResponse;
+
 /**
  * The Class that holds the Suite Settings - suite name, serverUrl and the browser configs.
  */
@@ -75,6 +77,27 @@ public class SuiteSettings
     public void setBrowsers(List<BrowserConfig> browsers)
     {
         this.browsers = browsers;
+    }
+
+    public void validate(ServiceResponse response)
+    {
+        if(this.name == null || this.name.isEmpty())
+        {
+            response.setStatus(ServiceResponse.STATUS_FAILURE);
+            response.addMessage("Suite name is empty");
+        }
+        
+        if(this.serverUrl == null || this.serverUrl.isEmpty())
+        {
+            response.setStatus(ServiceResponse.STATUS_FAILURE);
+            response.addMessage("Server Url is empty. Please enter a valid url");
+        }
+        
+        for (BrowserConfig browserConfig : this.browsers)
+        {
+            browserConfig.validate(response);
+        }
+        
     }
 
 }

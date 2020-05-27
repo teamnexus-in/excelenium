@@ -81,4 +81,12 @@ public class ExceleniumSuiteService implements SuiteService
     }
 
 
+    @Override
+    public ServiceResponse validateSuite(SuiteConfig suite)
+    {
+        ServiceResponse response = suite.validate();
+        return response;
+    }
+
+
 }

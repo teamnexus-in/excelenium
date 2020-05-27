@@ -112,6 +112,7 @@ public class ExceleniumController
         // TODO: Fix response
         ObjectMapper mapper = new ObjectMapper();
         String data = mapper.writeValueAsString(suite);
+        service.validateSuite(suite);
         service.saveSuite(suite);
         logger.debug("Saving:" + data);
         return "{\"success\": true}";

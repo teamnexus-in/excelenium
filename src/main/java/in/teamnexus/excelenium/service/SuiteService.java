@@ -35,4 +35,6 @@ public interface SuiteService
      * @return
      */
     SuiteConfig getSuite(String suiteName);
+
+    ServiceResponse validateSuite(SuiteConfig suite);
 }

@@ -1,5 +1,9 @@
 package in.teamnexus.excelenium.suite;
 
+import java.io.File;
+
+import in.teamnexus.excelenium.service.ServiceResponse;
+
 /**
  * Defines the configuration of the browser to be used in the test - enabled, the driver path etc
  */
@@ -73,6 +77,19 @@ public class BrowserConfig
     public void setDriverPath(String driverPath)
     {
         this.driverPath = driverPath;
+    }
+
+    public void validate(ServiceResponse response)
+    {
+        if(isEnabled())
+        {
+            File file = new File(driverPath);
+            if(!file.exists())
+            {
+                response.setStatus(ServiceResponse.STATUS_FAILURE);
+                response.addMessage(String.format("%s %s %s - %s - %s ", "Browser driver path for", name, "is invalid", driverPath, "does not exist"));
+            }
+        }
     }
 
 }

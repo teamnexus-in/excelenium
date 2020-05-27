@@ -2,6 +2,7 @@ package in.teamnexus.excelenium.suite;
 
 import java.util.List;
 
+import in.teamnexus.excelenium.service.ServiceResponse;
 import in.teamnexus.excelenium.suite.script.Script;
 
 /**
@@ -123,6 +124,22 @@ public class SuiteConfig
     public void setUserAgent(UserAgentConfig userAgent)
     {
         this.userAgent = userAgent;
+    }
+
+    public ServiceResponse validate()
+    {
+        ServiceResponse response = new ServiceResponse();
+        response.setStatus(ServiceResponse.STATUS_SUCCESS);
+        
+        if(name == null || name.isEmpty())
+        {
+           response.setStatus(ServiceResponse.STATUS_FAILURE);
+        }
+        
+        settings.validate(response);
+        
+        userAgent.validate(response);
+        return response;
     }
 
 }
