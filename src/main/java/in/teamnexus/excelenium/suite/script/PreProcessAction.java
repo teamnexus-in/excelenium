@@ -20,6 +20,8 @@ import org.slf4j.LoggerFactory;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.base.Stopwatch;
 
+import in.teamnexus.excelenium.service.ServiceResponse;
+
 /**
  * Executed before the action on the element is performed.
  */
@@ -36,6 +38,7 @@ public class PreProcessAction
     String attributeValue;
 
     /** The logger. */
+    @JsonIgnore
     Logger logger = LoggerFactory.getLogger(PreProcessAction.class);
 
     /** The reports logger. */
@@ -151,7 +154,7 @@ public class PreProcessAction
         try
         {
             Stopwatch stopwatch = Stopwatch.createStarted();
-            logger.info("Executing preprocess action " + this.getFullyQualifiedName() + " attributeName: " + this.attributeName + "  attributeValue: " + webElement.getAttribute(attributeName) );
+            logger.info("Executing preprocess action " + this.getFullyQualifiedName() + " attributeName: " + this.attributeName + "  attributeValue: " + webElement.getAttribute(attributeName));
             switch (aType)
             {
                 case REMOVE_ATTRIBUTE:
@@ -165,7 +168,7 @@ public class PreProcessAction
             String script = "arguments[0]." + this.attributeName + "=arguments[1]";
             jsExecutor.executeScript(script, webElement, this.attributeValue);
             stopwatch.stop();
-            logger.info("Executed preprocess action "  + aType + " " + this.attributeName + " " + webElement.getAttribute(this.attributeName) + " " + this.attributeValue);
+            logger.info("Executed preprocess action " + aType + " " + this.attributeName + " " + webElement.getAttribute(this.attributeName) + " " + this.attributeValue);
             reportsLogger.info("Preprocess Action:" + this.getFullyQualifiedName() + " completed in " + stopwatch.elapsed(TimeUnit.MILLISECONDS) + " msecs");
         }
         catch (Exception e)
@@ -240,6 +243,38 @@ public class PreProcessAction
         builder.append(action);
         builder.append("]");
         return builder.toString();
+    }
+
+    public void validate(String actionName, ServiceResponse response)
+    {
+        if (this.aType == ActionType.REMOVE_ATTRIBUTE)
+        {
+            if ((this.attributeName == null || this.attributeName.isEmpty()))
+            {
+                String str = String.format("%s - %s", actionName, "ERROR: Preprocess Attribute Name cannot be empty.");
+                response.setStatus(ServiceResponse.STATUS_FAILURE);
+                response.addMessage(str);
+            }
+
+            if ((this.attributeValue != null && !this.attributeValue.isEmpty()))
+            {
+                String str = String.format("%s - %s", actionName, "WARNING: Preprocess Attribute Value will be ignored.");
+                response.addMessage(str);
+            }
+
+        }
+        else
+        {
+            if ((this.attributeName == null || this.attributeName.isEmpty())
+                    || (this.attributeValue == null || this.attributeValue.isEmpty()))
+            {
+                String str = String.format("%s - %s", actionName, "ERROR: Preprocess Attribute Name, Attribute Value fields cannot be empty.");
+                response.setStatus(ServiceResponse.STATUS_FAILURE);
+                response.addMessage(str);
+            }
+
+        }
+
     }
 
 }

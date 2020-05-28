@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
 
+import in.teamnexus.excelenium.service.ServiceResponse;
 import in.teamnexus.excelenium.suite.script.Action;
 import in.teamnexus.excelenium.suite.util.WebDriverUtil;
 
@@ -25,7 +26,7 @@ import in.teamnexus.excelenium.suite.util.WebDriverUtil;
  */
 public class CaptureScreenAction extends Action
 {
-    
+
     /** The logger. */
     Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -46,6 +47,25 @@ public class CaptureScreenAction extends Action
         logger.info("Screenshot captured to " + fileName);
 
         return success;
+
+    }
+
+    @Override
+    protected void validate(ServiceResponse response)
+    {
+        if ((this.elementValue != null && !this.elementValue.isEmpty())
+                || (this.attributeName != null && !this.attributeName.isEmpty())
+                || (this.attributeValue != null && !this.attributeValue.isEmpty()))
+        {
+            String str = String.format("%s - %s", this.actionName, "WARNING: Element value, Attribute Name, Attribute Value fields will be ignored.");
+            response.addMessage(str);
+        }
+
+        if (this.preProcess != null)
+        {
+            String str = String.format("%s - %s", this.actionName, "WARNING: Preprocess values will be ignored");
+            response.addMessage(str);
+        }
 
     }
 

@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import in.teamnexus.excelenium.service.ServiceResponse;
 import in.teamnexus.excelenium.suite.script.Action;
 
 /**
@@ -65,6 +66,31 @@ public class SelectAction extends Action
         
         return success;
 
+    }
+
+    @Override
+    protected void validate(ServiceResponse response)
+    {
+        if ((this.element == null || this.element.isEmpty())
+                || (this.elementValue == null || this.elementValue.isEmpty()))
+        {
+            String str = String.format("%s - %s", this.actionName, "ERROR: Element Name, Element Value fields cannot be empty.");
+            response.setStatus(ServiceResponse.STATUS_FAILURE);
+            response.addMessage(str);
+        }
+        
+        if ((this.attributeName != null && !this.attributeName.isEmpty())
+                || (this.attributeValue != null && !this.attributeValue.isEmpty()))
+        {
+            String str = String.format("%s - %s", this.actionName, "WARNING: Attribute Name, Attribute Value fields will be ignored.");
+            response.addMessage(str);
+        }
+
+        if (this.preProcess != null)
+        {
+            this.preProcess.validate(this.actionName, response);
+        }
+        
     }
 
 }

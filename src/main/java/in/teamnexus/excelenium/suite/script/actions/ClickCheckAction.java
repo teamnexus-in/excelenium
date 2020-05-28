@@ -6,6 +6,7 @@ package in.teamnexus.excelenium.suite.script.actions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import in.teamnexus.excelenium.service.ServiceResponse;
 import in.teamnexus.excelenium.suite.script.Action;
 import in.teamnexus.excelenium.suite.util.WebDriverUtil;
 
@@ -42,6 +43,30 @@ public class ClickCheckAction extends Action
         WebDriverUtil.getInstance().clickElement(webDriver, webElement);
         
         return success;
+    }
+
+    @Override
+    protected void validate(ServiceResponse response)
+    {
+        if (this.element == null || this.element.isEmpty())
+        {
+            String str = String.format("%s - %s", this.actionName, "ERROR: Element Name cannot be empty.");
+            response.setStatus(ServiceResponse.STATUS_FAILURE);
+            response.addMessage(str);
+        }
+        
+        if ((this.elementValue != null && !this.elementValue.isEmpty())
+                || (this.attributeName != null && !this.attributeName.isEmpty())
+                || (this.attributeValue != null && !this.attributeValue.isEmpty()))
+        {
+            String str = String.format("%s - %s", this.actionName, "WARNING: Element value, Attribute Name, Attribute Value fields will be ignored.");
+            response.addMessage(str);
+        }
+
+        if (this.preProcess != null)
+        {
+            this.preProcess.validate(this.actionName, response);
+        }        
     }
 
 }

@@ -23,6 +23,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import in.teamnexus.excelenium.service.ServiceResponse;
 import in.teamnexus.excelenium.service.SuiteService;
 import in.teamnexus.excelenium.suite.SuiteConfig;
 import in.teamnexus.excelenium.suite.exception.ConfigException;
@@ -107,15 +108,22 @@ public class ExceleniumController
 
     @PostMapping(path = "/save", consumes = "application/json", produces = "application/json")
     @ResponseBody
-    public String saveSuite(@RequestBody SuiteConfig suite) throws Exception
+    public ServiceResponse saveSuite(@RequestBody SuiteConfig suite) throws Exception
     {
-        // TODO: Fix response
         ObjectMapper mapper = new ObjectMapper();
         String data = mapper.writeValueAsString(suite);
-        service.validateSuite(suite);
-        service.saveSuite(suite);
+        
+        ServiceResponse response = service.validateSuite(suite);
+        if(response.getStatus() == ServiceResponse.STATUS_SUCCESS)
+        {
+            service.saveSuite(suite);
+        }
+        else
+        {
+            logger.error("Suite Validation failed:", response.toString());
+        }
         logger.debug("Saving:" + data);
-        return "{\"success\": true}";
+        return response;
     }
 
     @GetMapping(path = "/run", produces = "application/json")

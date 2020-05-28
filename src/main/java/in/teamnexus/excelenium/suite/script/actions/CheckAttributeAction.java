@@ -6,6 +6,7 @@ package in.teamnexus.excelenium.suite.script.actions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import in.teamnexus.excelenium.service.ServiceResponse;
 import in.teamnexus.excelenium.suite.exception.ScriptException;
 import in.teamnexus.excelenium.suite.script.Action;
 
@@ -37,7 +38,7 @@ public class CheckAttributeAction extends Action
         boolean success = true;
         WebElement webElement = this.getWebElement(webDriver, this.element);
         this.doPreProcess(webDriver, webElement);
-        
+
         String attr = webElement.getAttribute(this.attributeName).trim();
         if (attr != null)
         {
@@ -75,6 +76,25 @@ public class CheckAttributeAction extends Action
             }
         }
         return success;
+    }
+
+    @Override
+    protected void validate(ServiceResponse response)
+    {
+        if ((this.element == null || this.element.isEmpty())
+                || (this.elementValue == null || this.elementValue.isEmpty())
+                || (this.attributeName == null || this.attributeName.isEmpty())
+                || (this.attributeValue == null || this.attributeValue.isEmpty()))
+        {
+            String str = String.format("%s - %s", this.actionName, "ERROR: Element Name, Element Value, Attribute Name, Attribute Value fields cannot be empty.");
+            response.setStatus(ServiceResponse.STATUS_FAILURE);
+            response.addMessage(str);
+        }
+        
+        if(this.preProcess != null)
+        {
+            this.preProcess.validate(this.actionName, response);
+        }
     }
 
 }

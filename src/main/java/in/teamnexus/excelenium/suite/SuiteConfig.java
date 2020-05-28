@@ -139,6 +139,11 @@ public class SuiteConfig
         settings.validate(response);
         
         userAgent.validate(response);
+        
+        for (Script script : scripts)
+        {
+            script.validate(response);
+        }
         return response;
     }
 

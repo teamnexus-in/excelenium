@@ -3,6 +3,7 @@
  */
 package in.teamnexus.excelenium.suite.script.actions;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
@@ -18,6 +19,7 @@ import bsh.EvalError;
 import bsh.Interpreter;
 import groovy.lang.Binding;
 import groovy.util.GroovyScriptEngine;
+import in.teamnexus.excelenium.service.ServiceResponse;
 import in.teamnexus.excelenium.suite.script.Action;
 import in.teamnexus.excelenium.suite.util.WebDriverUtil;
 
@@ -150,6 +152,54 @@ public class RunScriptAction extends Action
         ip.source(filePath);
         HashMap<String, String> result = (HashMap<String, String>) ip.get("result");
         return result;
+    }
+
+    @Override
+    protected void validate(ServiceResponse response)
+    {
+        if ((this.element == null || this.element.isEmpty())
+                || (this.elementValue == null || this.elementValue.isEmpty()))
+        {
+            String str = String.format("%s - %s", this.actionName, "ERROR: Element Name, Element Value fields cannot be empty.");
+            response.setStatus(ServiceResponse.STATUS_FAILURE);
+            response.addMessage(str);
+        }
+        
+        if(this.element != null && !this.element.isEmpty())
+        {
+            File file = new File(this.element);
+            if(!file.exists())
+            {
+                String str = String.format("%s - %s", this.actionName, "ERROR: Directory specified in Element Name does not exist.");
+                response.setStatus(ServiceResponse.STATUS_FAILURE);
+                response.addMessage(str);
+            }
+        }
+
+        if(this.elementValue != null && !this.elementValue.isEmpty())
+        {
+            File file = new File(this.element + File.separator + this.elementValue);
+            if(!file.exists())
+            {
+                String str = String.format("%s - %s", this.actionName, "ERROR: File specified in Element Value does not exist.");
+                response.setStatus(ServiceResponse.STATUS_FAILURE);
+                response.addMessage(str);
+            }
+        }
+        
+        if ((this.attributeName != null && !this.attributeName.isEmpty())
+                || (this.attributeValue != null && !this.attributeValue.isEmpty()))
+        {
+            String str = String.format("%s - %s", this.actionName, "WARNING:  Attribute Name, Attribute Value fields will be ignored.");
+            response.addMessage(str);
+        }
+
+        if (this.preProcess != null)
+        {
+            String str = String.format("%s - %s", this.actionName, "WARNING: Preprocess values will be ignored");
+            response.addMessage(str);
+        }
+
     }
 
 }

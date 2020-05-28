@@ -19,6 +19,7 @@ import org.slf4j.LoggerFactory;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.base.Stopwatch;
 
+import in.teamnexus.excelenium.service.ServiceResponse;
 import in.teamnexus.excelenium.suite.exception.ScriptException;
 
 /**
@@ -40,7 +41,7 @@ public class Script implements Executable
     private boolean stopOnError;
 
     /** The logger. */
-    Logger logger = LoggerFactory.getLogger(Script.class);
+    Logger logger = LoggerFactory.getLogger(getClass());
 
     /** The reports logger. */
     @JsonIgnore
@@ -192,5 +193,20 @@ public class Script implements Executable
     public void setReportsLogger(Logger reportsLogger)
     {
         this.reportsLogger = reportsLogger;
+    }
+
+    public void validate(ServiceResponse response)
+    {
+        if(name == null || name.isEmpty())
+        {
+            response.setStatus(ServiceResponse.STATUS_FAILURE);
+            response.addMessage("Script name cannot be empty.");
+        }
+        
+        for (Action action : actions)
+        {
+            action.validate(response);
+        }
+        
     }
 }

@@ -9,6 +9,7 @@
  */
 package in.teamnexus.excelenium.suite.script;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -25,6 +26,7 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.google.common.base.Stopwatch;
 
+import in.teamnexus.excelenium.service.ServiceResponse;
 import in.teamnexus.excelenium.suite.exception.ScriptException;
 import in.teamnexus.excelenium.suite.script.actions.AcceptPopupAction;
 import in.teamnexus.excelenium.suite.script.actions.AddCookieAction;
@@ -143,7 +145,7 @@ public abstract class Action implements Executable
      * PreProcessAction to be performed before executing the action on this element-
      * .
      */
-    PreProcessAction preProcess;
+    protected PreProcessAction preProcess;
 
     // // Removing post process for now
     //
@@ -567,5 +569,8 @@ public abstract class Action implements Executable
         builder.append("]");
         return builder.toString();
     }
+
+    protected abstract void validate(ServiceResponse response);
+    
 
 }

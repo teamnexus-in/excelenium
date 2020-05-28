@@ -5,6 +5,7 @@ package in.teamnexus.excelenium.suite.script.actions;
 
 import org.openqa.selenium.WebDriver;
 
+import in.teamnexus.excelenium.service.ServiceResponse;
 import in.teamnexus.excelenium.suite.exception.ScriptException;
 import in.teamnexus.excelenium.suite.script.Action;
 
@@ -56,6 +57,39 @@ public class NavigateAction extends Action
         }
 
         return success;
+    }
+
+    @Override
+    protected void validate(ServiceResponse response)
+    {
+        if (this.element == null || this.element.isEmpty())
+        {
+            String str = String.format("%s - %s", this.actionName, "ERROR: Element Name cannot be empty.");
+            response.setStatus(ServiceResponse.STATUS_FAILURE);
+            response.addMessage(str);
+        }
+
+        if (this.element != null && !this.element.isEmpty() && !this.element.matches("back|forward|refresh")
+                && !this.element.startsWith("http://") && !this.element.startsWith("https://"))
+        {
+            String str = String.format("%s - %s", this.actionName, "ERROR: Element Name has to have one of the values - back, forward, refresh or a url.");
+            response.setStatus(ServiceResponse.STATUS_FAILURE);
+            response.addMessage(str);
+        }
+
+        if ((this.elementValue != null && !this.elementValue.isEmpty())
+                || (this.attributeName != null && !this.attributeName.isEmpty())
+                || (this.attributeValue != null && !this.attributeValue.isEmpty()))
+        {
+            String str = String.format("%s - %s", this.actionName, "WARNING: Element value, Attribute Name, Attribute Value fields will be ignored.");
+            response.addMessage(str);
+        }
+
+        if (this.preProcess != null)
+        {
+            String str = String.format("%s - %s", this.actionName, "WARNING: Preprocess values will be ignored");
+            response.addMessage(str);
+        }
     }
 
 }
