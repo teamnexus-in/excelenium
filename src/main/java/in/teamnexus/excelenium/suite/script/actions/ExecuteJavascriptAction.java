@@ -16,6 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import in.teamnexus.excelenium.service.ServiceResponse;
+import in.teamnexus.excelenium.service.ValidationMessage;
 import in.teamnexus.excelenium.suite.script.Action;
 
 /**
@@ -71,9 +72,9 @@ public class ExecuteJavascriptAction extends Action
     {
         if (this.element == null || this.element.isEmpty())
         {
-            String str = String.format("%s - %s", this.actionName, "ERROR: Element Name, Element Value, Attribute Name, Attribute Value fields cannot be empty.");
+            String str = String.format("%s - %s", this.actionName, "Element Name, Element Value, Attribute Name, Attribute Value fields cannot be empty.");
             response.setStatus(ServiceResponse.STATUS_FAILURE);
-            response.addMessage(str);
+            response.addMessage(ValidationMessage.TYPE_ERROR, str);
         }
         
         if(this.element != null && !this.element.isEmpty())
@@ -81,9 +82,9 @@ public class ExecuteJavascriptAction extends Action
             File file = new File(this.element);
             if(!file.exists())
             {
-                String str = String.format("%s - %s", this.actionName, "ERROR: The specified JavaScript file does not exist");
+                String str = String.format("%s - %s", this.actionName, "The specified JavaScript file does not exist");
                 response.setStatus(ServiceResponse.STATUS_FAILURE);
-                response.addMessage(str);
+                response.addMessage(ValidationMessage.TYPE_ERROR, str);
             }
         }
         
@@ -91,14 +92,14 @@ public class ExecuteJavascriptAction extends Action
                 || (this.attributeName != null && !this.attributeName.isEmpty())
                 || (this.attributeValue != null && !this.attributeValue.isEmpty()))
         {
-            String str = String.format("%s - %s", this.actionName, "WARNING: Element value, Attribute Name, Attribute Value fields will be ignored.");
-            response.addMessage(str);
+            String str = String.format("%s - %s", this.actionName, "Element value, Attribute Name, Attribute Value fields will be ignored.");
+            response.addMessage(ValidationMessage.TYPE_WARNING, str);
         }
 
         if (this.preProcess != null)
         {
-            String str = String.format("%s - %s", this.actionName, "WARNING: Preprocess values will be ignored");
-            response.addMessage(str);
+            String str = String.format("%s - %s", this.actionName, "Preprocess values will be ignored");
+            response.addMessage(ValidationMessage.TYPE_WARNING, str);
         }
       
     }

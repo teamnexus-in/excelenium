@@ -116,10 +116,17 @@ public class ExceleniumController
         ServiceResponse response = service.validateSuite(suite);
         if(response.getStatus() == ServiceResponse.STATUS_SUCCESS)
         {
+            logger.info("Validation successful");
+            response.setResponse("Validation Successful");
+            if(response.getMessages() != null && response.getMessages().size() > 0)
+            {
+                response.setResponse("Validation Successful, however there are some warnings generated.");
+            }
             service.saveSuite(suite);
         }
         else
         {
+            response.setResponse("Validation Failed. Please see the error messages.");
             logger.error("Suite Validation failed:", response.toString());
         }
         logger.debug("Saving:" + data);

@@ -20,6 +20,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.base.Stopwatch;
 
 import in.teamnexus.excelenium.service.ServiceResponse;
+import in.teamnexus.excelenium.service.ValidationMessage;
 import in.teamnexus.excelenium.suite.exception.ScriptException;
 
 /**
@@ -200,7 +201,7 @@ public class Script implements Executable
         if(name == null || name.isEmpty())
         {
             response.setStatus(ServiceResponse.STATUS_FAILURE);
-            response.addMessage("Script name cannot be empty.");
+            response.addMessage(ValidationMessage.TYPE_ERROR, "Script name cannot be empty.");
         }
         
         for (Action action : actions)

@@ -1,5 +1,5 @@
 /**
- * 
+ *  The response object that is sent back whenever the save is initiated and validation is performed before save.
  */
 package in.teamnexus.excelenium.service;
 
@@ -17,7 +17,7 @@ public class ServiceResponse
     
     int status;
     String response;
-    List<String> messages;
+    List<ValidationMessage> messages;
 
     /**
      * @return the status
@@ -54,7 +54,7 @@ public class ServiceResponse
     /**
      * @return the messages
      */
-    public List<String> getMessages()
+    public List<ValidationMessage> getMessages()
     {
         return messages;
     }
@@ -62,18 +62,18 @@ public class ServiceResponse
     /**
      * @param messages the messages to set
      */
-    public void setMessages(List<String> messages)
+    public void setMessages(List<ValidationMessage> messages)
     {
         this.messages = messages;
     }
     
-    public void addMessage(String message)
+    public void addMessage(int type, String message)
     {
         if(messages == null)
         {
             messages = new ArrayList<>();
         }
-        messages.add(message);
+        messages.add(new ValidationMessage(type, message));
     }
 
 }

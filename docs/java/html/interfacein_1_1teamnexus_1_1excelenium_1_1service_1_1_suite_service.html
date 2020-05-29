@@ -82,15 +82,46 @@ Inheritance diagram for in.teamnexus.excelenium.service.SuiteService:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:adf49d0c63746391aa31dc2cd3e80571e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacein_1_1teamnexus_1_1excelenium_1_1service_1_1_suite_service.html#adf49d0c63746391aa31dc2cd3e80571e">saveConfig</a> (<a class="el" href="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1_suite_config.html">SuiteConfig</a> config)</td></tr>
-<tr class="separator:adf49d0c63746391aa31dc2cd3e80571e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abae5ea3f142cfb3b37f2b48692cbe823"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacein_1_1teamnexus_1_1excelenium_1_1service_1_1_suite_service.html#abae5ea3f142cfb3b37f2b48692cbe823">saveSuite</a> (<a class="el" href="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1_suite_config.html">SuiteConfig</a> config)</td></tr>
+<tr class="separator:abae5ea3f142cfb3b37f2b48692cbe823"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad03c6205710b5c53713deb6d0a50fad0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacein_1_1teamnexus_1_1excelenium_1_1service_1_1_suite_service.html#ad03c6205710b5c53713deb6d0a50fad0">runSuite</a> (String suiteName)  throws ConfigException</td></tr>
 <tr class="separator:ad03c6205710b5c53713deb6d0a50fad0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b1aa33a5f19c2944058faa9d7d52824"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1_suite_config.html">SuiteConfig</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacein_1_1teamnexus_1_1excelenium_1_1service_1_1_suite_service.html#a4b1aa33a5f19c2944058faa9d7d52824">getSuite</a> (String suiteName)</td></tr>
+<tr class="separator:a4b1aa33a5f19c2944058faa9d7d52824"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0a53e60f4666c66bdc03dfa3e9fce11"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classin_1_1teamnexus_1_1excelenium_1_1service_1_1_service_response.html">ServiceResponse</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacein_1_1teamnexus_1_1excelenium_1_1service_1_1_suite_service.html#af0a53e60f4666c66bdc03dfa3e9fce11">validateSuite</a> (<a class="el" href="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1_suite_config.html">SuiteConfig</a> suite)</td></tr>
+<tr class="separator:af0a53e60f4666c66bdc03dfa3e9fce11"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The Interface <a class="el" href="interfacein_1_1teamnexus_1_1excelenium_1_1service_1_1_suite_service.html">SuiteService</a>.</p>
 <dl class="section author"><dt>Author</dt><dd>Prabhu </dd></dl>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a4b1aa33a5f19c2944058faa9d7d52824"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b1aa33a5f19c2944058faa9d7d52824">&#9670;&nbsp;</a></span>getSuite()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1_suite_config.html">SuiteConfig</a> in.teamnexus.excelenium.service.SuiteService.getSuite </td>
+          <td>(</td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>suiteName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Returns the suite Json of the specified suiteName </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">suiteName</td><td>- name of the suite </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p>Implemented in <a class="el" href="classin_1_1teamnexus_1_1excelenium_1_1service_1_1_excelenium_suite_service.html#ac2795a6778e6073c5e3a4bf60743efed">in.teamnexus.excelenium.service.ExceleniumSuiteService</a>.</p>
+
+</div>
+</div>
 <a id="ad03c6205710b5c53713deb6d0a50fad0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad03c6205710b5c53713deb6d0a50fad0">&#9670;&nbsp;</a></span>runSuite()</h2>
 
@@ -124,14 +155,14 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="adf49d0c63746391aa31dc2cd3e80571e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adf49d0c63746391aa31dc2cd3e80571e">&#9670;&nbsp;</a></span>saveConfig()</h2>
+<a id="abae5ea3f142cfb3b37f2b48692cbe823"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abae5ea3f142cfb3b37f2b48692cbe823">&#9670;&nbsp;</a></span>saveSuite()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void in.teamnexus.excelenium.service.SuiteService.saveConfig </td>
+          <td class="memname">boolean in.teamnexus.excelenium.service.SuiteService.saveSuite </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1_suite_config.html">SuiteConfig</a>&#160;</td>
           <td class="paramname"><em>config</em></td><td>)</td>
@@ -146,8 +177,29 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>true if successful, false otherwise </dd></dl>
 
-<p>Implemented in <a class="el" href="classin_1_1teamnexus_1_1excelenium_1_1service_1_1_excelenium_suite_service.html#ae5a42c90defc78342974568f7cecd864">in.teamnexus.excelenium.service.ExceleniumSuiteService</a>.</p>
+<p>Implemented in <a class="el" href="classin_1_1teamnexus_1_1excelenium_1_1service_1_1_excelenium_suite_service.html#aa445fc4549ba60062a9ed0ff84bc2cc8">in.teamnexus.excelenium.service.ExceleniumSuiteService</a>.</p>
+
+</div>
+</div>
+<a id="af0a53e60f4666c66bdc03dfa3e9fce11"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0a53e60f4666c66bdc03dfa3e9fce11">&#9670;&nbsp;</a></span>validateSuite()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classin_1_1teamnexus_1_1excelenium_1_1service_1_1_service_response.html">ServiceResponse</a> in.teamnexus.excelenium.service.SuiteService.validateSuite </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classin_1_1teamnexus_1_1excelenium_1_1suite_1_1_suite_config.html">SuiteConfig</a>&#160;</td>
+          <td class="paramname"><em>suite</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="classin_1_1teamnexus_1_1excelenium_1_1service_1_1_excelenium_suite_service.html#aa5342e9d9f0eb09f7f979e9e8d3286ca">in.teamnexus.excelenium.service.ExceleniumSuiteService</a>.</p>
 
 </div>
 </div>

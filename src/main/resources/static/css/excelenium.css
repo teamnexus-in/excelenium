@@ -46,3 +46,16 @@
     font-size: small;
     text-align: right;
 }
+
+.error-header {
+    color:white;
+    background-color: darkred;
+}
+
+.type-error {
+    color: red;
+}
+
+.type-warning {
+    color: darkcyan
+}

@@ -6,6 +6,7 @@ package in.teamnexus.excelenium.suite.script.actions;
 import org.openqa.selenium.WebDriver;
 
 import in.teamnexus.excelenium.service.ServiceResponse;
+import in.teamnexus.excelenium.service.ValidationMessage;
 import in.teamnexus.excelenium.suite.script.Action;
 
 /**
@@ -47,14 +48,14 @@ public class DismissPopupAction extends Action
                 || (this.attributeName != null && !this.attributeName.isEmpty())
                 || (this.attributeValue != null && !this.attributeValue.isEmpty()))
         {
-            String str = String.format("%s - %s", this.actionName, "WARNING: Element Name, Element value, Attribute Name, Attribute Value fields will be ignored.");
-            response.addMessage(str);
+            String str = String.format("%s - %s", this.actionName, "Element Name, Element value, Attribute Name, Attribute Value fields will be ignored.");
+            response.addMessage(ValidationMessage.TYPE_WARNING, str);
         }
 
         if (this.preProcess != null)
         {
-            String str = String.format("%s - %s", this.actionName, "WARNING: Preprocess values will be ignored");
-            response.addMessage(str);
+            String str = String.format("%s - %s", this.actionName, "Preprocess values will be ignored");
+            response.addMessage(ValidationMessage.TYPE_WARNING, str);
         }
     }
 

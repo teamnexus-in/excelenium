@@ -219,11 +219,11 @@ class SuiteView {
             $('#' + tabId).hide();
         });
 
-        $("#newScriptModal").on('shown.bs.modal', function(e){
+        $("#newScriptModal").on('shown.bs.modal', function (e) {
             $("#tb-script-name").focus();
         });
 
-        $("#settingsModal").on('shown.bs.modal', function(e){
+        $("#settingsModal").on('shown.bs.modal', function (e) {
             $("#tb-suite-name").focus();
         });
 
@@ -391,10 +391,10 @@ class SuiteView {
     getBrowserOptions(browser) {
         let retVal = {};
         let enabled = $('#cb-' + browser).prop('checked');
-        let textVal = ((browser == 'safari') ? "" : $('#tb-' + browser).val());
+        let textVal = ((browser === 'safari') ? "" : $('#tb-' + browser).val());
         retVal.enabled = enabled;
-        if (browser == 'user-agent') {
-            retVal.value = textVal;
+        if (browser === 'user-agent') {
+            retVal.userAgent = textVal;
         }
         else {
             retVal.name = browser;
@@ -859,6 +859,37 @@ class SuiteView {
         $("#tb-script-name").val('');
         $('cb-ns-stop-on-error').prop('checked', false);
         $('cb-ns-execute').prop('checked', false);
+    }
+
+    /**
+     * Shows validation dialogs for suite during save
+     *
+     * @param {JSON} data - Validation response that contains errors / warnings
+     * @memberof SuiteView
+     */
+    showErrorDialog(data) {
+        const TYPE_ERROR = 101;
+        const TYPE_WARNING = 102;
+        let errorBody = $('#errorDialog .modal-body');
+        errorBody.empty();
+        let msgs = data.messages;
+        for (let i = 0; i < msgs.length; ++i) {
+            let str = "";
+            if (msgs[i].type === TYPE_ERROR) {
+                str = '<span class="type-error">ERROR: </span><span>' + msgs[i].message + '</span><br/>'
+            }
+            else {
+                str = '<span class="type-warning">WARNING: </span><span>' + msgs[i].message + '</span><br/>'
+            }
+            errorBody.append(str);
+        }
+        $('#errorDialog').modal('show');
+    }
+
+    clearErrorDialog() {
+        let errorBody = $('#errorDialog .modal-body');
+        errorBody.empty();
+        errorBody.append('There are no errors to display. Please save the suite to see validation errors, if any.');
     }
 
 }

@@ -11,6 +11,10 @@ $(document).ready(function () {
 
     $('[data-toggle="tooltip"]').tooltip();
 
+    $("#errorDialog").draggable({
+        handle: ".modal-header"
+    });
+
     // $(window).bind('beforeunload', function () {
     //     suiteController.save();
     //     return 'Are you sure you want to leave?';

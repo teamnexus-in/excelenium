@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import in.teamnexus.excelenium.service.ServiceResponse;
+import in.teamnexus.excelenium.service.ValidationMessage;
 import in.teamnexus.excelenium.suite.exception.ScriptException;
 import in.teamnexus.excelenium.suite.script.Action;
 
@@ -66,17 +67,17 @@ public class IsVisibleAction extends Action
     {
         if (this.element == null || this.element.isEmpty())
         {
-            String str = String.format("%s - %s", this.actionName, "ERROR: Element Name cannot be empty.");
+            String str = String.format("%s - %s", this.actionName, "Element Name cannot be empty.");
             response.setStatus(ServiceResponse.STATUS_FAILURE);
-            response.addMessage(str);
+            response.addMessage(ValidationMessage.TYPE_ERROR, str);
         }
         
         if ((this.elementValue != null && !this.elementValue.isEmpty())
                 || (this.attributeName != null && !this.attributeName.isEmpty())
                 || (this.attributeValue != null && !this.attributeValue.isEmpty()))
         {
-            String str = String.format("%s - %s", this.actionName, "WARNING: Element value, Attribute Name, Attribute Value fields will be ignored.");
-            response.addMessage(str);
+            String str = String.format("%s - %s", this.actionName, "Element value, Attribute Name, Attribute Value fields will be ignored.");
+            response.addMessage(ValidationMessage.TYPE_WARNING, str);
         }
 
         if (this.preProcess != null)

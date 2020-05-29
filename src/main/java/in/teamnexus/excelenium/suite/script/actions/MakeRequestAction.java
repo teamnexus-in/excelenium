@@ -20,6 +20,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import in.teamnexus.excelenium.service.ServiceResponse;
+import in.teamnexus.excelenium.service.ValidationMessage;
 import in.teamnexus.excelenium.suite.script.Action;
 import in.teamnexus.excelenium.suite.util.WebDriverUtil;
 
@@ -112,22 +113,22 @@ public class MakeRequestAction extends Action
         if ((this.element == null || this.element.isEmpty())
                 || (this.elementValue == null || this.elementValue.isEmpty()))
         {
-            String str = String.format("%s - %s", this.actionName, "ERROR: Element Name, Element Value fields cannot be empty.");
+            String str = String.format("%s - %s", this.actionName, "Element Name, Element Value fields cannot be empty.");
             response.setStatus(ServiceResponse.STATUS_FAILURE);
-            response.addMessage(str);
+            response.addMessage(ValidationMessage.TYPE_ERROR, str);
         }
         
         if ((this.attributeName != null && !this.attributeName.isEmpty())
                 || (this.attributeValue != null && !this.attributeValue.isEmpty()))
         {
-            String str = String.format("%s - %s", this.actionName, "WARNING: Attribute Name, Attribute Value fields will be ignored.");
-            response.addMessage(str);
+            String str = String.format("%s - %s", this.actionName, "Attribute Name, Attribute Value fields will be ignored.");
+            response.addMessage(ValidationMessage.TYPE_WARNING, str);
         }
 
         if (this.preProcess != null)
         {
-            String str = String.format("%s - %s", this.actionName, "WARNING: Preprocess values will be ignored");
-            response.addMessage(str);
+            String str = String.format("%s - %s", this.actionName, "Preprocess values will be ignored");
+            response.addMessage(ValidationMessage.TYPE_WARNING, str);
         }
     }
 

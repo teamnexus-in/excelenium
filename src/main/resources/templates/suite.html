@@ -22,6 +22,7 @@
   </script>
 
   <script th:src="@{/resources/js/lib/jquery-3.4.1.min.js}"></script>
+  <script th:src="@{/resources/js/lib/jquery-ui.min.js}"></script>
   <script th:src="@{/resources/js/lib/bouncer.polyfills.min.js}"></script>
   <script th:src="@{/resources/js/lib/bootstrap.bundle.min.js}"></script>
   <script th:src="@{/resources/js/lib/bootbox.min.js}"></script>
@@ -56,8 +57,7 @@
               <a class="dropdown-item bg-light mr-1" id="btn-suite-new"><i class="fas fa-folder-plus mr-1"></i>New<span
                   class="float-right small text-info">Ctrl+Y</span></a>
               <a class="dropdown-item bg-light mr-1" id="btn-suite-load"><i
-                  class="fas fa-file-upload mr-1"></i>Load<span
-                  class="float-right small text-info">Ctrl+L</span></a>
+                  class="fas fa-file-upload mr-1"></i>Load<span class="float-right small text-info">Ctrl+L</span></a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item bg-light mr-1" id="btn-suite-download"><i
                   class="fas fa-file-download mr-1"></i>Export<span
@@ -79,6 +79,10 @@
         </li>
       </ul>
       <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <button id="btn-error" type="button" class="btn btn-sm btn-light mr-2" data-toggle="modal"
+          data-backdrop="false" data-target="#errorDialog" title="Errors"><i class="fas fa-bug mr-1"></i>Errors</button>
+        </li>
         <li class="nav-item">
           <button id="btn-save" type="button" class="btn btn-sm btn-light mr-2" data-toggle="tooltip"
             data-placement="bottom" title="Save - Ctrl+S"><i class="fas fa-save mr-1"></i>Save</button>
@@ -131,7 +135,7 @@
         </div>
 
         <div class="modal-body">
-          <form id="form-new-suite" novalidate  onsubmit="return false;">
+          <form id="form-new-suite" novalidate onsubmit="return false;">
 
             <div class="form-group row mb-0">
               <div class="input-group col-sm-6">
@@ -283,7 +287,7 @@
         </div>
 
         <div class="modal-body">
-          <form id="form-new-script" novalidate  onsubmit="return false;">
+          <form id="form-new-script" novalidate onsubmit="return false;">
 
             <div class="form-group row">
               <div class="input-group col-sm-12">
@@ -355,6 +359,27 @@
     </div>
   </div>
 
+  <div class="modal fade" id="errorDialog" tabindex="-1" role="dialog" data-backdrop="false" data-keyboard="true"
+    aria-labelledby="errorDialogTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+
+      <div class="modal-content">
+        <div class="modal-header pt-md-1 pb-md-1 error-header">
+          <h5 class="modal-title" id="errorDialogTitle">Errors / Warnings</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span class="text-white" aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          There are no errors to display. Please save the suite to see validation errors, if any.
+        </div>
+        <div class="modal-footer pt-md-1 pb-md-1">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 
 </html>

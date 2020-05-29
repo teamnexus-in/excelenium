@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import in.teamnexus.excelenium.service.ServiceResponse;
+import in.teamnexus.excelenium.service.ValidationMessage;
 import in.teamnexus.excelenium.suite.exception.ScriptException;
 import in.teamnexus.excelenium.suite.script.Action;
 import in.teamnexus.excelenium.suite.util.WebDriverUtil;
@@ -94,22 +95,22 @@ public class VerifyTextAction extends Action
                 || (this.elementValue == null || this.elementValue.isEmpty())
                 || (this.attributeName == null || this.attributeName.isEmpty()))
         {
-            String str = String.format("%s - %s", this.actionName, "ERROR: Element Name, Element Value, Attribute Name fields cannot be empty.");
+            String str = String.format("%s - %s", this.actionName, "Element Name, Element Value, Attribute Name fields cannot be empty.");
             response.setStatus(ServiceResponse.STATUS_FAILURE);
-            response.addMessage(str);
+            response.addMessage(ValidationMessage.TYPE_ERROR, str);
         }
   
         if(this.attributeName != null && !this.attributeName.isEmpty() && !this.attributeName.matches("starts_with|ends_with|contains|full_text"))
         {
-            String str = String.format("%s - %s", this.actionName, "ERROR:  Attribute Name fields has to have one of the values - starts_with, ends_with, contains, or full_text.");
+            String str = String.format("%s - %s", this.actionName, " Attribute Name fields has to have one of the values - starts_with, ends_with, contains, or full_text.");
             response.setStatus(ServiceResponse.STATUS_FAILURE);
-            response.addMessage(str);
+            response.addMessage(ValidationMessage.TYPE_ERROR, str);
         }
         
         if (this.attributeValue != null && !this.attributeValue.isEmpty())
         {
-            String str = String.format("%s - %s", this.actionName, "WARNING: Attribute Value fields will be ignored.");
-            response.addMessage(str);
+            String str = String.format("%s - %s", this.actionName, "Attribute Value fields will be ignored.");
+            response.addMessage(ValidationMessage.TYPE_WARNING, str);
         }
 
         if (this.preProcess != null)

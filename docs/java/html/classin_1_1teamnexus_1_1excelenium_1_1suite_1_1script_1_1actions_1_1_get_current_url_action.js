@@ -1,4 +1,5 @@
 var classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_get_current_url_action =
 [
-    [ "executeAction", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_get_current_url_action.html#a1287a31e65d0a1ac987eedf3c895f052", null ]
+    [ "executeAction", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_get_current_url_action.html#a1287a31e65d0a1ac987eedf3c895f052", null ],
+    [ "validate", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_get_current_url_action.html#a37f68d25c9027dd09fd16b163346d1fb", null ]
 ];

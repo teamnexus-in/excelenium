@@ -37,7 +37,7 @@ class SuiteController {
         this.suiteModel.loadJson(suiteContent);
         this.suiteView.populateUISettingsValue(this.suiteModel.settings);
         this.suiteView.loadScripts(this.suiteModel.scripts);
-        if(showToast){
+        if (showToast) {
             toastr.success("Script loaded!");
         }
         sessionStorage.setItem('savedSuite', JSON.stringify(suiteContent));
@@ -53,7 +53,7 @@ class SuiteController {
         console.log("Saving settings");
         this.suiteModel.saveSettings(settings)
         console.log(this.suiteModel.settings);
-        toastr.success('Settings saved!')
+        //toastr.success('Settings saved!')
     }
 
     /**
@@ -91,15 +91,22 @@ class SuiteController {
             'data': JSON.stringify(modelData),
             'success': function (data) {
                 console.log("Server Response: ", data);
-                if (isRun) {
-                    console.log("running: " + suiteName)
-                    thisController.runSuite(suiteName);
+                if (data.status === 0) {
+                    toastr.success('Validation Successful, Suite Saved!');
+                    thisController.suiteView.clearErrorDialog();
+                    if (isRun) {
+                        console.log("running: " + suiteName)
+                        thisController.runSuite(suiteName);
+                    }
+                }
+                else{
+                    toastr.error('Validation Failed, Suite not saved! Check error messages!');
+                    thisController.suiteView.showErrorDialog(data);
                 }
             },
             'dataType': "json",
             'contentType': 'application/json; charset=UTF-8'
         });
-        toastr.success('Suite Saved!')
         console.log("Ajax Request done");
     }
 

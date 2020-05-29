@@ -3,6 +3,7 @@ package in.teamnexus.excelenium.suite;
 import java.io.File;
 
 import in.teamnexus.excelenium.service.ServiceResponse;
+import in.teamnexus.excelenium.service.ValidationMessage;
 
 /**
  * Defines the configuration of the browser to be used in the test - enabled, the driver path etc
@@ -87,7 +88,7 @@ public class BrowserConfig
             if(!file.exists())
             {
                 response.setStatus(ServiceResponse.STATUS_FAILURE);
-                response.addMessage(String.format("%s %s %s - %s - %s ", "Browser driver path for", name, "is invalid", driverPath, "does not exist"));
+                response.addMessage(ValidationMessage.TYPE_ERROR, String.format("%s %s %s - %s - %s ", "Browser driver path for", name, "is invalid", driverPath, "does not exist"));
             }
         }
     }

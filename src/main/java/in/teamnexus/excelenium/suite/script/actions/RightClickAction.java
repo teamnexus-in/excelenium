@@ -10,6 +10,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
 import in.teamnexus.excelenium.service.ServiceResponse;
+import in.teamnexus.excelenium.service.ValidationMessage;
 import in.teamnexus.excelenium.suite.script.Action;
 
 /**
@@ -68,23 +69,23 @@ public class RightClickAction extends Action
         if ((this.element == null || this.element.isEmpty())
                 || (this.elementValue == null || this.elementValue.isEmpty()))
         {
-            String str = String.format("%s - %s", this.actionName, "ERROR: Element Name, Element Value, Attribute Name, Attribute Value fields cannot be empty.");
+            String str = String.format("%s - %s", this.actionName, "Element Name, Element Value, Attribute Name, Attribute Value fields cannot be empty.");
             response.setStatus(ServiceResponse.STATUS_FAILURE);
-            response.addMessage(str);
+            response.addMessage(ValidationMessage.TYPE_ERROR, str);
         }
         
         if(this.elementValue != null && !this.elementValue.isEmpty() && !StringUtils.isNumeric(this.elementValue))
         {
-            String str = String.format("%s - %s", this.actionName, "ERROR: Element Value has to be a 0-based numeric index.");
+            String str = String.format("%s - %s", this.actionName, "Element Value has to be a 0-based numeric index.");
             response.setStatus(ServiceResponse.STATUS_FAILURE);
-            response.addMessage(str);
+            response.addMessage(ValidationMessage.TYPE_ERROR, str);
         }
         
         if ((this.attributeName != null && !this.attributeName.isEmpty())
                 || (this.attributeValue != null && !this.attributeValue.isEmpty()))
         {
-            String str = String.format("%s - %s", this.actionName, "WARNING: Attribute Name, Attribute Value fields will be ignored.");
-            response.addMessage(str);
+            String str = String.format("%s - %s", this.actionName, "Attribute Name, Attribute Value fields will be ignored.");
+            response.addMessage(ValidationMessage.TYPE_WARNING, str);
         }
 
         if (this.preProcess != null)

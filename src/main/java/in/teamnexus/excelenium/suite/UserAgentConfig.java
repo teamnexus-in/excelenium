@@ -1,6 +1,7 @@
 package in.teamnexus.excelenium.suite;
 
 import in.teamnexus.excelenium.service.ServiceResponse;
+import in.teamnexus.excelenium.service.ValidationMessage;
 
 /**
  * The Class that holds the information about User Agent settings that has to be applied to the browser to spoof client like mobile devices etc
@@ -61,7 +62,7 @@ public class UserAgentConfig
             if(this.userAgent == null || this.userAgent.isEmpty())
             {
                 response.setStatus(ServiceResponse.STATUS_FAILURE);
-                response.addMessage("Custom user agent has been enabled but user-agent is empty");
+                response.addMessage(ValidationMessage.TYPE_ERROR, "Custom user agent has been enabled but user-agent is empty");
             }
         }
         

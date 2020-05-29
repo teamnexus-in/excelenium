@@ -21,6 +21,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.base.Stopwatch;
 
 import in.teamnexus.excelenium.service.ServiceResponse;
+import in.teamnexus.excelenium.service.ValidationMessage;
 
 /**
  * Executed before the action on the element is performed.
@@ -251,15 +252,15 @@ public class PreProcessAction
         {
             if ((this.attributeName == null || this.attributeName.isEmpty()))
             {
-                String str = String.format("%s - %s", actionName, "ERROR: Preprocess Attribute Name cannot be empty.");
+                String str = String.format("%s - %s", actionName, "Preprocess Attribute Name cannot be empty.");
                 response.setStatus(ServiceResponse.STATUS_FAILURE);
-                response.addMessage(str);
+                response.addMessage(ValidationMessage.TYPE_ERROR, str);
             }
 
             if ((this.attributeValue != null && !this.attributeValue.isEmpty()))
             {
-                String str = String.format("%s - %s", actionName, "WARNING: Preprocess Attribute Value will be ignored.");
-                response.addMessage(str);
+                String str = String.format("%s - %s", actionName, "Preprocess Attribute Value will be ignored.");
+                response.addMessage(ValidationMessage.TYPE_WARNING, str);
             }
 
         }
@@ -268,9 +269,9 @@ public class PreProcessAction
             if ((this.attributeName == null || this.attributeName.isEmpty())
                     || (this.attributeValue == null || this.attributeValue.isEmpty()))
             {
-                String str = String.format("%s - %s", actionName, "ERROR: Preprocess Attribute Name, Attribute Value fields cannot be empty.");
+                String str = String.format("%s - %s", actionName, "Preprocess Attribute Name, Attribute Value fields cannot be empty.");
                 response.setStatus(ServiceResponse.STATUS_FAILURE);
-                response.addMessage(str);
+                response.addMessage(ValidationMessage.TYPE_ERROR, str);
             }
 
         }

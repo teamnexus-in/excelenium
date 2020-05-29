@@ -46,10 +46,11 @@ public class ExceleniumSuiteService implements SuiteService
      * @param config the config
      */
     @Override
-    public void saveSuite(SuiteConfig config)
+    public boolean saveSuite(SuiteConfig config)
     {
         suiteMap.put(config.getName(), config);
         logger.debug("In Suite Service: " + suiteMap.toString());
+        return true;
     }
 
     @Override

@@ -27,6 +27,7 @@ var classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1_action =
     [ "setScript", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1_action.html#ad37ca059b884ee64133cf670320bc534", null ],
     [ "setStopOnError", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1_action.html#a8bd56adf565b9bc57b04102e9c576a8c", null ],
     [ "toString", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1_action.html#ab770863dfaf73fe2e5ce64116c20736f", null ],
+    [ "validate", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1_action.html#a8beac5847a60a401135808bd30347a21", null ],
     [ "actionName", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1_action.html#a41a859d3b80345e147c37dcd09f0a419", null ],
     [ "actionType", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1_action.html#aa57e77bfe3f6aa058488dc86805d8a19", null ],
     [ "attributeName", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1_action.html#a7f242e3410c9fa73e9d52d621b101ad1", null ],
@@ -35,6 +36,7 @@ var classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1_action =
     [ "elementValue", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1_action.html#acfe5a6bec3e10471e4848c4ae46c011d", null ],
     [ "isExecute", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1_action.html#a9073e6e2f5c622c71688d7dbb4d12518", null ],
     [ "isStopOnError", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1_action.html#afe17615ef50ebf0ef29563bf839e60ce", null ],
+    [ "preProcess", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1_action.html#aa3488a40eb4f64e6a0ea8f6f7d4b6eff", null ],
     [ "reportsLogger", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1_action.html#ae2d0b2991bf623567b79116bd38cb440", null ],
     [ "script", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1_action.html#a72864b5f6eeb1da38d5edbfb005764a5", null ]
 ];

@@ -19,12 +19,6 @@ public class SuiteConfig
     
     /** The scripts. */
     List<Script> scripts;
-    
-    /** The is run concurrent. */
-    boolean isRunConcurrent;
-    
-    /** The user agent. */
-    UserAgentConfig userAgent;
 
     /**
      * Gets the name.
@@ -86,45 +80,6 @@ public class SuiteConfig
         this.scripts = scripts;
     }
 
-    /**
-     * Checks if is run concurrent.
-     *
-     * @return true, if is run concurrent
-     */
-    public boolean isRunConcurrent()
-    {
-        return isRunConcurrent;
-    }
-
-    /**
-     * Sets the run concurrent.
-     *
-     * @param isRunConcurrent the new run concurrent
-     */
-    public void setRunConcurrent(boolean isRunConcurrent)
-    {
-        this.isRunConcurrent = isRunConcurrent;
-    }
-
-    /**
-     * Gets the user agent.
-     *
-     * @return the user agent
-     */
-    public UserAgentConfig getUserAgent()
-    {
-        return userAgent;
-    }
-
-    /**
-     * Sets the user agent.
-     *
-     * @param userAgent the new user agent
-     */
-    public void setUserAgent(UserAgentConfig userAgent)
-    {
-        this.userAgent = userAgent;
-    }
 
     public ServiceResponse validate()
     {
@@ -137,8 +92,6 @@ public class SuiteConfig
         }
         
         settings.validate(response);
-        
-        userAgent.validate(response);
         
         for (Script script : scripts)
         {

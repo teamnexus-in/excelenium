@@ -11,6 +11,7 @@ var classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1_script =
     [ "setReportsLogger", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1_script.html#a13277b3cf5b6d9777c894b95bb41256e", null ],
     [ "setRun", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1_script.html#a9582f46befae18fb6ab7cd4a285b729b", null ],
     [ "setStopOnError", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1_script.html#a3655b57b4dc6df2a619f1070dfe52d8b", null ],
+    [ "validate", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1_script.html#abc9969d3ffb4f6ce4af03151e0876e8d", null ],
     [ "isRun", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1_script.html#a94cc5a1face7008d72749e437f64fb8d", null ],
     [ "reportsLogger", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1_script.html#a94a02d5d10564c0f05f3344926c4ed66", null ],
     [ "stopOnError", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1_script.html#a12d6539af7e026a45450cddfec830996", null ]

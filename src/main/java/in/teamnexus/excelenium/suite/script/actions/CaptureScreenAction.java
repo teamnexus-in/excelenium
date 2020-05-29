@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
 
 import in.teamnexus.excelenium.service.ServiceResponse;
+import in.teamnexus.excelenium.service.ValidationMessage;
 import in.teamnexus.excelenium.suite.script.Action;
 import in.teamnexus.excelenium.suite.util.WebDriverUtil;
 
@@ -57,14 +58,14 @@ public class CaptureScreenAction extends Action
                 || (this.attributeName != null && !this.attributeName.isEmpty())
                 || (this.attributeValue != null && !this.attributeValue.isEmpty()))
         {
-            String str = String.format("%s - %s", this.actionName, "WARNING: Element value, Attribute Name, Attribute Value fields will be ignored.");
-            response.addMessage(str);
+            String str = String.format("%s - %s", this.actionName, "Element value, Attribute Name, Attribute Value fields will be ignored.");
+            response.addMessage(ValidationMessage.TYPE_WARNING, str);
         }
 
         if (this.preProcess != null)
         {
-            String str = String.format("%s - %s", this.actionName, "WARNING: Preprocess values will be ignored");
-            response.addMessage(str);
+            String str = String.format("%s - %s", this.actionName, "Preprocess values will be ignored");
+            response.addMessage(ValidationMessage.TYPE_WARNING, str);
         }
 
     }

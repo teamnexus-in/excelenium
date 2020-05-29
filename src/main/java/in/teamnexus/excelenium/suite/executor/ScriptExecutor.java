@@ -61,7 +61,7 @@ public class ScriptExecutor
         SuiteSettings suiteSettings = this.suiteConfig.getSettings();
         List<BrowserConfig> browsers = suiteSettings.getBrowsers();
 
-        boolean isConcurrent = this.suiteConfig.isRunConcurrent();
+        boolean isConcurrent = this.suiteConfig.getSettings().isRunConcurrent();
 
         logger.info("####### Is Concurrent: " + isConcurrent);
 
@@ -94,7 +94,7 @@ public class ScriptExecutor
     {
         WebDriver webDriver = null;
         String browserName = browserCfg.getName();
-        UserAgentConfig uaCfg = this.suiteConfig.getUserAgent();
+        UserAgentConfig uaCfg = this.suiteConfig.getSettings().getUserAgent();
         if ("firefox".equals(browserName))
         {
             System.setProperty("webdriver.gecko.driver", browserCfg.getDriverPath());

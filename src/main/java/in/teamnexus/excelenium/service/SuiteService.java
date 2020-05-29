@@ -18,8 +18,9 @@ public interface SuiteService
      * Save config.
      *
      * @param config the config
+     * @return true if successful, false otherwise
      */
-    void saveSuite(SuiteConfig config);
+    boolean saveSuite(SuiteConfig config);
     
     /**
      * Run suite.

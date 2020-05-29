@@ -1,7 +1,7 @@
 <map id="in.teamnexus.excelenium.suite.SuiteConfig" name="in.teamnexus.excelenium.suite.SuiteConfig">
-<area shape="rect" id="node1" title=" " alt="" coords="736,71,943,112"/>
-<area shape="rect" id="node2" title=" " alt="" coords="349,5,624,47"/>
-<area shape="rect" id="node3" href="$classin_1_1teamnexus_1_1excelenium_1_1suite_1_1_user_agent_config.html" title=" " alt="" coords="383,71,590,112"/>
-<area shape="rect" id="node4" href="$classin_1_1teamnexus_1_1excelenium_1_1suite_1_1_suite_settings.html" title=" " alt="" coords="383,136,590,177"/>
-<area shape="rect" id="node5" title=" " alt="" coords="5,136,244,177"/>
+<area shape="rect" id="node1" title=" " alt="" coords="729,33,936,75"/>
+<area shape="rect" id="node2" title=" " alt="" coords="356,5,631,47"/>
+<area shape="rect" id="node3" href="$classin_1_1teamnexus_1_1excelenium_1_1suite_1_1_suite_settings.html" title=" " alt="" coords="390,71,597,112"/>
+<area shape="rect" id="node4" href="$classin_1_1teamnexus_1_1excelenium_1_1suite_1_1_user_agent_config.html" title=" " alt="" coords="21,37,228,79"/>
+<area shape="rect" id="node5" title=" " alt="" coords="5,103,244,144"/>
 </map>

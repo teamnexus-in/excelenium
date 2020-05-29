@@ -12,6 +12,7 @@ var classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1_pre_process_action
     [ "setAttributeValue", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1_pre_process_action.html#abb55126f309a2186f18977ab318c532c", null ],
     [ "setReportsLogger", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1_pre_process_action.html#a88c6683c206b1868afcb47acc2c13d78", null ],
     [ "toString", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1_pre_process_action.html#ab0a97530c3d86cae934becc7683c9c1c", null ],
+    [ "validate", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1_pre_process_action.html#af7be22f4cf3aba8740469204b405cce2", null ],
     [ "action", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1_pre_process_action.html#acf2169fedf2786d6e15534fb89bc03ab", null ],
     [ "reportsLogger", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1_pre_process_action.html#a79f5310655e6854ba47bda0790a87e89", null ]
 ];

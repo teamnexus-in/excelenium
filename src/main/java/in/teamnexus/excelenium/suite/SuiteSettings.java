@@ -3,21 +3,28 @@ package in.teamnexus.excelenium.suite;
 import java.util.List;
 
 import in.teamnexus.excelenium.service.ServiceResponse;
+import in.teamnexus.excelenium.service.ValidationMessage;
 
 /**
  * The Class that holds the Suite Settings - suite name, serverUrl and the browser configs.
  */
 public class SuiteSettings
 {
-    
+
     /** The name. */
     String name;
-    
+
     /** The server url. */
     String serverUrl;
-    
+
     /** The browsers. */
     List<BrowserConfig> browsers;
+
+    /** The is run concurrent. */
+    boolean isRunConcurrent;
+
+    /** The user agent. */
+    UserAgentConfig userAgent;
 
     /**
      * Gets the name.
@@ -79,18 +86,58 @@ public class SuiteSettings
         this.browsers = browsers;
     }
 
+    /**
+     * Checks if is run concurrent.
+     *
+     * @return true, if is run concurrent
+     */
+    public boolean isRunConcurrent()
+    {
+        return isRunConcurrent;
+    }
+
+    /**
+     * Sets the run concurrent.
+     *
+     * @param isRunConcurrent the new run concurrent
+     */
+    public void setRunConcurrent(boolean isRunConcurrent)
+    {
+        this.isRunConcurrent = isRunConcurrent;
+    }
+
+    /**
+     * Gets the user agent.
+     *
+     * @return the user agent
+     */
+    public UserAgentConfig getUserAgent()
+    {
+        return userAgent;
+    }
+
+    /**
+     * Sets the user agent.
+     *
+     * @param userAgent the new user agent
+     */
+    public void setUserAgent(UserAgentConfig userAgent)
+    {
+        this.userAgent = userAgent;
+    }
+
     public void validate(ServiceResponse response)
     {
-        if(this.name == null || this.name.isEmpty())
+        if (this.name == null || this.name.isEmpty())
         {
             response.setStatus(ServiceResponse.STATUS_FAILURE);
-            response.addMessage("Suite name is empty");
+            response.addMessage(ValidationMessage.TYPE_ERROR, "Suite name is empty");
         }
-        
-        if(this.serverUrl == null || this.serverUrl.isEmpty())
+
+        if (this.serverUrl == null || this.serverUrl.isEmpty())
         {
             response.setStatus(ServiceResponse.STATUS_FAILURE);
-            response.addMessage("Server Url is empty. Please enter a valid url");
+            response.addMessage(ValidationMessage.TYPE_ERROR, "Server Url is empty. Please enter a valid url");
         }
         
         for (BrowserConfig browserConfig : this.browsers)
@@ -98,6 +145,8 @@ public class SuiteSettings
             browserConfig.validate(response);
         }
         
+        userAgent.validate(response);
+
     }
 
 }
