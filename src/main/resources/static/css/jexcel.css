@@ -25,6 +25,10 @@
     background-color:#ffffff;
 }
 
+.jexcel_container.with-toolbar .jexcel > thead > tr > td {
+    top: 0;
+}
+
 .jexcel_container.fullscreen.with-toolbar {
     height: calc(100% - 46px);
 }
@@ -85,7 +89,7 @@
     position: -webkit-sticky;
     position: sticky;
     top: 0;
-    z-index:20;
+    z-index:2;
 }
 
 .with-toolbar .jexcel > thead > tr > td
@@ -702,7 +706,6 @@
 
 .jexcel .copying-left {
     border-left:1px dashed #000;
-    box-shadow: -1px 0px #ccc;
 }
 
 .jexcel .copying-right {
@@ -715,10 +718,27 @@
 
 .jexcel .jexcel_column_filter {
     background-repeat: no-repeat;
-    background-position:top 50% right 5px;
-    background-image: url("data:image/svg+xml,%0A%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='none' d='M0 0h24v24H0V0z'/%3E%3Cpath d='M7 10l5 5 5-5H7z' fill='lightgray'/%3E%3C/svg%3E");
+    background-position: top 50% right 5px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='gray' width='18px' height='18px'%3E%3Cpath d='M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z'/%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3C/svg%3E");
     text-overflow: ellipsis;
-    overflow:initial;
-    padding-left:0px;
-    padding-right:0px;
+    overflow: hidden;
+    padding: 0px;
+    padding-left: 6px;
+    padding-right: 20px;
+}
+
+.jexcel thead .jexcel_freezed {
+    left: 0px;
+    z-index: 3 !important;
+    box-shadow: 2px 0px 2px 0.2px #ccc !important;
+    -webkit-box-shadow: 2px 0px 2px 0.2px #ccc !important;
+    -moz-box-shadow: 2px 0px 2px 0.2px #ccc !important;
+}
+
+.jexcel tbody .jexcel_freezed {
+    position: relative;
+    background-color: #fff;
+    box-shadow: 1px 1px 1px 1px #ccc !important;
+    -webkit-box-shadow: 2px 4px 4px 0.1px #ccc !important;
+    -moz-box-shadow: 2px 4px 4px 0.1px #ccc !important;
 }

@@ -1,8 +1,6 @@
 == TODO
 . Set Run to true for actions
 . Warning if script already being edited and the user refreshes the browser.
-. Full-blown validation of the scripts
-. PostProcess Action
 . Unit Tests
 . Scripts saved to server h2 db
 
@@ -22,3 +20,5 @@
 . Session storage, on refresh don't show new dialog, instead load from session storage
 . Prune WebDriverUtil class, and make it a singleton instead of Static methods
 . Update documentation for Subclasses separate from Action.java
+. Full-blown validation of the scripts
+. PostProcess Action - Will not be implemented as the action will be performed and page navigated and Post process will be meaningless

@@ -2,6 +2,9 @@ var suiteView;
 var suiteController;
 var suiteModel;
 
+/** 
+ * The entry point where the frontend is created 
+*/
 $(document).ready(function () {
     actions.main.sort();
     bsCustomFileInput.init()
@@ -52,6 +55,10 @@ $(document).ready(function () {
 
 });
 
+/**
+ * Binds the mouse shortcut keys to the functions in the application
+ *
+ */
 function bindKeyboardShortcuts() {
 
     Mousetrap.bind('mod+s', function (e) {

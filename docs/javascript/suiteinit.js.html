@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>SuiteController - Documentation</title>
+    <title>suiteinit.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -29,135 +29,135 @@
 
 <div id="main">
     
-    <h1 class="page-title">SuiteController</h1>
+    <h1 class="page-title">suiteinit.js</h1>
     
 
     
 
 
 
-
-<section>
-
-<header>
     
-        <h2>
-            <span class="ancestors"><a href="SuiteController.html">SuiteController</a>.</span>
-        
-        SuiteController
-        </h2>
-        
-    
-</header>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>var suiteView;
+var suiteController;
+var suiteModel;
 
-<article>
-    <div class="container-overview">
-    
-        
-<div class="section-method">
+/** 
+ * The entry point where the frontend is created 
+*/
+$(document).ready(function () {
+    actions.main.sort();
+    bsCustomFileInput.init()
 
-    
+    toastr.options.closeButton = true;
+    toastr.options.positionClass = "toast-bottom-right";
 
-    <h4 class="name" id="SuiteController"><span class="type-signature"></span>new SuiteController<span class="signature">()</span><span class="type-signature"></span></h4>
+    $('[data-toggle="tooltip"]').tooltip();
 
-    
+    $("#errorDialog").draggable({
+        handle: ".modal-header"
+    });
 
+    // $(window).bind('beforeunload', function () {
+    //     suiteController.save();
+    //     return 'Are you sure you want to leave?';
+    // });
+    bindKeyboardShortcuts();
+    let storageContent = sessionStorage.getItem('savedSuite');
 
+    suiteController = new SuiteController();
+    suiteModel = new SuiteModel();
+    suiteView = new SuiteView(suiteController);
 
-<div class="description">
-    Creates an instance of SuiteController.
-</div>
+    suiteController.initialize(suiteView, suiteModel);
+    suiteView.initialize(suiteController);
 
+    if (isFileLoad || storageContent !== null) {
+        let sContent = '';
+        let showToast = false;
+        // Preference given to file load even if there is content in localstorage
+        if(isFileLoad){
+            sContent = JSON.parse(suiteContent);
+            showToast = true;
+        }
+        else{
+            sContent = JSON.parse(storageContent);
+        }
+        console.log('Do Script Load', sContent);
 
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="suitecontroller.js.html">suitecontroller.js</a>, <a href="suitecontroller.js.html#line13">line 13</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
+        suiteController.loadSuite(sContent, showToast);
+    }
+    else {
+        suiteView.displaySettings(true);
+    }
 
 
 
+});
 
+/**
+ * Binds the mouse shortcut keys to the functions in the application
+ *
+ */
+function bindKeyboardShortcuts() {
 
+    Mousetrap.bind('mod+s', function (e) {
+        handleDefaults(e);
+        console.log("Mousetrap save...");
+        suiteController.save();
+    });
 
+    Mousetrap.bind('mod+m', function (e) {
+        console.log("Mousetrap new script...");
+        handleDefaults(e);
+        suiteController.newScript();
+    });
 
+    Mousetrap.bind('mod+y', function (e) {
+        console.log("Mousetrap new suite...");
+        handleDefaults(e);
+        suiteController.newSuite();
+    });
 
+    Mousetrap.bind('mod+e', function (e) {
+        console.log("Mousetrap export...");
+        handleDefaults(e);
+        suiteController.export();
+    });
 
+    Mousetrap.bind('mod+q', function (e) {
+        console.log("Mousetrap run...");
+        handleDefaults(e);
+        suiteController.run();
+    });
 
+    Mousetrap.bind('mod+l', function (e) {
+        console.log("Mousetrap load...");
+        handleDefaults(e);
+        suiteController.load();
+    });
 
+    Mousetrap.bind('mod+,', function (e) {
+        handleDefaults(e);
+        console.log("Mousetrap settings...");
+        suiteController.settings();
+    });
 
+    function handleDefaults(e) {
+        if (e.preventDefault) {
+            e.preventDefault();
+        }
+        else {
+            // internet explorer
+            e.returnValue = false;
+        }
+    }
+}
 
-
-
-
-
-
-
-
-
-
-
-</div>
-    
-    </div>
-
-    
-
-    
-
-    
-
-     
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+</code></pre>
+        </article>
+    </section>
 
 
 

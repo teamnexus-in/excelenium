@@ -711,7 +711,7 @@ class SuiteView {
         scriptData.stopOnError = stopOnError;
 
         $('#suite-tabs').append('<li class="nav-item"><a class="nav-link" id="' + tabId + '" data-toggle="tab" href="#' + panelId + '" role="tab" aria-controls="scripts" aria-selected="true">' + scriptName + '</a><span class="tabClose" aria-hidden="true">&times;</span></li>');
-        $('#scripts-tab-content').append('<div class="tab-pane fade show" id="' + panelId + '" role="tabpanel" aria-labelledby="' + tabId + '"><div id="' + sheetsId + '" class="sheets-content"></div></div>');
+        $('#scripts-tab-content').append('<div class="tab-pane fade show" id="' + panelId + '" role="tabpanel" aria-labelledby="' + tabId + '"><div id="' + sheetsId + '" class="sheets-content pt-1"></div></div>');
 
         let jxl = this.createSheets(sheetsId, data);
         scriptData.jxl = jxl;
@@ -733,6 +733,7 @@ class SuiteView {
      * @memberof SuiteView
      */
     createSheets(sheetsId, data) {
+        let thisViewObj = this;
         let jxl = $('#' + sheetsId).jexcel({
             data: [[]],
             defaultColWidth: 100,
@@ -765,7 +766,29 @@ class SuiteView {
                         colspan: '3',
                     },
                 ],
+            ],
+            toolbar: [
+                {
+                    type: 'i',
+                    content: 'plus_one',
+                    tooltip: 'Add a blank row at the end',
+                    onclick: function () {
+                        thisViewObj.addRows(jxl, 1);
+                        toastr.success("One row added");
+                    }
+                },
+                {
+                    type: 'i',
+                    content: 'reorder',
+                    tooltip: 'Add 10 blank rows at the end',
+                    onclick: function () {
+                        thisViewObj.addRows(jxl, 10);
+                        toastr.success("Ten rows added")
+                    }
+
+                }
             ]
+
         });
 
         if (data && data.length > 0) {
@@ -795,6 +818,18 @@ class SuiteView {
         // jxl.setRowData(2, [true, true, 'test3', 'CHECK_ATTRIBUTE', 'id3'])
 
         return jxl;
+    }
+
+    
+    /**
+     * Adds the specified number of rows to the sheet
+     *
+     * @param {JExcel} jxl - JExcel instance
+     * @param {integer} numRows - Number of rows to be added at the end
+     * @memberof SuiteView
+     */
+    addRows(jxl, numRows){
+        jxl.insertRow(numRows);
     }
 
     /**
