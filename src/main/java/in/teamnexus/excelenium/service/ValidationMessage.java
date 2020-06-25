@@ -1,5 +1,11 @@
-/**
- * ValidationMessage represents the Error / Warning messages generated during validation.
+/*
+ * Copyright (C) 2017 - Present. NEXUS. All rights reserved.
+ * 
+ * https://teamnexus.in
+ * 
+ * This software is released under the Apache 2.0 License.
+ * 
+ * 
  */
 package in.teamnexus.excelenium.service;
 

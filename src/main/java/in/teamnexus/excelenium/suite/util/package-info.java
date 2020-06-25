@@ -1,5 +1,5 @@
 /**
- * 
+ * The utility class that provides a lot of helper methods.
  */
 /**
  * @author Prabhu

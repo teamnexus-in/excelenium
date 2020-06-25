@@ -3,7 +3,7 @@
  * 
  * https://teamnexus.in
  * 
- * This software is released under the MIT license.
+ * This software is released under the Apache 2.0 License.
  * 
  * 
  */

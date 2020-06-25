@@ -787,7 +787,7 @@ table.tableblock.grid-all th.tableblock, table.tableblock.grid-all td.tableblock
 <h2 id="_introduction_and_features">1. Introduction and Features</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <code><code>excelenium</code></code> automation tool is a general purpose automation tool that is based on the popular Selenium WebDriver. Unlike the regular Selenium Scripts which are run as JUnit test cases, this script is prepared using a spreadsheet in a web-based UI that <code><code>excelenium</code></code> provides. <code><code>excelenium</code></code> provides an array of features that would speed up automation script writing as there is no need for programming knowledge or JUnit. <code><code>excelenium</code></code> can execute automation tests on Google Chrome, Mozilla Firefox, Microsoft Edge, Opera and Safari browsers.</p>
+<p>This is the manual about <code><code>excelenium</code></code>, an automation tool that enables automation testing of web applications using spreadsheet. It uses the popular Selenium WebDriver for automation. Unlike the regular Selenium Scripts which are run as JUnit test cases, this script is prepared using a spreadsheet in a web-based UI. <code><code>excelenium</code></code> provides an array of features that would speed up automation script writing as there is no need for any knowledge in programming or JUnit. <code><code>excelenium</code></code> can execute automation tests on Google Chrome, Mozilla Firefox, Microsoft Edge, Opera and Safari browsers.</p>
 </div>
 </div>
 </div>
@@ -806,7 +806,7 @@ table.tableblock.grid-all th.tableblock, table.tableblock.grid-all td.tableblock
 <p>Single executable jar file</p>
 </li>
 <li>
-<p>No external dependencies</p>
+<p>No external dependencies, except the browser drivers and the browsers themselves.</p>
 </li>
 <li>
 <p>Intuitive Report and log file</p>
@@ -1114,7 +1114,7 @@ Script once deleted cannot be undone.
 <p>A script contains a sequence of actions that will be executed by the WebDriver on the web page rendered by the browser.</p>
 </div>
 <div class="paragraph">
-<p>By default, there are 20 rows added to the scripts sheet. To add more right click on the last row and add more rows as needed</p>
+<p>By default, there are 20 rows added to the scripts sheet. To add more right click on the last row and add more rows as needed. Click the <span class="image"><img src="./images/toolbar-one-row.png" alt="toolbar one row"></span> button in the toolbar for adding one row at the end of the spreadsheet. To add 10 rows at the end click the <span class="image"><img src="./images/toolbar-10-rows.png" alt="toolbar 10 rows"></span> button.</p>
 </div>
 <div class="paragraph">
 <p>The script can be grouped in the two sections</p>
@@ -1729,10 +1729,18 @@ Script once deleted cannot be undone.
 <div class="sect2">
 <h3 id="_running_the_suite">5.3. Running the Suite</h3>
 <div class="paragraph">
-<p>Once the script has been prepared, clicking on the <span class="image"><img src="./images/run-button.png" alt="run button"></span> button.</p>
+<p>Once the scripts in the suite have been prepared, clicking on the <span class="image"><img src="./images/save-button.png" alt="save button"></span> saves the suite to the server memory. In addition, <code><code>excelenium</code></code> also validates the suite and if there any errors, it displays a dialog similar to the one below</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/errors-dialog.png" alt="errors dialog">
+</div>
 </div>
 <div class="paragraph">
-<p>The suite will be executed on the browsers selected in the settings.</p>
+<p>The errors dialog can be viewed again by clicking on the <span class="image"><img src="./images/errors-button.png" alt="errors button"></span>.</p>
+</div>
+<div class="paragraph">
+<p>Clicking on the <span class="image"><img src="./images/run-button.png" alt="run button"></span> button, saves and validates the suite, and if the suite is valid it executes the suite on the browsers selected in the settings dialog.</p>
 </div>
 <div class="paragraph">
 <p>Each browser will have a separate log file in its name along with the timestamp.</p>

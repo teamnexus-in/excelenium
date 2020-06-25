@@ -1,0 +1,43 @@
+= excelenium
+
+== Introduction and Features
+
+This is the manual about ```excelenium```, an automation tool that enables automation testing of web applications using spreadsheet. It uses the popular Selenium WebDriver for automation. Unlike the regular Selenium Scripts which are run as JUnit test cases, this script is prepared using a spreadsheet in a web-based UI. ```excelenium``` provides an array of features that would speed up automation script writing as there is no need for any knowledge in programming or JUnit. ```excelenium``` can execute automation tests on Google Chrome, Mozilla Firefox, Microsoft Edge, Opera and Safari browsers.
+
+== Features
+
+The tool has the following major features 
+
+. Automation Script using spreadsheets in a web-based UI
+. Single executable jar file
+. No external dependencies, except the browser drivers and the browsers themselves.
+. Intuitive Report and log file
+. Concurrently run tests on the browsers
+. Supported Browsers - Mozilla Firefox, Google Chrome, Microsoft Edge, Opera, and Safari (Safari - only on macOS)
+.	Ability to set custom user agent and test mobile browser test scenarios
+
+== Prerequisites 
+
+The tool is an executable jar with all the dependencies included and can be directly executed from the command-line; however, there are some basic prerequisites that are required for running this tool. 
+
+The prerequisites are
+
+. Java JDK 8 or higher
+. Apache Maven – 3.6.0 or higher (required only if building from source)
+. Mozilla Firefox, Google Chrome, Microsoft Edge, Opera and Safari Browsers (Install only the required browsers)
+. Browser WebDrivers - Can be downloaded from the following locations
+.. Mozilla Firefox - https://github.com/mozilla/geckodriver/releases[Gecko Driver]
+.. Google Chrome - https://sites.google.com/a/chromium.org/chromedriver/downloads[Chrome Driver]
+.. Microsoft Edge Driver - https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/#downloads[Edge Driver]
+.. Opera - https://github.com/operasoftware/operachromiumdriver/releases[Opera Driver]
+.. Safari - In-built (Supported only on macOS)
+. Git – to clone the repository (required only if building from source)
+
+[NOTE]
+Microsoft Edge  driver is applicable for version above 18 that use the Chromium Engine. For others please read the notes in the link above for Microsoft Edge
+
+== Manual and Documentation
+
+For users, an extensive manual on the usage of excelenium can be found under the manual folder under the docs directory
+
+For developers, a detailed documentation that includes code call graphs can be found under the java folder of the docs directory.

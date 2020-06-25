@@ -1,5 +1,5 @@
 /**
- * 
+ * Provides the objects of the Suite model
  */
 /**
  * @author Prabhu

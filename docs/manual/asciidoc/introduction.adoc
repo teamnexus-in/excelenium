@@ -1,6 +1,6 @@
 == Introduction and Features
 
-The ```excelenium``` automation tool is a general purpose automation tool that is based on the popular Selenium WebDriver. Unlike the regular Selenium Scripts which are run as JUnit test cases, this script is prepared using a spreadsheet in a web-based UI that ```excelenium``` provides. ```excelenium``` provides an array of features that would speed up automation script writing as there is no need for programming knowledge or JUnit. ```excelenium``` can execute automation tests on Google Chrome, Mozilla Firefox, Microsoft Edge, Opera and Safari browsers.
+This is the manual about ```excelenium```, an automation tool that enables automation testing of web applications using spreadsheet. It uses the popular Selenium WebDriver for automation. Unlike the regular Selenium Scripts which are run as JUnit test cases, this script is prepared using a spreadsheet in a web-based UI. ```excelenium``` provides an array of features that would speed up automation script writing as there is no need for any knowledge in programming or JUnit. ```excelenium``` can execute automation tests on Google Chrome, Mozilla Firefox, Microsoft Edge, Opera and Safari browsers.
 
 == Features
 
@@ -8,7 +8,7 @@ The tool has the following major features
 
 . Automation Script using spreadsheets in a web-based UI
 . Single executable jar file
-. No external dependencies
+. No external dependencies, except the browser drivers and the browsers themselves.
 . Intuitive Report and log file
 . Concurrently run tests on the browsers
 . Supported Browsers - Mozilla Firefox, Google Chrome, Microsoft Edge, Opera, and Safari (Safari - only on macOS)

@@ -3,13 +3,12 @@
  * 
  * https://teamnexus.in
  * 
- * This software is released under the MIT license.
+ * This software is released under the Apache 2.0 License.
  * 
  * 
  */
 package in.teamnexus.excelenium.suite.script;
 
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;

@@ -81,7 +81,7 @@ image::landing-page-script.png[]
 
 A script contains a sequence of actions that will be executed by the WebDriver on the web page rendered by the browser.
 
-By default, there are 20 rows added to the scripts sheet. To add more right click on the last row and add more rows as needed
+By default, there are 20 rows added to the scripts sheet. To add more right click on the last row and add more rows as needed. Click the image:toolbar-one-row.png[] button in the toolbar for adding one row at the end of the spreadsheet. To add 10 rows at the end click the image:toolbar-10-rows.png[] button.
 
 The script can be grouped in the two sections
 
@@ -560,9 +560,13 @@ The following table explains the possible values in the columns of the <<Action 
 
 === Running the Suite
 
-Once the script has been prepared, clicking on the image:run-button.png[] button.
+Once the scripts in the suite have been prepared, clicking on the image:save-button.png[] saves the suite to the server memory. In addition, ```excelenium``` also validates the suite and if there any errors, it displays a dialog similar to the one below
 
-The suite will be executed on the browsers selected in the settings. 
+image::errors-dialog.png[]
+
+The errors dialog can be viewed again by clicking on the image:errors-button.png[].
+
+Clicking on the image:run-button.png[] button, saves and validates the suite, and if the suite is valid it executes the suite on the browsers selected in the settings dialog.
 
 Each browser will have a separate log file in its name along with the timestamp.
 
