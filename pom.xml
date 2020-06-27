@@ -9,7 +9,7 @@
   </parent>
   <groupId>in.teamnexus</groupId>
   <artifactId>excelenium</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0.0.RELEASE</version>
   <name>excelenium</name>
   <description>excelenium web based interface</description>
 
