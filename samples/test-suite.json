@@ -32,7 +32,7 @@
     ],
     "userAgent": {
       "enabled": false,
-      "value": ""
+      "userAgent": ""
     },
     "runConcurrent": false
   },
@@ -69,6 +69,66 @@
           "actionType": "FILL",
           "element": "tb-server-url",
           "elementValue": "http://localhost:8080",
+          "attributeName": "",
+          "attributeValue": ""
+        },
+        {
+          "execute": true,
+          "stopOnError": true,
+          "actionName": "verifyBrowsersTxt",
+          "actionType": "VERIFY_TEXT",
+          "element": "//*[@id='form-new-suite']/div[3]/div/h5",
+          "elementValue": "Browsers",
+          "attributeName": "starts_with",
+          "attributeValue": ""
+        },
+        {
+          "execute": true,
+          "stopOnError": true,
+          "actionName": "checkFirefox",
+          "actionType": "CHECK",
+          "element": "cb-firefox",
+          "elementValue": "",
+          "attributeName": "",
+          "attributeValue": ""
+        },
+        {
+          "execute": true,
+          "stopOnError": true,
+          "actionName": "fillFxDriver",
+          "actionType": "FILL",
+          "element": "tb-firefox",
+          "elementValue": "D:/Progs/selenium/webdrivers/geckodriver/geckodriver.exe",
+          "attributeName": "",
+          "attributeValue": ""
+        },
+        {
+          "execute": true,
+          "stopOnError": true,
+          "actionName": "verifyUAElem",
+          "actionType": "VERIFY_PRESENT",
+          "element": "cb-user-agent",
+          "elementValue": "",
+          "attributeName": "",
+          "attributeValue": ""
+        },
+        {
+          "execute": true,
+          "stopOnError": true,
+          "actionName": "isVisibleRunBrow",
+          "actionType": "IS_VISIBLE",
+          "element": "//*[@id=\"form-new-suite\"]/div[4]/div[2]/div/span",
+          "elementValue": "",
+          "attributeName": "",
+          "attributeValue": ""
+        },
+        {
+          "execute": true,
+          "stopOnError": true,
+          "actionName": "clickSave",
+          "actionType": "CLICK",
+          "element": "btn-settings-save",
+          "elementValue": "",
           "attributeName": "",
           "attributeValue": ""
         }
