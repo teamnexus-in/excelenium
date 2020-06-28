@@ -71,7 +71,7 @@ import in.teamnexus.excelenium.suite.util.WebDriverUtil;
  * The class that defines any of the actions that could be performed on a web
  * element.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "actionType")
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "actionType", visible = true)
 @JsonSubTypes({ 
     @JsonSubTypes.Type(name="ACCEPT_POPUP",  value = AcceptPopupAction.class),
     @JsonSubTypes.Type(name="ADD_COOKIE",  value = AddCookieAction.class),
@@ -170,7 +170,7 @@ public abstract class Action implements Executable
      */
     public String getActionName()
     {
-        return actionName;
+        return this.actionName;
     }
 
     /**
@@ -378,7 +378,7 @@ public abstract class Action implements Executable
         {
             hasError = true;
             logger.error("Exception in performing action: ", e);
-            reportsLogger.error(this.getFullyQualifiedName() + " with action: " + actionType + " failed: " + e.getMessage());
+            reportsLogger.error(this.getFullyQualifiedName() + " with action: " + this.actionType + " failed: " + e.getMessage());
             try
             {
                 
@@ -390,7 +390,7 @@ public abstract class Action implements Executable
             }
             if (this.isStopOnError() || script.isStopOnError())
             {
-                throw new ScriptException("Error in Action: " + actionType);
+                throw new ScriptException("Error in Action: " + this.actionType);
             }
         }
         finally
@@ -398,7 +398,7 @@ public abstract class Action implements Executable
             stopwatch.stop();
             if (!hasError && success)
             {
-                reportsLogger.info(this.getFullyQualifiedName() + " with action: " + actionType + " completed in " + stopwatch.elapsed(TimeUnit.MILLISECONDS) + " msecs");
+                reportsLogger.info(this.getFullyQualifiedName() + " with action: " + this.actionType + " completed in " + stopwatch.elapsed(TimeUnit.MILLISECONDS) + " msecs");
             }
         }
 
