@@ -1,5 +1,5 @@
 # excelenium
-![excelenium](https://github.com/teamnexus-in/excelenium/blob/gh-pages/excelenium.png)
+![excelenium](https://teamnexus.in/opensource/excelenium.png)
 
 `excelenium`, an automation tool that enables automation testing of web applications using spreadsheet. It uses the popular Selenium WebDriver for automation. Unlike the regular Selenium Scripts which are run as JUnit test cases, this script is prepared using a spreadsheet in a web-based UI. `excelenium` provides an array of features that would speed up automation script writing as there is no need for any knowledge in programming or JUnit. `excelenium` can execute automation tests on Google Chrome, Mozilla Firefox, Microsoft Edge, Opera and Safari browsers.
 
