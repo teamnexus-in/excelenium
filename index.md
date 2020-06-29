@@ -19,6 +19,8 @@ The tool has the following major features
 
 Quickstart video can be found [here](https://www.youtube.com/watch?v=Pbqwp1hbEqI) in YouTube
 
+Follow this [YouTube Channel](https://www.youtube.com/channel/UCoKbHqNdj_iyWI_mYzgzc0w) for more videos
+
 ## Builds and Manual
 
 Builds can be downloaded from the [Releases](https://github.com/teamnexus-in/excelenium/releases/) page or can be found in the docs directory of the [repository](https://github.com/teamnexus-in/excelenium/)
