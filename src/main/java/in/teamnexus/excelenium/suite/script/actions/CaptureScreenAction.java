@@ -49,7 +49,7 @@ public class CaptureScreenAction extends Action
     {
         boolean success = true;
         String browser = MDC.get("browser");
-        String fileName = ((this.element == null) ? (this.actionName + "-" + browser + System.currentTimeMillis() + ".png") : (browser + this.element));
+        String fileName = ((this.element == null || this.element.isBlank()) ? (this.actionName + "-" + browser  + "-" + System.currentTimeMillis() + ".png") : (browser + "-" + this.element +".png"));
         WebDriverUtil.getInstance().captureScreenshot(webDriver, fileName);
         logger.info("Screenshot captured to " + fileName);
 

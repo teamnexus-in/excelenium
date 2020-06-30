@@ -212,7 +212,7 @@ The following action types are available in ```excelenium``` and are described i
 |Switch to parent from iframe.
 
 |*CAPTURE_SCREEN* 
-|Captures the currently rendered screen in the browser.
+|Captures the currently rendered screen in the browser and saves as a png image.
 
 |*NAVIGATE* 
 |Navigates back/forward/to a particular URL.
@@ -407,7 +407,7 @@ The following table explains the possible values in the columns of the <<Action 
 |None
 
 |*CAPTURE_SCREEN* 
-|Optional filename 
+|Optional filename without extension
 |None 
 |None 
 |None
