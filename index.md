@@ -24,3 +24,8 @@ Follow this [YouTube Channel](https://www.youtube.com/channel/UCoKbHqNdj_iyWI_mY
 ## Builds and Manual
 
 Builds can be downloaded from the [Releases](https://github.com/teamnexus-in/excelenium/releases/) page or can be found in the docs directory of the [repository](https://github.com/teamnexus-in/excelenium/)
+
+You can also look at the projects [wiki](https://github.com/teamnexus-in/excelenium/wiki) that has the manual too
+
+---
+Copyright &copy; 2017 - Present, NEXUS. All rights reserved.
