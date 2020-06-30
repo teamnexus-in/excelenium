@@ -1,0 +1,88 @@
+{
+  "name": "iFrame Test",
+  "settings": {
+    "name": "iFrame Test",
+    "serverUrl": "http://localhost/iframetest.html",
+    "browsers": [
+      {
+        "enabled": true,
+        "name": "chrome",
+        "driverPath": "D:\\Progs\\selenium\\webdrivers\\chromedriver\\chromedriver.exe"
+      },
+      {
+        "enabled": false,
+        "name": "firefox",
+        "driverPath": ""
+      },
+      {
+        "enabled": false,
+        "name": "edge",
+        "driverPath": ""
+      },
+      {
+        "enabled": false,
+        "name": "opera",
+        "driverPath": ""
+      },
+      {
+        "enabled": false,
+        "name": "safari",
+        "driverPath": ""
+      }
+    ],
+    "userAgent": {
+      "enabled": false,
+      "userAgent": ""
+    },
+    "runConcurrent": false
+  },
+  "scripts": [
+    {
+      "name": "Switch To iFrame",
+      "run": true,
+      "stopOnError": false,
+      "actions": [
+        {
+          "execute": true,
+          "stopOnError": true,
+          "actionName": "switchIFrame",
+          "actionType": "SWITCH_TO_IFRAME",
+          "element": "/html/body/iframe",
+          "elementValue": "",
+          "attributeName": "",
+          "attributeValue": ""
+        },
+        {
+          "execute": true,
+          "stopOnError": true,
+          "actionName": "clickNew",
+          "actionType": "CLICK",
+          "element": "btn-new",
+          "elementValue": "",
+          "attributeName": "",
+          "attributeValue": ""
+        },
+        {
+          "execute": true,
+          "stopOnError": true,
+          "actionName": "ToParent",
+          "actionType": "SWITCH_TO_PARENT",
+          "element": "",
+          "elementValue": "",
+          "attributeName": "",
+          "attributeValue": ""
+        },
+        {
+          "execute": true,
+          "stopOnError": true,
+          "actionName": "verifyHeader",
+          "actionType": "VERIFY_TEXT",
+          "element": "/html/body/h1",
+          "elementValue": "The iframe",
+          "attributeName": "starts_with",
+          "attributeValue": ""
+        }
+      ]
+    }
+  ]
+}

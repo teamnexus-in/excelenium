@@ -1,0 +1,78 @@
+{
+  "name": "Scroll To Element",
+  "settings": {
+    "name": "Scroll To Element",
+    "serverUrl": "https://github.com/teamnexus-in/excelenium/wiki",
+    "browsers": [
+      {
+        "enabled": true,
+        "name": "chrome",
+        "driverPath": "D:\\Progs\\selenium\\webdrivers\\chromedriver\\chromedriver.exe"
+      },
+      {
+        "enabled": false,
+        "name": "firefox",
+        "driverPath": ""
+      },
+      {
+        "enabled": false,
+        "name": "edge",
+        "driverPath": ""
+      },
+      {
+        "enabled": false,
+        "name": "opera",
+        "driverPath": ""
+      },
+      {
+        "enabled": false,
+        "name": "safari",
+        "driverPath": ""
+      }
+    ],
+    "userAgent": {
+      "enabled": false,
+      "userAgent": ""
+    },
+    "runConcurrent": false
+  },
+  "scripts": [
+    {
+      "name": "Scroll To Element",
+      "run": true,
+      "stopOnError": false,
+      "actions": [
+        {
+          "execute": true,
+          "stopOnError": true,
+          "actionName": "scrollToElem",
+          "actionType": "SCROLL_TO_ELEMENT",
+          "element": "user-content-running-excelenium",
+          "elementValue": "",
+          "attributeName": "",
+          "attributeValue": ""
+        },
+        {
+          "execute": true,
+          "stopOnError": true,
+          "actionName": "verifyTxt",
+          "actionType": "VERIFY_TEXT",
+          "element": "user-content-running-excelenium",
+          "elementValue": "Running",
+          "attributeName": "starts_with",
+          "attributeValue": ""
+        },
+        {
+          "execute": true,
+          "stopOnError": true,
+          "actionName": "scrollToElem",
+          "actionType": "SCROLL_TO_ELEMENT",
+          "element": "//*[@id='wiki-wrapper']/div[1]/h1",
+          "elementValue": "",
+          "attributeName": "",
+          "attributeValue": ""
+        }
+      ]
+    }
+  ]
+}

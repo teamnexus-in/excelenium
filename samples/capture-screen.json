@@ -1,0 +1,78 @@
+{
+  "name": "Capture Screen",
+  "settings": {
+    "name": "Capture Screen",
+    "serverUrl": "http://localhost:8080",
+    "browsers": [
+      {
+        "enabled": true,
+        "name": "chrome",
+        "driverPath": "D:/Progs/selenium/webdrivers/chromedriver/chromedriver.exe"
+      },
+      {
+        "enabled": false,
+        "name": "firefox",
+        "driverPath": ""
+      },
+      {
+        "enabled": false,
+        "name": "edge",
+        "driverPath": ""
+      },
+      {
+        "enabled": false,
+        "name": "opera",
+        "driverPath": ""
+      },
+      {
+        "enabled": false,
+        "name": "safari",
+        "driverPath": ""
+      }
+    ],
+    "userAgent": {
+      "enabled": false,
+      "userAgent": ""
+    },
+    "runConcurrent": false
+  },
+  "scripts": [
+    {
+      "name": "Capture Script",
+      "run": true,
+      "stopOnError": false,
+      "actions": [
+        {
+          "execute": true,
+          "stopOnError": true,
+          "actionName": "captureHome",
+          "actionType": "CAPTURE_SCREEN",
+          "element": "",
+          "elementValue": "",
+          "attributeName": "",
+          "attributeValue": ""
+        },
+        {
+          "execute": true,
+          "stopOnError": true,
+          "actionName": "clickNew",
+          "actionType": "CLICK",
+          "element": "btn-new",
+          "elementValue": "",
+          "attributeName": "",
+          "attributeValue": ""
+        },
+        {
+          "execute": true,
+          "stopOnError": true,
+          "actionName": "captureToFile",
+          "actionType": "CAPTURE_SCREEN",
+          "element": "newSuite",
+          "elementValue": "",
+          "attributeName": "",
+          "attributeValue": ""
+        }
+      ]
+    }
+  ]
+}

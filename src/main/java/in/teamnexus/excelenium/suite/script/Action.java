@@ -50,6 +50,7 @@ import in.teamnexus.excelenium.suite.script.actions.IsEnabledAction;
 import in.teamnexus.excelenium.suite.script.actions.IsHiddenAction;
 import in.teamnexus.excelenium.suite.script.actions.IsVisibleAction;
 import in.teamnexus.excelenium.suite.script.actions.MakeRequestAction;
+import in.teamnexus.excelenium.suite.script.actions.MaximizeWindowAction;
 import in.teamnexus.excelenium.suite.script.actions.NavigateAction;
 import in.teamnexus.excelenium.suite.script.actions.RightClickAction;
 import in.teamnexus.excelenium.suite.script.actions.RunScriptAction;
@@ -97,6 +98,7 @@ import in.teamnexus.excelenium.suite.util.WebDriverUtil;
     @JsonSubTypes.Type(name="IS_HIDDEN",  value = IsHiddenAction.class),
     @JsonSubTypes.Type(name="IS_VISIBLE",  value = IsVisibleAction.class),
     @JsonSubTypes.Type(name="MAKE_REQUEST",  value = MakeRequestAction.class),
+    @JsonSubTypes.Type(name="MAXIMIZE_WINDOW",  value = MaximizeWindowAction.class),
     @JsonSubTypes.Type(name="NAVIGATE",  value = NavigateAction.class),
     @JsonSubTypes.Type(name="RIGHT_CLICK",  value = RightClickAction.class),
     @JsonSubTypes.Type(name="RUN_SCRIPT",  value = RunScriptAction.class),

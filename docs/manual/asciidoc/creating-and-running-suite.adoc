@@ -248,7 +248,10 @@ The following action types are available in ```excelenium``` and are described i
 |Checks if the specified element is disabled
 
 |*SET_WINDOW_SIZE* 
-|   
+|Sets the window size of the browser to the width and height specified.
+
+|*MAXIMIZE_WINDOW* 
+|Maximizes the window size of the browser.
 
 |*COMPARE_URL* 
 |Compares the current browser url with the provided url considering the options - starts_with and full_url.
@@ -481,6 +484,12 @@ The following table explains the possible values in the columns of the <<Action 
 |*SET_WINDOW_SIZE* 
 |Positive integer value specifying the width 
 |Positive integer value specifying the height 
+|None 
+|None
+
+|*MAXIMIZE_WINDOW* 
+|None
+|None
 |None 
 |None
 

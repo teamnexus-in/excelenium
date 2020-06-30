@@ -23,6 +23,7 @@ var namespacein_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions =
     [ "IsHiddenAction", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_is_hidden_action.html", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_is_hidden_action" ],
     [ "IsVisibleAction", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_is_visible_action.html", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_is_visible_action" ],
     [ "MakeRequestAction", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_make_request_action.html", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_make_request_action" ],
+    [ "MaximizeWindowAction", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_maximize_window_action.html", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_maximize_window_action" ],
     [ "NavigateAction", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_navigate_action.html", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_navigate_action" ],
     [ "RightClickAction", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_right_click_action.html", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_right_click_action" ],
     [ "RunScriptAction", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_run_script_action.html", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_run_script_action" ],

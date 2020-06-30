@@ -1,0 +1,78 @@
+{
+  "name": "Window Size",
+  "settings": {
+    "name": "Window Size",
+    "serverUrl": "http://localhost:8080",
+    "browsers": [
+      {
+        "enabled": true,
+        "name": "chrome",
+        "driverPath": "D:\\Progs\\selenium\\webdrivers\\chromedriver\\chromedriver.exe"
+      },
+      {
+        "enabled": false,
+        "name": "firefox",
+        "driverPath": ""
+      },
+      {
+        "enabled": false,
+        "name": "edge",
+        "driverPath": ""
+      },
+      {
+        "enabled": false,
+        "name": "opera",
+        "driverPath": ""
+      },
+      {
+        "enabled": false,
+        "name": "safari",
+        "driverPath": ""
+      }
+    ],
+    "userAgent": {
+      "enabled": false,
+      "userAgent": ""
+    },
+    "runConcurrent": false
+  },
+  "scripts": [
+    {
+      "name": "Set Window Size",
+      "run": true,
+      "stopOnError": false,
+      "actions": [
+        {
+          "execute": true,
+          "stopOnError": true,
+          "actionName": "setWndSize",
+          "actionType": "SET_WINDOW_SIZE",
+          "element": "800",
+          "elementValue": "600",
+          "attributeName": "",
+          "attributeValue": ""
+        },
+        {
+          "execute": true,
+          "stopOnError": true,
+          "actionName": "clickNew",
+          "actionType": "CLICK",
+          "element": "btn-new",
+          "elementValue": "",
+          "attributeName": "",
+          "attributeValue": ""
+        },
+        {
+          "execute": true,
+          "stopOnError": true,
+          "actionName": "maximizeWindow",
+          "actionType": "MAXIMIZE_WINDOW",
+          "element": "",
+          "elementValue": "",
+          "attributeName": "",
+          "attributeValue": ""
+        }
+      ]
+    }
+  ]
+}

@@ -15,7 +15,7 @@ var actions = {
         "IS_DISABLED", "SET_WINDOW_SIZE", "COMPARE_URL", "RUN_SCRIPT",
         "GET_DOM", "SCROLL_WINDOW_BY", "SCROLL_TO_ELEMENT",
         "MAKE_REQUEST", "HOVER", "DRAG_AND_DROP", "GET_CURRENT_URL",
-        "HAS_CSS_CLASS", "CHECK_CSS_ATTRIBUTE"
+        "HAS_CSS_CLASS", "CHECK_CSS_ATTRIBUTE", "MAXIMIZE_WINDOW"
     ],
     "preprocess": [
         "ADD_ATTRIBUTE", "REMOVE_ATTRIBUTE", "SET_ATTRIBUTE"
@@ -258,7 +258,7 @@ class SuiteView {
         console.log("About to download...");
         let suiteContent = this.controller.getSuiteJson();
 
-        var filename = suiteContent.name.replace(' ', '-').trim().toLowerCase() + '.json';
+        var filename = suiteContent.name.replaceAll(' ', '-').trim().toLowerCase() + '.json';
 
         var blob = new Blob([JSON.stringify(suiteContent, null, 2)], {
             type: "application/json;charset=utf-8"

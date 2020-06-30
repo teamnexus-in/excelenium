@@ -34,6 +34,7 @@ var hierarchy =
         [ "in.teamnexus.excelenium.suite.script.actions.IsHiddenAction", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_is_hidden_action.html", null ],
         [ "in.teamnexus.excelenium.suite.script.actions.IsVisibleAction", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_is_visible_action.html", null ],
         [ "in.teamnexus.excelenium.suite.script.actions.MakeRequestAction", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_make_request_action.html", null ],
+        [ "in.teamnexus.excelenium.suite.script.actions.MaximizeWindowAction", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_maximize_window_action.html", null ],
         [ "in.teamnexus.excelenium.suite.script.actions.NavigateAction", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_navigate_action.html", null ],
         [ "in.teamnexus.excelenium.suite.script.actions.RightClickAction", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_right_click_action.html", null ],
         [ "in.teamnexus.excelenium.suite.script.actions.RunScriptAction", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1script_1_1actions_1_1_run_script_action.html", null ],
