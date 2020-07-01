@@ -3,6 +3,7 @@ var classin_1_1teamnexus_1_1excelenium_1_1suite_1_1util_1_1_web_driver_util =
     [ "WebDriverUtil", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1util_1_1_web_driver_util.html#a44bd60a1aef4484de9149ad4804c24e3", null ],
     [ "addNewWindowHandles", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1util_1_1_web_driver_util.html#aefc5ef812ae76d6b5b8382b2477ac814", null ],
     [ "captureScreenshot", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1util_1_1_web_driver_util.html#a9103e7583ce9629b5fcb7ef8b16802b2", null ],
+    [ "clearInstance", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1util_1_1_web_driver_util.html#afa4352a6e26adea348fe8ba5cf063bc6", null ],
     [ "clickElement", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1util_1_1_web_driver_util.html#a8ce480b039a38d04705564fb27dd4b3b", null ],
     [ "getCurrentUrl", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1util_1_1_web_driver_util.html#a05ce321d6325f7a321775c21e85898c2", null ],
     [ "getInstance", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1util_1_1_web_driver_util.html#af99f3a22862e500a8d187d8d9e8a1584", null ],
@@ -14,7 +15,8 @@ var classin_1_1teamnexus_1_1excelenium_1_1suite_1_1util_1_1_web_driver_util =
     [ "switchToWindow", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1util_1_1_web_driver_util.html#af9f0da154bac7eac1f9f9ecb86370d25", null ],
     [ "unsetVariable", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1util_1_1_web_driver_util.html#a7c3ca01047d5d481a2e65b39bf25f51e", null ],
     [ "handles", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1util_1_1_web_driver_util.html#a9f48259b6e862a109b1c1cb211699d6b", null ],
+    [ "instances", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1util_1_1_web_driver_util.html#a3337d601de179e1821e80cc848ae890a", null ],
+    [ "lock", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1util_1_1_web_driver_util.html#a2c893af5db2cc059deae0a41af438bb3", null ],
     [ "logger", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1util_1_1_web_driver_util.html#a3f8f46a314af180ff6e89238a47e77c9", null ],
-    [ "map", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1util_1_1_web_driver_util.html#ae84dde32b396457f10924e54911fe685", null ],
-    [ "thisInstance", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1util_1_1_web_driver_util.html#ae311f8ad53aed38cc72a209ed9951041", null ]
+    [ "map", "classin_1_1teamnexus_1_1excelenium_1_1suite_1_1util_1_1_web_driver_util.html#ae84dde32b396457f10924e54911fe685", null ]
 ];

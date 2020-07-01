@@ -264,6 +264,10 @@ public class ScriptExecutor
                 try
                 {
                     driver.manage().window().maximize();
+                    SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd-HHmmss");
+                    String timestamp = format.format(new Date());
+                    String browserString = this.browserCfg.getName() + "-" + timestamp;
+                    MDC.put("browser", browserString);
                     WebDriverUtil.getInstance().initializeWindowHandles(driver);
                     driver.get(suiteConfig.getSettings().getServerUrl());
                     executeScripts(driver);
@@ -276,6 +280,7 @@ public class ScriptExecutor
                 }
                 finally
                 {
+                    WebDriverUtil.getInstance().clearInstance();
                     driver.quit();
                     logger.info("Webdriver for browser: " + browserCfg + " completed");
                 }
@@ -291,10 +296,6 @@ public class ScriptExecutor
         private void executeScripts(WebDriver webDriver) throws ScriptException
         {
             Logger reportsLogger = LoggerFactory.getLogger("reports");
-            SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd-HHmmss");
-            String timestamp = format.format(new Date());
-            String browserString = this.browserCfg.getName() + "-" + timestamp;
-            MDC.put("browser", browserString);
             List<Script> scripts = suiteConfig.getScripts();
 
             for (Script script : scripts)

@@ -1,0 +1,142 @@
+{
+  "name": "Multiple Scripts",
+  "settings": {
+    "name": "Multiple Scripts",
+    "serverUrl": "https:/excelenium.teamnexus.in",
+    "browsers": [
+      {
+        "enabled": true,
+        "name": "chrome",
+        "driverPath": "D:\\Progs\\selenium\\webdrivers\\chromedriver\\chromedriver.exe"
+      },
+      {
+        "enabled": false,
+        "name": "firefox",
+        "driverPath": ""
+      },
+      {
+        "enabled": false,
+        "name": "edge",
+        "driverPath": ""
+      },
+      {
+        "enabled": false,
+        "name": "opera",
+        "driverPath": ""
+      },
+      {
+        "enabled": false,
+        "name": "safari",
+        "driverPath": ""
+      }
+    ],
+    "userAgent": {
+      "enabled": false,
+      "userAgent": ""
+    },
+    "runConcurrent": false
+  },
+  "scripts": [
+    {
+      "name": "Script 1",
+      "run": true,
+      "stopOnError": false,
+      "actions": [
+        {
+          "execute": true,
+          "stopOnError": true,
+          "actionName": "scrollToElem",
+          "actionType": "SCROLL_TO_ELEMENT",
+          "element": "/html/body/section[2]/p[6]/a[2]",
+          "elementValue": "",
+          "attributeName": "",
+          "attributeValue": ""
+        },
+        {
+          "execute": true,
+          "stopOnError": true,
+          "actionName": "clickElem",
+          "actionType": "CLICK",
+          "element": "/html/body/section[2]/p[6]/a[2]",
+          "elementValue": "",
+          "attributeName": "",
+          "attributeValue": ""
+        },
+        {
+          "execute": true,
+          "stopOnError": true,
+          "actionName": "wait2Secs",
+          "actionType": "WAIT_MSECS",
+          "element": "2000",
+          "elementValue": "",
+          "attributeName": "",
+          "attributeValue": ""
+        }
+      ]
+    },
+    {
+      "name": "Script 2",
+      "run": true,
+      "stopOnError": false,
+      "actions": [
+        {
+          "execute": true,
+          "stopOnError": true,
+          "actionName": "navigateToWiki",
+          "actionType": "NAVIGATE",
+          "element": "https://github.com/teamnexus-in/excelenium/wiki",
+          "elementValue": "",
+          "attributeName": "",
+          "attributeValue": ""
+        },
+        {
+          "execute": true,
+          "stopOnError": true,
+          "actionName": "scrollToElem",
+          "actionType": "SCROLL_TO_ELEMENT",
+          "element": "user-content-building-and-running-excelenium",
+          "elementValue": "",
+          "attributeName": "",
+          "attributeValue": ""
+        },
+        {
+          "execute": true,
+          "stopOnError": true,
+          "actionName": "wait2Secs",
+          "actionType": "WAIT_MSECS",
+          "element": "2000",
+          "elementValue": "",
+          "attributeName": "",
+          "attributeValue": ""
+        }
+      ]
+    },
+    {
+      "name": "Script 3",
+      "run": true,
+      "stopOnError": false,
+      "actions": [
+        {
+          "execute": true,
+          "stopOnError": true,
+          "actionName": "navigateUrl",
+          "actionType": "NAVIGATE",
+          "element": "https://excelenium.teamnexus.in",
+          "elementValue": "",
+          "attributeName": "",
+          "attributeValue": ""
+        },
+        {
+          "execute": true,
+          "stopOnError": true,
+          "actionName": "scrollToElem",
+          "actionType": "SCROLL_TO_ELEMENT",
+          "element": "/html/body/section[2]/p[6]/a[2]",
+          "elementValue": "",
+          "attributeName": "",
+          "attributeValue": ""
+        }
+      ]
+    }
+  ]
+}

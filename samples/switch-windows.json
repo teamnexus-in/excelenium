@@ -1,0 +1,148 @@
+{
+  "name": "Switch Windows",
+  "settings": {
+    "name": "Switch Windows",
+    "serverUrl": "http://localhost/switchwindows.html",
+    "browsers": [
+      {
+        "enabled": true,
+        "name": "chrome",
+        "driverPath": "D:\\Progs\\selenium\\webdrivers\\chromedriver\\chromedriver.exe"
+      },
+      {
+        "enabled": false,
+        "name": "firefox",
+        "driverPath": ""
+      },
+      {
+        "enabled": false,
+        "name": "edge",
+        "driverPath": ""
+      },
+      {
+        "enabled": false,
+        "name": "opera",
+        "driverPath": ""
+      },
+      {
+        "enabled": false,
+        "name": "safari",
+        "driverPath": ""
+      }
+    ],
+    "userAgent": {
+      "enabled": false,
+      "userAgent": ""
+    },
+    "runConcurrent": false
+  },
+  "scripts": [
+    {
+      "name": "Switch Windows",
+      "run": true,
+      "stopOnError": false,
+      "actions": [
+        {
+          "execute": true,
+          "stopOnError": true,
+          "actionName": "clickLink1",
+          "actionType": "CLICK",
+          "element": "/html/body/ul/li[1]/a",
+          "elementValue": "",
+          "attributeName": "",
+          "attributeValue": ""
+        },
+        {
+          "execute": true,
+          "stopOnError": true,
+          "actionName": "switchWindow1",
+          "actionType": "SWITCH_TO_WINDOW",
+          "element": "1",
+          "elementValue": "",
+          "attributeName": "",
+          "attributeValue": ""
+        },
+        {
+          "execute": true,
+          "stopOnError": true,
+          "actionName": "scrollToPrereq",
+          "actionType": "SCROLL_TO_ELEMENT",
+          "element": "user-content-prerequisites",
+          "elementValue": "",
+          "attributeName": "",
+          "attributeValue": ""
+        },
+        {
+          "execute": true,
+          "stopOnError": true,
+          "actionName": "wait3Secs",
+          "actionType": "WAIT_MSECS",
+          "element": "3000",
+          "elementValue": "",
+          "attributeName": "",
+          "attributeValue": ""
+        },
+        {
+          "execute": true,
+          "stopOnError": true,
+          "actionName": "switchWindow0",
+          "actionType": "SWITCH_TO_WINDOW",
+          "element": "0",
+          "elementValue": "",
+          "attributeName": "",
+          "attributeValue": ""
+        },
+        {
+          "execute": true,
+          "stopOnError": true,
+          "actionName": "clickLink2",
+          "actionType": "CLICK",
+          "element": "/html/body/ul/li[2]/a",
+          "elementValue": "",
+          "attributeName": "",
+          "attributeValue": ""
+        },
+        {
+          "execute": true,
+          "stopOnError": true,
+          "actionName": "switchWindow2",
+          "actionType": "SWITCH_TO_WINDOW",
+          "element": "2",
+          "elementValue": "",
+          "attributeName": "",
+          "attributeValue": ""
+        },
+        {
+          "execute": true,
+          "stopOnError": true,
+          "actionName": "scrollToSection",
+          "actionType": "SCROLL_TO_ELEMENT",
+          "element": "user-content-building-and-running-excelenium",
+          "elementValue": "",
+          "attributeName": "",
+          "attributeValue": ""
+        },
+        {
+          "execute": true,
+          "stopOnError": true,
+          "actionName": "wait3Seconds",
+          "actionType": "WAIT_MSECS",
+          "element": "3000",
+          "elementValue": "",
+          "attributeName": "",
+          "attributeValue": ""
+        },
+        {
+          "execute": true,
+          "stopOnError": true,
+          "actionName": "switchWind2to0",
+          "actionType": "SWITCH_TO_WINDOW",
+          "element": "0",
+          "elementValue": "\u0000",
+          "attributeName": "",
+          "attributeValue": ""
+        }
+      ]
+    }
+  ]
+}

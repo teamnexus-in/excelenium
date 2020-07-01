@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.text.StringSubstitutor;
@@ -25,6 +26,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
 
 /**
  * The Utility class that provides helper methods using the webdriver.
@@ -37,26 +39,41 @@ public class WebDriverUtil
 {
 
     /** The logger. */
-    private  Logger logger = LoggerFactory.getLogger(WebDriverUtil.class);
+    private Logger logger = LoggerFactory.getLogger(WebDriverUtil.class);
 
     private HashMap<String, String> map = new HashMap<>();
     private HashMap<String, String> handles = new HashMap<>();
-    
-    private static WebDriverUtil thisInstance = null;
+
+    private static ConcurrentHashMap<String, WebDriverUtil> instances = new ConcurrentHashMap<>();
+
+    private static Object lock = new Object();
 
     private WebDriverUtil()
     {
 
     }
-    
+
+    /**
+     * Returns a separate WebDriverUtil instance for each browser object. It is needed to handle cases of switching windows, where the handles 
+     * and their indexes have to stored correctly without colliding with other browsers in case of concurrent execution
+     *  
+     * @return WebDriverUtil instance that is a singleton to the thread that runs browser
+     */
     public static WebDriverUtil getInstance()
     {
-        if(thisInstance == null)
+        WebDriverUtil retInstance = null;
+        // Just to ensure thread safety for browser variable when the tests are run on browsers concurrently
+        synchronized (lock)
         {
-            thisInstance = new WebDriverUtil();
+            String browser = MDC.get("browser");
+            retInstance = instances.get(browser);
+            if (retInstance == null)
+            {
+                retInstance = new WebDriverUtil();
+                instances.put(browser, retInstance);
+            }
         }
-        
-        return thisInstance;
+        return retInstance;
     }
 
     /**
@@ -78,7 +95,7 @@ public class WebDriverUtil
     }
 
     /**
-     * Click element.
+     * Click element. If clicking an element created a new window/tab, add that tab handle to the list of handles
      * 
      * @param webDriver
      *            the web driver
@@ -87,7 +104,7 @@ public class WebDriverUtil
      * @throws Exception
      *             the exception
      */
-    public  void clickElement(WebDriver webDriver, WebElement webElement) throws Exception
+    public void clickElement(WebDriver webDriver, WebElement webElement) throws Exception
     {
         logger.debug("WebUtil click: " + webElement.getTagName());
         webElement.click();
@@ -139,16 +156,15 @@ public class WebDriverUtil
     /**
      * @param elementValue
      *            - Substitues the value in the string.
-     * @return
+     * @return String that is substituted with the variable names
      */
-    public  String substitute(String elementValue)
+    public String substitute(String elementValue)
     {
         map.put("timestamp", String.valueOf(System.currentTimeMillis()));
         String retVal = StringSubstitutor.replace(elementValue, map);
         return retVal;
     }
 
-   
     /**
      * @param variableName
      *            - Sets the variable in scope of the script.
@@ -175,7 +191,8 @@ public class WebDriverUtil
      */
     public void initializeWindowHandles(WebDriver webDriver)
     {
-        handles.put("0", webDriver.getWindowHandle());
+        this.handles.clear();
+        this.handles.put("0", webDriver.getWindowHandle());
     }
 
     /**
@@ -195,15 +212,40 @@ public class WebDriverUtil
         }
     }
 
+    /**
+     * Gets the current Url in the browser and puts that in the map
+     * @param webDriver
+     * @param element
+     */
     public void getCurrentUrl(WebDriver webDriver, String element)
     {
         String currentUrl = webDriver.getCurrentUrl();
         map.put(element, currentUrl);
     }
-    
+
+    /**
+     * Returns the map of variables created during the execution of the script
+     * @return map of variables created
+     */
     public Map<String, String> getMap()
     {
         return this.map;
+    }
+
+    
+    /**
+     * Clear this WebDriverUtil instance that is unique singleton for each browser. 
+     */
+    public void clearInstance()
+    {
+        synchronized (lock)
+        {
+            String browser = MDC.get("browser");
+            logger.debug("Before Removing the webdriverutil instance for this browser: " + browser + " map:" + instances.toString());
+            instances.remove(browser);
+            logger.debug("Removing the webdriverutil instance for this browser: " + browser + " map:" + instances.toString());
+        }
+        
     }
 
 }
