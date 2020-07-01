@@ -41,3 +41,5 @@ Microsoft Edge  driver is applicable for version above 18 that use the Chromium 
 For users, an extensive manual on the usage of excelenium can be found under the manual folder under the docs directory
 
 For developers, a detailed documentation that includes code call graphs can be found under the java folder of the docs directory.
+
+Also found in the https://github.com/teamnexus-in/excelenium/wiki[wiki]
